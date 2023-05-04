@@ -5,6 +5,18 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RISE_Win_WoL", "RISE_Win_WoL\RISE_Win_WoL.vcxproj", "{FDFB75B0-D2B5-42B5-9AC7-A4D2AB208CC9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Level0", "Level0", "{F2A16466-C300-42C8-82A2-0E0D275DE160}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Level1", "Level1", "{617511A1-43A6-4949-8022-76A60C72A38E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Level2", "Level2", "{03522574-8C70-4DF8-89CC-168D91274920}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Level3", "Level3", "{18236326-C82C-4152-84DD-EA2C6379C2C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Level4", "Level4", "{B624C47F-6DFE-440E-9528-88838A1DBD60}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngineBase", "GameEngineBase\GameEngineBase.vcxproj", "{993FCCD9-6C00-4BD8-AF5F-38A2A81EED6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,9 +33,21 @@ Global
 		{FDFB75B0-D2B5-42B5-9AC7-A4D2AB208CC9}.Release|x64.Build.0 = Release|x64
 		{FDFB75B0-D2B5-42B5-9AC7-A4D2AB208CC9}.Release|x86.ActiveCfg = Release|Win32
 		{FDFB75B0-D2B5-42B5-9AC7-A4D2AB208CC9}.Release|x86.Build.0 = Release|Win32
+		{993FCCD9-6C00-4BD8-AF5F-38A2A81EED6A}.Debug|x64.ActiveCfg = Debug|x64
+		{993FCCD9-6C00-4BD8-AF5F-38A2A81EED6A}.Debug|x64.Build.0 = Debug|x64
+		{993FCCD9-6C00-4BD8-AF5F-38A2A81EED6A}.Debug|x86.ActiveCfg = Debug|Win32
+		{993FCCD9-6C00-4BD8-AF5F-38A2A81EED6A}.Debug|x86.Build.0 = Debug|Win32
+		{993FCCD9-6C00-4BD8-AF5F-38A2A81EED6A}.Release|x64.ActiveCfg = Release|x64
+		{993FCCD9-6C00-4BD8-AF5F-38A2A81EED6A}.Release|x64.Build.0 = Release|x64
+		{993FCCD9-6C00-4BD8-AF5F-38A2A81EED6A}.Release|x86.ActiveCfg = Release|Win32
+		{993FCCD9-6C00-4BD8-AF5F-38A2A81EED6A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FDFB75B0-D2B5-42B5-9AC7-A4D2AB208CC9} = {B624C47F-6DFE-440E-9528-88838A1DBD60}
+		{993FCCD9-6C00-4BD8-AF5F-38A2A81EED6A} = {F2A16466-C300-42C8-82A2-0E0D275DE160}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0B0BF3E1-1F7B-4D7C-BD87-1E6306A24CBC}
