@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Level4", "Level4", "{B624C4
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngineBase", "GameEngineBase\GameEngineBase.vcxproj", "{993FCCD9-6C00-4BD8-AF5F-38A2A81EED6A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEnginePlatform", "GameEnginePlatform\GameEnginePlatform.vcxproj", "{36EC0377-CFF5-4EBD-B147-5535543F9E15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{993FCCD9-6C00-4BD8-AF5F-38A2A81EED6A}.Release|x64.Build.0 = Release|x64
 		{993FCCD9-6C00-4BD8-AF5F-38A2A81EED6A}.Release|x86.ActiveCfg = Release|Win32
 		{993FCCD9-6C00-4BD8-AF5F-38A2A81EED6A}.Release|x86.Build.0 = Release|Win32
+		{36EC0377-CFF5-4EBD-B147-5535543F9E15}.Debug|x64.ActiveCfg = Debug|x64
+		{36EC0377-CFF5-4EBD-B147-5535543F9E15}.Debug|x64.Build.0 = Debug|x64
+		{36EC0377-CFF5-4EBD-B147-5535543F9E15}.Debug|x86.ActiveCfg = Debug|Win32
+		{36EC0377-CFF5-4EBD-B147-5535543F9E15}.Debug|x86.Build.0 = Debug|Win32
+		{36EC0377-CFF5-4EBD-B147-5535543F9E15}.Release|x64.ActiveCfg = Release|x64
+		{36EC0377-CFF5-4EBD-B147-5535543F9E15}.Release|x64.Build.0 = Release|x64
+		{36EC0377-CFF5-4EBD-B147-5535543F9E15}.Release|x86.ActiveCfg = Release|Win32
+		{36EC0377-CFF5-4EBD-B147-5535543F9E15}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +58,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{FDFB75B0-D2B5-42B5-9AC7-A4D2AB208CC9} = {B624C47F-6DFE-440E-9528-88838A1DBD60}
 		{993FCCD9-6C00-4BD8-AF5F-38A2A81EED6A} = {F2A16466-C300-42C8-82A2-0E0D275DE160}
+		{36EC0377-CFF5-4EBD-B147-5535543F9E15} = {617511A1-43A6-4949-8022-76A60C72A38E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0B0BF3E1-1F7B-4D7C-BD87-1E6306A24CBC}
