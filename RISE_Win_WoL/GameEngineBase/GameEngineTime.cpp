@@ -20,7 +20,7 @@ void GameEngineTime::Reset()
 	Prev = Cur;
 }
 
-void GameEngineTime::Updata()
+void GameEngineTime::Update()
 {
 	QueryPerformanceCounter(&Cur);
 	Tick = Cur.QuadPart - Prev.QuadPart;

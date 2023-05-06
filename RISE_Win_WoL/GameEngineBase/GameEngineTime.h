@@ -21,7 +21,7 @@ public:
 
 	void Reset();
 
-	void Updata();
+	void Update();
 
 protected:
 
