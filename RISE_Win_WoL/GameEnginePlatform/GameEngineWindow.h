@@ -17,9 +17,9 @@ public:
 
 	void Open(const std::string& _Title, HINSTANCE _hInstance);
 
-	static void GameEngineWindow::MessageLoop(HINSTANCE _Inst, void(*_Start)(HINSTANCE), void(*_Updata)(), void(*_End)());
+	static void MessageLoop(HINSTANCE _Inst, void(*_Start)(HINSTANCE), void(*_Updata)(), void(*_End)());
 
-	HDC GetDHC()
+	HDC GetHDC()
 	{
 		return Hdc;
 	}
