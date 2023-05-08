@@ -162,6 +162,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BackGround.h" />
     <ClInclude Include="ContentCore.h" />
     <ClInclude Include="EndingLevel.h" />
     <ClInclude Include="Player.h" />
@@ -169,6 +170,7 @@
     <ClInclude Include="TitleLevel.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="ContentCore.cpp" />
     <ClCompile Include="EndingLevel.cpp" />
     <ClCompile Include="Player.cpp" />

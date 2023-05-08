@@ -152,9 +152,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineWindow.h" />
+    <ClInclude Include="GameEngineWindowTexture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineWindow.cpp" />
+    <ClCompile Include="GameEngineWindowTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameEngineBase\GameEngineBase.vcxproj">

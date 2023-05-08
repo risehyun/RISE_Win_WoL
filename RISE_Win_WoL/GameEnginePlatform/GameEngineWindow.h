@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <string>
+#include "GameEngineWindowTexture.h"
 
 class GameEngineWindow
 {
@@ -23,11 +24,16 @@ public:
 	{
 		return Hdc;
 	}
-	
-	static void WindowLoopOff()
+
+	float4 GetScale()
 	{
-		IsWindowUpdate = false;
+		return Scale;
 	}
+	GameEngineWindowTexture* GetBackBuffer()
+	{
+		return BackBuffer;
+	}
+	void SetPosAndScale(const float4& _Pos, const float4& _Scale);
 
 protected:
 
@@ -38,6 +44,9 @@ private:
 	HWND hWnd = nullptr;
 
 	HDC Hdc = nullptr;
+
+	float4 Scale;
+	GameEngineWindowTexture* BackBuffer = nullptr;
 
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	void InitInstance();

@@ -3,6 +3,14 @@
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineBase/GameEngineTime.h>
 #include "GameEngineLevel.h"
+#include <GameEnginePlatform/GameEngineWindow.h>
+
+/*
+	window style : 비트단위 연산자로 구성되어 있음
+	=> 비트 하나가 참과 거짓 하나를 담당할 수 있다는 것을 활용하여
+	32가지 정도 되는 참거짓을 하나의 명령어로 해결합니다.
+	=> WS_OVERAPPEDWINDOW
+*/
 
 std::string GameEngineCore::WindowTitle = "";
 std::map<std::string, class GameEngineLevel*> GameEngineCore::AllLevel;

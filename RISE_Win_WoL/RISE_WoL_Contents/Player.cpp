@@ -3,7 +3,7 @@
 #include <GameEngineBase/GameEngineTime.h>
 #include <GameEngineBase/GameEnginePath.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
-#include <GameEngineCore/GameEngineTexture.h>
+#include <GameEnginePlatform/GameEngineWindowTexture.h>
 #include <GameEngineCore/ResourcesManager.h>
 
 Player::Player()
@@ -43,12 +43,9 @@ void Player::Update(float _Delta)
 
 void Player::Render()
 {
-	HDC WindowDC = GameEngineWindow::MainWindow.GetHDC();
-	GameEngineTexture* FindTexture = ResourcesManager::GetInst().FindTexture("Test.Bmp");
-	HDC ImageDC = FindTexture->GetImageDC();
-
-	BitBlt(WindowDC, 100, 100, 500, 500, ImageDC, 0, 0, SRCCOPY);
-
+	GameEngineWindowTexture* BackBuffer = GameEngineWindow::MainWindow.GetBackBuffer();
+	GameEngineWindowTexture* FindTexture = ResourcesManager::GetInst().FindTexture("Test.Bmp");
+	BackBuffer->BitCopy(FindTexture, GetPos(), GetScale());
 }
 
 void Player::Release()

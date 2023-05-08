@@ -155,7 +155,6 @@
     <ClInclude Include="GameEngineCore.h" />
     <ClInclude Include="GameEngineLevel.h" />
     <ClInclude Include="GameEngineObject.h" />
-    <ClInclude Include="GameEngineTexture.h" />
     <ClInclude Include="ResourcesManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +162,6 @@
     <ClCompile Include="GameEngineCore.cpp" />
     <ClCompile Include="GameEngineLevel.cpp" />
     <ClCompile Include="GameEngineObject.cpp" />
-    <ClCompile Include="GameEngineTexture.cpp" />
     <ClCompile Include="ResourcesManager.cpp" />
   </ItemGroup>
   <ItemGroup>

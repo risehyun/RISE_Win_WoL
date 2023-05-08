@@ -8,6 +8,9 @@
     <Filter Include="Level">
       <UniqueIdentifier>{a8de6072-8561-47d3-8e62-d054fbeb2174}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Global">
+      <UniqueIdentifier>{8265fc06-28d0-4a10-b0ec-a6812544736e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingLevel.cpp">
@@ -21,6 +24,9 @@
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="ContentCore.cpp" />
+    <ClCompile Include="BackGround.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -34,5 +40,8 @@
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="ContentCore.h" />
+    <ClInclude Include="BackGround.h">
+      <Filter>Global</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

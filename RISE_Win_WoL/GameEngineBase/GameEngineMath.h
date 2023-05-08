@@ -4,16 +4,17 @@
 class GameEngineMath
 {
 
-
 };
 
 class float4
 {
 public:
-	float X;
-	float Y;
-	float Z;
-	float W;
+	static const float4 ZERO;
+
+	float X = 0.0f;
+	float Y = 0.0f;
+	float Z = 0.0f;
+	float W = 0.0f;
 
 	// 실수인 X를 int로 형변환 한 값을 리턴해주는 함수
 	inline int iX() const
