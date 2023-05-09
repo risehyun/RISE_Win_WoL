@@ -16,6 +16,7 @@ void GameEngineWindowTexture::ResLoad(const std::string& _Path)
 	HANDLE ImageHandle = LoadImageA(nullptr, _Path.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
 
 	if (nullptr == ImageHandle)
+
 	{
 		MsgBoxAssert("이미지 로드에 실패했습니다." + _Path);
 		return;
@@ -41,7 +42,6 @@ void GameEngineWindowTexture::ScaleCheck()
 
 float4 GameEngineWindowTexture::GetScale()
 {
-
 	return { static_cast<float>(Info.bmWidth), static_cast<float>(Info.bmHeight) };
 }
 
