@@ -3,14 +3,17 @@
 #include <string>
 #include "GameEngineWindowTexture.h"
 
+// Ό³Έν :
 class GameEngineWindow
 {
 public:
 	static GameEngineWindow MainWindow;
 
+	// constrcuter destructer
 	GameEngineWindow();
 	~GameEngineWindow();
 
+	// delete Function
 	GameEngineWindow(const GameEngineWindow& _Other) = delete;
 	GameEngineWindow(GameEngineWindow&& _Other) noexcept = delete;
 	GameEngineWindow& operator=(const GameEngineWindow& _Other) = delete;
@@ -18,7 +21,7 @@ public:
 
 	void Open(const std::string& _Title, HINSTANCE _hInstance);
 
-	static void MessageLoop(HINSTANCE _Inst, void(*_Start)(HINSTANCE), void(*_Updata)(), void(*_End)());
+	static void MessageLoop(HINSTANCE _Inst, void(*_Start)(HINSTANCE), void(*_Update)(), void(*_End)());
 
 	HDC GetHDC()
 	{
@@ -29,11 +32,25 @@ public:
 	{
 		return Scale;
 	}
+
+	GameEngineWindowTexture* GetWindowBuffer()
+	{
+		return WindowBuffer;
+	}
+
 	GameEngineWindowTexture* GetBackBuffer()
 	{
 		return BackBuffer;
 	}
+
 	void SetPosAndScale(const float4& _Pos, const float4& _Scale);
+
+	static void WindowLoopOff()
+	{
+		IsWindowUpdate = false;
+	}
+
+	void DoubleBuffering();
 
 protected:
 
@@ -43,13 +60,16 @@ private:
 	std::string Title = "";
 	HWND hWnd = nullptr;
 
-	HDC Hdc = nullptr;
 
 	float4 Scale;
+	GameEngineWindowTexture* WindowBuffer = nullptr;
+
 	GameEngineWindowTexture* BackBuffer = nullptr;
+
+	HDC Hdc = nullptr;
 
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	void InitInstance();
 	void MyRegisterClass();
-
 };
+

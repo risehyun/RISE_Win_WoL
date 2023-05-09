@@ -18,6 +18,18 @@ GameEngineWindow::~GameEngineWindow()
 		delete BackBuffer;
 		BackBuffer = nullptr;
 	}
+
+
+	if (nullptr != WindowBuffer)
+	{
+		delete WindowBuffer;
+		WindowBuffer = nullptr;
+	}
+}
+
+void GameEngineWindow::DoubleBuffering()
+{
+	WindowBuffer->BitCopy(BackBuffer, Scale.Half(), BackBuffer->GetScale());
 }
 
 void GameEngineWindow::Open(const std::string& _Title, HINSTANCE _hInstance)
@@ -27,7 +39,7 @@ void GameEngineWindow::Open(const std::string& _Title, HINSTANCE _hInstance)
 
 	if (nullptr == Instance)
 	{
-		MsgBoxAssert("HInstance가 없어 윈도우를 생성할 수 없습니다.");
+		MsgBoxAssert("HInstance없이 윈도우를 만들수는 없습니다.");
 		return;
 	}
 
@@ -35,7 +47,7 @@ void GameEngineWindow::Open(const std::string& _Title, HINSTANCE _hInstance)
 	InitInstance();
 }
 
-// 윈도우 초기화와 생성을 담당하는 함수
+
 void GameEngineWindow::InitInstance()
 {
 	hWnd = CreateWindowA("DefaultWindow", Title.c_str(), WS_OVERLAPPEDWINDOW,
@@ -48,11 +60,19 @@ void GameEngineWindow::InitInstance()
 	}
 
 	Hdc = ::GetDC(hWnd);
+
+	WindowBuffer = new GameEngineWindowTexture();
+	WindowBuffer->ResCreate(Hdc);
+
+	// 더플버퍼링을 하기 위해 이미지를 담을 버퍼 준비
 	BackBuffer = new GameEngineWindowTexture();
-	BackBuffer->ResCreate(Hdc);
+
+	// 윈도우에 그릴 수 있는 스케일로 생성
+	BackBuffer->ResCreate(WindowBuffer->GetScale());
 
 	ShowWindow(hWnd, SW_SHOW);
 	UpdateWindow(hWnd);
+
 }
 
 LRESULT CALLBACK GameEngineWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -65,19 +85,14 @@ LRESULT CALLBACK GameEngineWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
 		HDC hdc = BeginPaint(hWnd, &ps);
 		EndPaint(hWnd, &ps);
 	}
-
 	break;
-
 	case WM_DESTROY:
 		IsWindowUpdate = false;
 		break;
-
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}
-
 	return 0;
-
 }
 
 void GameEngineWindow::MyRegisterClass()
@@ -105,7 +120,7 @@ void GameEngineWindow::MyRegisterClass()
 
 	if (false == RegisterClassExA(&wcex))
 	{
-		MsgBoxAssert("윈도우 클래스 등록에 실패했습니다.");
+		MsgBoxAssert("윈도우 클래스 동록에 실패했습니다.");
 		return;
 	}
 
@@ -114,6 +129,7 @@ void GameEngineWindow::MyRegisterClass()
 
 void GameEngineWindow::MessageLoop(HINSTANCE _Inst, void(*_Start)(HINSTANCE), void(*_Update)(), void(*_End)())
 {
+	// 윈도우가 뜨기전에 로딩해야할 이미지나 사운드 등등을 처리하는 단계
 	if (nullptr != _Start)
 	{
 		_Start(_Inst);
@@ -123,6 +139,7 @@ void GameEngineWindow::MessageLoop(HINSTANCE _Inst, void(*_Start)(HINSTANCE), vo
 
 	while (IsWindowUpdate)
 	{
+
 		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
 		{
 			if (nullptr != _Update)
@@ -139,7 +156,9 @@ void GameEngineWindow::MessageLoop(HINSTANCE _Inst, void(*_Start)(HINSTANCE), vo
 		{
 			_Update();
 		}
+
 	}
+
 
 	if (nullptr != _End)
 	{
@@ -153,10 +172,16 @@ void GameEngineWindow::SetPosAndScale(const float4& _Pos, const float4& _Scale)
 {
 	Scale = _Scale;
 
+	if (nullptr != BackBuffer)
+	{
+		delete BackBuffer;
+		BackBuffer = new GameEngineWindowTexture();
+		BackBuffer->ResCreate(Scale);
+	}
+
 	RECT Rc = { 0, 0, _Scale.iX(), _Scale.iY() };
 
 	AdjustWindowRect(&Rc, WS_OVERLAPPEDWINDOW, FALSE);
 
 	SetWindowPos(hWnd, nullptr, _Pos.iX(), _Pos.iY(), Rc.right - Rc.left, Rc.bottom - Rc.top, SWP_NOZORDER);
-
 }

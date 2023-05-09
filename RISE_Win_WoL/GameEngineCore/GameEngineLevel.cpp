@@ -1,5 +1,11 @@
 #include "GameEngineLevel.h"
 
+/*
+	관리하는 클래스에서만 어떤 객체를 작동할 수 있도록 하기 위해서
+	렌더러라는 것이 따로 존재하고, 이것을 그냥 private로 만들어서 아무도 접근하지 못하게 만든 다음
+	friend로 선언된 클래스에서만 마음대로 가져다 쓸 수 있게 만든다.
+*/
+
 GameEngineLevel::GameEngineLevel()
 {
 }

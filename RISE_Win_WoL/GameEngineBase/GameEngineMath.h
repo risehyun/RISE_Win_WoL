@@ -28,6 +28,15 @@ public:
 		return static_cast<int>(Y);
 	}
 
+	inline float hX() const
+	{
+		return X * 0.5f;
+	}
+	inline float hY() const
+	{
+		return Y * 0.5f;
+	}
+
 	// 실수인 X값의 절반 값을 int로 형변환 한 값을 리턴해주는 함수
 	inline int ihX() const
 	{
@@ -39,9 +48,45 @@ public:
 	{
 		return static_cast<int>(Y * 0.5f);
 	}
+	inline float4 Half() const
+	{
+		return { hX(), hY(), Z, W };
+	}
+
+	float4 operator+(const float4& _Other)
+	{
+		float4 ReturnValue;
+
+		ReturnValue.X = X + _Other.X;
+		ReturnValue.Y = Y + _Other.Y;
+		ReturnValue.Z = Z + _Other.Z;
+
+		return ReturnValue;
+	}
+
+	float4 operator*(const float4& _Other)
+	{
+		float4 ReturnValue;
+
+		ReturnValue.X = X * _Other.X;
+		ReturnValue.Y = Y * _Other.Y;
+		ReturnValue.Z = Z * _Other.Z;
+
+		return ReturnValue;
+	}
 
 
-	// 각 좌표 값에 인자로 전달받은 값을 덧셈대입해주는 연산자 
+	float4 operator*(const float _Value)
+	{
+		float4 ReturnValue;
+
+		ReturnValue.X = X * _Value;
+		ReturnValue.Y = Y * _Value;
+		ReturnValue.Z = Z * _Value;
+
+		return ReturnValue;
+	}
+
 	float4& operator+=(const float4& _Other)
 	{
 		X += _Other.X;
@@ -51,4 +96,21 @@ public:
 		return *this;
 	}
 
+	float4& operator*=(const float4& _Other)
+	{
+		X *= _Other.X;
+		Y *= _Other.Y;
+		Z *= _Other.Z;
+
+		return *this;
+	}
+
+	float4& operator*=(const float _Value)
+	{
+		X *= _Value;
+		Y *= _Value;
+		Z *= _Value;
+
+		return *this;
+	}
 };

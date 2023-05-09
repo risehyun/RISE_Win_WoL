@@ -31,6 +31,7 @@ void Player::Start()
 		ResourcesManager::GetInst().TextureLoad(FilePath.GetStringPath());
 	}
 
+//	CreateRenderer("Test.Bmp");
 
 	SetPos({ 200, 200 });
 	SetScale({ 100, 100 });
@@ -45,7 +46,7 @@ void Player::Render()
 {
 	GameEngineWindowTexture* BackBuffer = GameEngineWindow::MainWindow.GetBackBuffer();
 	GameEngineWindowTexture* FindTexture = ResourcesManager::GetInst().FindTexture("Test.Bmp");
-	BackBuffer->BitCopy(FindTexture, GetPos(), GetScale());
+	BackBuffer->TransCopy(FindTexture, GetPos(), { 100, 100 }, { 0,0 }, FindTexture->GetScale());
 }
 
 void Player::Release()
