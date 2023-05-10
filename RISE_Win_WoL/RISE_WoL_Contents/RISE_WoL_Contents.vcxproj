@@ -164,6 +164,7 @@
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="ContentCore.h" />
+    <ClInclude Include="ContentsEnum.h" />
     <ClInclude Include="EndingLevel.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayLevel.h" />

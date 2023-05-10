@@ -1,10 +1,9 @@
 #include "BackGround.h"
+#include "ContentsEnum.h"
 #include <GameEngineCore/ResourcesManager.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
+#include <GameEngineCore/GameEngineRenderer.h>
 
-// 싱글버퍼링을 사용하면 배경과 캐릭터를 함께 뒀을 때 깜빡임 문제가 생긴다.
-// 따라서 더블버퍼링을 사용하여 캐릭터를 백업해둔 상태에서
-// 지우지 않고도 작동하도록 한다.
 #pragma comment(lib, "msimg32.lib")
 
 BackGround::BackGround()
@@ -25,21 +24,23 @@ void BackGround::Update(float _Delta)
 
 }
 
+// 이제 자체적으로 Render를 하는 것이 아니라 Actor에서 생성한 렌더러를 카메라에서 출력하는 것으로 구조를 바꿨기 때문에 아래는 주석처리하였다.
+// 이쪽은 앞으로 간단한 텍스트 등을 화면에 출력할 때만 사용하고 그 외에 이미지들은 모두 상술한 방식으로만 출력한다.
 void BackGround::Render()
 {
-	GameEngineWindowTexture* FindTexture = ResourcesManager::GetInst().FindTexture(FileName);
+	//GameEngineWindowTexture* FindTexture = ResourcesManager::GetInst().FindTexture(FileName);
 
-	if (nullptr == FindTexture)
-	{
-		return;
-	}
+	//if (nullptr == FindTexture)
+	//{
+	//	return;
+	//}
 
-	GameEngineWindowTexture* BackBuffer = GameEngineWindow::MainWindow.GetBackBuffer();
-	float4 Scale = FindTexture->GetScale();
+	//GameEngineWindowTexture* BackBuffer = GameEngineWindow::MainWindow.GetBackBuffer();
+	//float4 Scale = FindTexture->GetScale();
 
-	Scale *= 1.5f;
-                                      
-	BackBuffer->TransCopy(FindTexture, GetPos(), Scale, { 0,0 }, FindTexture->GetScale());
+	//Scale *= 1.5f;
+ //                                     
+	//BackBuffer->TransCopy(FindTexture, GetPos(), Scale, { 0,0 }, FindTexture->GetScale());
 
 }
 
@@ -68,6 +69,9 @@ void BackGround::Init(const std::string& _FileName)
 		Scale.X *= 10.0f;
 		Scale.Y *= 10.0f;
 
-		SetScale(Scale);
+//		SetScale(Scale);
+
+		GameEngineRenderer* Render = CreateRenderer(_FileName, RenderOrder::BackGround);
+		Render->SetRenderScale(Scale);
 	}
 }

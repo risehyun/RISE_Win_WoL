@@ -50,6 +50,8 @@ public:
 		IsWindowUpdate = false;
 	}
 
+	void ClearBackBuffer();
+
 	void DoubleBuffering();
 
 protected:
