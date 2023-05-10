@@ -5,8 +5,10 @@
 #include <string>
 #include <map>
 
+class GameEngineCamera;
 class GameEngineLevel : public GameEngineObject
 {
+	friend class GameEngineActor;
 	friend class GameEngineCore;
 
 public:
@@ -32,6 +34,9 @@ public:
 protected:
 
 private:
+	GameEngineCamera* MainCamera;
+	GameEngineCamera* UICamera;
+
 	std::map<int, std::list<GameEngineActor*>> AllActors;
 
 	void ActorInit(GameEngineActor* _Actor);

@@ -1,9 +1,15 @@
 #pragma once
 #include <GameEngineBase/GameEngineMath.h>
 #include "GameEngineObject.h"
+#include <string>
+#include <list>
 
+class GameEngineLevel;
+class GameEngineRenderer;
 class GameEngineActor : public GameEngineObject
 {
+	friend GameEngineLevel;
+
 public:
 	GameEngineActor();
 	virtual ~GameEngineActor();
@@ -28,6 +34,7 @@ public:
 		Scale = _Scale;
 	}
 
+
 	float4 GetPos() const
 	{
 		return Pos;
@@ -38,9 +45,21 @@ public:
 		return Scale;
 	}
 
+	GameEngineRenderer* CreateRenderer(const std::string& _ImageName);
+
+	GameEngineLevel* GetLevel()
+	{
+		return Level;
+	}
+
 protected:
 
 private:
+	GameEngineLevel* Level;
+
 	float4 Pos = float4::ZERO;
 	float4 Scale = float4::ZERO;
+
+	std::list<GameEngineRenderer*> AllRenderer;
+	void PushMainCameraRenderer(GameEngineRenderer*);
 };

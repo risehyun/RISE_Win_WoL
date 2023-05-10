@@ -53,6 +53,8 @@ void GameEngineCore::CoreUpdate()
 
 	CurLevel->Render();
 
+	GameEngineWindow::MainWindow.DoubleBuffering();
+
 	CurLevel->ActorRender();
 }
 

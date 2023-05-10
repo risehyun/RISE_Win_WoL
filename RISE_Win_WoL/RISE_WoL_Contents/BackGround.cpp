@@ -37,7 +37,7 @@ void BackGround::Render()
 	GameEngineWindowTexture* BackBuffer = GameEngineWindow::MainWindow.GetBackBuffer();
 	float4 Scale = FindTexture->GetScale();
 
-	Scale *= 2.0f;
+	Scale *= 1.5f;
                                       
 	BackBuffer->TransCopy(FindTexture, GetPos(), Scale, { 0,0 }, FindTexture->GetScale());
 
