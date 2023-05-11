@@ -2,9 +2,11 @@
 #include "GameEngineRenderer.h"
 #include "GameEngineLevel.h"
 #include "GameEngineCamera.h"
+#include <GameEngineBase/GameEngineDebug.h>
 
 GameEngineActor::GameEngineActor()
 {
+
 }
 
 GameEngineActor::~GameEngineActor()
@@ -17,15 +19,51 @@ GameEngineActor::~GameEngineActor()
 	}
 }
 
+void GameEngineActor::ActorRelease()
+{
+	std::list<GameEngineRenderer*>::iterator ObjectStartIter = AllRenderer.begin();
+	std::list<GameEngineRenderer*>::iterator ObjectEndIter = AllRenderer.end();
+
+	for (; ObjectStartIter != ObjectEndIter; )
+	{
+		GameEngineRenderer* Renderer = *ObjectStartIter;
+		if (false == Renderer->IsDeath())
+		{
+			++ObjectStartIter;
+			continue;
+		}
+
+
+		if (nullptr == Renderer)
+		{
+			MsgBoxAssert("nullptr인 액터가 레벨의 리스트에 들어가 있었습니다.");
+			continue;
+		}
+
+		delete Renderer;
+		Renderer = nullptr;
+
+		ObjectStartIter = AllRenderer.erase(ObjectStartIter);
+
+	}
+}
+
+
 GameEngineRenderer* GameEngineActor::CreateRenderer(const std::string& _ImageName, int _Order)
 {
 	GameEngineRenderer* NewRenderer = new GameEngineRenderer();
 
 	GetLevel()->MainCamera->PushRenderer(NewRenderer, _Order);
 	NewRenderer->Master = this;
-	NewRenderer->SetTexture(_ImageName);
+
+	// 이미지가 적용되어 있지 않은 렌더러가 존재할 수 있으므로 체크를 해서 지정할 이미지가 있는 경우에만 텍스처를 세팅합니다.
+	if (_ImageName != "")
+	{
+		NewRenderer->SetTexture(_ImageName);
+	}
 
 	AllRenderer.push_back(NewRenderer);
+
 	return NewRenderer;
 }
 

@@ -12,23 +12,19 @@ class GameEngineLevel : public GameEngineObject
 	friend class GameEngineCore;
 
 public:
-	// constrcuter destructer
 	GameEngineLevel();
 	~GameEngineLevel();
 
-	// delete Function
 	GameEngineLevel(const GameEngineLevel& _Other) = delete;
 	GameEngineLevel(GameEngineLevel&& _Other) noexcept = delete;
 	GameEngineLevel& operator=(const GameEngineLevel& _Other) = delete;
 	GameEngineLevel& operator=(GameEngineLevel&& _Other) noexcept = delete;
-
 
 	template<typename ActorType, typename EnumType>
 	ActorType* CreateActor(EnumType _Order)
 	{
 		return CreateActor<ActorType>(static_cast<int>(_Order));
 	}
-
 
 	template<typename ActorType>
 	ActorType* CreateActor(int _Order = 0)
@@ -57,5 +53,8 @@ private:
 	void ActorInit(GameEngineActor* _Actor, int _Order);
 
 	void ActorUpdate(float _Delta);
+
 	void ActorRender();
+
+	void ActorRelease();
 };

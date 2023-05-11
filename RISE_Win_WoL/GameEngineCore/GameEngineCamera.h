@@ -10,11 +10,9 @@ class GameEngineCamera
 	friend class GameEngineLevel;
 
 public:
-	// constrcuter destructer
 	GameEngineCamera();
 	~GameEngineCamera();
 
-	// delete Function
 	GameEngineCamera(const GameEngineCamera& _Other) = delete;
 	GameEngineCamera(GameEngineCamera&& _Other) noexcept = delete;
 	GameEngineCamera& operator=(const GameEngineCamera& _Other) = delete;
@@ -43,6 +41,8 @@ private:
 	std::map<int, std::list<GameEngineRenderer*>> Renderers;
 
 	void PushRenderer(GameEngineRenderer* _Renderer, int _Order);
+
+	void Release();
 
 	void Render();
 };

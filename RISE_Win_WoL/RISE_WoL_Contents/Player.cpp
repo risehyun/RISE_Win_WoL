@@ -12,6 +12,8 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
 
+#include "Bullet.h"
+
 Player::Player()
 {
 }
@@ -33,29 +35,29 @@ void Player::Start()
 
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Test.bmp"));
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("HPBar.bmp"));
+
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Fireball_0.bmp"));
+
 	}
 
 	{
 		GameEngineRenderer* Ptr = CreateRenderer("Test.Bmp", RenderOrder::Play);
-		Ptr->SetRenderScale({ 200, 200 });
+		Ptr->SetRenderScale({ 100, 100 });
 		Ptr->SetTexture("Test.Bmp");
 	}
 
 	{
 		GameEngineRenderer* Ptr = CreateRenderer("HPBar.bmp", RenderOrder::Play);
-		Ptr->SetRenderPos({ 0, -100 });
-		Ptr->SetRenderScale({ 200, 40 });
+		Ptr->SetRenderPos({ 0, -70 });
+		Ptr->SetRenderScale({ 100, 20 });
 		Ptr->SetTexture("HPBar.bmp");
 	}
 
 
 	float4 WinScale = GameEngineWindow::MainWindow.GetScale();
 
-	// GetLevel()->GetMainCamera()->SetPos({ -WinScale.hX(), -WinScale.hY() });
-
 	SetPos(WinScale.Half());
 
-	// GetLevel()->GetMainCamera()->SetPos({ -WinScale.hX(), -WinScale.hY() });
 }
 
 void Player::Update(float _Delta)
@@ -84,15 +86,23 @@ void Player::Update(float _Delta)
 		MovePos = { 0.0f, Speed * _Delta };
 	}
 
+	if (0 != GetAsyncKeyState('F'))
+	{
+		Bullet* NewBullet = GetLevel()->CreateActor<Bullet>();
+		NewBullet->Renderer->SetTexture("Fireball_0.bmp");
+
+		NewBullet->SetDir(float4::RIGHT);
+		NewBullet->SetPos(GetPos());
+	}
+
 	AddPos(MovePos);
 	GetLevel()->GetMainCamera()->AddPos(MovePos);
 }
 
 void Player::Render()
 {
-	/*GameEngineWindowTexture* BackBuffer = GameEngineWindow::MainWindow.GetBackBuffer();
-	GameEngineWindowTexture* FindTexture = ResourcesManager::GetInst().FindTexture("Test.Bmp");
-	BackBuffer->TransCopy(FindTexture, GetPos(), { 50, 50 }, { 0,0 }, FindTexture->GetScale());*/
+
+
 }
 
 void Player::Release()

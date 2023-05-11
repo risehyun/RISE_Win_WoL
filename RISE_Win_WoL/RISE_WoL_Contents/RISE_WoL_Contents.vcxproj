@@ -163,6 +163,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="Bullet.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ContentCore.h" />
     <ClInclude Include="ContentsEnum.h" />
     <ClInclude Include="EndingLevel.h" />
@@ -172,6 +176,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="Bullet.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ContentCore.cpp" />
     <ClCompile Include="EndingLevel.cpp" />
     <ClCompile Include="Player.cpp" />

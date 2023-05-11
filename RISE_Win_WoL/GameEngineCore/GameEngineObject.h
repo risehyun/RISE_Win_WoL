@@ -2,10 +2,13 @@
 
 class GameEngineObject
 {
+	friend class GameEngineLevel;
+
 public:
 	GameEngineObject();
-	~GameEngineObject();
+	virtual ~GameEngineObject();
 
+	// delete Function
 	GameEngineObject(const GameEngineObject& _Other) = delete;
 	GameEngineObject(GameEngineObject&& _Other) noexcept = delete;
 	GameEngineObject& operator=(const GameEngineObject& _Other) = delete;
@@ -39,7 +42,7 @@ public:
 		return true == IsUpdateValue && false == IsDeathValue;
 	}
 
-	bool IsDeath()
+	virtual bool IsDeath()
 	{
 		return IsDeathValue;
 	}
@@ -49,10 +52,27 @@ public:
 		Order = _Order;
 	}
 
+	float GetLiveTime() const
+	{
+		return LiveTime;
+	}
+
+	void ResetLiveTime()
+	{
+		LiveTime = 0.0f;
+	}
+
 protected:
 
+
 private:
+	float LiveTime = 0.0f;
 	int Order = 0;
-	bool IsUpdateValue = true;
-	bool IsDeathValue = false;
+	bool IsUpdateValue = true; 
+	bool IsDeathValue = false; 
+
+	void AddLiveTime(float _DeltaTime)
+	{
+		LiveTime += _DeltaTime;
+	}
 };
