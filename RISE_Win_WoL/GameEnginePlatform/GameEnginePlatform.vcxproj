@@ -151,10 +151,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="GameEngineInput.h" />
     <ClInclude Include="GameEngineWindow.h" />
     <ClInclude Include="GameEngineWindowTexture.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameEngineInput.cpp" />
     <ClCompile Include="GameEngineWindow.cpp" />
     <ClCompile Include="GameEngineWindowTexture.cpp" />
   </ItemGroup>
