@@ -8,6 +8,12 @@ GameEngineInput::~GameEngineInput()
 {
 }
 
+void GameEngineInput::InputInit()
+{
+	
+	
+}
+
 void GameEngineInput::GameEngineKey::Update(float _DeltaTime)
 {
 	if (true == KeyCheck())

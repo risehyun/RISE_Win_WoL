@@ -22,6 +22,7 @@ void ContentCore::Start()
 	GameEngineCore::CreateLevel<EndingLevel>("EndingLevel");
 
 	GameEngineCore::ChangeLevel("PlayLevel");
+//	GameEngineCore::ChangeLevel("TitleLevel");
 }
 
 void ContentCore::Update(float _Delta)

@@ -33,7 +33,7 @@ void Player::Start()
 		FilePath.MoveChild("ContentsResources\\Texture\\Player\\");
 
 
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Test.bmp"));
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("idle.bmp"));
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("HPBar.bmp"));
 
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Fireball_0.bmp"));
@@ -41,9 +41,10 @@ void Player::Start()
 	}
 
 	{
-		GameEngineRenderer* Ptr = CreateRenderer("Test.Bmp", RenderOrder::Play);
+
+		GameEngineRenderer* Ptr = CreateRenderer("idle.Bmp", RenderOrder::Play);
 		Ptr->SetRenderScale({ 100, 100 });
-		Ptr->SetTexture("Test.Bmp");
+		Ptr->SetTexture("idle.Bmp");
 	}
 
 	{

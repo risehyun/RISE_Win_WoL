@@ -34,6 +34,8 @@ public:
 	GameEngineInput& operator=(const GameEngineInput& _Other) = delete;
 	GameEngineInput& operator=(GameEngineInput&& _Other) noexcept = delete;
 
+	static void InputInit();
+
 protected:
 
 private:

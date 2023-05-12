@@ -20,7 +20,11 @@ void Bullet::Update(float _Delta)
 
 	if (1.0f < GetLiveTime())
 	{
-		Renderer->Death();
+		if (nullptr != Renderer)
+		{
+			Renderer->Death();
+			Renderer = nullptr;
+		}
 	}
 
 }
