@@ -66,11 +66,11 @@ void BackGround::Init(const std::string& _FileName)
 
 		float4 Scale = Text->GetScale();
 
-		Scale.X *= 3.0f;
-		Scale.Y *= 3.0f;
+		//Scale.X *= 3.0f;
+		//Scale.Y *= 3.0f;
 
-		//Scale.X *= 0.75f;
-		//Scale.Y *= 0.75f;
+		Scale.X *= 0.75f;
+		Scale.Y *= 0.75f;
 
 		//		SetScale(Scale);
 		float4 WinScale = GameEngineWindow::MainWindow.GetScale();
@@ -78,8 +78,8 @@ void BackGround::Init(const std::string& _FileName)
 		GameEngineRenderer* Render = CreateRenderer(_FileName, RenderOrder::BackGround);
 		Render->SetRenderScale(Scale);
 
-		SetPos({770, 770});
+	//	SetPos({770, 770});
 
-		//SetPos({ 640, 400 });
+		SetPos({ 640, 400 });
 	}
 }

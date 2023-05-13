@@ -20,9 +20,12 @@ void GameEngineInput::InputInit()
 		return;
 	}
 
-
+#pragma region 사용 가능한 키 생성
+	// 마우스
 	AllKeys[VK_LBUTTON] = GameEngineKey(VK_LBUTTON);
 	AllKeys[VK_RBUTTON] = GameEngineKey(VK_RBUTTON);
+
+	// 키보드
 	AllKeys[VK_CANCEL] = GameEngineKey(VK_CANCEL);
 	AllKeys[VK_MBUTTON] = GameEngineKey(VK_MBUTTON);
 	AllKeys[VK_BACK] = GameEngineKey(VK_BACK);
@@ -109,17 +112,20 @@ void GameEngineInput::InputInit()
 	AllKeys[VK_F23] = GameEngineKey(VK_F23);
 	AllKeys[VK_F24] = GameEngineKey(VK_F24);
 
+	// 알파벳 키  생성
 	for (int i = 'A'; i < 'Z'; i++)
 	{
 		AllKeys[i] = GameEngineKey(i);
 	}
 
+	// 숫자 키 생성
 	for (int i = '0'; i < '9'; i++)
 	{
 		AllKeys[i] = GameEngineKey(i);
 	}
 
-	
+#pragma endregion
+
 }
 
 void GameEngineInput::GameEngineKey::Update(float _DeltaTime)

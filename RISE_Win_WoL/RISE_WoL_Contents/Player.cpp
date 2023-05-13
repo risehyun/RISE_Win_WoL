@@ -5,10 +5,12 @@
 #include <GameEngineBase/GameEnginePath.h>
 
 #include <GameEnginePlatform/GameEngineWindow.h>
+#include <GameEnginePlatform/GameEngineInput.h>
+
 #include <GameEnginePlatform/GameEngineWindowTexture.h>
 #include <GameEngineCore/ResourcesManager.h>
-
 #include <GameEngineCore/GameEngineRenderer.h>
+
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
 
@@ -67,28 +69,30 @@ void Player::Update(float _Delta)
 
 	float4 MovePos = float4::ZERO;
 
-	if (0 != GetAsyncKeyState('A'))
+	if (true == GameEngineInput::IsPress('A'))
 	{
 		MovePos = { -Speed * _Delta, 0.0f };
 	}
 
-	if (0 != GetAsyncKeyState('D'))
+	if (true == GameEngineInput::IsPress('D'))
 	{
 		MovePos = { Speed * _Delta, 0.0f };
 	}
 
-	if (0 != GetAsyncKeyState('W'))
+	if (true == GameEngineInput::IsPress('W'))
 	{
 		MovePos = { 0.0f, -Speed * _Delta };
 	}
 
-	if (0 != GetAsyncKeyState('S'))
+	if (true == GameEngineInput::IsPress('S'))
 	{
 		MovePos = { 0.0f, Speed * _Delta };
 	}
 
-	if (0 != GetAsyncKeyState('F'))
+	if (true == GameEngineInput::IsUp(VK_LBUTTON))
 	{
+//		float4 Pos = GameEngineWindow::MainWindow.GetMousePos();
+
 		Bullet* NewBullet = GetLevel()->CreateActor<Bullet>();
 		NewBullet->Renderer->SetTexture("Fireball_0.bmp");
 

@@ -1,9 +1,11 @@
 #include "PlayLevel.h"
 #include <GameEngineCore/GameEngineCore.h>
+#include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/ResourcesManager.h>
 
 #include "Player.h"
 #include "BackGround.h"
+
 
 PlayLevel::PlayLevel()
 {
@@ -23,6 +25,10 @@ void PlayLevel::Start()
 
 void PlayLevel::Update(float _Delta)
 {
+	if (true == GameEngineInput::IsDown(VK_RIGHT))
+	{
+		GameEngineCore::ChangeLevel("EndingLevel");
+	}
 }
 
 void PlayLevel::Render()

@@ -2,6 +2,8 @@
 
 #include <GameEngineCore/GameEngineCore.h>
 #include <GameEngineCore/ResourcesManager.h>
+#include <GameEnginePlatform/GameEngineInput.h>
+
 #include "BackGround.h"
 
 TitleLevel::TitleLevel()
@@ -23,6 +25,11 @@ void TitleLevel::Start()
 
 void TitleLevel::Update(float _Delta)
 {
+
+	if (true == GameEngineInput::IsDown(VK_RIGHT))
+	{
+		GameEngineCore::ChangeLevel("PlayLevel");
+	}
 }
 
 void TitleLevel::Render()
