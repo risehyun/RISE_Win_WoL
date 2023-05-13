@@ -36,12 +36,12 @@ void GameEngineCore::CoreUpdate()
 	if (nullptr != NextLevel)
 	{
 
-		//if (nullptr != CurLevel)
-		//{
-		//	CurLevel->LevelEnd(NextLevel);
-		//}
+		if (nullptr != CurLevel)
+		{
+			CurLevel->LevelEnd(NextLevel);
+		}
 
-		//NextLevel->LevelStart(CurLevel);
+		NextLevel->LevelStart(CurLevel);
 
 
 		CurLevel = NextLevel;
@@ -53,14 +53,14 @@ void GameEngineCore::CoreUpdate()
 	float Delta = GameEngineTime::MainTimer.GetDeltaTime();
 
 
-	//if (true == GameEngineWindow::IsFocus())
-	//{
+	if (true == GameEngineWindow::IsFocus())
+	{
 		GameEngineInput::Update(Delta);
-	//}
-	//else
-	//{
-	//	GameEngineInput::Reset();
-	//}
+	}
+	else
+	{
+		GameEngineInput::Reset();
+	}
 
 
 	CurLevel->Update(Delta);

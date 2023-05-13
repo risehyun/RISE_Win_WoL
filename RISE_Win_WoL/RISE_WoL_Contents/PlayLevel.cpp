@@ -3,6 +3,10 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/ResourcesManager.h>
 
+#include <GameEngineCore/GameEngineCamera.h>
+#include <GameEnginePlatform/GameEngineInput.h>
+#include <GameEnginePlatform/GameEngineWindow.h>
+
 #include "Player.h"
 #include "BackGround.h"
 
@@ -20,7 +24,7 @@ void PlayLevel::Start()
 	BackGround* Back = CreateActor<BackGround>();
 	Back->Init("BackGround.Bmp");
 
-	CreateActor<Player>();
+	LevelPlayer = CreateActor<Player>();
 }
 
 void PlayLevel::Update(float _Delta)
@@ -37,4 +41,22 @@ void PlayLevel::Render()
 
 void PlayLevel::Release()
 {
+}
+
+void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)
+{
+	if (nullptr == LevelPlayer)
+	{
+		MsgBoxAssert("플레이어를 세팅해주지 않았습니다");
+	}
+
+	float4 WinScale = GameEngineWindow::MainWindow.GetScale();
+
+	GetMainCamera()->SetPos(LevelPlayer->GetPos() - WinScale.Half());
+
+}
+
+void PlayLevel::LevelEnd(GameEngineLevel* _NextLevel)
+{
+
 }
