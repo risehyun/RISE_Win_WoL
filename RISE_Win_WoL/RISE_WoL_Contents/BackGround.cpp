@@ -49,7 +49,7 @@ void BackGround::Release()
 
 }
 
-void BackGround::Init(const std::string& _FileName)
+void BackGround::Init(const std::string& _FileName, const float _Scale, const float4 &_Pos)
 {
 	FileName = _FileName;
 
@@ -66,11 +66,15 @@ void BackGround::Init(const std::string& _FileName)
 
 		float4 Scale = Text->GetScale();
 
+
+		Scale.X *= _Scale;
+		Scale.Y *= _Scale;
+
 		//Scale.X *= 3.0f;
 		//Scale.Y *= 3.0f;
 
-		Scale.X *= 0.75f;
-		Scale.Y *= 0.75f;
+		//Scale.X *= 0.75f;
+		//Scale.Y *= 0.75f;
 
 		//		SetScale(Scale);
 		float4 WinScale = GameEngineWindow::MainWindow.GetScale();
@@ -80,6 +84,8 @@ void BackGround::Init(const std::string& _FileName)
 
 	//	SetPos({770, 770});
 
-		SetPos({ 640, 400 });
+		SetPos(_Pos);
+
+	//	SetPos({ 640, 400 });
 	}
 }

@@ -91,7 +91,7 @@ void Player::Update(float _Delta)
 
 	if (true == GameEngineInput::IsUp(VK_LBUTTON))
 	{
-//		float4 Pos = GameEngineWindow::MainWindow.GetMousePos();
+		float4 Pos = GameEngineWindow::MainWindow.GetMousePos();
 
 		Bullet* NewBullet = GetLevel()->CreateActor<Bullet>();
 		NewBullet->Renderer->SetTexture("Fireball_0.bmp");
