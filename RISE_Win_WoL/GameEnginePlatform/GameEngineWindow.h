@@ -80,6 +80,6 @@ private:
 
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	void InitInstance();
-	void MyRegisterClass();
+	void MyRegisterClass(HINSTANCE hInstance);
 };
 

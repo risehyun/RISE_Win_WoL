@@ -40,6 +40,13 @@ void Player::Start()
 
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Fireball_0.bmp"));
 
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_PLAYERBAR.bmp"));
+
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_MONEY.bmp"));
+
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_SKILLBAR.bmp"));
+
+		
 	}
 
 	{
@@ -49,13 +56,32 @@ void Player::Start()
 		Ptr->SetTexture("idle.Bmp");
 	}
 
+	//{
+	//	GameEngineRenderer* Ptr = CreateRenderer("HPBar.bmp", RenderOrder::Play);
+	//	Ptr->SetRenderPos({ 0, -70 });
+	//	Ptr->SetRenderScale({ 100, 20 });
+	//	Ptr->SetTexture("HPBar.bmp");
+	//}
 	{
-		GameEngineRenderer* Ptr = CreateRenderer("HPBar.bmp", RenderOrder::Play);
-		Ptr->SetRenderPos({ 0, -70 });
-		Ptr->SetRenderScale({ 100, 20 });
-		Ptr->SetTexture("HPBar.bmp");
+		GameEngineRenderer* Ptr = CreateRenderer("UI_PLAYERBAR.bmp", RenderOrder::Play);
+		Ptr->SetRenderPos({ -425, -320 });
+		Ptr->SetRenderScale({ 328, 80 });
+		Ptr->SetTexture("UI_PLAYERBAR.bmp");
 	}
 
+	{
+		GameEngineRenderer* Ptr = CreateRenderer("UI_MONEY.bmp", RenderOrder::Play);
+		Ptr->SetRenderPos({ 0, 340 });
+		Ptr->SetRenderScale({ 16, 16 });
+		Ptr->SetTexture("UI_MONEY.bmp");
+	}
+
+	{
+		GameEngineRenderer* Ptr = CreateRenderer("UI_SKILLBAR.bmp", RenderOrder::Play);
+		Ptr->SetRenderPos({ -425, 340 });
+		Ptr->SetRenderScale({ 400, 100 });
+		Ptr->SetTexture("UI_SKILLBAR.bmp");
+	}
 
 	float4 WinScale = GameEngineWindow::MainWindow.GetScale();
 
@@ -98,6 +124,7 @@ void Player::Update(float _Delta)
 
 		NewBullet->SetDir(float4::RIGHT);
 		NewBullet->SetPos(GetPos());
+//		NewBullet->SetPos(Pos);
 	}
 
 	AddPos(MovePos);

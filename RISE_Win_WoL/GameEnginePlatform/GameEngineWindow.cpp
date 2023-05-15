@@ -1,6 +1,7 @@
 #include "GameEngineWindow.h"
 #include <GameEngineBase/GameEngineDebug.h>
 #include <iostream>
+#include "resource.h"
 
 HINSTANCE GameEngineWindow::Instance = nullptr;
 GameEngineWindow GameEngineWindow::MainWindow;
@@ -50,7 +51,7 @@ void GameEngineWindow::Open(const std::string& _Title, HINSTANCE _hInstance)
 		return;
 	}
 
-	MyRegisterClass();
+	MyRegisterClass(Instance);
 	InitInstance();
 }
 
@@ -114,7 +115,7 @@ LRESULT CALLBACK GameEngineWindow::WndProc(HWND hWnd, UINT message, WPARAM wPara
 	return 0;
 }
 
-void GameEngineWindow::MyRegisterClass()
+void GameEngineWindow::MyRegisterClass(HINSTANCE hInstance)
 {
 	static bool Check = false;
 
@@ -131,7 +132,8 @@ void GameEngineWindow::MyRegisterClass()
 	wcex.cbWndExtra = 0;
 	wcex.hInstance = Instance;
 	wcex.hIcon = nullptr;
-	wcex.hCursor = LoadCursor(nullptr, IDC_CROSS);
+//	wcex.hCursor = LoadCursor(hInstance, MAKEINTRESOURCE(IDC_CURSOR1));
+	wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 2);
 	wcex.lpszMenuName = nullptr;
 	wcex.lpszClassName = "DefaultWindow";

@@ -154,6 +154,7 @@
     <ClInclude Include="GameEngineInput.h" />
     <ClInclude Include="GameEngineWindow.h" />
     <ClInclude Include="GameEngineWindowTexture.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineInput.cpp" />
@@ -164,6 +165,12 @@
     <ProjectReference Include="..\GameEngineBase\GameEngineBase.vcxproj">
       <Project>{993fccd9-6c00-4bd8-af5f-38a2a81eed6a}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GameEnginePlatform.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="IDC_CURSOR1.cur" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

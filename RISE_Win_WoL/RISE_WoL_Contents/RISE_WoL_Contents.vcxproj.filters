@@ -28,6 +28,7 @@
       <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="LabLevel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -48,5 +49,6 @@
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="LabLevel.h" />
   </ItemGroup>
 </Project>

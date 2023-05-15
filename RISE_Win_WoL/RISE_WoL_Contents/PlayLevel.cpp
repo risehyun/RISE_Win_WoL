@@ -24,7 +24,13 @@ void PlayLevel::Start()
 	BackGround* Back = CreateActor<BackGround>();
 	Back->Init("BackGround.Bmp", 3.0f, { 770, 770 });
 
+
+
 	LevelPlayer = CreateActor<Player>();
+
+
+
+
 }
 
 void PlayLevel::Update(float _Delta)
