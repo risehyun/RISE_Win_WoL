@@ -30,7 +30,7 @@ void Player::Start()
 	if (false == ResourcesManager::GetInst().IsLoadTexture("Test.Bmp"))
 	{
 		GameEnginePath FilePath;
-		FilePath.GetCurrentPath();
+		FilePath.SetCurrentPath();
 		FilePath.MoveParentToExistsChild("ContentsResources");
 
 		GameEnginePath FolderPath = FilePath;
@@ -82,13 +82,8 @@ void Player::Start()
 	{
 		MainRenderer = CreateRenderer(RenderOrder::Play);
 		MainRenderer->SetRenderScale({ 100, 100 });
-		// MainRenderer->SetSprite("Left_Player.bmp");
 
 		MainRenderer->CreateAnimation("Idle_FRONT", "FRONT_COMPLETE.bmp", 0, 0, 0.1f, true);
-
-
-
-
 
 
 
@@ -102,27 +97,15 @@ void Player::Start()
 		MainRenderer->CreateAnimation("Run_RIGHT", "RIGHT_COMPLETE.bmp", 12, 16, 0.1f, true);
 
 
+//		MainRenderer->SetRenderScaleToTexture();
 
 
 
 
-
-		MainRenderer->ChangeAnimation("Idle");
+//		MainRenderer->ChangeAnimation("Idle");
 	}
 
-	//{
 
-	//	GameEngineRenderer* Ptr = CreateRenderer("idle.Bmp", RenderOrder::Play);
-	//	Ptr->SetRenderScale({ 100, 100 });
-	//	Ptr->SetTexture("idle.Bmp");
-	//}
-
-	//{
-	//	GameEngineRenderer* Ptr = CreateRenderer("HPBar.bmp", RenderOrder::Play);
-	//	Ptr->SetRenderPos({ 0, -70 });
-	//	Ptr->SetRenderScale({ 100, 20 });
-	//	Ptr->SetTexture("HPBar.bmp");
-	//}
 	{
 		GameEngineRenderer* Ptr = CreateRenderer("UI_PLAYERBAR.bmp", RenderOrder::Play);
 		Ptr->SetRenderPos({ -425, -320 });
@@ -148,80 +131,105 @@ void Player::Start()
 
 	SetPos(WinScale.Half());
 
+
+	ChanageState(PlayerState::Idle);
+
 }
 
 void Player::Update(float _Delta)
 {
-	float Speed = 200.0f;
 
-	float4 MovePos = float4::ZERO;
+	StateUpdate(_Delta);
 
-	if (true == GameEngineInput::IsPress('A'))
-	{
-		MovePos = { -Speed * _Delta, 0.0f };
-		MainRenderer->ChangeAnimation("Run_LEFT");
-	}
-
-	if (true == GameEngineInput::IsPress('D'))
-	{
-		MovePos = { Speed * _Delta, 0.0f };
-
-		MainRenderer->ChangeAnimation("Run_RIGHT");	
-	}
-
-	if (true == GameEngineInput::IsPress('W'))
-	{
-		MovePos = { 0.0f, -Speed * _Delta };
-
-		MainRenderer->ChangeAnimation("Run_BACK");
-	}
-
-	if (true == GameEngineInput::IsPress('S'))
-	{
-		MovePos = { 0.0f, Speed * _Delta };
-		MainRenderer->ChangeAnimation("Run_FRONT");
-	}
-
+//	if (true == GameEngineInput::IsPress('A'))
+//	{
+////		MovePos = { -Speed * _Delta, 0.0f };
+//	//	MainRenderer->ChangeAnimation("Run_LEFT");
+//	}
+//
+//	if (true == GameEngineInput::IsPress('D'))
+//	{
+////		MovePos = { Speed * _Delta, 0.0f };
+//
+//		MainRenderer->ChangeAnimation("Run_RIGHT");	
+//	}
+//
+//	if (true == GameEngineInput::IsPress('W'))
+//	{
+////		MovePos = { 0.0f, -Speed * _Delta };
+//
+//		MainRenderer->ChangeAnimation("Run_BACK");
+//	}
+//
+//	if (true == GameEngineInput::IsPress('S'))
+//	{
+////		MovePos = { 0.0f, Speed * _Delta };
+//		MainRenderer->ChangeAnimation("Run_FRONT");
+//	}
 
 
 
 
 
-	if (MovePos.X != 0.0f || MovePos.Y != 0.0f)
-	{
-		//MainRenderer->ChangeAnimation("Run");
-	}
-	else
-	{
-		MainRenderer->ChangeAnimation("Idle_FRONT");
-	}
+
+	//if (MovePos.X != 0.0f || MovePos.Y != 0.0f)
+	//{
+	//	//MainRenderer->ChangeAnimation("Run");
+	//}
+	//else
+	//{
+	//	MainRenderer->ChangeAnimation("Idle_FRONT");
+	//}
 
 
+//
+//
+//	if (true == GameEngineInput::IsUp(VK_LBUTTON))
+//	{
+//		float4 Pos = GameEngineWindow::MainWindow.GetMousePos();
+//
+//		Bullet* NewBullet = GetLevel()->CreateActor<Bullet>();
+//		NewBullet->Renderer->SetTexture("Fireball_0.bmp");
+//
+//		NewBullet->SetDir(float4::RIGHT);
+//		NewBullet->SetPos(GetPos());
+////		NewBullet->SetPos(Pos);
+//	}
 
-
-	if (true == GameEngineInput::IsUp(VK_LBUTTON))
-	{
-		float4 Pos = GameEngineWindow::MainWindow.GetMousePos();
-
-		Bullet* NewBullet = GetLevel()->CreateActor<Bullet>();
-		NewBullet->Renderer->SetTexture("Fireball_0.bmp");
-
-		NewBullet->SetDir(float4::RIGHT);
-		NewBullet->SetPos(GetPos());
-//		NewBullet->SetPos(Pos);
-	}
-
-	AddPos(MovePos);
-	GetLevel()->GetMainCamera()->AddPos(MovePos);
+//	AddPos(MovePos);
+//	GetLevel()->GetMainCamera()->AddPos(MovePos);
 }
 
-void Player::Render()
+void Player::StateUpdate(float _Delta)
 {
-
+	switch (State)
+	{
+	case PlayerState::Idle:
+		return IdleUpdate(_Delta);
+	case PlayerState::Run:
+		return RunUpdate(_Delta);
+	default:
+		break;
+	}
 
 }
 
-void Player::Release()
+void Player::ChanageState(PlayerState _State)
 {
+	if (_State != State)
+	{
+		switch (_State)
+		{
+		case PlayerState::Idle:
+			IdleStart();
+			break;
+		case PlayerState::Run:
+			RunStart();
+			break;
+		default:
+			break;
+		}
+	}
 
+	State = _State;
 }

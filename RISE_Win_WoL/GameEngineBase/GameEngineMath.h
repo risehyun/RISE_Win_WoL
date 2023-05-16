@@ -57,25 +57,28 @@ public:
 		return { hX(), hY(), Z, W };
 	}
 
-	float4 operator-()
+	float4 operator-() const
 	{
 		float4 ReturnValue = *this;
+
 		ReturnValue.X = -ReturnValue.X;
 		ReturnValue.Y = -ReturnValue.Y;
 		ReturnValue.Z = -ReturnValue.Z;
 		return ReturnValue;
 	}
 
-	float4 operator-(const float4& _Other)
+	float4 operator-(const float4& _Other) const
 	{
 		float4 ReturnValue;
+
 		ReturnValue.X = X - _Other.X;
 		ReturnValue.Y = Y - _Other.Y;
 		ReturnValue.Z = Z - _Other.Z;
+
 		return ReturnValue;
 	}
 
-	float4 operator+(const float4& _Other)
+	float4 operator+(const float4& _Other) const
 	{
 		float4 ReturnValue;
 
@@ -86,7 +89,7 @@ public:
 		return ReturnValue;
 	}
 
-	float4 operator*(const float4& _Other)
+	float4 operator*(const float4& _Other) const
 	{
 		float4 ReturnValue;
 
@@ -98,7 +101,7 @@ public:
 	}
 
 
-	float4 operator*(const float _Value)
+	float4 operator*(const float _Value) const
 	{
 		float4 ReturnValue;
 
@@ -118,11 +121,13 @@ public:
 		return *this;
 	}
 
+
 	float4& operator-=(const float4& _Other)
 	{
 		X -= _Other.X;
 		Y -= _Other.Y;
 		Z -= _Other.Z;
+
 		return *this;
 	}
 
@@ -143,4 +148,12 @@ public:
 
 		return *this;
 	}
+
+	bool operator==(const float4 _Value) const
+	{
+		return X == _Value.X &&
+			Y == _Value.Y &&
+			Z == _Value.Z;
+	}
+
 };

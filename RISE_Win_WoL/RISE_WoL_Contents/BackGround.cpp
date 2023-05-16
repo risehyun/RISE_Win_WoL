@@ -44,7 +44,7 @@ void BackGround::Init(const std::string& _FileName, const float _Scale, const fl
 	{
 		GameEnginePath FilePath;
 
-		FilePath.GetCurrentPath();
+		FilePath.SetCurrentPath();
 
 		FilePath.MoveParentToExistsChild("ContentsResources");
 		FilePath.MoveChild("ContentsResources\\Texture\\" + _FileName);

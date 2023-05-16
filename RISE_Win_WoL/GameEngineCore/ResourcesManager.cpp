@@ -119,8 +119,18 @@ GameEngineSprite* ResourcesManager::CreateSpriteSheet(const std::string& _Sprite
 
 GameEngineSprite* ResourcesManager::CreateSpriteFolder(const std::string& _SpriteName, const std::string& _Path)
 {
-	GameEngineDirectory Directory = _Path;
+	std::string UpperName = GameEngineString::ToUpperReturn(_SpriteName);
 
+	if (nullptr != FindSprite(UpperName))
+	{
+		MsgBoxAssert("이미 로드한 스프라이트를 또 로드하려고 했습니다.");
+	}
 
-	return nullptr;
+	GameEngineSprite* NewSprite = new GameEngineSprite();
+
+	NewSprite->CreateSpriteFolder(_Path);
+
+	AllSprite.insert(std::make_pair(UpperName, NewSprite));
+
+	return NewSprite;
 }

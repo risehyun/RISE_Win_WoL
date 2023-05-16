@@ -11,6 +11,7 @@
 
 #include "GameEngineSprite.h"
 
+
 GameEngineRenderer::GameEngineRenderer()
 {
 }
@@ -52,7 +53,11 @@ void GameEngineRenderer::SetTexture(const std::string& _Name)
 
 void GameEngineRenderer::SetRenderScaleToTexture()
 {
-	RenderScale = Texture->GetScale();
+	if (nullptr != Texture)
+	{
+		RenderScale = Texture->GetScale();
+	}
+
 	ScaleCheck = false;
 }
 
@@ -83,6 +88,11 @@ void GameEngineRenderer::Render(GameEngineCamera* _Camera, float _DeltaTime)
 		Texture = SpriteInfo.BaseTexture;
 		SetCopyPos(SpriteInfo.RenderPos);
 		SetCopyScale(SpriteInfo.RenderScale);
+
+		if (false == ScaleCheck)
+		{
+			SetRenderScale(SpriteInfo.RenderScale * ScaleRatio);
+		}
 	}
 
 	if (nullptr == Texture)
@@ -151,6 +161,8 @@ void GameEngineRenderer::CreateAnimation(
 	}
 	Animation.Loop = _Loop;
 }
+
+
 void GameEngineRenderer::ChangeAnimation(const std::string& _AniamtionName, bool _ForceChange)
 {
 	Animation* ChangeAni = FindAnimation(_AniamtionName);
