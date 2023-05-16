@@ -41,14 +41,34 @@ void Player::Start()
 
 
 		// sprite 로딩
+
+
+		// 캐릭터 이동
 		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("FRONT_COMPLETE.bmp"), 11, 7);
+
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("BACK_COMPLETE.bmp"), 11, 7);
+
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("LEFT_COMPLETE.bmp"), 11, 7);
+
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("RIGHT_COMPLETE.bmp"), 11, 7);
+		
+
+
+
+
+
 
 		
 
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("idle.bmp"));
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("HPBar.bmp"));
 
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Fireball_0.bmp"));
+
+
+
+		// UI 임시
+
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("HPBar.bmp"));
 
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_PLAYERBAR.bmp"));
 
@@ -65,7 +85,25 @@ void Player::Start()
 		// MainRenderer->SetSprite("Left_Player.bmp");
 
 		MainRenderer->CreateAnimation("Idle_FRONT", "FRONT_COMPLETE.bmp", 0, 0, 0.1f, true);
+
+
+
+
+
+
+
+		// RUN
 		MainRenderer->CreateAnimation("Run_FRONT", "FRONT_COMPLETE.bmp", 12, 14, 0.1f, true);
+
+		MainRenderer->CreateAnimation("Run_BACK", "BACK_COMPLETE.bmp", 12, 14, 0.1f, true);
+
+		MainRenderer->CreateAnimation("Run_LEFT", "LEFT_COMPLETE.bmp", 12, 16, 0.1f, true);
+
+		MainRenderer->CreateAnimation("Run_RIGHT", "RIGHT_COMPLETE.bmp", 12, 16, 0.1f, true);
+
+
+
+
 
 
 
@@ -121,16 +159,21 @@ void Player::Update(float _Delta)
 	if (true == GameEngineInput::IsPress('A'))
 	{
 		MovePos = { -Speed * _Delta, 0.0f };
+		MainRenderer->ChangeAnimation("Run_LEFT");
 	}
 
 	if (true == GameEngineInput::IsPress('D'))
 	{
 		MovePos = { Speed * _Delta, 0.0f };
+
+		MainRenderer->ChangeAnimation("Run_RIGHT");	
 	}
 
 	if (true == GameEngineInput::IsPress('W'))
 	{
 		MovePos = { 0.0f, -Speed * _Delta };
+
+		MainRenderer->ChangeAnimation("Run_BACK");
 	}
 
 	if (true == GameEngineInput::IsPress('S'))
