@@ -56,7 +56,7 @@ private:
 
 	void ActorUpdate(float _Delta);
 
-	void ActorRender();
+	void ActorRender(float _Delta);
 
 	void ActorRelease();
 };

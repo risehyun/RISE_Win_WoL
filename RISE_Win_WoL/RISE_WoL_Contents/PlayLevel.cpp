@@ -23,9 +23,9 @@ void PlayLevel::Start()
 {
 	BackGround* Back = CreateActor<BackGround>();
 	
-//	Back->Init("stage1.Bmp", 3.0f, { 640, 400 });
+	Back->Init("stage1.Bmp", 3.0f, { 640, 400 });
 //	Back->Init("BackGround.Bmp", 3.0f, { 770, 770 });
-Back->Init("BossStage.Bmp", 3.0f, { 640, 400 });
+// Back->Init("BossStage.Bmp", 3.0f, { 640, 400 });
 
 
 	LevelPlayer = CreateActor<Player>();

@@ -12,6 +12,8 @@ public:
 	Player& operator=(const Player& _Other) = delete;
 	Player& operator=(Player&& _Other) noexcept = delete;
 
+	GameEngineRenderer* MainRenderer = nullptr;
+
 protected:
 
 private:

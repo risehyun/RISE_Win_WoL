@@ -32,8 +32,18 @@ void Player::Start()
 		GameEnginePath FilePath;
 		FilePath.GetCurrentPath();
 		FilePath.MoveParentToExistsChild("ContentsResources");
+
+		GameEnginePath FolderPath = FilePath;
+
 		FilePath.MoveChild("ContentsResources\\Texture\\Player\\");
 
+
+
+
+		// sprite ·Îµù
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("FRONT_COMPLETE.bmp"), 11, 7);
+
+		
 
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("idle.bmp"));
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("HPBar.bmp"));
@@ -50,11 +60,24 @@ void Player::Start()
 	}
 
 	{
+		MainRenderer = CreateRenderer(RenderOrder::Play);
+		MainRenderer->SetRenderScale({ 100, 100 });
+		// MainRenderer->SetSprite("Left_Player.bmp");
 
-		GameEngineRenderer* Ptr = CreateRenderer("idle.Bmp", RenderOrder::Play);
-		Ptr->SetRenderScale({ 100, 100 });
-		Ptr->SetTexture("idle.Bmp");
+		MainRenderer->CreateAnimation("Idle_FRONT", "FRONT_COMPLETE.bmp", 0, 0, 0.1f, true);
+		MainRenderer->CreateAnimation("Run_FRONT", "FRONT_COMPLETE.bmp", 12, 14, 0.1f, true);
+
+
+
+		MainRenderer->ChangeAnimation("Idle");
 	}
+
+	//{
+
+	//	GameEngineRenderer* Ptr = CreateRenderer("idle.Bmp", RenderOrder::Play);
+	//	Ptr->SetRenderScale({ 100, 100 });
+	//	Ptr->SetTexture("idle.Bmp");
+	//}
 
 	//{
 	//	GameEngineRenderer* Ptr = CreateRenderer("HPBar.bmp", RenderOrder::Play);
@@ -113,7 +136,25 @@ void Player::Update(float _Delta)
 	if (true == GameEngineInput::IsPress('S'))
 	{
 		MovePos = { 0.0f, Speed * _Delta };
+		MainRenderer->ChangeAnimation("Run_FRONT");
 	}
+
+
+
+
+
+
+	if (MovePos.X != 0.0f || MovePos.Y != 0.0f)
+	{
+		//MainRenderer->ChangeAnimation("Run");
+	}
+	else
+	{
+		MainRenderer->ChangeAnimation("Idle_FRONT");
+	}
+
+
+
 
 	if (true == GameEngineInput::IsUp(VK_LBUTTON))
 	{

@@ -9,11 +9,6 @@ public:
 	GameEnginePath(const std::string& _path);
 	~GameEnginePath();
 
-	GameEnginePath(const GameEnginePath& _Other) = delete;
-	GameEnginePath(GameEnginePath&& _Other) noexcept = delete;
-	GameEnginePath& operator=(const GameEnginePath& _Other) = delete;
-	GameEnginePath& operator=(GameEnginePath&& _Other) noexcept = delete;
-
 	std::string GetFileName();
 
 	void GetCurrentPath();
@@ -26,6 +21,8 @@ public:
 	{
 		return Path.string();
 	}
+
+	bool IsDirectory();
 
 protected:
 
