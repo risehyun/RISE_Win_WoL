@@ -5,7 +5,15 @@ enum class PlayerState
 {
 	Idle,
 	Run,
+	Attack,
 	Max, // default
+};
+
+enum class PlayerDir
+{
+	Right,
+	Left,
+	Max,
 };
 
 class Player : public GameEngineActor
@@ -26,14 +34,21 @@ protected:
 
 	void IdleStart();
 	void RunStart();
+	void AttackStart();
 
 	void IdleUpdate(float _Delta);
 	void RunUpdate(float _Delta);
+
+	void AttackUpdate(float _Delta);
 
 	void ChanageState(PlayerState State);
 
 	PlayerState State = PlayerState::Max;
 
+	PlayerDir Dir = PlayerDir::Right;
+	std::string CurState = "";
+	void DirCheck();
+	void ChangeAnimationState(const std::string& _StateName);
 
 private:
 	void Start() override;

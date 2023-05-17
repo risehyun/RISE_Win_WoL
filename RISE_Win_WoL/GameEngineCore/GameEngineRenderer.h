@@ -3,6 +3,7 @@
 #include <GameEngineBase/GameEngineMath.h>
 #include <string>
 #include <map>
+#include <vector>
 
 class GameEngineSprite;
 class GameEngineActor;
@@ -85,7 +86,7 @@ private:
 		size_t StartFrame = -1;
 		size_t EndFrame = -1;
 		float CurInter = 0.0f;
-		float Inter = 0.1f;
+		std::vector<float> Inters;
 		bool Loop = true;
 	};
 public:
@@ -106,6 +107,7 @@ public:
 		float _Inter = 0.1f,
 		bool _Loop = true);
 	void ChangeAnimation(const std::string& _AniamtionName, bool _ForceChange = false);
+
 	std::map<std::string, Animation> AllAnimation;
 	Animation* CurAnimation = nullptr;
 };
