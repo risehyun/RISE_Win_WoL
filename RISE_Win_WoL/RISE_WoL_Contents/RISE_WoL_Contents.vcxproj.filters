@@ -11,6 +11,9 @@
     <Filter Include="Global">
       <UniqueIdentifier>{8265fc06-28d0-4a10-b0ec-a6812544736e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ETC">
+      <UniqueIdentifier>{8e2f6aa2-a64b-4c88-ad7a-e9f048a35269}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingLevel.cpp">
@@ -28,8 +31,13 @@
       <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="LabLevel.cpp" />
     <ClCompile Include="Player_State.cpp" />
+    <ClCompile Include="LabLevel.cpp">
+      <Filter>ETC</Filter>
+    </ClCompile>
+    <ClCompile Include="BossLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -50,6 +58,11 @@
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h" />
-    <ClInclude Include="LabLevel.h" />
+    <ClInclude Include="LabLevel.h">
+      <Filter>ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="BossLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

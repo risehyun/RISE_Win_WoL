@@ -163,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="BossLevel.h" />
     <ClInclude Include="Bullet.h">
       <SubType>
       </SubType>
@@ -177,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="BossLevel.cpp" />
     <ClCompile Include="Bullet.cpp">
       <SubType>
       </SubType>
