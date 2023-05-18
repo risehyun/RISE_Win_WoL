@@ -1,5 +1,5 @@
 #pragma once
-
+#include "GameEngineDebug.h"
 
 class GameEngineMath
 {
@@ -154,6 +154,32 @@ public:
 		return X == _Value.X &&
 			Y == _Value.Y &&
 			Z == _Value.Z;
+	}
+
+	inline void Normalize()
+	{
+		float Len = Size();
+		if (0.0f == Len)
+		{
+			return;
+		}
+		X /= Len;
+		Y /= Len;
+		Z /= Len;
+	}
+
+	inline float4 NormalizeReturn()
+	{
+		float4 Result = *this;
+		Result.Normalize();
+		return Result;
+	}
+
+	inline float Size()
+	{
+		float Value = X * X + Y * Y;
+		Value;
+		return sqrtf(Value);
 	}
 
 };

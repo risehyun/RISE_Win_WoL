@@ -41,6 +41,8 @@
     <ClCompile Include="Arcana.cpp">
       <Filter>ETC</Filter>
     </ClCompile>
+    <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="PlayActor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -70,5 +72,7 @@
     <ClInclude Include="Arcana.h">
       <Filter>ETC</Filter>
     </ClInclude>
+    <ClInclude Include="Monster.h" />
+    <ClInclude Include="PlayActor.h" />
   </ItemGroup>
 </Project>

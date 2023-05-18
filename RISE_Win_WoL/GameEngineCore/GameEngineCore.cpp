@@ -39,15 +39,17 @@ void GameEngineCore::CoreUpdate()
 		if (nullptr != CurLevel)
 		{
 			CurLevel->LevelEnd(NextLevel);
+			CurLevel->ActorLevelEnd();
 		}
 
 		NextLevel->LevelStart(CurLevel);
-
+		NextLevel->ActorLevelStart();
 
 		CurLevel = NextLevel;
 		NextLevel = nullptr;
 		GameEngineTime::MainTimer.Reset();
 	}
+
 
 	GameEngineTime::MainTimer.Update();
 	float Delta = GameEngineTime::MainTimer.GetDeltaTime();
@@ -62,6 +64,7 @@ void GameEngineCore::CoreUpdate()
 		GameEngineInput::Reset();
 	}
 
+	CurLevel->AddLiveTime(Delta);
 
 	CurLevel->Update(Delta);
 

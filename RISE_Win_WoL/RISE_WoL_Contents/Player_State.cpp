@@ -16,7 +16,8 @@ void Player::RunStart()
 
 void Player::AttackStart()
 {
-//	MainRenderer->ChangeAnimation("Attack_NORMAL");
+	ChangeAnimationState("Attack");
+//	ChangeAnimation("Attack_NORMAL");
 }
 
 void Player::IdleUpdate(float _Delta)
@@ -52,16 +53,18 @@ void Player::RunUpdate(float _Delta)
 	{
 		MovePos = { -Speed * _Delta, 0.0f };
 	}
+
 	else if (true == GameEngineInput::IsPress('D') && Dir == PlayerDir::Right)
 	{
 		MovePos = { Speed * _Delta, 0.0f };
 	}
 
-	if (true == GameEngineInput::IsPress('W'))
+	else if (true == GameEngineInput::IsPress('W') && Dir == PlayerDir::Up)
 	{
 		MovePos = { 0.0f, -Speed * _Delta };
 	}
-	if (true == GameEngineInput::IsPress('S'))
+
+	else if (true == GameEngineInput::IsPress('S') && Dir == PlayerDir::Down)
 	{
 		MovePos = { 0.0f, Speed * _Delta };
 	}
@@ -78,9 +81,20 @@ void Player::RunUpdate(float _Delta)
 
 }
 
+// 수정 필요
 void Player::AttackUpdate(float _Delta)
 {
+	int AnimTime = GetLiveTime();
 
-
-
+	for (size_t i = 0; i <= 10; i++)
+	{
+		AnimTime += _Delta;
+	}
+	
+	if (AnimTime < 9)
+	{
+		DirCheck();
+		ChanageState(PlayerState::Idle);
+		return;
+	}
 }

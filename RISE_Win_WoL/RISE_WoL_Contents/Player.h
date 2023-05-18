@@ -13,11 +13,22 @@ enum class PlayerDir
 {
 	Right,
 	Left,
+	Up,
+	Down,
 	Max,
 };
 
 class Player : public GameEngineActor
 {
+
+private:
+	static Player* MainPlayer;
+public:
+	static Player* GetMainPlayer()
+	{
+		return MainPlayer;
+	}
+
 public:
 	Player();
 	~Player();
@@ -51,6 +62,8 @@ protected:
 	void ChangeAnimationState(const std::string& _StateName);
 
 private:
+	void LevelStart() override;
+
 	void Start() override;
 	void Update(float _Delta) override;
 };

@@ -26,7 +26,6 @@ Player::~Player()
 
 }
 
-
 void Player::Start()
 {
 	if (false == ResourcesManager::GetInst().IsLoadTexture("Test.Bmp"))
@@ -78,33 +77,43 @@ void Player::Start()
 			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_SKILLBAR.bmp"));
 		}
 
+#pragma region 애니메이션 생성
 		{
+			// 렌더러 설정
 			MainRenderer = CreateRenderer(RenderOrder::Play);
 			MainRenderer->SetRenderScale({ 100, 100 });
 
+			// IDLE
 			MainRenderer->CreateAnimation("Left_Idle", "LEFT_COMPLETE.bmp", 0, 0, 0.1f, true);
 
 			MainRenderer->CreateAnimation("Right_Idle", "RIGHT_COMPLETE.bmp", 0, 0, 0.1f, true);
 
-			MainRenderer->CreateAnimation("Attack_NORMAL", "PLAYER_NORMAL_ATTACK.bmp", 0, 8, 0.1f, true);
+			MainRenderer->CreateAnimation("Down_Idle", "FRONT_COMPLETE.bmp", 0, 0, 0.1f, true);
+
+			MainRenderer->CreateAnimation("Up_Idle", "BACK_COMPLETE.bmp", 0, 0, 0.1f, true);
 
 			// RUN
-			MainRenderer->CreateAnimation("Front_Run", "FRONT_COMPLETE.bmp", 12, 14, 0.1f, true);
+			MainRenderer->CreateAnimation("Down_Run", "FRONT_COMPLETE.bmp", 12, 14, 0.1f, true);
 
-			MainRenderer->CreateAnimation("Back_Run", "BACK_COMPLETE.bmp", 12, 14, 0.1f, true);
+			MainRenderer->CreateAnimation("Up_Run", "BACK_COMPLETE.bmp", 12, 14, 0.1f, true);
 
 			MainRenderer->CreateAnimation("Left_Run", "LEFT_COMPLETE.bmp", 12, 16, 0.1f, true);
 
 			MainRenderer->CreateAnimation("Right_Run", "RIGHT_COMPLETE.bmp", 12, 16, 0.1f, true);
 
+			// ATTACK
+			MainRenderer->CreateAnimation("Down_Attack", "FRONT_COMPLETE.bmp", 33, 36, 0.1f, false);
 
-			//		MainRenderer->SetRenderScaleToTexture();
+			MainRenderer->CreateAnimation("Up_Attack", "BACK_COMPLETE.bmp", 55, 58, 0.1f, false);
+			 
+			MainRenderer->CreateAnimation("Left_Attack", "LEFT_COMPLETE.bmp", 33, 36, 0.1f, false);
 
+			MainRenderer->CreateAnimation("Right_Attack", "RIGHT_COMPLETE.bmp", 33, 36, 0.1f, false);
 
-
-
-			//		MainRenderer->ChangeAnimation("Idle");
+//			MainRenderer->CreateAnimation("Attack_NORMAL", "PLAYER_NORMAL_ATTACK.bmp", 0, 8, 0.1f, true);
 		}
+
+#pragma endregion
 
 		{
 			GameEngineRenderer* Ptr = CreateRenderer("UI_PLAYERBAR.bmp", RenderOrder::Play);
@@ -151,8 +160,8 @@ void Player::StateUpdate(float _Delta)
 	case PlayerState::Run:
 		return RunUpdate(_Delta);
 	
-	//case PlayerState::Attack:
-	//	return AttackUpdate(_Delta);
+	case PlayerState::Attack:
+		return AttackUpdate(_Delta);
 
 	default:
 		break;
@@ -173,9 +182,9 @@ void Player::ChanageState(PlayerState _State)
 			RunStart();
 			break;
 
-		//case PlayerState::Attack:
-		//	AttackStart();
-		//	break;
+		case PlayerState::Attack:
+			AttackStart();
+			break;
 
 		default:
 			break;
@@ -187,24 +196,35 @@ void Player::ChanageState(PlayerState _State)
 
 void Player::DirCheck()
 {
-	if (true == GameEngineInput::IsFree('A') && true == GameEngineInput::IsFree('D'))
-	{
-		return;
-	}
 
-	if (true == GameEngineInput::IsDown('A') || true == GameEngineInput::IsFree('D'))
+	if (true == GameEngineInput::IsDown('A'))
 	{
 		Dir = PlayerDir::Left;
 		ChangeAnimationState(CurState);
 		return;
 	}
 
-	if (true == GameEngineInput::IsDown('D') || true == GameEngineInput::IsFree('A'))
+	if (true == GameEngineInput::IsDown('D'))
 	{
 		Dir = PlayerDir::Right;
 		ChangeAnimationState(CurState);
 		return;
 	}
+
+	if (true == GameEngineInput::IsDown('W'))
+	{
+		Dir = PlayerDir::Up;
+		ChangeAnimationState(CurState);
+		return;
+	}
+
+	if (true == GameEngineInput::IsDown('S'))
+	{
+		Dir = PlayerDir::Down;
+		ChangeAnimationState(CurState);
+		return;
+	}
+
 }
 
 void Player::ChangeAnimationState(const std::string& _StateName)
@@ -217,9 +237,19 @@ void Player::ChangeAnimationState(const std::string& _StateName)
 	case PlayerDir::Right:
 		AnimationName = "Right_";
 		break;
+
 	case PlayerDir::Left:
 		AnimationName = "Left_";
 		break;
+
+	case PlayerDir::Up:
+		AnimationName = "Up_";
+		break;
+
+	case PlayerDir::Down:
+		AnimationName = "Down_";
+		break;
+
 	default:
 		break;
 	}
