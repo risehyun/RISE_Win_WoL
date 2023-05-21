@@ -19,6 +19,9 @@
     <Filter Include="Object\Rendering">
       <UniqueIdentifier>{34e74d1e-9df7-48fa-9d1b-6550bbd10669}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{7d7ff1df-4eea-493b-a8f0-8fc652e33f15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineCore.h">

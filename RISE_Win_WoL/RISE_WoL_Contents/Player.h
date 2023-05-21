@@ -1,11 +1,15 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
+#include "PlayActor.h"
+
+// #include <GameEngineCore/GameEngineActor.h>
 
 enum class PlayerState
 {
 	Idle,
 	Run,
 	Attack,
+	Skill_ICEBLAST,
+	Dash,
 	Max, // default
 };
 
@@ -18,7 +22,7 @@ enum class PlayerDir
 	Max,
 };
 
-class Player : public GameEngineActor
+class Player : public PlayActor
 {
 
 private:
@@ -45,12 +49,20 @@ protected:
 
 	void IdleStart();
 	void RunStart();
+	void DashStart();
+
 	void AttackStart();
+	void Skill_ICEBLAST_Start();
+
+
 
 	void IdleUpdate(float _Delta);
 	void RunUpdate(float _Delta);
+	void DashUpdate(float _Delta);
 
 	void AttackUpdate(float _Delta);
+
+	void Skill_ICEBLAST_Update();
 
 	void ChanageState(PlayerState State);
 

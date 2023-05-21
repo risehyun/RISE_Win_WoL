@@ -9,6 +9,7 @@
 
 #include "Player.h"
 #include "BackGround.h"
+#include "Monster.h"
 
 
 PlayLevel::PlayLevel()
@@ -31,6 +32,15 @@ void PlayLevel::Start()
 
 	LevelPlayer = CreateActor<Player>();
 
+	//if (false == ResourcesManager::GetInst().IsLoadTexture("Test.Bmp"))
+	//{
+	//	GameEnginePath FilePath;
+	//	FilePath.SetCurrentPath();
+	//	FilePath.MoveParentToExistsChild("ContentsResources");
+	//	GameEnginePath FolderPath = FilePath;
+	//	FilePath.MoveChild("ContentsResources\\Texture\\");
+	//	ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("StageTestPixel.bmp"));
+	//}
 
 
 
@@ -42,6 +52,12 @@ void PlayLevel::Update(float _Delta)
 	{
 		GameEngineCore::ChangeLevel("BossLevel");
 	}
+
+	//if (1.0f <= GetLiveTime())
+	//{
+	//	Monster* NewMonster = CreateActor<Monster>();
+	//	ResetLiveTime();
+	//}
 }
 
 void PlayLevel::Render()
@@ -58,6 +74,8 @@ void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	{
 		MsgBoxAssert("플레이어를 세팅해주지 않았습니다");
 	}
+
+//	LevelPlayer->SetGroundTexture("StageTestPixel.bmp");
 
 	float4 WinScale = GameEngineWindow::MainWindow.GetScale();
 

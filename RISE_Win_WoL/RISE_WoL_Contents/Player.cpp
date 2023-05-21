@@ -15,6 +15,9 @@
 #include <GameEngineCore/GameEngineCamera.h>
 
 #include "Bullet.h"
+#include "Monster.h"
+
+Player* Player::MainPlayer = nullptr;
 
 Player::Player()
 {
@@ -65,6 +68,11 @@ void Player::Start()
 			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Fireball_0.bmp"));
 		}
 
+		if (false == ResourcesManager::GetInst().IsLoadTexture("DashAirBurst.Bmp"))
+		{
+			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("DashAirBurst.bmp"));
+		}
+
 		// UI 임시
 		if (false == ResourcesManager::GetInst().IsLoadTexture("HPBar.Bmp"))
 		{
@@ -98,17 +106,31 @@ void Player::Start()
 			MainRenderer->CreateAnimation("Up_Run", "BACK_COMPLETE.bmp", 12, 14, 0.1f, true);
 
 			MainRenderer->CreateAnimation("Left_Run", "LEFT_COMPLETE.bmp", 12, 16, 0.1f, true);
-
+			
 			MainRenderer->CreateAnimation("Right_Run", "RIGHT_COMPLETE.bmp", 12, 16, 0.1f, true);
 
-			// ATTACK
-			MainRenderer->CreateAnimation("Down_Attack", "FRONT_COMPLETE.bmp", 33, 36, 0.1f, false);
+			
+			// Dash
+			MainRenderer->CreateAnimation("Down_Dash", "FRONT_COMPLETE.bmp", 23, 25, 0.1f, false);
 
-			MainRenderer->CreateAnimation("Up_Attack", "BACK_COMPLETE.bmp", 55, 58, 0.1f, false);
+			MainRenderer->CreateAnimation("Up_Dash", "BACK_COMPLETE.bmp", 23, 25, 0.1f, false);
+
+			MainRenderer->CreateAnimation("Left_Dash", "LEFT_COMPLETE.bmp", 23, 25, 0.1f, false);
+
+			MainRenderer->CreateAnimation("Right_Dash", "RIGHT_COMPLETE.bmp", 23, 25, 0.1f, false);
+
+
+
+			// NORMAL ATTACK
+			MainRenderer->CreateAnimation("Down_Attack", "FRONT_COMPLETE.bmp", 33, 36, 0.05f, false);
+
+			MainRenderer->CreateAnimation("Up_Attack", "BACK_COMPLETE.bmp", 55, 58, 0.05f, false);
 			 
-			MainRenderer->CreateAnimation("Left_Attack", "LEFT_COMPLETE.bmp", 33, 36, 0.1f, false);
+			MainRenderer->CreateAnimation("Left_Attack", "LEFT_COMPLETE.bmp", 33, 36, 0.05f, false);
 
-			MainRenderer->CreateAnimation("Right_Attack", "RIGHT_COMPLETE.bmp", 33, 36, 0.1f, false);
+			MainRenderer->CreateAnimation("Right_Attack", "RIGHT_COMPLETE.bmp", 33, 36, 0.05f, false);
+
+
 
 //			MainRenderer->CreateAnimation("Attack_NORMAL", "PLAYER_NORMAL_ATTACK.bmp", 0, 8, 0.1f, true);
 		}
@@ -147,7 +169,21 @@ void Player::Start()
 
 void Player::Update(float _Delta)
 {
+	// 디버깅용 모든 몬스터를 없애는 함수 발동
+	if (true == GameEngineInput::IsDown('L'))
+	{
+		Monster::AllMonsterDeath();
+	}
+
+	// 중력 제거
+	if (true == GameEngineInput::IsDown('Y'))
+	{
+		GravityOff();
+	}
+
 	StateUpdate(_Delta);
+
+	CameraFocus();
 }
 
 void Player::StateUpdate(float _Delta)
@@ -159,8 +195,14 @@ void Player::StateUpdate(float _Delta)
 
 	case PlayerState::Run:
 		return RunUpdate(_Delta);
+
+	case PlayerState::Dash:
+		return DashUpdate(_Delta);
 	
 	case PlayerState::Attack:
+		return AttackUpdate(_Delta);
+
+	case PlayerState::Skill_ICEBLAST:
 		return AttackUpdate(_Delta);
 
 	default:
@@ -186,6 +228,14 @@ void Player::ChanageState(PlayerState _State)
 			AttackStart();
 			break;
 
+		case PlayerState::Skill_ICEBLAST:
+			Skill_ICEBLAST_Start();
+			break;
+
+		case PlayerState::Dash:
+			DashStart();
+			break;
+	
 		default:
 			break;
 		}
@@ -257,4 +307,9 @@ void Player::ChangeAnimationState(const std::string& _StateName)
 	AnimationName += _StateName;
 	CurState = _StateName;
 	MainRenderer->ChangeAnimation(AnimationName);
+}
+
+void Player::LevelStart()
+{
+	MainPlayer = this;
 }

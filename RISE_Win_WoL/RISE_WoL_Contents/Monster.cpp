@@ -36,19 +36,18 @@ void Monster::Update(float _Delta)
 
 void Monster::Start()
 {
-	if (false == ResourcesManager::GetInst().IsLoadTexture("Test.Bmp"))
+	if (false == ResourcesManager::GetInst().IsLoadTexture("SWORDMAN_TEST.Bmp"))
 	{
 		GameEnginePath FilePath;
 		FilePath.SetCurrentPath();
 		FilePath.MoveParentToExistsChild("ContentsResources");
-		FilePath.MoveChild("ContentsResources\\Texture\\Player\\");
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Test.bmp"));
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("SWORDMAN_LEFT.bmp"));
+		FilePath.MoveChild("ContentsResources\\Texture\\Monster\\");
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("SWORDMAN_TEST.bmp"));
 	}
 
 	{
-		GameEngineRenderer* Ptr = CreateRenderer("SWORDMAN_LEFT.bmp", RenderOrder::Play);
+		GameEngineRenderer* Ptr = CreateRenderer("SWORDMAN_TEST.bmp", RenderOrder::Play);
 		Ptr->SetRenderScale({ 150, 150 });
-		Ptr->SetTexture("SWORDMAN_LEFT.bmp");
+		Ptr->SetTexture("SWORDMAN_TEST.bmp");
 	}
 }
