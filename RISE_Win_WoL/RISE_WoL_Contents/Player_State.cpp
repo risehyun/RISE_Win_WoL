@@ -141,6 +141,12 @@ void Player::RunUpdate(float _Delta)
 		return;
 	}
 
+	if (true == GameEngineInput::IsUp(VK_SPACE))
+	{
+		ChanageState(PlayerState::Dash);
+		return;
+	}
+
 }
 
 void Player::DashUpdate(float _Delta)
@@ -172,21 +178,22 @@ void Player::DashUpdate(float _Delta)
 		MovePos = { 0.0f, Speed * _Delta};
 	}
 
-	//if (MovePos == float4::ZERO)
-	//{
-	//	DirCheck();
-	//	ChanageState(PlayerState::Idle);
-	//}
-
-
 	AddPos(MovePos);
 	GetLevel()->GetMainCamera()->AddPos(MovePos);
-//	ChanageState(PlayerState::Idle);
 
 	if (1.5f <= GetLiveTime())
 	{
-//		DirCheck();
-		ChanageState(PlayerState::Idle);
+
+		if (true == GameEngineInput::IsPress('A') || true == GameEngineInput::IsPress('W') || 
+			true == GameEngineInput::IsPress('S') || true == GameEngineInput::IsPress('D'))
+		{
+			ChanageState(PlayerState::Run);
+		}
+
+		else
+		{
+			ChanageState(PlayerState::Idle);
+		}
 
 		ResetLiveTime();
 	}
