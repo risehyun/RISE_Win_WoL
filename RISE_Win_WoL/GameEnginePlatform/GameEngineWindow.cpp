@@ -180,7 +180,6 @@ void GameEngineWindow::MessageLoop(HINSTANCE _Inst, void(*_Start)(HINSTANCE), vo
 
 	}
 
-
 	if (nullptr != _End)
 	{
 		_End();

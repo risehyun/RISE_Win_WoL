@@ -109,3 +109,30 @@ void GameEngineWindowTexture::TransCopy(GameEngineWindowTexture* _CopyTexture, c
 	);
 
 }
+
+unsigned int GameEngineWindowTexture::GetColor(unsigned int _DefaultColor, float4 _Pos)
+{ 
+	// 정해진 화면 범위를 벗어난 위치일 경우 디폴트 컬러를 리턴합니다.
+	if (0 > _Pos.iX())
+	{
+		return _DefaultColor;
+	}
+
+	if (0 > _Pos.iY())
+	{
+		return _DefaultColor;
+	}
+
+	if (GetScale().iX() <= _Pos.iX())
+	{
+		return _DefaultColor;
+	}
+
+	if (GetScale().iX() <= _Pos.iY())
+	{
+		return _DefaultColor;
+	}
+
+	// 범위 안의 위치일 경우 해당 위치의 픽셀이 어떤 색상을 가지고 있는지를 리턴해줍니다.
+	return GetPixel(ImageDC, _Pos.iX(), _Pos.iY());
+}

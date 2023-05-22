@@ -20,7 +20,7 @@ LabLevel::~LabLevel()
 void LabLevel::Start()
 {
 	static BackGround* Back = CreateActor<BackGround>();
-	Back->Init("UI_MONEY.Bmp", 0.75f, { 640, 400 });
+	//Back->Init("UI_MONEY.Bmp", 0.75f, { 640, 400 });
 
 
 }

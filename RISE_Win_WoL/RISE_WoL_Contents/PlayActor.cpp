@@ -40,3 +40,12 @@ void PlayActor::SetGroundTexture(const std::string& _GroundTextureName)
 	}
 
 }
+
+int PlayActor::GetGroundColor(unsigned int _DefaultColor, float4 _Pos)
+{
+	if (nullptr == GroundTexture)
+	{
+		MsgBoxAssert("땅 체크용 텍스처가 존재하지 않습니다.");
+	}
+	return GroundTexture->GetColor(_DefaultColor, GetPos() + _Pos);
+}

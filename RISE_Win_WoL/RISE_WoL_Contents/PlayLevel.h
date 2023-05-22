@@ -22,6 +22,7 @@ private:
 	void Render() override;
 	void Release() override;
 
+	class BackGround* BackGroundPtr;
 	class Player* LevelPlayer = nullptr;
 
 };

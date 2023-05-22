@@ -28,6 +28,8 @@ public:
 
 	void SetGroundTexture(const std::string& _GroundTextureName);
 
+	int GetGroundColor(unsigned int _DefaultColor, float4 _Pos = float4::ZERO);
+
 protected:
 
 private:

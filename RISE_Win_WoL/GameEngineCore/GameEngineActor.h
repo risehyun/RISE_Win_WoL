@@ -54,6 +54,8 @@ public:
 
 	GameEngineRenderer* CreateRenderer(const std::string& _ImageName, int _Order);
 
+	GameEngineRenderer* CreateCollision(int _Order = 0);
+
 	GameEngineLevel* GetLevel()
 	{
 		return Level;

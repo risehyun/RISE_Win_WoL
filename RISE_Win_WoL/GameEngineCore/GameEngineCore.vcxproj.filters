@@ -48,6 +48,9 @@
     <ClInclude Include="GameEngineSprite.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineCollision.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineCore.cpp">
@@ -72,6 +75,9 @@
       <Filter>Object\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineSprite.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineCollision.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

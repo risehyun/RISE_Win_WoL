@@ -35,17 +35,36 @@ void Player::Skill_ICEBLAST_Start()
 
 
 
-
-
-
-
-
-
-
-
 void Player::IdleUpdate(float _Delta)
 {
-	//	Gravity(_Delta);
+
+	// 자신의 위치에 해당하는 픽셀의 색상을 체크하기 위해 가져온다.
+	unsigned int Color = GetGroundColor(RGB(255, 255, 255));
+	if (RGB(255, 255, 255) == Color)
+	{
+
+	}
+
+	else
+	{
+		unsigned int CheckColor = GetGroundColor(RGB(255, 255, 255), float4::UP);
+
+		while (CheckColor != RGB(255, 255, 255))
+		{
+			CheckColor = GetGroundColor(RGB(255, 255, 255), float4::UP);
+			AddPos(float4::UP);
+		}
+
+		CheckColor = GetGroundColor(RGB(255, 255, 255), float4::DOWN);
+
+		while (CheckColor != RGB(255, 255, 255))
+		{
+			CheckColor = GetGroundColor(RGB(255, 255, 255), float4::DOWN);
+			AddPos(float4::DOWN);
+		}
+	}
+
+
 
 	if (true == GameEngineInput::IsDown('A')
 		|| true == GameEngineInput::IsDown('W')
@@ -96,31 +115,62 @@ void Player::IdleUpdate(float _Delta)
 
 void Player::RunUpdate(float _Delta)
 {
-	//	Gravity(_Delta);
+
+	unsigned int Color = GetGroundColor(RGB(255, 255, 255));
+	if (RGB(255, 255, 255) == Color)
+	{
+
+	}
+
+	else
+	{
+		unsigned int CheckColor = GetGroundColor(RGB(255, 255, 255), float4::UP);
+
+		while (CheckColor != RGB(255, 255, 255))
+		{
+			CheckColor = GetGroundColor(RGB(255, 255, 255), float4::UP);
+			AddPos(float4::UP);
+		}
+
+		CheckColor = GetGroundColor(RGB(255, 255, 255), float4::DOWN);
+
+		while (CheckColor != RGB(255, 255, 255))
+		{
+			CheckColor = GetGroundColor(RGB(255, 255, 255), float4::DOWN);
+			AddPos(float4::DOWN);
+		}
+
+	}
+
 
 	DirCheck();
 
 	float Speed = 200.0f;
 
 	float4 MovePos = float4::ZERO;
+	float4 CheckPos = float4::ZERO;
 
 	if (true == GameEngineInput::IsPress('A') && Dir == PlayerDir::Left)
 	{
+		CheckPos = { -30.0f, 0.0f };
 		MovePos = { -Speed * _Delta, 0.0f };
 	}
 
 	else if (true == GameEngineInput::IsPress('D') && Dir == PlayerDir::Right)
 	{
+		CheckPos = { 30.0f, 0.0f };
 		MovePos = { Speed * _Delta, 0.0f };
 	}
 
 	else if (true == GameEngineInput::IsPress('W') && Dir == PlayerDir::Up)
 	{
+		CheckPos = { 0.0f, -50.0f };
 		MovePos = { 0.0f, -Speed * _Delta };
 	}
 
 	else if (true == GameEngineInput::IsPress('S') && Dir == PlayerDir::Down)
 	{
+		CheckPos = { 0.0f, 50.0f };
 		MovePos = { 0.0f, Speed * _Delta };
 	}
 
@@ -130,9 +180,14 @@ void Player::RunUpdate(float _Delta)
 		ChanageState(PlayerState::Idle);
 	}
 
-
-	AddPos(MovePos);
-	GetLevel()->GetMainCamera()->AddPos(MovePos);
+	{
+		unsigned int Color = GetGroundColor(RGB(255, 255, 255), CheckPos);
+		if (Color == RGB(255, 255, 255))
+		{
+			AddPos(MovePos);
+			GetLevel()->GetMainCamera()->AddPos(MovePos);
+		}
+	}
 
 
 	if (true == GameEngineInput::IsDown(VK_LBUTTON))
@@ -149,42 +204,90 @@ void Player::RunUpdate(float _Delta)
 
 }
 
+
 void Player::DashUpdate(float _Delta)
 {
+	{
+		unsigned int Color = GetGroundColor(RGB(255, 255, 255));
+		if (RGB(255, 255, 255) == Color)
+		{
+
+		}
+
+		else
+		{
+			unsigned int CheckColor = GetGroundColor(RGB(255, 255, 255), float4::UP);
+
+			while (CheckColor != RGB(255, 255, 255))
+			{
+				CheckColor = GetGroundColor(RGB(255, 255, 255), float4::UP);
+				AddPos(float4::UP);
+			}
+
+			CheckColor = GetGroundColor(RGB(255, 255, 255), float4::DOWN);
+
+			while (CheckColor != RGB(255, 255, 255))
+			{
+				CheckColor = GetGroundColor(RGB(255, 255, 255), float4::DOWN);
+				AddPos(float4::DOWN);
+			}
+
+		}
+	}
+
+
 
 	DirCheck();
 
 	float Speed = 400.0f;
 
 	float4 MovePos = float4::ZERO;
+	float4 CheckPos = float4::ZERO;
 
 	if (Dir == PlayerDir::Left)
 	{
+
+		CheckPos = { -15.0f, -30.0f };
 		MovePos = { -Speed * _Delta, 0.0f };
 	}
 
 	else if (Dir == PlayerDir::Right)
 	{
+
+		CheckPos = { 15.0f, -30.0f };
 		MovePos = { Speed * _Delta, 0.0f };
 	}
 
 	else if (Dir == PlayerDir::Up)
 	{
+
+		CheckPos = { -15.0f, 30.0f };
 		MovePos = { 0.0f, -Speed * _Delta };
 	}
 
 	else if (Dir == PlayerDir::Down)
 	{
-		MovePos = { 0.0f, Speed * _Delta};
+
+		CheckPos = { 15.0f, 30.0f };
+		MovePos = { 0.0f, Speed * _Delta };
 	}
 
-	AddPos(MovePos);
-	GetLevel()->GetMainCamera()->AddPos(MovePos);
+	//AddPos(MovePos);
+	//GetLevel()->GetMainCamera()->AddPos(MovePos);
+
+
+	unsigned int Color = GetGroundColor(RGB(255, 255, 255), CheckPos);
+	if (Color == RGB(255, 255, 255))
+	{
+		AddPos(MovePos);
+		GetLevel()->GetMainCamera()->AddPos(MovePos);
+	}
+
 
 	if (1.5f <= GetLiveTime())
 	{
 
-		if (true == GameEngineInput::IsPress('A') || true == GameEngineInput::IsPress('W') || 
+		if (true == GameEngineInput::IsPress('A') || true == GameEngineInput::IsPress('W') ||
 			true == GameEngineInput::IsPress('S') || true == GameEngineInput::IsPress('D'))
 		{
 			ChanageState(PlayerState::Run);
@@ -201,7 +304,6 @@ void Player::DashUpdate(float _Delta)
 
 	return;
 }
-
 
 // 수정 필요
 void Player::AttackUpdate(float _Delta)

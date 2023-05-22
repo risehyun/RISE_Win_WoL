@@ -23,6 +23,7 @@ void BossLevel::Start()
 {
 	BackGround* Back = CreateActor<BackGround>();
 
+//	Back->Init("BossStage.Bmp", 3.0f, { 640, 400 });
 	Back->Init("BossStage.Bmp", 3.0f, { 640, 400 });
 
 	LevelPlayer = CreateActor<Player>();
