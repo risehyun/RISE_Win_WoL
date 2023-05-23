@@ -88,7 +88,8 @@ void Player::Start()
 #pragma region 애니메이션 생성
 		{
 			// 렌더러 설정
-			MainRenderer = CreateRenderer(RenderOrder::Play);
+//			MainRenderer = CreateRenderer(RenderOrder::Play);
+			MainRenderer = CreateRenderer(1000);
 			MainRenderer->SetRenderScale({ 100, 100 });
 
 			// IDLE
@@ -163,7 +164,10 @@ void Player::Start()
 
 //	SetPos(WinScale.Half());
 
-	SetPos({ 1000, 400 });
+	// 레벨별로 캐릭터 시작 위치가 다름
+	// playLevel의 경우 { 1850, 1700 }
+	// bossLevel의 경우 { 1710, 2610 }
+	SetPos({ 1710, 2610 });
 	ChanageState(PlayerState::Idle);
 
 }
@@ -179,7 +183,14 @@ void Player::Update(float _Delta)
 	// 중력 제거
 	if (true == GameEngineInput::IsDown('Y'))
 	{
-		GravityOff();
+		MainRenderer->SetOrder(-200);
+//		GravityOff();
+	}
+
+	if (true == GameEngineInput::IsDown('U'))
+	{
+		MainRenderer->SetOrder(1000);
+		//		GravityOff();
 	}
 
 	StateUpdate(_Delta);

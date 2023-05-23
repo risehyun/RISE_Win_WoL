@@ -53,8 +53,10 @@ GameEngineRenderer* GameEngineActor::CreateRenderer(const std::string& _ImageNam
 {
 	GameEngineRenderer* NewRenderer = new GameEngineRenderer();
 
-	GetLevel()->MainCamera->PushRenderer(NewRenderer, _Order);
+//	GetLevel()->MainCamera->PushRenderer(NewRenderer, _Order);
 	NewRenderer->Master = this;
+	NewRenderer->Start();
+	NewRenderer->SetOrder(_Order);
 
 	// 이미지가 적용되어 있지 않은 렌더러가 존재할 수 있으므로 체크를 해서 지정할 이미지가 있는 경우에만 텍스처를 세팅합니다.
 	if (_ImageName != "")
@@ -67,10 +69,10 @@ GameEngineRenderer* GameEngineActor::CreateRenderer(const std::string& _ImageNam
 	return NewRenderer;
 }
 
-//GameEngineRenderer* GameEngineActor::CreateCollision(int _Order/* = 0*/)
-//{
-//
-//}
+GameEngineRenderer* GameEngineActor::CreateCollision(int _Order/* = 0*/)
+{
+	return nullptr;
+}
 
 /*
 	<작동 방식>

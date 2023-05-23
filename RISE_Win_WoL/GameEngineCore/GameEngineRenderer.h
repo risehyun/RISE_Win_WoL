@@ -57,9 +57,13 @@ public:
 
 	bool IsDeath() override;
 
+	void SetOrder(int _Order) override;
+
 protected:
+	void Start() override;
 
 private:
+	GameEngineCamera* Camera = nullptr;
 	GameEngineActor* Master = nullptr;
 	GameEngineWindowTexture* Texture = nullptr;
 	GameEngineSprite* Sprite = nullptr;
@@ -86,9 +90,11 @@ private:
 		size_t StartFrame = -1;
 		size_t EndFrame = -1;
 		float CurInter = 0.0f;
+		std::vector<size_t> Frames;
 		std::vector<float> Inters;
 		bool Loop = true;
 	};
+
 public:
 	Animation* FindAnimation(const std::string& _AniamtionName);
 	/// <summary>
