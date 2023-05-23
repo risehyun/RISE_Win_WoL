@@ -152,25 +152,25 @@ void Player::RunUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsPress('A') && Dir == PlayerDir::Left)
 	{
-		CheckPos = { -30.0f, 0.0f };
+		CheckPos = { -50.0f, 30.0f };
 		MovePos = { -Speed * _Delta, 0.0f };
 	}
 
 	else if (true == GameEngineInput::IsPress('D') && Dir == PlayerDir::Right)
 	{
-		CheckPos = { 30.0f, 0.0f };
+		CheckPos = { 50.0f, 30.0f };
 		MovePos = { Speed * _Delta, 0.0f };
 	}
 
 	else if (true == GameEngineInput::IsPress('W') && Dir == PlayerDir::Up)
 	{
-		CheckPos = { 0.0f, -50.0f };
+		CheckPos = { 30.0f, -50.0f };
 		MovePos = { 0.0f, -Speed * _Delta };
 	}
 
 	else if (true == GameEngineInput::IsPress('S') && Dir == PlayerDir::Down)
 	{
-		CheckPos = { 0.0f, 50.0f };
+		CheckPos = { 30.0f, 50.0f };
 		MovePos = { 0.0f, Speed * _Delta };
 	}
 

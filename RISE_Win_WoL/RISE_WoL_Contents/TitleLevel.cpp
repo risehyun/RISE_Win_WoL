@@ -17,12 +17,11 @@ TitleLevel::~TitleLevel()
 void TitleLevel::Start()
 {
 	BackGround* Back = CreateActor<BackGround>();
-//	Back->Init("Background0.Bmp", 0.75f, { 640, 400 });
 
 	Back->Init("Background0.Bmp", 0.75f, { 640, 400 });
 
 	BackGround* Logo = CreateActor<BackGround>();
-//	Back->Init("TitleLogo_.Bmp", 0.75f, { 640, 400 });
+
 	Back->Init("TitleLogo_.Bmp", 0.75f, { 640, 400 });
 }
 

@@ -21,12 +21,25 @@ BossLevel::~BossLevel()
 
 void BossLevel::Start()
 {
-	BackGround* Back = CreateActor<BackGround>();
+	if (false == ResourcesManager::GetInst().IsLoadTexture("BossStage_Col_resize.Bmp"))
+	{
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+		GameEnginePath FolderPath = FilePath;
+		FilePath.MoveChild("ContentsResources\\Texture\\");
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("BossStage_Col_resize.bmp"));
+	}
 
-//	Back->Init("BossStage.Bmp", 3.0f, { 640, 400 });
-	Back->Init("BossStage.Bmp", 3.0f, { 640, 400 });
+	BackGroundPtr = CreateActor<BackGround>();
+
+	//	BackGroundPtr->Init("stage1.Bmp", "stage1_Col.bmp", 3.0f, { 640, 400 });
+	BackGroundPtr->Init("BossStage_resize.Bmp", "BossStage_Col_resize.Bmp");
 
 	LevelPlayer = CreateActor<Player>();
+
+	LevelPlayer->SetGroundTexture("BossStage_Col_resize.bmp");
+
 }
 
 void BossLevel::Update(float _Delta)
@@ -34,6 +47,11 @@ void BossLevel::Update(float _Delta)
 	if (true == GameEngineInput::IsDown(VK_RIGHT))
 	{
 		GameEngineCore::ChangeLevel("EndingLevel");
+	}
+
+	if (true == GameEngineInput::IsDown('J'))
+	{
+		BackGroundPtr->SwitchRender();
 	}
 }
 

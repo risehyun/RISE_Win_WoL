@@ -161,8 +161,9 @@ void Player::Start()
 
 	float4 WinScale = GameEngineWindow::MainWindow.GetScale();
 
-	SetPos(WinScale.Half());
+//	SetPos(WinScale.Half());
 
+	SetPos({ 1000, 400 });
 	ChanageState(PlayerState::Idle);
 
 }

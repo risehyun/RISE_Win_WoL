@@ -18,10 +18,10 @@ void BackGround::Start()
 {
 	SetPos({ 640, 400 });
 
-	Renderer = CreateRenderer(RenderOrder::BackGround);
-	DebugRenderer = CreateRenderer(RenderOrder::BackGround);
-	Renderer->On();
-	DebugRenderer->Off();
+//	Renderer = CreateRenderer(RenderOrder::BackGround);
+//	DebugRenderer = CreateRenderer(RenderOrder::BackGround);
+//	Renderer->On();
+//	DebugRenderer->Off();
 }
 
 void BackGround::Update(float _Delta) 
@@ -55,59 +55,33 @@ void BackGround::Init(const std::string& _FileName, const float _Scale, const fl
 		FilePath.MoveParentToExistsChild("ContentsResources");
 		FilePath.MoveChild("ContentsResources\\Texture\\" + _FileName);
 
+
 		GameEngineWindowTexture* Text = ResourcesManager::GetInst().TextureLoad(FilePath.GetStringPath());
 
-		float4 Scale = Text->GetScale();
+	}
+	
+		GameEngineWindowTexture* Texture = ResourcesManager::GetInst().FindTexture(_FileName);
+
+		float4 Scale = Texture->GetScale();
 
 
 		Scale.X *= _Scale;
 		Scale.Y *= _Scale;
 
+		Renderer = CreateRenderer(RenderOrder::BackGround);
+		Renderer->On();
 
-//		float4 WinScale = GameEngineWindow::MainWindow.GetScale();
 
-		GameEngineRenderer* Render = CreateRenderer(_FileName, RenderOrder::BackGround);
-		Render->SetRenderScale(Scale);
+		Renderer->SetTexture(_FileName);
+		Renderer->SetRenderScale(Scale);
 
 
 		SetPos(_Pos);
-	}
+
 }
 
-
-//void BackGround::Init(const std::string& _FileName, const std::string& _DebugFileName, const float _Scale, const float4& _Pos)
 void BackGround::Init(const std::string& _FileName, const std::string& _DebugFileName)
 {
-//	FileName = _FileName;
-//
-//	if (false == ResourcesManager::GetInst().IsLoadTexture(_FileName))
-//	{
-//		GameEnginePath FilePath;
-//
-//		FilePath.SetCurrentPath();
-//
-//		FilePath.MoveParentToExistsChild("ContentsResources");
-//		FilePath.MoveChild("ContentsResources\\Texture\\" + _FileName);
-//
-//		GameEngineWindowTexture* Text = ResourcesManager::GetInst().TextureLoad(FilePath.GetStringPath());
-//
-//		float4 Scale = Text->GetScale();
-//
-//
-//		Scale.X *= _Scale;
-//		Scale.Y *= _Scale;
-//
-//		SetPos(_Pos);
-//
-//		GameEngineWindowTexture* Texture = ResourcesManager::GetInst().FindTexture(_FileName);
-//
-//		Renderer->SetTexture(_FileName);
-//		Renderer->SetRenderScale(Scale);
-//		DebugRenderer->SetTexture(_DebugFileName);
-//		DebugRenderer->SetRenderScale(Scale);
-////		SetPos({ Scale.hX(), Scale.hY() });
-//	}
-
 	FileName = _FileName;
 
 	if (false == ResourcesManager::GetInst().IsLoadTexture(_FileName))
@@ -123,7 +97,11 @@ void BackGround::Init(const std::string& _FileName, const std::string& _DebugFil
 	GameEngineWindowTexture* Texture = ResourcesManager::GetInst().FindTexture(_FileName);
 	float4 Scale = Texture->GetScale();
 
+	Renderer = CreateRenderer(RenderOrder::BackGround);
+	Renderer->On();
 
+	DebugRenderer = CreateRenderer(RenderOrder::BackGround);
+	DebugRenderer->Off();
 
 	Renderer->SetTexture(_FileName);
 	Renderer->SetRenderScale(Scale);

@@ -21,10 +21,10 @@ void ContentCore::Start()
 
 	GameEngineWindow::MainWindow.SetPosAndScale({ 100, 100 }, { 1280, 800 });
 
-	//GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");
+	GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");
 	GameEngineCore::CreateLevel<PlayLevel>("PlayLevel");
-	//GameEngineCore::CreateLevel<BossLevel>("BossLevel");
-	//GameEngineCore::CreateLevel<EndingLevel>("EndingLevel");
+	GameEngineCore::CreateLevel<BossLevel>("BossLevel");
+	GameEngineCore::CreateLevel<EndingLevel>("EndingLevel");
 
 
 
@@ -33,8 +33,8 @@ void ContentCore::Start()
 
 
 
-	GameEngineCore::ChangeLevel("PlayLevel");
-//	GameEngineCore::ChangeLevel("TitleLevel");
+//	GameEngineCore::ChangeLevel("PlayLevel");
+	GameEngineCore::ChangeLevel("TitleLevel");
 //	GameEngineCore::ChangeLevel("LabLevel");
 }
 
