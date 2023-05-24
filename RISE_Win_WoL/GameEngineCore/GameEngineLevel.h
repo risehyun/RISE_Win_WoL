@@ -10,6 +10,7 @@ class GameEngineCollision;
 
 class GameEngineLevel : public GameEngineObject
 {
+	friend class GameEngineCollision;
 	friend class GameEngineActor;
 	friend class GameEngineCore;
 
@@ -56,7 +57,6 @@ private:
 
 
 	std::map<int, std::list<GameEngineCollision*>> AllCollision;
-	void PushCollision(GameEngineCollision* _Collision) {};
 
 
 	void ActorInit(GameEngineActor* _Actor, int _Order);

@@ -4,6 +4,8 @@
 #include <GameEngineCore/ResourcesManager.h>
 #include "Player.h"
 
+#include <GameEngineCore/GameEngineCollision.h>
+
 std::list<Monster*> Monster::AllMonster;
 
 Monster::Monster()
@@ -50,4 +52,9 @@ void Monster::Start()
 		Ptr->SetRenderScale({ 150, 150 });
 		Ptr->SetTexture("SWORDMAN_TEST.bmp");
 	}
+
+	GameEngineCollision* BodyCollsion = CreateCollision(CollisionOrder::MonsterBody);
+	BodyCollsion->SetCollisionScale({ 100, 100 });
+	BodyCollsion->SetCollisionType(CollisionType::CirCle);
+
 }

@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineActor.h" />
+    <ClInclude Include="GameEngineActorSubObject.h" />
     <ClInclude Include="GameEngineCamera.h" />
     <ClInclude Include="GameEngineCollision.h" />
     <ClInclude Include="GameEngineCore.h" />
@@ -163,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp" />
+    <ClCompile Include="GameEngineActorSubObject.cpp" />
     <ClCompile Include="GameEngineCamera.cpp" />
     <ClCompile Include="GameEngineCollision.cpp" />
     <ClCompile Include="GameEngineCore.cpp" />

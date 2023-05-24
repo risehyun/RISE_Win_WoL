@@ -45,7 +45,6 @@ void PlayLevel::Start()
 
 	LevelPlayer->SetGroundTexture("stage1_Col.bmp");
 
-
 }
 
 void PlayLevel::Update(float _Delta)
@@ -60,11 +59,11 @@ void PlayLevel::Update(float _Delta)
 		BackGroundPtr->SwitchRender();
 	}
 
-	//if (1.0f <= GetLiveTime())
-	//{
-	//	Monster* NewMonster = CreateActor<Monster>();
-	//	ResetLiveTime();
-	//}
+	if (1.0f <= GetLiveTime())
+	{
+		Monster* NewMonster = CreateActor<Monster>();
+		ResetLiveTime();
+	}
 }
 
 void PlayLevel::Render()

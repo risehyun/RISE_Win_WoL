@@ -6,6 +6,8 @@
 
 class GameEngineLevel;
 class GameEngineRenderer;
+class GameEngineCollision;
+
 class GameEngineActor : public GameEngineObject
 {
 	friend GameEngineLevel;
@@ -54,7 +56,14 @@ public:
 
 	GameEngineRenderer* CreateRenderer(const std::string& _ImageName, int _Order);
 
-	GameEngineRenderer* CreateCollision(int _Order = 0);
+
+	template<typename EnumType>
+	GameEngineCollision* CreateCollision(EnumType _Order)
+	{
+		return CreateCollision(static_cast<int>(_Order));
+	}
+
+	GameEngineCollision* CreateCollision(int _Order = 0);
 
 	GameEngineLevel* GetLevel()
 	{
@@ -72,7 +81,8 @@ private:
 	float4 Scale = float4::ZERO;
 
 	std::list<GameEngineRenderer*> AllRenderer;
-	void PushMainCameraRenderer(GameEngineRenderer*);
+	std::list<GameEngineCollision*> AllCollision;
+
 
 	void ActorRelease();
 };
