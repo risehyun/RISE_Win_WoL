@@ -80,7 +80,7 @@ private:
 	float4 CopyPos;
 	float4 CopyScale;
 
-	void Render(class GameEngineCamera* _Camera, float _DeltaTime);
+	void Render(float _DeltaTime);
 
 private:
 	class Animation
@@ -117,6 +117,8 @@ public:
 
 	void ChangeAnimation(const std::string& _AniamtionName, bool _ForceChange = false);
 
+	void MainCameraSetting();
+	void UICameraSetting();
 
 	std::map<std::string, Animation> AllAnimation;
 	Animation* CurAnimation = nullptr;

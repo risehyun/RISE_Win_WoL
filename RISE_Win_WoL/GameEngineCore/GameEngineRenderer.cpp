@@ -63,7 +63,7 @@ void GameEngineRenderer::SetRenderScaleToTexture()
 	ScaleCheck = false;
 }
 
-void GameEngineRenderer::Render(GameEngineCamera* _Camera, float _DeltaTime)
+void GameEngineRenderer::Render(float _DeltaTime)
 {
 	if (nullptr != CurAnimation)
 	{
@@ -108,7 +108,7 @@ void GameEngineRenderer::Render(GameEngineCamera* _Camera, float _DeltaTime)
 
 	GameEngineWindowTexture* BackBuffer = GameEngineWindow::MainWindow.GetBackBuffer();
 
-	BackBuffer->TransCopy(Texture, GetActor()->GetPos() + RenderPos - _Camera->GetPos(), RenderScale, CopyPos, CopyScale);
+	BackBuffer->TransCopy(Texture, GetActor()->GetPos() + RenderPos - Camera->GetPos(), RenderScale, CopyPos, CopyScale);
 }
 
 GameEngineRenderer::Animation* GameEngineRenderer::FindAnimation(const std::string& _AniamtionName)
@@ -134,12 +134,14 @@ void GameEngineRenderer::CreateAnimation(
 		MsgBoxAssert("이미 존재하는 애니메이션 네임입니다." + UpperName);
 		return;
 	}
+
 	GameEngineSprite* Sprite = ResourcesManager::GetInst().FindSprite(_SpriteName);
 	if (nullptr == Sprite)
 	{
 		MsgBoxAssert("존재하지 않는 스프라이트로 애니메이션을 만들려고 했습니다." + _SpriteName);
 		return;
 	}
+
 	GameEngineRenderer::Animation& Animation = AllAnimation[UpperName];
 	Animation.Sprite = Sprite;
 
@@ -147,14 +149,17 @@ void GameEngineRenderer::CreateAnimation(
 	{
 		Animation.StartFrame = _Start;
 	}
+
 	else
 	{
 		Animation.StartFrame = 0;
 	}
+
 	if (_End != -1)
 	{
 		Animation.EndFrame = _End;
 	}
+
 	else
 	{
 		Animation.EndFrame = Animation.Sprite->GetSpriteCount() - 1;
@@ -203,9 +208,18 @@ void GameEngineRenderer::ChangeAnimation(const std::string& _AniamtionName, bool
 	}
 }
 
-void GameEngineRenderer::Start()
+void GameEngineRenderer::MainCameraSetting()
 {
 	Camera = GetActor()->GetLevel()->GetMainCamera();
+}
+
+void GameEngineRenderer::UICameraSetting()
+{
+	Camera = GetActor()->GetLevel()->GetUICamera();
+}
+
+void GameEngineRenderer::Start()
+{
 }
 
 void GameEngineRenderer::SetOrder(int _Order)

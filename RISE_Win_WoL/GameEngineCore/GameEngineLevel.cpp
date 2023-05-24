@@ -8,6 +8,10 @@
 	렌더러라는 것이 따로 존재하고, 이것을 그냥 private로 만들어서 아무도 접근하지 못하게 만든 다음
 	friend로 선언된 클래스에서만 마음대로 가져다 쓸 수 있게 만들었다.
 */
+
+bool GameEngineLevel::IsCollisionDebugRender = false;
+
+
 GameEngineLevel::GameEngineLevel()
 {
 	MainCamera = new GameEngineCamera();
@@ -73,16 +77,22 @@ void GameEngineLevel::ActorRender(float _Delta)
 {
 	MainCamera->Render(_Delta);
 
-	for (const std::pair<int, std::list<GameEngineCollision*>>& Pair : AllCollision)
+	/*if (true == IsCollisionDebugRender)
 	{
-		const std::list < GameEngineCollision*>& Group = Pair.second;
 
-		for (GameEngineCollision* Collision : Group)
+		for (const std::pair<int, std::list<GameEngineCollision*>>& Pair : AllCollision)
 		{
-			Collision->DebugRender();
-		}
+			const std::list < GameEngineCollision*>& Group = Pair.second;
 
-	}
+			for (GameEngineCollision* Collision : Group)
+			{
+				Collision->DebugRender();
+			}
+
+		}
+	}*/
+
+	UICamera->Render(_Delta);
 
 	// for문을 돌리고 있습니다.
 	for (const std::pair<int, std::list<GameEngineActor*>>& _Pair : AllActors)
@@ -97,6 +107,21 @@ void GameEngineLevel::ActorRender(float _Delta)
 			}
 
 			_Actor->Render();
+		}
+	}
+
+
+	if (true == IsCollisionDebugRender)
+	{
+		for (const std::pair<int, std::list<GameEngineCollision*>>& Pair : AllCollision)
+		{
+			const std::list < GameEngineCollision*>& Group = Pair.second;
+
+			for (GameEngineCollision* Collision : Group)
+			{
+				Collision->DebugRender();
+			}
+
 		}
 	}
 }

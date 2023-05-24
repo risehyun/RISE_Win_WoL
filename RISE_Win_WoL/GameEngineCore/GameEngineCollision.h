@@ -55,7 +55,6 @@ public:
 
 };
 
-// 설명 :
 class GameEngineActor;
 class CollisionInitClass;
 class GameEngineCollision : public GameEngineActorSubObject
@@ -80,11 +79,9 @@ public:
 	static bool CirCleToCirCle(GameEngineCollision* _Left, GameEngineCollision* _Right);
 
 public:
-	// constrcuter destructer
 	GameEngineCollision();
 	~GameEngineCollision();
 
-	// delete Function
 	GameEngineCollision(const GameEngineCollision& _Other) = delete;
 	GameEngineCollision(GameEngineCollision&& _Other) noexcept = delete;
 	GameEngineCollision& operator=(const GameEngineCollision& _Other) = delete;
@@ -101,10 +98,6 @@ public:
 		CollisionPos = _Value;
 	}
 
-	// 몇가지 문제가 있는데. 
-	// 1. 몬스터데 몬스터랑
-
-	// 나는 사각형
 	// int _Order => 나는 _Order 랑 충돌할거야
 	// CollisionType _ThisType 나를 점으로 봐도 사각형으로 봐죠
 	// CollisionType _OtherType 상대는 원으로 봐죠 사각형으로 봐줘

@@ -11,6 +11,8 @@
 #include "BackGround.h"
 #include "Monster.h"
 
+#include "PlayUIManager.h"
+
 PlayLevel::PlayLevel()
 {
 }
@@ -45,6 +47,7 @@ void PlayLevel::Start()
 
 	LevelPlayer->SetGroundTexture("stage1_Col.bmp");
 
+	CreateActor<PlayUIManager>();
 }
 
 void PlayLevel::Update(float _Delta)

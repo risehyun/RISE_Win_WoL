@@ -1,4 +1,7 @@
 #include "Player.h"
+
+#pragma region Headers
+
 #include "ContentsEnum.h"
 #include <Windows.h>
 #include <GameEngineBase/GameEngineTime.h>
@@ -18,6 +21,8 @@
 #include "Monster.h"
 
 #include <GameEngineCore/GameEngineCollision.h>
+
+#pragma endregion
 
 Player* Player::MainPlayer = nullptr;
 
@@ -94,6 +99,7 @@ void Player::Start()
 			MainRenderer = CreateRenderer(1000);
 			MainRenderer->SetRenderScale({ 100, 100 });
 
+
 			// IDLE
 			MainRenderer->CreateAnimation("Left_Idle", "LEFT_COMPLETE.bmp", 0, 0, 0.1f, true);
 
@@ -140,12 +146,12 @@ void Player::Start()
 
 #pragma endregion
 
-		{
-			GameEngineRenderer* Ptr = CreateRenderer("UI_PLAYERBAR.bmp", RenderOrder::Play);
-			Ptr->SetRenderPos({ -425, -320 });
-			Ptr->SetRenderScale({ 328, 80 });
-			Ptr->SetTexture("UI_PLAYERBAR.bmp");
-		}
+		//{
+		//	GameEngineRenderer* Ptr = CreateRenderer("UI_PLAYERBAR.bmp", RenderOrder::Play);
+		//	Ptr->SetRenderPos({ -425, -320 });
+		//	Ptr->SetRenderScale({ 328, 80 });
+		//	Ptr->SetTexture("UI_PLAYERBAR.bmp");
+		//}
 
 		{
 			GameEngineRenderer* Ptr = CreateRenderer("UI_MONEY.bmp", RenderOrder::Play);
@@ -208,15 +214,14 @@ void Player::Update(float _Delta)
 	// Order 테스트
 	if (true == GameEngineInput::IsDown('Y'))
 	{
-		MainRenderer->SetOrder(-200);
-
+	//	MainRenderer->SetOrder(-200);
+		GameEngineLevel::CollisionDebugRenderSwitch();
 	}
 
 	// Order 테스트
 	if (true == GameEngineInput::IsDown('U'))
 	{
-		MainRenderer->SetOrder(1000);
-
+	//	MainRenderer->SetOrder(1000);
 	}
 
 	StateUpdate(_Delta);
