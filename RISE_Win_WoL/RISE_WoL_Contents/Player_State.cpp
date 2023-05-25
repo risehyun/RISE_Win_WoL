@@ -86,14 +86,11 @@ void Player::IdleUpdate(float _Delta)
 		return;
 	}
 
-
-
-
-
-
 	// 일반 공격
 	if (true == GameEngineInput::IsUp(VK_LBUTTON))
 	{
+		DirCheck();
+
 		ChanageState(PlayerState::Attack);
 
 //		float4 Pos = GameEngineWindow::MainWindow.GetMousePos();

@@ -1,8 +1,13 @@
 #include "SKILL_PlayerNormalAttack.h"
+
 #include <GameEngineBase/GameEnginePath.h>
 #include <GameEngineCore/ResourcesManager.h>
+
 #include <GameEngineCore/GameEngineRenderer.h>
+#include <GameEngineCore/GameEngineCollision.h>
+
 #include "Player.h"
+#include "ContentsEnum.h"
 
 void SKILL_PlayerNormalAttack::Start()
 {
@@ -36,10 +41,38 @@ void SKILL_PlayerNormalAttack::Start()
 
 	Renderer->CreateAnimation("ATTACK_NORMAL_DOWN", "PLAYER_NORMAL_ATTACK.bmp", 49, 52, 0.2f, false);	
 
+
+	// 충돌체 생성
+	{
+		BodyCollsion = CreateCollision(CollisionOrder::PlayerBody);
+		BodyCollsion->SetCollisionScale({ 100, 100 });
+		BodyCollsion->SetCollisionType(CollisionType::CirCle);
+	}
 }
 
 void SKILL_PlayerNormalAttack::Update(float _Delta)
 {
+	if (nullptr != BodyCollsion)
+	{
+		std::vector<GameEngineCollision*> _Col;
+		if (true == BodyCollsion->Collision(CollisionOrder::MonsterBody, _Col
+			, CollisionType::CirCle // 나를 사각형으로 봐줘
+			, CollisionType::CirCle // 상대도 사각형으로 봐줘
+		))
+		{
+			for (size_t i = 0; i < _Col.size(); i++)
+			{
+				GameEngineCollision* Collison = _Col[i];
+
+				GameEngineActor* Actor = Collison->GetActor();
+
+				Actor->Death();
+			}
+		}
+	}
+
+
+	
 
 	if (0.4f < GetLiveTime())
 	{
@@ -47,6 +80,9 @@ void SKILL_PlayerNormalAttack::Update(float _Delta)
 		{
 			Renderer->Death();
 			Renderer = nullptr;
+
+			BodyCollsion->Death();
+			BodyCollsion = nullptr;
 		}
 	}
 }
