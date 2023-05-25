@@ -20,7 +20,7 @@ void Skill::Update(float _Delta)
 
 }
 
-void Skill::Render()
+void Skill::Render(float _Delta)
 {
 
 }

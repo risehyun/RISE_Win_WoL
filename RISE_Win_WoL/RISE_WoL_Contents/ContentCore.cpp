@@ -32,7 +32,7 @@ void ContentCore::Update(float _Delta)
 {
 }
 
-void ContentCore::Render()
+void ContentCore::Render(float _Delta)
 {
 }
 

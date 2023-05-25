@@ -55,7 +55,7 @@ void BossLevel::Update(float _Delta)
 	}
 }
 
-void BossLevel::Render()
+void BossLevel::Render(float _Delta)
 {
 }
 

@@ -106,7 +106,7 @@ void GameEngineLevel::ActorRender(float _Delta)
 				continue;
 			}
 
-			_Actor->Render();
+			_Actor->Render(_Delta);
 		}
 	}
 

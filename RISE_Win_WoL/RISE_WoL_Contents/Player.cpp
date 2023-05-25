@@ -351,3 +351,14 @@ void Player::LevelStart()
 {
 	MainPlayer = this;
 }
+
+void Player::Render(float _Delta)
+{
+	std::string Text = "";
+
+	Text += std::to_string(TestValue);
+
+	HDC dc = GameEngineWindow::MainWindow.GetBackBuffer()->GetImageDC();
+
+	TextOutA(dc, 2, 3, Text.c_str(), Text.size());
+}

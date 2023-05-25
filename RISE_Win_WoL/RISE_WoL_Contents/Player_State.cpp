@@ -47,6 +47,10 @@ void Player::Skill_ICEBLAST_Start()
 
 void Player::IdleUpdate(float _Delta)
 {
+	if (true == MainRenderer->IsAnimationEnd())
+	{
+		++TestValue;
+	}
 
 	// 자신의 위치에 해당하는 픽셀의 색상을 체크하기 위해 가져온다.
 	unsigned int Color = GetGroundColor(RGB(255, 255, 255));

@@ -31,7 +31,7 @@ void BackGround::Update(float _Delta)
 
 // 이제 자체적으로 Render를 하는 것이 아니라 Actor에서 생성한 렌더러를 카메라에서 출력하는 것으로 구조를 바꿨기 때문에 아래는 주석처리하였다.
 // 이쪽은 앞으로 간단한 텍스트 등을 화면에 출력할 때만 사용하고 그 외에 이미지들은 모두 상술한 방식으로만 출력한다.
-void BackGround::Render()
+void BackGround::Render(float _Delta)
 {
 
 
