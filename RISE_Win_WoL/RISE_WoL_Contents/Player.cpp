@@ -23,6 +23,8 @@
 
 #include <GameEngineCore/GameEngineCollision.h>
 
+#include <GameEnginePlatform/GameEngineSound.h>
+
 #pragma endregion
 
 Player* Player::MainPlayer = nullptr;
