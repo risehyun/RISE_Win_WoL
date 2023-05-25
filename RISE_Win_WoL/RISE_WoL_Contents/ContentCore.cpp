@@ -5,9 +5,6 @@
 #include "EndingLevel.h"
 #include <GameEnginePlatform/GameEngineWindow.h>
 
-#include "LabLevel.h"
-
-
 ContentCore::ContentCore()
 {
 }
@@ -27,15 +24,8 @@ void ContentCore::Start()
 	GameEngineCore::CreateLevel<EndingLevel>("EndingLevel");
 
 
-
-
-	//GameEngineCore::CreateLevel<LabLevel>("LabLevel");
-
-
-
 //	GameEngineCore::ChangeLevel("PlayLevel");
 	GameEngineCore::ChangeLevel("TitleLevel");
-//	GameEngineCore::ChangeLevel("LabLevel");
 }
 
 void ContentCore::Update(float _Delta)

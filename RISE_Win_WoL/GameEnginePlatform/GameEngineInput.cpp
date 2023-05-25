@@ -113,13 +113,13 @@ void GameEngineInput::InputInit()
 	AllKeys[VK_F24] = GameEngineKey(VK_F24);
 
 	// 알파벳 키  생성
-	for (int i = 'A'; i < 'Z'; i++)
+	for (int i = 'A'; i <= 'Z'; i++)
 	{
 		AllKeys[i] = GameEngineKey(i);
 	}
 
 	// 숫자 키 생성
-	for (int i = '0'; i < '9'; i++)
+	for (int i = '0'; i <= '9'; i++)
 	{
 		AllKeys[i] = GameEngineKey(i);
 	}

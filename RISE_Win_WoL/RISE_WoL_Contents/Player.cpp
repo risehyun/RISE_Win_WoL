@@ -19,6 +19,7 @@
 
 #include "Bullet.h"
 #include "Monster.h"
+#include "SKILL_PlayerNormalAttack.h"
 
 #include <GameEngineCore/GameEngineCollision.h>
 
@@ -59,10 +60,6 @@ void Player::Start()
 
 			ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("RIGHT_COMPLETE.bmp"), 11, 7);
 
-
-
-			// 스킬 테스트
-			ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("PLAYER_NORMAL_ATTACK.bmp"), 8, 8);
 		}
 
 		if(false == ResourcesManager::GetInst().IsLoadTexture("idle.Bmp"))
@@ -140,8 +137,6 @@ void Player::Start()
 			MainRenderer->CreateAnimation("Right_Attack", "RIGHT_COMPLETE.bmp", 33, 36, 0.05f, false);
 
 
-
-//			MainRenderer->CreateAnimation("Attack_NORMAL", "PLAYER_NORMAL_ATTACK.bmp", 0, 8, 0.1f, true);
 		}
 
 #pragma endregion

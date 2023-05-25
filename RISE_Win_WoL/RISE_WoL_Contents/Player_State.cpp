@@ -10,7 +10,11 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include "Bullet.h"
+
 #include <GameEnginePlatform/GameEngineWindow.h>
+
+
+#include "SKILL_PlayerNormalAttack.h"
 
 void Player::IdleStart()
 {
@@ -82,6 +86,12 @@ void Player::IdleUpdate(float _Delta)
 		return;
 	}
 
+
+
+
+
+
+	// 일반 공격
 	if (true == GameEngineInput::IsUp(VK_LBUTTON))
 	{
 		ChanageState(PlayerState::Attack);
@@ -89,12 +99,38 @@ void Player::IdleUpdate(float _Delta)
 		float4 Pos = GameEngineWindow::MainWindow.GetMousePos();
 
 
-		Bullet* NewBullet = GetLevel()->CreateActor<Bullet>();
-		NewBullet->Renderer->SetTexture("Fireball_0.bmp");
 
-		NewBullet->SetDir(float4::RIGHT);
-		NewBullet->SetPos(GetPos());
+		SKILL_PlayerNormalAttack* NewAttack = GetLevel()->CreateActor<SKILL_PlayerNormalAttack>();
 
+		
+		DirCheck();
+
+		if (Dir == PlayerDir::Left)
+		{
+			NewAttack->SetDir(float4::LEFT);
+			NewAttack->SetPos(GetPos() + float4{ -100.0f, 0.0f, 0.0f, 0.0f });
+		}
+
+		if (Dir == PlayerDir::Right)
+		{
+			NewAttack->SetDir(float4::RIGHT);
+			NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
+		}
+		
+		if (Dir == PlayerDir::Up)
+		{
+			NewAttack->SetDir(float4::UP);
+			NewAttack->SetPos(GetPos() + float4{ 0.0f, -100.0f, 0.0f, 0.0f });
+		}
+
+
+		if (Dir == PlayerDir::Down)
+		{
+			NewAttack->SetDir(float4::DOWN);
+			NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
+		}
+		
+	
 		return;
 	}
 

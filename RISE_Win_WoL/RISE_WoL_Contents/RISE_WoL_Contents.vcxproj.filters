@@ -14,6 +14,12 @@
     <Filter Include="ETC">
       <UniqueIdentifier>{8e2f6aa2-a64b-4c88-ad7a-e9f048a35269}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Skills">
+      <UniqueIdentifier>{cb0447b0-6bcf-4994-8e68-97a7894c3193}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Skills\Player">
+      <UniqueIdentifier>{8859f44b-c877-4d38-ba1b-e02d67aa02a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingLevel.cpp">
@@ -32,18 +38,18 @@
     </ClCompile>
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Player_State.cpp" />
-    <ClCompile Include="LabLevel.cpp">
-      <Filter>ETC</Filter>
-    </ClCompile>
     <ClCompile Include="BossLevel.cpp">
       <Filter>Level</Filter>
-    </ClCompile>
-    <ClCompile Include="Arcana.cpp">
-      <Filter>ETC</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="PlayActor.cpp" />
     <ClCompile Include="PlayUIManager.cpp" />
+    <ClCompile Include="Skill.cpp">
+      <Filter>Skills</Filter>
+    </ClCompile>
+    <ClCompile Include="SKILL_PlayerNormalAttack.cpp">
+      <Filter>Skills</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -64,17 +70,17 @@
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h" />
-    <ClInclude Include="LabLevel.h">
-      <Filter>ETC</Filter>
-    </ClInclude>
     <ClInclude Include="BossLevel.h">
       <Filter>Level</Filter>
-    </ClInclude>
-    <ClInclude Include="Arcana.h">
-      <Filter>ETC</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h" />
     <ClInclude Include="PlayActor.h" />
     <ClInclude Include="PlayUIManager.h" />
+    <ClInclude Include="Skill.h">
+      <Filter>Skills</Filter>
+    </ClInclude>
+    <ClInclude Include="SKILL_PlayerNormalAttack.h">
+      <Filter>Skills</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

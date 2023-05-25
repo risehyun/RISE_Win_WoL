@@ -62,11 +62,12 @@ void PlayLevel::Update(float _Delta)
 		BackGroundPtr->SwitchRender();
 	}
 
-	if (1.0f <= GetLiveTime())
-	{
-		Monster* NewMonster = CreateActor<Monster>();
-		ResetLiveTime();
-	}
+	//// 몬스터 스폰
+	//if (1.0f <= GetLiveTime())
+	//{
+	//	Monster* NewMonster = CreateActor<Monster>();
+	//	ResetLiveTime();
+	//}
 }
 
 void PlayLevel::Render()

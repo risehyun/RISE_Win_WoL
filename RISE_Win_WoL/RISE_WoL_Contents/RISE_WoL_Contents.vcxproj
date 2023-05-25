@@ -162,7 +162,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Arcana.h" />
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="BossLevel.h" />
     <ClInclude Include="Bullet.h">
@@ -172,16 +171,16 @@
     <ClInclude Include="ContentCore.h" />
     <ClInclude Include="ContentsEnum.h" />
     <ClInclude Include="EndingLevel.h" />
-    <ClInclude Include="LabLevel.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="PlayActor.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayLevel.h" />
     <ClInclude Include="PlayUIManager.h" />
+    <ClInclude Include="Skill.h" />
+    <ClInclude Include="SKILL_PlayerNormalAttack.h" />
     <ClInclude Include="TitleLevel.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Arcana.cpp" />
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="BossLevel.cpp" />
     <ClCompile Include="Bullet.cpp">
@@ -190,13 +189,14 @@
     </ClCompile>
     <ClCompile Include="ContentCore.cpp" />
     <ClCompile Include="EndingLevel.cpp" />
-    <ClCompile Include="LabLevel.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="PlayActor.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Player_State.cpp" />
     <ClCompile Include="PlayLevel.cpp" />
     <ClCompile Include="PlayUIManager.cpp" />
+    <ClCompile Include="Skill.cpp" />
+    <ClCompile Include="SKILL_PlayerNormalAttack.cpp" />
     <ClCompile Include="TitleLevel.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
