@@ -96,7 +96,7 @@ void Player::IdleUpdate(float _Delta)
 	{
 		ChanageState(PlayerState::Attack);
 
-		float4 Pos = GameEngineWindow::MainWindow.GetMousePos();
+//		float4 Pos = GameEngineWindow::MainWindow.GetMousePos();
 
 
 
@@ -109,18 +109,21 @@ void Player::IdleUpdate(float _Delta)
 		{
 			NewAttack->SetDir(float4::LEFT);
 			NewAttack->SetPos(GetPos() + float4{ -100.0f, 0.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_LEFT");
 		}
 
 		if (Dir == PlayerDir::Right)
 		{
 			NewAttack->SetDir(float4::RIGHT);
 			NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_RIGHT");
 		}
 		
 		if (Dir == PlayerDir::Up)
 		{
 			NewAttack->SetDir(float4::UP);
 			NewAttack->SetPos(GetPos() + float4{ 0.0f, -100.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_UP");
 		}
 
 
@@ -128,6 +131,7 @@ void Player::IdleUpdate(float _Delta)
 		{
 			NewAttack->SetDir(float4::DOWN);
 			NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_DOWN");
 		}
 		
 	
