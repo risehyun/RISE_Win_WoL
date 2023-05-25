@@ -235,6 +235,7 @@ void Player::RunUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsDown(VK_LBUTTON))
 	{
+
 		ChanageState(PlayerState::Attack);
 		return;
 	}
@@ -254,7 +255,7 @@ void Player::DashUpdate(float _Delta)
 		unsigned int Color = GetGroundColor(RGB(255, 255, 255));
 		if (RGB(255, 255, 255) == Color)
 		{
-
+			
 		}
 
 		else

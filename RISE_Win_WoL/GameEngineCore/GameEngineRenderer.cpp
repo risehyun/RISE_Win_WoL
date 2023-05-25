@@ -70,7 +70,6 @@ void GameEngineRenderer::Render(float _DeltaTime)
 		CurAnimation->CurInter -= _DeltaTime;
 		if (0.0f >= CurAnimation->CurInter)
 		{
-			CurAnimation->CurInter = CurAnimation->Inters[CurAnimation->CurFrame];
 			++CurAnimation->CurFrame;
 
 			if (CurAnimation->CurFrame > abs(static_cast<int>(CurAnimation->EndFrame - CurAnimation->StartFrame)))
@@ -84,6 +83,8 @@ void GameEngineRenderer::Render(float _DeltaTime)
 					--CurAnimation->CurFrame;
 				}
 			}
+
+			CurAnimation->CurInter = CurAnimation->Inters[CurAnimation->CurFrame];
 		}
 
 		size_t Frame = CurAnimation->Frames[CurAnimation->CurFrame];

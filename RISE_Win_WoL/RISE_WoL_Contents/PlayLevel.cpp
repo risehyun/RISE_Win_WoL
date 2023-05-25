@@ -12,6 +12,7 @@
 #include "Monster.h"
 
 #include "PlayUIManager.h"
+#include "ContentsEnum.h"
 
 PlayLevel::PlayLevel()
 {
@@ -35,13 +36,23 @@ void PlayLevel::Start()
 	}
 
 	BackGroundPtr = CreateActor<BackGround>();
-//	BackGroundPtr->Init("stage1.Bmp", "stage1_Col.bmp", 3.0f, { 640, 400 });
-	BackGroundPtr->Init("stage1.Bmp", "stage1_Col.bmp");
-	
-//	Back->Init("stage1.Bmp", 3.0f, { 640, 400 });
-//	Back->Init("BackGround.Bmp", 3.0f, { 770, 770 });
-// Back->Init("BossStage.Bmp", 3.0f, { 640, 400 });
 
+	BackGroundPtr->Init("stage1.Bmp", "stage1_Col.bmp");
+
+	//if (false == ResourcesManager::GetInst().IsLoadTexture("NPC_ITEMSHOP.Bmp"))
+	//{
+	//	GameEnginePath FilePath;
+	//	FilePath.SetCurrentPath();
+	//	FilePath.MoveParentToExistsChild("ContentsResources");
+	//	GameEnginePath FolderPath = FilePath;
+	//	FilePath.MoveChild("ContentsResources\\Texture\\NPC\\ITEMSHOP");
+	//	ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("NPC_ITEMSHOP.bmp"));
+
+	//	GameEngineRenderer* Ptr = CreateRenderer("UI_PLAYERBAR.bmp", RenderOrder::Play);
+	//	Ptr->SetRenderPos({ -425, -320 });
+	//	Ptr->SetRenderScale({ 328, 80 });
+	//	Ptr->SetTexture("UI_PLAYERBAR.bmp");
+	//}
 
 	LevelPlayer = CreateActor<Player>();
 

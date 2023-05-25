@@ -20,6 +20,12 @@
     <Filter Include="Skills\Player">
       <UniqueIdentifier>{8859f44b-c877-4d38-ba1b-e02d67aa02a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\OBJ">
+      <UniqueIdentifier>{541d89d3-238a-462e-8217-5f270854e5d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\OBJ\NPC">
+      <UniqueIdentifier>{a9e6ef07-803d-4393-b8bc-4bf83df6d05f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingLevel.cpp">
@@ -49,6 +55,9 @@
     </ClCompile>
     <ClCompile Include="SKILL_PlayerNormalAttack.cpp">
       <Filter>Skills</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC_ITEMSHOP.cpp">
+      <Filter>Level\OBJ\NPC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +90,9 @@
     </ClInclude>
     <ClInclude Include="SKILL_PlayerNormalAttack.h">
       <Filter>Skills</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC_ITEMSHOP.h">
+      <Filter>Level\OBJ\NPC</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -140,7 +140,7 @@ void Player::Start()
 		}
 
 #pragma endregion
-
+		
 		//{
 		//	GameEngineRenderer* Ptr = CreateRenderer("UI_PLAYERBAR.bmp", RenderOrder::Play);
 		//	Ptr->SetRenderPos({ -425, -320 });
