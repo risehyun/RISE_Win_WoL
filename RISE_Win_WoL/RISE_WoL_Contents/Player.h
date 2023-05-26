@@ -82,4 +82,10 @@ private:
 	void Start() override;
 	void Update(float _Delta) override;
 	void Render(float _Delta) override;
+
+	////////////////////// DebugValue
+	float4 LeftCheck = { -50.0f, 0.0f };
+	float4 RightCheck = { 50.0f, 0.0f };
+	float4 UpCheck = { 0.0f, -50.0f };
+	float4 DownCheck = { 0.0f, 50.0f };
 };

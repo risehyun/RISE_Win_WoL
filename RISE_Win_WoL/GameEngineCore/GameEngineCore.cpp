@@ -29,7 +29,7 @@ void GameEngineCore::CoreStart(HINSTANCE _Inst)
 	// Input 시스템을 사용하기 위해 사용 가능한 Key들을 세팅해줍니다.
 	GameEngineInput::InputInit();
 
-	GameEngineSound::Init();
+//	GameEngineSound::Init();
 
 	// 이어서 유저 영역의 준비를 합니다.
 	Process->Start();

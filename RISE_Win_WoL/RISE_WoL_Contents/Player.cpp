@@ -142,13 +142,6 @@ void Player::Start()
 		}
 
 #pragma endregion
-		
-		//{
-		//	GameEngineRenderer* Ptr = CreateRenderer("UI_PLAYERBAR.bmp", RenderOrder::Play);
-		//	Ptr->SetRenderPos({ -425, -320 });
-		//	Ptr->SetRenderScale({ 328, 80 });
-		//	Ptr->SetTexture("UI_PLAYERBAR.bmp");
-		//}
 
 		{
 			GameEngineRenderer* Ptr = CreateRenderer("UI_MONEY.bmp", RenderOrder::Play);
@@ -358,9 +351,39 @@ void Player::Render(float _Delta)
 {
 	std::string Text = "";
 
+	Text += "플레이어 테스트 값 : ";
 	Text += std::to_string(TestValue);
 
 	HDC dc = GameEngineWindow::MainWindow.GetBackBuffer()->GetImageDC();
 
 	TextOutA(dc, 2, 3, Text.c_str(), Text.size());
+
+
+
+	// 픽셀 충돌 작동 확인을 위한 디버깅용 충돌체
+	CollisionData Data;
+
+	Data.Pos = GetPos() - GetLevel()->GetMainCamera()->GetPos();
+	Data.Scale = { 5,5 };
+
+	// 캐릭터 중심점
+	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
+
+	// 왼쪽
+	Data.Pos = GetPos() + LeftCheck - GetLevel()->GetMainCamera()->GetPos();
+	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
+
+	// 오른쪽
+	Data.Pos = GetPos() + RightCheck - GetLevel()->GetMainCamera()->GetPos();
+	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
+
+	// 위
+	Data.Pos = GetPos() + UpCheck - GetLevel()->GetMainCamera()->GetPos();
+	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
+
+
+	// 아래
+	Data.Pos = GetPos() + DownCheck - GetLevel()->GetMainCamera()->GetPos();
+	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
+
 }

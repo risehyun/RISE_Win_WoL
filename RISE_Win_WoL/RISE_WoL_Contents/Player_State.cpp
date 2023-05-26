@@ -43,8 +43,6 @@ void Player::Skill_ICEBLAST_Start()
 }
 
 
-
-
 void Player::IdleUpdate(float _Delta)
 {
 	if (true == MainRenderer->IsAnimationEnd())
@@ -199,25 +197,25 @@ void Player::RunUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsPress('A') && Dir == PlayerDir::Left)
 	{
-		CheckPos = { -50.0f, 30.0f };
+		CheckPos = LeftCheck;
 		MovePos = { -Speed * _Delta, 0.0f };
 	}
 
 	else if (true == GameEngineInput::IsPress('D') && Dir == PlayerDir::Right)
 	{
-		CheckPos = { 50.0f, 30.0f };
+		CheckPos = RightCheck;
 		MovePos = { Speed * _Delta, 0.0f };
 	}
 
 	else if (true == GameEngineInput::IsPress('W') && Dir == PlayerDir::Up)
 	{
-		CheckPos = { 30.0f, -50.0f };
+		CheckPos = UpCheck;
 		MovePos = { 0.0f, -Speed * _Delta };
 	}
 
 	else if (true == GameEngineInput::IsPress('S') && Dir == PlayerDir::Down)
 	{
-		CheckPos = { 30.0f, 50.0f };
+		CheckPos = DownCheck;
 		MovePos = { 0.0f, Speed * _Delta };
 	}
 
