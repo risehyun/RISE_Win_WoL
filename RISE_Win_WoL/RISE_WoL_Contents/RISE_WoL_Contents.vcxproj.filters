@@ -5,94 +5,101 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Level">
-      <UniqueIdentifier>{a8de6072-8561-47d3-8e62-d054fbeb2174}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Global">
-      <UniqueIdentifier>{8265fc06-28d0-4a10-b0ec-a6812544736e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ETC">
       <UniqueIdentifier>{8e2f6aa2-a64b-4c88-ad7a-e9f048a35269}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Skills">
-      <UniqueIdentifier>{cb0447b0-6bcf-4994-8e68-97a7894c3193}</UniqueIdentifier>
+    <Filter Include="00.Global">
+      <UniqueIdentifier>{8265fc06-28d0-4a10-b0ec-a6812544736e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Skills\Player">
-      <UniqueIdentifier>{8859f44b-c877-4d38-ba1b-e02d67aa02a6}</UniqueIdentifier>
+    <Filter Include="01.Level">
+      <UniqueIdentifier>{a8de6072-8561-47d3-8e62-d054fbeb2174}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\OBJ">
+    <Filter Include="01.Level\OBJ">
       <UniqueIdentifier>{541d89d3-238a-462e-8217-5f270854e5d8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\OBJ\NPC">
+    <Filter Include="01.Level\OBJ\NPC">
       <UniqueIdentifier>{a9e6ef07-803d-4393-b8bc-4bf83df6d05f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Skills">
+      <UniqueIdentifier>{cb0447b0-6bcf-4994-8e68-97a7894c3193}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Skills\Player">
+      <UniqueIdentifier>{8859f44b-c877-4d38-ba1b-e02d67aa02a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.UI">
+      <UniqueIdentifier>{c962f389-77ab-43c6-bc6a-a2718a04e66b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingLevel.cpp">
-      <Filter>Level</Filter>
+      <Filter>01.Level</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayLevel.cpp">
-      <Filter>Level</Filter>
+      <Filter>01.Level</Filter>
     </ClCompile>
     <ClCompile Include="TitleLevel.cpp">
-      <Filter>Level</Filter>
+      <Filter>01.Level</Filter>
     </ClCompile>
     <ClCompile Include="ContentCore.cpp" />
     <ClCompile Include="BackGround.cpp">
-      <Filter>Global</Filter>
+      <Filter>00.Global</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Player_State.cpp" />
     <ClCompile Include="BossLevel.cpp">
-      <Filter>Level</Filter>
+      <Filter>01.Level</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="PlayActor.cpp" />
-    <ClCompile Include="PlayUIManager.cpp" />
     <ClCompile Include="Skill.cpp">
-      <Filter>Skills</Filter>
+      <Filter>02.Skills</Filter>
     </ClCompile>
     <ClCompile Include="SKILL_PlayerNormalAttack.cpp">
-      <Filter>Skills</Filter>
+      <Filter>02.Skills</Filter>
     </ClCompile>
     <ClCompile Include="NPC_ITEMSHOP.cpp">
-      <Filter>Level\OBJ\NPC</Filter>
+      <Filter>01.Level\OBJ\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayUIManager.cpp">
+      <Filter>03.UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
-      <Filter>Level</Filter>
+      <Filter>01.Level</Filter>
     </ClInclude>
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayLevel.h">
-      <Filter>Level</Filter>
+      <Filter>01.Level</Filter>
     </ClInclude>
     <ClInclude Include="TitleLevel.h">
-      <Filter>Level</Filter>
+      <Filter>01.Level</Filter>
     </ClInclude>
     <ClInclude Include="ContentCore.h" />
     <ClInclude Include="BackGround.h">
-      <Filter>Global</Filter>
+      <Filter>00.Global</Filter>
     </ClInclude>
     <ClInclude Include="ContentsEnum.h">
-      <Filter>Global</Filter>
+      <Filter>00.Global</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BossLevel.h">
-      <Filter>Level</Filter>
+      <Filter>01.Level</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h" />
     <ClInclude Include="PlayActor.h" />
-    <ClInclude Include="PlayUIManager.h" />
     <ClInclude Include="Skill.h">
-      <Filter>Skills</Filter>
+      <Filter>02.Skills</Filter>
     </ClInclude>
     <ClInclude Include="SKILL_PlayerNormalAttack.h">
-      <Filter>Skills</Filter>
+      <Filter>02.Skills</Filter>
     </ClInclude>
     <ClInclude Include="NPC_ITEMSHOP.h">
-      <Filter>Level\OBJ\NPC</Filter>
+      <Filter>01.Level\OBJ\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayUIManager.h">
+      <Filter>03.UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

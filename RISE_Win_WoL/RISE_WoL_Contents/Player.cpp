@@ -356,34 +356,39 @@ void Player::Render(float _Delta)
 
 	HDC dc = GameEngineWindow::MainWindow.GetBackBuffer()->GetImageDC();
 
-	TextOutA(dc, 2, 3, Text.c_str(), Text.size());
+	TextOutA(dc, 2, 3, Text.c_str(), static_cast<int>(Text.size()));
 
 
 
 	// 픽셀 충돌 작동 확인을 위한 디버깅용 충돌체
 	CollisionData Data;
 
-	Data.Pos = GetPos() - GetLevel()->GetMainCamera()->GetPos();
+//	Data.Pos = GetPos() - GetLevel()->GetMainCamera()->GetPos();
+	Data.Pos = ActorCameraPos();
 	Data.Scale = { 5,5 };
 
 	// 캐릭터 중심점
 	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
 	// 왼쪽
-	Data.Pos = GetPos() + LeftCheck - GetLevel()->GetMainCamera()->GetPos();
+//	Data.Pos = GetPos() + LeftCheck - GetLevel()->GetMainCamera()->GetPos();
+	Data.Pos = ActorCameraPos() + LeftCheck;
 	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
 	// 오른쪽
-	Data.Pos = GetPos() + RightCheck - GetLevel()->GetMainCamera()->GetPos();
+//	Data.Pos = GetPos() + RightCheck - GetLevel()->GetMainCamera()->GetPos();
+	Data.Pos = ActorCameraPos() + RightCheck;
 	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
 	// 위
-	Data.Pos = GetPos() + UpCheck - GetLevel()->GetMainCamera()->GetPos();
+//	Data.Pos = GetPos() + UpCheck - GetLevel()->GetMainCamera()->GetPos();
+	Data.Pos = ActorCameraPos() + UpCheck;
 	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
 
 	// 아래
-	Data.Pos = GetPos() + DownCheck - GetLevel()->GetMainCamera()->GetPos();
+//	Data.Pos = GetPos() + DownCheck - GetLevel()->GetMainCamera()->GetPos();
+	Data.Pos = ActorCameraPos() + DownCheck;
 	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
 }

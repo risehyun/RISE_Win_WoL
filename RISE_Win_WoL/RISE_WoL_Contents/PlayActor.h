@@ -30,6 +30,8 @@ public:
 
 	int GetGroundColor(unsigned int _DefaultColor, float4 _Pos = float4::ZERO);
 
+	float4 ActorCameraPos();
+
 protected:
 
 private:
