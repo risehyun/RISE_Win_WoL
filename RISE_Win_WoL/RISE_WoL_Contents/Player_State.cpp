@@ -15,6 +15,7 @@
 
 
 #include "SKILL_PlayerNormalAttack.h"
+#include "SKILL_PlayerWindBoomerang.h"
 
 void Player::IdleStart()
 {
@@ -101,7 +102,6 @@ void Player::IdleUpdate(float _Delta)
 
 		SKILL_PlayerNormalAttack* NewAttack = GetLevel()->CreateActor<SKILL_PlayerNormalAttack>();
 
-		
 		DirCheck();
 
 		if (Dir == PlayerDir::Left)
@@ -139,9 +139,47 @@ void Player::IdleUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsDown(VK_RBUTTON))
 	{
+		float4 MovePos = float4::ZERO;
+
 		ChanageState(PlayerState::Attack);
+
+		SKILL_PlayerWindBoomerang* NewAttack = GetLevel()->CreateActor<SKILL_PlayerWindBoomerang>();
+
+		DirCheck();
+
+		if (Dir == PlayerDir::Left)
+		{
+			NewAttack->SetDir(float4::LEFT);
+			NewAttack->SetPos(GetPos() + float4{ -100.0f, 0.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ATTACK_WINDBOOMERANG");
+		}
+
+		if (Dir == PlayerDir::Right)
+		{
+			NewAttack->SetDir(float4::RIGHT);
+			NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ATTACK_WINDBOOMERANG");
+		}
+		
+		if (Dir == PlayerDir::Up)
+		{
+			NewAttack->SetDir(float4::UP);
+			NewAttack->SetPos(GetPos() + float4{ 0.0f, -100.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ATTACK_WINDBOOMERANG");
+		}
+
+
+		if (Dir == PlayerDir::Down)
+		{
+			NewAttack->SetDir(float4::DOWN);
+			NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ATTACK_WINDBOOMERANG");
+		}
+	
+
 		return;
 	}
+
 
 	if (true == GameEngineInput::IsDown('Q'))
 	{

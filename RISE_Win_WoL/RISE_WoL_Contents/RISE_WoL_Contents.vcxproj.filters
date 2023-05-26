@@ -55,14 +55,17 @@
     <ClCompile Include="Skill.cpp">
       <Filter>02.Skills</Filter>
     </ClCompile>
-    <ClCompile Include="SKILL_PlayerNormalAttack.cpp">
-      <Filter>02.Skills</Filter>
-    </ClCompile>
     <ClCompile Include="NPC_ITEMSHOP.cpp">
       <Filter>01.Level\OBJ\NPC</Filter>
     </ClCompile>
     <ClCompile Include="PlayUIManager.cpp">
       <Filter>03.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="SKILL_PlayerNormalAttack.cpp">
+      <Filter>02.Skills\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SKILL_PlayerWindBoomerang.cpp">
+      <Filter>02.Skills\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -92,14 +95,17 @@
     <ClInclude Include="Skill.h">
       <Filter>02.Skills</Filter>
     </ClInclude>
-    <ClInclude Include="SKILL_PlayerNormalAttack.h">
-      <Filter>02.Skills</Filter>
-    </ClInclude>
     <ClInclude Include="NPC_ITEMSHOP.h">
       <Filter>01.Level\OBJ\NPC</Filter>
     </ClInclude>
     <ClInclude Include="PlayUIManager.h">
       <Filter>03.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SKILL_PlayerNormalAttack.h">
+      <Filter>02.Skills\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="SKILL_PlayerWindBoomerang.h">
+      <Filter>02.Skills\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
