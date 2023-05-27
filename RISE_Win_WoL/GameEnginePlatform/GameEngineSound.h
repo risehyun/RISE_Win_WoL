@@ -1,26 +1,63 @@
 #pragma once
 #include <string>
+#include <map>
+#include <GameEngineBase/GameEnginePath.h>
 
 // 선언
 #include <GameEnginePlatform/ThirdParty/FMOD/inc/fmod.hpp>
+
+class GameEngineSoundPlayer
+{
+	friend class GameEngineSound;
+
+public:
+	void Stop()
+	{
+		Control->stop();
+	}
+
+	GameEngineSoundPlayer()
+	{
+
+	}
+
+
+private:
+	GameEngineSoundPlayer(FMOD::Channel* _Control)
+		: Control(_Control)
+	{
+	}
+
+	FMOD::Channel* Control = nullptr;
+};
 
 // 설명 :
 class GameEngineSound
 {
 	// Management
+
+	friend class SoundSystemCreator;
+
+private:
+	static std::map<std::string, GameEngineSound*> AllSound;
+
 public:
-	// static void Init();
+	static void SoundLoad(const std::string& _Path)
+	{
+		GameEnginePath Path = _Path;
+		SoundLoad(Path.GetFileName(), _Path);
+	}
+
+	static GameEngineSound* FindSound(const std::string& _Name);
+
 
 	static void SoundLoad(const std::string& _Name, const std::string& _Path);
 
-	// 1번의 재생을 하고 끝나면 그냥 종료하고 나는 컨트롤할수 없다.
-	static void SoundPlay(const std::string& _Name);
+	static GameEngineSoundPlayer SoundPlay(const std::string& _Name);
 
-	// 1번의 재생을 하고 조금 특별 관리 된다.
-	static void PlayBgm(const std::string& _Name);
+	static void Release();
 
-	// 특별 관리되는 사운드 재생을 멈춘다.
-	static void StopBgm();
+	static void Update();
 
 
 public:
@@ -36,10 +73,9 @@ public:
 
 protected:
 
-	// GameEngineSound::SoundLoad("C:\\AAAA\\AAAA\\A\\AAA.Mp3");
-	// GameEngineSound::SoundPlay("AAA.Mp3");
-	// GameEngineSound::PlayBgm("AAA.Mp3");
-	// GameEngineSound::StopBgm("AAA.Mp3");
 private:
+	FMOD::Sound* SoundHandle = nullptr;
 
+	FMOD::Channel* Play();
+	void Load(const std::string& _Path);
 };

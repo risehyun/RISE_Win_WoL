@@ -23,15 +23,42 @@ void TitleLevel::Start()
 	BackGround* Logo = CreateActor<BackGround>();
 
 	Back->Init("TitleLogo_.Bmp", 0.75f, { 640, 400 });
+
+	if (nullptr == GameEngineSound::FindSound("TitleScreen.wav"))
+	{
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+		FilePath.MoveChild("ContentsResources\\Sound\\");
+
+		GameEngineSound::SoundLoad(FilePath.PlusFilePath("TitleScreen.wav"));
+	}
+
 }
 
 void TitleLevel::Update(float _Delta)
 {
 
+	if (true == GameEngineInput::IsDown('O'))
+	{
+		BGMPlayer.Stop();
+	}
+
 	if (true == GameEngineInput::IsDown(VK_RIGHT))
 	{
 		GameEngineCore::ChangeLevel("PlayLevel");
 	}
+}
+
+void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
+{
+	BGMPlayer = GameEngineSound::SoundPlay("TitleScreen.wav");
+
+}
+
+void TitleLevel::LevelEnd(GameEngineLevel* _NextLevel)
+{
+
 }
 
 void TitleLevel::Render(float _Delta)
