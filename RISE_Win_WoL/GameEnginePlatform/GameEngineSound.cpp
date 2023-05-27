@@ -10,6 +10,19 @@
 #pragma comment(lib, "..\\GameEnginePlatform\\ThirdParty\\FMOD\\lib\\x64\\fmod_vc.lib")
 #endif
 
+////////////////////////////////////////////////// SoundPlayer
+
+void GameEngineSoundPlayer::SetVolume(float _Volume)
+{
+	Control->setVolume(_Volume * GameEngineSound::GlobalVolume);
+}
+
+void GameEngineSoundPlayer::Stop()
+{
+	Control->stop();
+}
+
+
 // FMOD를 사용하기 위한 핸들 및 객체
 FMOD::System* SoundSystem = nullptr;
 
@@ -38,11 +51,18 @@ public:
 
 void GameEngineSound::Update()
 {
+	if (nullptr == SoundSystem)
+	{
+		MsgBoxAssert("Sound System이 생성되지 않아서 사운드 업데이트를 돌릴수가 없습니다.");
+	}
+
 	SoundSystem->update();
 }
 
 
 SoundSystemCreator SoundInitObject = SoundSystemCreator();
+
+float GameEngineSound::GlobalVolume = 1.0f;
 
 std::map<std::string, GameEngineSound*> GameEngineSound::AllSound;
 
@@ -94,6 +114,8 @@ GameEngineSoundPlayer GameEngineSound::SoundPlay(const std::string& _Name)
 	}
 
 	GameEngineSoundPlayer Player = FindSoundPtr->Play();
+
+	Player.SetVolume(1.0f);
 
 	return Player;
 }

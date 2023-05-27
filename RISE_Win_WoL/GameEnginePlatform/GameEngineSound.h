@@ -11,16 +11,14 @@ class GameEngineSoundPlayer
 	friend class GameEngineSound;
 
 public:
-	void Stop()
-	{
-		Control->stop();
-	}
+
+	void SetVolume(float _Volume);
+	void Stop();
 
 	GameEngineSoundPlayer()
 	{
 
 	}
-
 
 private:
 	GameEngineSoundPlayer(FMOD::Channel* _Control)
@@ -34,14 +32,27 @@ private:
 // Ό³Έν :
 class GameEngineSound
 {
+	static float GlobalVolume;
+
 	// Management
 
 	friend class SoundSystemCreator;
+	friend class GameEngineSoundPlayer;
 
 private:
 	static std::map<std::string, GameEngineSound*> AllSound;
 
 public:
+	static void SetGlobalVolume(float _Value)
+	{
+		GlobalVolume = _Value;
+	}
+
+	static float GetGlobalVolume()
+	{
+		return GlobalVolume;
+	}
+
 	static void SoundLoad(const std::string& _Path)
 	{
 		GameEnginePath Path = _Path;

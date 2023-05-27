@@ -171,6 +171,7 @@
     <ClInclude Include="ContentCore.h" />
     <ClInclude Include="ContentsEnum.h" />
     <ClInclude Include="EndingLevel.h" />
+    <ClInclude Include="GlobalValue.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="NPC_ITEMSHOP.h" />
     <ClInclude Include="PlayActor.h" />
@@ -191,6 +192,7 @@
     </ClCompile>
     <ClCompile Include="ContentCore.cpp" />
     <ClCompile Include="EndingLevel.cpp" />
+    <ClCompile Include="GlobalValue.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="NPC_ITEMSHOP.cpp" />
     <ClCompile Include="PlayActor.cpp" />

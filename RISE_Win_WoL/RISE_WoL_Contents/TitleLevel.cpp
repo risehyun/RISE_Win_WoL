@@ -16,6 +16,8 @@ TitleLevel::~TitleLevel()
 
 void TitleLevel::Start()
 {
+	GameEngineSound::SetGlobalVolume(0.5f);
+
 	BackGround* Back = CreateActor<BackGround>();
 
 	Back->Init("Background0.Bmp", 0.75f, { 640, 400 });
@@ -46,6 +48,7 @@ void TitleLevel::Update(float _Delta)
 
 	if (true == GameEngineInput::IsDown(VK_RIGHT))
 	{
+		BGMPlayer.Stop();
 		GameEngineCore::ChangeLevel("PlayLevel");
 	}
 }
