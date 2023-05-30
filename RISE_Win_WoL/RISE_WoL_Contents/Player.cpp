@@ -83,15 +83,17 @@ void Player::Start()
 		}
 
 		// UI 임시
-		if (false == ResourcesManager::GetInst().IsLoadTexture("HPBar.Bmp"))
+		if (false == ResourcesManager::GetInst().IsLoadTexture("UI_HPBAR.Bmp"))
 		{
-			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("HPBar.bmp"));
+			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_HPBAR.bmp"));
 
 			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_PLAYERBAR.bmp"));
 
 			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_MONEY.bmp"));
 
 			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_SKILLBAR.bmp"));
+
+			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_MANABAR.bmp"));
 		}
 
 #pragma region 애니메이션 생성
@@ -379,7 +381,7 @@ void Player::Render(float _Delta)
 
 
 
-	TextOutA(dc, 200, 30, Text.c_str(), static_cast<int>(Text.size()));
+	TextOutA(dc, 150, 20, Text.c_str(), static_cast<int>(Text.size()));
 
 
 
