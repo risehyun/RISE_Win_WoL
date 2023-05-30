@@ -15,6 +15,8 @@ public:
 	PlayUIManager& operator=(const PlayUIManager& _Other) = delete;
 	PlayUIManager& operator=(PlayUIManager&& _Other) noexcept = delete;
 
+	GameEngineCollision* ButtonCollsion = nullptr;
+
 protected:
 	void Start() override;
 

@@ -68,6 +68,9 @@
       <Filter>02.Skills\Player</Filter>
     </ClCompile>
     <ClCompile Include="GlobalValue.cpp" />
+    <ClCompile Include="UI_Button.cpp">
+      <Filter>03.UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -109,5 +112,8 @@
       <Filter>02.Skills\Player</Filter>
     </ClInclude>
     <ClInclude Include="GlobalValue.h" />
+    <ClInclude Include="UI_Button.h">
+      <Filter>03.UI</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

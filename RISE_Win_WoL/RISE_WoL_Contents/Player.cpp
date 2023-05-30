@@ -41,6 +41,9 @@ Player::~Player()
 
 void Player::Start()
 {
+
+	Dir = PlayerDir::Down;
+
 	if (false == ResourcesManager::GetInst().IsLoadTexture("Test.Bmp"))
 	{
 		GameEnginePath FilePath;

@@ -19,7 +19,7 @@ PlayUIManager::~PlayUIManager()
 void PlayUIManager::Start()
 {
 	{
-		GameEngineRenderer* Ptr = CreateUIRenderer("UI_PLAYERBAR.bmp", RenderOrder::Play);
+		GameEngineRenderer* Ptr = CreateUIRenderer("UI_PLAYERBAR.bmp", RenderOrder::PlayUI);
 		Ptr->SetRenderPos({ 200, 80 });
 
 //		Ptr->SetRenderScale({ 328, 80 });

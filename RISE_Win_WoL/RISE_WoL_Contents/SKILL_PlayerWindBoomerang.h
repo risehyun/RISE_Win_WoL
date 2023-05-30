@@ -5,7 +5,7 @@ class SKILL_PlayerWindBoomerang : public Skill
 {
 
 public:
-	class GameEngineRenderer* Renderer;
+
 
 	void SetDir(const float4& _Dir)
 	{
@@ -17,6 +17,7 @@ public:
 		Speed = _Speed;
 	}
 
+	GameEngineRenderer* Renderer;
 	GameEngineCollision* BodyCollsion = nullptr;
 
 private:
