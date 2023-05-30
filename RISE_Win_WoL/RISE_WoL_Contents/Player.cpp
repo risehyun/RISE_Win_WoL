@@ -352,21 +352,49 @@ void Player::LevelStart()
 
 void Player::Render(float _Delta)
 {
+
+				// 텍스트 배경색의 처리
+
+
+
+
+
 	std::string Text = "";
 
-	Text += "플레이어 테스트 값 : ";
-	Text += std::to_string(TestValue);
+//	Text += "플레이어 테스트 값 : ";
+//	Text += std::to_string(TestValue);
+
+
+	Text += "500";
+	Text += "/500";
 
 	HDC dc = GameEngineWindow::MainWindow.GetBackBuffer()->GetImageDC();
 
-	TextOutA(dc, 2, 3, Text.c_str(), static_cast<int>(Text.size()));
+
+
+	HFONT hFont = CreateFont(28, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("Silkscreen"));
+	HFONT hOldFont = (HFONT)SelectObject(dc, hFont);		// 폰트 설정
+	SetTextColor(dc, RGB(255, 255, 255));					// 텍스트 색상 설정
+	SetBkMode(dc, TRANSPARENT);
+
+
+
+	TextOutA(dc, 200, 30, Text.c_str(), static_cast<int>(Text.size()));
+
+
+
+	// 텍스트 출력
+
+
+	SelectObject(dc, hOldFont);
+	DeleteObject(hFont);
+
 
 
 
 	// 픽셀 충돌 작동 확인을 위한 디버깅용 충돌체
 	CollisionData Data;
 
-//	Data.Pos = GetPos() - GetLevel()->GetMainCamera()->GetPos();
 	Data.Pos = ActorCameraPos();
 	Data.Scale = { 5,5 };
 
@@ -374,23 +402,19 @@ void Player::Render(float _Delta)
 	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
 	// 왼쪽
-//	Data.Pos = GetPos() + LeftCheck - GetLevel()->GetMainCamera()->GetPos();
 	Data.Pos = ActorCameraPos() + LeftCheck;
 	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
 	// 오른쪽
-//	Data.Pos = GetPos() + RightCheck - GetLevel()->GetMainCamera()->GetPos();
 	Data.Pos = ActorCameraPos() + RightCheck;
 	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
 	// 위
-//	Data.Pos = GetPos() + UpCheck - GetLevel()->GetMainCamera()->GetPos();
 	Data.Pos = ActorCameraPos() + UpCheck;
 	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
 
 	// 아래
-//	Data.Pos = GetPos() + DownCheck - GetLevel()->GetMainCamera()->GetPos();
 	Data.Pos = ActorCameraPos() + DownCheck;
 	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
