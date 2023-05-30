@@ -37,6 +37,10 @@ void PlayLevel::Start()
 		GameEnginePath FolderPath = FilePath;
 		FilePath.MoveChild("ContentsResources\\Texture\\");
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("stage1_Col.bmp"));
+
+
+
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("MiniBossActivationCircle.bmp"));
 	}
 
 	BackGroundPtr = CreateActor<BackGround>();
@@ -48,6 +52,19 @@ void PlayLevel::Start()
 	LevelPlayer->SetGroundTexture("stage1_Col.bmp");
 
 	CreateActor<PlayUIManager>();
+
+
+
+
+	// 보스스포너 -> 따로 빼기
+
+	//BackGround* SmallObjPtr = CreateActor<BackGround>();
+
+	//SmallObjPtr->Init("MiniBossActivationCircle.bmp", 3.0f, { 1850, 1800 });
+
+
+
+
 }
 
 void PlayLevel::Update(float _Delta)
@@ -63,11 +80,11 @@ void PlayLevel::Update(float _Delta)
 	}
 
 	// 몬스터 스폰
-	if (1.0f <= GetLiveTime())
-	{
-		Monster* NewMonster = CreateActor<Monster>();
-		ResetLiveTime();
-	}
+	//if (1.0f <= GetLiveTime())
+	//{
+	//	Monster* NewMonster = CreateActor<Monster>();
+	//	ResetLiveTime();
+	//}
 }
 
 void PlayLevel::Render(float _Delta)

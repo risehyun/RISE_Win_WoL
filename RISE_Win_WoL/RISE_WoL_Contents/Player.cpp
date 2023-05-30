@@ -355,12 +355,6 @@ void Player::LevelStart()
 void Player::Render(float _Delta)
 {
 
-				// 텍스트 배경색의 처리
-
-
-
-
-
 	std::string Text = "";
 
 //	Text += "플레이어 테스트 값 : ";
@@ -379,18 +373,34 @@ void Player::Render(float _Delta)
 	SetTextColor(dc, RGB(255, 255, 255));					// 텍스트 색상 설정
 	SetBkMode(dc, TRANSPARENT);
 
-
-
 	TextOutA(dc, 150, 20, Text.c_str(), static_cast<int>(Text.size()));
 
 
 
-	// 텍스트 출력
 
 
+	std::string GoldText = "000";
+
+	TextOutA(dc, 654, 724, GoldText.c_str(), static_cast<int>(Text.size()));
+
+	//// 텍스트 출력
 	SelectObject(dc, hOldFont);
 	DeleteObject(hFont);
 
+
+	std::string Text2 = "00:00";
+
+
+	HFONT hFont2 = CreateFont(30, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("Lato"));
+	HFONT hOldFont2 = (HFONT)SelectObject(dc, hFont2);		// 폰트 설정
+	SetTextColor(dc, RGB(255, 255, 255));					// 텍스트 색상 설정
+	SetBkMode(dc, TRANSPARENT);
+
+	TextOutA(dc, 640, 80, Text2.c_str(), static_cast<int>(Text.size()));
+
+
+	SelectObject(dc, hOldFont2);
+	DeleteObject(hFont2);
 
 
 
