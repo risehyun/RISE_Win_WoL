@@ -170,6 +170,7 @@
     </ClInclude>
     <ClInclude Include="ContentCore.h" />
     <ClInclude Include="ContentsEnum.h" />
+    <ClInclude Include="Effect_Spawn.h" />
     <ClInclude Include="EndingLevel.h" />
     <ClInclude Include="GlobalValue.h" />
     <ClInclude Include="Monster.h" />
@@ -192,6 +193,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ContentCore.cpp" />
+    <ClCompile Include="Effect_Spawn.cpp" />
     <ClCompile Include="EndingLevel.cpp" />
     <ClCompile Include="GlobalValue.cpp" />
     <ClCompile Include="Monster.cpp" />

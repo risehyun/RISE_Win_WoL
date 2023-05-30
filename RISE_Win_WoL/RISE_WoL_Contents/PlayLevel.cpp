@@ -12,9 +12,13 @@
 #include "Player.h"
 #include "BackGround.h"
 #include "Monster.h"
+#include "Effect_Spawn.h"
 
 #include "PlayUIManager.h"
+
+
 #include "ContentsEnum.h"
+
 
 PlayLevel::PlayLevel()
 {
@@ -41,6 +45,10 @@ void PlayLevel::Start()
 
 
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("MiniBossActivationCircle.bmp"));
+
+// 애니메이션을 사용하는 경우 중복해서 로드하면 오류 발생함
+//		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("SPAWN_PLAYER.bmp"));
+
 	}
 
 	BackGroundPtr = CreateActor<BackGround>();
@@ -56,13 +64,22 @@ void PlayLevel::Start()
 
 
 
+
+
+
+
 	// 보스스포너 -> 따로 빼기
 
-	//BackGround* SmallObjPtr = CreateActor<BackGround>();
+	BackGround* SmallObjPtr = CreateActor<BackGround>();
 
-	//SmallObjPtr->Init("MiniBossActivationCircle.bmp", 3.0f, { 1850, 1800 });
+	SmallObjPtr->Init("MiniBossActivationCircle.bmp", 3.0f, { 1850, 1800 });
 
 
+	// 플레이어 스폰 효과
+
+	Effect_Spawn* NewSpawn = CreateActor<Effect_Spawn>();
+
+	NewSpawn->SetPos({ 1850, 1800 });
 
 
 }

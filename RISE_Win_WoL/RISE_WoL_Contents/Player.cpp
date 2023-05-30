@@ -170,7 +170,7 @@ void Player::Start()
 	// 레벨별로 캐릭터 시작 위치가 다름
 	// playLevel의 경우 { 1850, 1700 }
 	// bossLevel의 경우 { 1710, 2610 }
-	SetPos({ 1710, 2610 });
+	SetPos({ 1850, 1900 });
 	ChanageState(PlayerState::Idle);
 
 	{

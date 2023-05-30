@@ -5,9 +5,6 @@ class SKILL_PlayerNormalAttack : public Skill
 {
 
 public:
-
-
-
 	void SetDir(const float4& _Dir)
 	{
 		Dir = _Dir;
@@ -31,4 +28,3 @@ private:
 	void Update(float _Delta) override;
 
 };
-

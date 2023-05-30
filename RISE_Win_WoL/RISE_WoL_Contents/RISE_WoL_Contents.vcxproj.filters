@@ -29,6 +29,9 @@
     <Filter Include="03.UI">
       <UniqueIdentifier>{c962f389-77ab-43c6-bc6a-a2718a04e66b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Level\OBJ\Spawner">
+      <UniqueIdentifier>{f75e8860-02c2-4e60-b6cc-2f4da925b6e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingLevel.cpp">
@@ -70,6 +73,9 @@
     <ClCompile Include="GlobalValue.cpp" />
     <ClCompile Include="UI_Button.cpp">
       <Filter>03.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect_Spawn.cpp">
+      <Filter>01.Level\OBJ\Spawner</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +120,9 @@
     <ClInclude Include="GlobalValue.h" />
     <ClInclude Include="UI_Button.h">
       <Filter>03.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect_Spawn.h">
+      <Filter>01.Level\OBJ\Spawner</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
