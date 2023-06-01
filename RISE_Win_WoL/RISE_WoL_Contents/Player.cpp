@@ -396,7 +396,7 @@ void Player::Render(float _Delta)
 	SetTextColor(dc, RGB(255, 255, 255));					// 텍스트 색상 설정
 	SetBkMode(dc, TRANSPARENT);
 
-	TextOutA(dc, 640, 80, Text2.c_str(), static_cast<int>(Text.size()));
+	TextOutA(dc, 612, 80, Text2.c_str(), static_cast<int>(Text.size()));
 
 
 	SelectObject(dc, hOldFont2);

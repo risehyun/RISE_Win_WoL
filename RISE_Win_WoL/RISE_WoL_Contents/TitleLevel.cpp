@@ -69,9 +69,6 @@ void TitleLevel::Update(float _Delta)
 	}
 
 
-
-
-
 	if (true == GameEngineInput::IsDown('W'))
 	{
 		BackGround* SelectScreen_Play = CreateActor<BackGround>();

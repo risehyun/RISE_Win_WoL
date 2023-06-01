@@ -92,13 +92,7 @@ void Player::IdleUpdate(float _Delta)
 	// 일반 공격
 	if (true == GameEngineInput::IsUp(VK_LBUTTON))
 	{
-		DirCheck();
-
 		ChanageState(PlayerState::Attack);
-
-//		float4 Pos = GameEngineWindow::MainWindow.GetMousePos();
-
-
 
 		SKILL_PlayerNormalAttack* NewAttack = GetLevel()->CreateActor<SKILL_PlayerNormalAttack>();
 

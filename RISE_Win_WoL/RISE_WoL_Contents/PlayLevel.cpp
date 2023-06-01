@@ -13,6 +13,7 @@
 #include "BackGround.h"
 #include "Monster.h"
 #include "Effect_Spawn.h"
+#include "BossSpawner.h"
 
 #include "PlayUIManager.h"
 
@@ -31,8 +32,6 @@ PlayLevel::~PlayLevel()
 
 void PlayLevel::Start()
 {
-//	GameEngineSound::SoundLoad("aaa", "aaa");
-
 	if (false == ResourcesManager::GetInst().IsLoadTexture("stage1_Col.Bmp"))
 	{
 		GameEnginePath FilePath;
@@ -42,9 +41,6 @@ void PlayLevel::Start()
 		FilePath.MoveChild("ContentsResources\\Texture\\");
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("stage1_Col.bmp"));
 
-
-
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("MiniBossActivationCircle.bmp"));
 
 // 애니메이션을 사용하는 경우 중복해서 로드하면 오류 발생함
 //		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("SPAWN_PLAYER.bmp"));
@@ -61,18 +57,9 @@ void PlayLevel::Start()
 
 	CreateActor<PlayUIManager>();
 
-
-
-
-
-
-
-
 	// 보스스포너 -> 따로 빼기
 
-	BackGround* SmallObjPtr = CreateActor<BackGround>();
-
-	SmallObjPtr->Init("MiniBossActivationCircle.bmp", 3.0f, { 1850, 1800 });
+	BossSpawner* NewSpawner = CreateActor<BossSpawner>();
 
 
 	// 플레이어 스폰 효과
@@ -81,7 +68,7 @@ void PlayLevel::Start()
 
 	NewSpawn->SetPos({ 1850, 1800 });
 
-
+	NewSpawn->SpawnObject(SpawnType::Player, { 100, 365 });
 }
 
 void PlayLevel::Update(float _Delta)
@@ -102,6 +89,7 @@ void PlayLevel::Update(float _Delta)
 	//	Monster* NewMonster = CreateActor<Monster>();
 	//	ResetLiveTime();
 	//}
+
 }
 
 void PlayLevel::Render(float _Delta)

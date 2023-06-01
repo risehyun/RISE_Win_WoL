@@ -164,6 +164,7 @@
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="BossLevel.h" />
+    <ClInclude Include="BossSpawner.h" />
     <ClInclude Include="Bullet.h">
       <SubType>
       </SubType>
@@ -188,6 +189,7 @@
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="BossLevel.cpp" />
+    <ClCompile Include="BossSpawner.cpp" />
     <ClCompile Include="Bullet.cpp">
       <SubType>
       </SubType>
