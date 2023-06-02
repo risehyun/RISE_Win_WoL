@@ -115,6 +115,11 @@ public:
 		, CollisionType _ThisType = CollisionType::CirCle
 		, CollisionType _OtherType = CollisionType::CirCle);
 
+
+
+
+
+
 	void SetOrder(int _Order) override;
 
 	bool CollisonCheck(GameEngineCollision* _Other

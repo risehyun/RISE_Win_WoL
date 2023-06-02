@@ -12,9 +12,6 @@
 // CreateActor()
 #include <GameEngineCore/GameEngineLevel.h>
 
-
-
-
 #include "ContentsEnum.h"
 #include <GameEnginePlatform/GameEngineInput.h>
 #include "Monster.h"
@@ -30,7 +27,6 @@ BossSpawner::~BossSpawner()
 
 void BossSpawner::Start()
 {
-	// 스킬 텍스처 로딩
 	if (false == ResourcesManager::GetInst().IsLoadTexture("MiniBossActivationCircle.bmp"))
 	{
 
@@ -46,9 +42,13 @@ void BossSpawner::Start()
 
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("F.bmp"));
 
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("PRISON_HOR.bmp"));
+
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("PRISON_VER.bmp"));
+		
+
 	}
 
-	// 렌더러 생성과 로딩된 텍스처 지정
 	MainRenderer = CreateRenderer();
 	MainRenderer->SetRenderScale({ 200, 200 });
 	MainRenderer->SetTexture("MiniBossActivationCircle.bmp");
@@ -66,6 +66,67 @@ void BossSpawner::Start()
 	InputRenderer->SetRenderPos({ 1850, 1634 });
 
 	InputRenderer->Off();
+
+
+
+
+	Renderer_FenceUp = CreateRenderer();
+	Renderer_FenceUp->SetRenderScale({ 200, 165 });
+	Renderer_FenceUp->SetTexture("PRISON_HOR.bmp");
+	Renderer_FenceUp->SetRenderPos({ 1850, 1320 });
+
+	Renderer_FenceDown = CreateRenderer();
+	Renderer_FenceDown->SetRenderScale({ 200, 165 });
+	Renderer_FenceDown->SetTexture("PRISON_HOR.bmp");
+	Renderer_FenceDown->SetRenderPos({ 1850, 2224 });
+
+	Renderer_FenceRight = CreateRenderer();
+	Renderer_FenceRight->SetRenderScale({ 48, 298 });
+	Renderer_FenceRight->SetTexture("PRISON_VER.bmp");
+	Renderer_FenceRight->SetRenderPos({ 2360, 1710 });
+
+	Renderer_FenceLeft = CreateRenderer();
+	Renderer_FenceLeft->SetRenderScale({ 48, 298 });
+	Renderer_FenceLeft->SetTexture("PRISON_VER.bmp");
+	Renderer_FenceLeft->SetRenderPos({ 1380, 1710 });
+
+	Renderer_FenceUp->Off();
+	Renderer_FenceDown->Off();
+	Renderer_FenceRight->Off();
+	Renderer_FenceLeft->Off();
+
+
+
+
+
+	Collsion_FenceUp = CreateCollision(CollisionOrder::Map);
+//	Collsion_FenceUp->SetCollisionScale({ 200, 165 });
+	Collsion_FenceUp->SetCollisionScale({ 150, 150 });
+	Collsion_FenceUp->SetCollisionType(CollisionType::CirCle);
+	Collsion_FenceUp->SetCollisionPos({ 1850, 1320 });
+	Collsion_FenceUp->Off();
+
+
+
+	Collsion_FenceDown = CreateCollision(CollisionOrder::Map);
+	//	Collsion_FenceUp->SetCollisionScale({ 200, 165 });
+	Collsion_FenceDown->SetCollisionScale({ 150, 150 });
+	Collsion_FenceDown->SetCollisionType(CollisionType::CirCle);
+	Collsion_FenceDown->SetCollisionPos({ 1850, 2224 });
+	Collsion_FenceDown->Off();
+
+
+	Collsion_FenceRight = CreateCollision(CollisionOrder::Map);
+	Collsion_FenceRight->SetCollisionScale({ 150, 150 });
+	Collsion_FenceRight->SetCollisionType(CollisionType::CirCle);
+	Collsion_FenceRight->SetCollisionPos({ 2360, 1710 });
+	Collsion_FenceRight->Off();
+
+	Collsion_FenceLeft = CreateCollision(CollisionOrder::Map);
+	Collsion_FenceLeft->SetCollisionScale({ 150, 150 });
+	Collsion_FenceLeft->SetCollisionType(CollisionType::CirCle);
+	Collsion_FenceLeft->SetCollisionPos({ 1380, 1710 });
+	Collsion_FenceLeft->Off();
 
 }
 
@@ -89,10 +150,20 @@ void BossSpawner::Update(float _Delta)
 			MainRenderer->Death();
 			InputRenderer->Off();
 
+			Renderer_FenceUp->On();
+			Renderer_FenceDown->On();
+			Renderer_FenceRight->On();
+			Renderer_FenceLeft->On();
+
+			Collsion_FenceUp->On();
+			Collsion_FenceDown->On();
+			Collsion_FenceRight->On();
+			Collsion_FenceLeft->On();
+
 			Effect_Spawn* Spawn = GetLevel()->CreateActor<Effect_Spawn>();
 			Spawn->SpawnObject(SpawnType::Swordman, { 100, 200 });
 			Spawn->SetPos({ 1850, 1634 });
-				
+			
 
 
 		}
@@ -106,5 +177,69 @@ void BossSpawner::Update(float _Delta)
 	{
 		InputRenderer->Off();
 
+	}
+
+	if (true == Collsion_FenceUp->Collision(CollisionOrder::PlayerBody, _Col
+		, CollisionType::CirCle
+		, CollisionType::CirCle
+	))
+	{
+		// 플레이어를 밀어낸다.
+		for (size_t i = 0; i < _Col.size(); i++)
+		{
+			GameEngineCollision* Collison = _Col[i];
+
+			GameEngineActor* Actor = Collison->GetActor();
+
+			Actor->AddPos(float4::DOWN);
+		}
+	}
+
+	if (true == Collsion_FenceDown->Collision(CollisionOrder::PlayerBody, _Col
+		, CollisionType::CirCle
+		, CollisionType::CirCle
+	))
+	{
+		// 플레이어를 밀어낸다.
+		for (size_t i = 0; i < _Col.size(); i++)
+		{
+			GameEngineCollision* Collison = _Col[i];
+
+			GameEngineActor* Actor = Collison->GetActor();
+
+			Actor->AddPos(float4::UP);
+		}
+	}
+
+	if (true == Collsion_FenceRight->Collision(CollisionOrder::PlayerBody, _Col
+		, CollisionType::CirCle
+		, CollisionType::CirCle
+	))
+	{
+		// 플레이어를 밀어낸다.
+		for (size_t i = 0; i < _Col.size(); i++)
+		{
+			GameEngineCollision* Collison = _Col[i];
+
+			GameEngineActor* Actor = Collison->GetActor();
+
+			Actor->AddPos(float4::LEFT);
+		}
+	}
+
+	if (true == Collsion_FenceLeft->Collision(CollisionOrder::PlayerBody, _Col
+		, CollisionType::CirCle
+		, CollisionType::CirCle
+	))
+	{
+		// 플레이어를 밀어낸다.
+		for (size_t i = 0; i < _Col.size(); i++)
+		{
+			GameEngineCollision* Collison = _Col[i];
+
+			GameEngineActor* Actor = Collison->GetActor();
+
+			Actor->AddPos(float4::RIGHT);
+		}
 	}
 }

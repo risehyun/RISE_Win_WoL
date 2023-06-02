@@ -35,7 +35,6 @@ void Player::DashStart()
 void Player::AttackStart()
 {
 	ChangeAnimationState("Attack");
-	//	ChangeAnimation("Attack_NORMAL");
 }
 
 void Player::Skill_ICEBLAST_Start()
