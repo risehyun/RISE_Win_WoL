@@ -11,7 +11,7 @@ class GameEngineSoundPlayer
 	friend class GameEngineSound;
 
 public:
-
+	void SetLoop(int _Count);
 	void SetVolume(float _Volume);
 	void Stop();
 
@@ -29,7 +29,6 @@ private:
 	FMOD::Channel* Control = nullptr;
 };
 
-// Ό³Έν :
 class GameEngineSound
 {
 	static float GlobalVolume;
@@ -61,10 +60,9 @@ public:
 
 	static GameEngineSound* FindSound(const std::string& _Name);
 
-
 	static void SoundLoad(const std::string& _Name, const std::string& _Path);
 
-	static GameEngineSoundPlayer SoundPlay(const std::string& _Name);
+	static GameEngineSoundPlayer SoundPlay(const std::string& _Name, int _Loop = 0);
 
 	static void Release();
 
