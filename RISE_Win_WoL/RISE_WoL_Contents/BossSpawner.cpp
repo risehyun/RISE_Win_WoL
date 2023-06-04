@@ -100,39 +100,36 @@ void BossSpawner::Start()
 
 
 	Collsion_FenceUp = CreateCollision(CollisionOrder::Map);
-//	Collsion_FenceUp->SetCollisionScale({ 200, 165 });
-	Collsion_FenceUp->SetCollisionScale({ 150, 150 });
-	Collsion_FenceUp->SetCollisionType(CollisionType::CirCle);
+	Collsion_FenceUp->SetCollisionScale({ 200, 83 });
+	Collsion_FenceUp->SetCollisionType(CollisionType::Rect);
 	Collsion_FenceUp->SetCollisionPos({ 1850, 1320 });
 	Collsion_FenceUp->Off();
 
 
 
 	Collsion_FenceDown = CreateCollision(CollisionOrder::Map);
-	//	Collsion_FenceUp->SetCollisionScale({ 200, 165 });
-	Collsion_FenceDown->SetCollisionScale({ 150, 150 });
-	Collsion_FenceDown->SetCollisionType(CollisionType::CirCle);
+	Collsion_FenceDown->SetCollisionScale({ 200, 165 });
+	Collsion_FenceDown->SetCollisionType(CollisionType::Rect);
 	Collsion_FenceDown->SetCollisionPos({ 1850, 2224 });
 	Collsion_FenceDown->Off();
 
 
 	Collsion_FenceRight = CreateCollision(CollisionOrder::Map);
-	Collsion_FenceRight->SetCollisionScale({ 150, 150 });
-	Collsion_FenceRight->SetCollisionType(CollisionType::CirCle);
+	Collsion_FenceRight->SetCollisionScale({ 24, 298 });
+	Collsion_FenceRight->SetCollisionType(CollisionType::Rect);
 	Collsion_FenceRight->SetCollisionPos({ 2360, 1710 });
 	Collsion_FenceRight->Off();
 
 	Collsion_FenceLeft = CreateCollision(CollisionOrder::Map);
-	Collsion_FenceLeft->SetCollisionScale({ 150, 150 });
-	Collsion_FenceLeft->SetCollisionType(CollisionType::CirCle);
-	Collsion_FenceLeft->SetCollisionPos({ 1380, 1710 });
+	Collsion_FenceLeft->SetCollisionScale({ 24, 298 });
+	Collsion_FenceLeft->SetCollisionType(CollisionType::Rect);
+	Collsion_FenceLeft->SetCollisionPos({ 1360, 1710 });
 	Collsion_FenceLeft->Off();
 
 }
 
 void BossSpawner::Update(float _Delta)
 {
-
 	std::vector<GameEngineCollision*> _Col;
 	if (true == Collsion->Collision(CollisionOrder::PlayerBody, _Col
 		, CollisionType::CirCle
@@ -164,23 +161,16 @@ void BossSpawner::Update(float _Delta)
 			Spawn->SpawnObject(SpawnType::Swordman, { 100, 200 });
 			Spawn->SetPos({ 1850, 1634 });
 			
-
-
 		}
-
-
-
-
 	}
 
 	else
 	{
 		InputRenderer->Off();
-
 	}
 
 	if (true == Collsion_FenceUp->Collision(CollisionOrder::PlayerBody, _Col
-		, CollisionType::CirCle
+		, CollisionType::Rect
 		, CollisionType::CirCle
 	))
 	{
@@ -196,7 +186,7 @@ void BossSpawner::Update(float _Delta)
 	}
 
 	if (true == Collsion_FenceDown->Collision(CollisionOrder::PlayerBody, _Col
-		, CollisionType::CirCle
+		, CollisionType::Rect
 		, CollisionType::CirCle
 	))
 	{
@@ -212,7 +202,7 @@ void BossSpawner::Update(float _Delta)
 	}
 
 	if (true == Collsion_FenceRight->Collision(CollisionOrder::PlayerBody, _Col
-		, CollisionType::CirCle
+		, CollisionType::Rect
 		, CollisionType::CirCle
 	))
 	{
@@ -228,7 +218,7 @@ void BossSpawner::Update(float _Delta)
 	}
 
 	if (true == Collsion_FenceLeft->Collision(CollisionOrder::PlayerBody, _Col
-		, CollisionType::CirCle
+		, CollisionType::Rect
 		, CollisionType::CirCle
 	))
 	{
