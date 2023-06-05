@@ -175,6 +175,7 @@
     <ClInclude Include="EndingLevel.h" />
     <ClInclude Include="GlobalValue.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="Monster_Swordman.h" />
     <ClInclude Include="NPC_ITEMSHOP.h" />
     <ClInclude Include="PlayActor.h" />
     <ClInclude Include="Player.h" />
@@ -199,6 +200,7 @@
     <ClCompile Include="EndingLevel.cpp" />
     <ClCompile Include="GlobalValue.cpp" />
     <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="Monster_Swordman.cpp" />
     <ClCompile Include="NPC_ITEMSHOP.cpp" />
     <ClCompile Include="PlayActor.cpp" />
     <ClCompile Include="Player.cpp" />

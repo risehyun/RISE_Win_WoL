@@ -8,13 +8,14 @@
 
 #include "Effect_Spawn.h"
 
-
 // CreateActor()
 #include <GameEngineCore/GameEngineLevel.h>
 
 #include "ContentsEnum.h"
 #include <GameEnginePlatform/GameEngineInput.h>
 #include "Monster.h"
+#include "Monster_Swordman.h"
+
 #include <GameEnginePlatform/GameEngineWindow.h>
 
 BossSpawner::BossSpawner()
@@ -29,7 +30,6 @@ void BossSpawner::Start()
 {
 	if (false == ResourcesManager::GetInst().IsLoadTexture("MiniBossActivationCircle.bmp"))
 	{
-
 		GameEnginePath FilePath;
 		FilePath.SetCurrentPath();
 		FilePath.MoveParentToExistsChild("ContentsResources");
@@ -45,30 +45,36 @@ void BossSpawner::Start()
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("PRISON_HOR.bmp"));
 
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("PRISON_VER.bmp"));
-		
 
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("MiniBossAltar.bmp"));
 	}
 
-	MainRenderer = CreateRenderer();
-	MainRenderer->SetRenderScale({ 200, 200 });
-	MainRenderer->SetTexture("MiniBossActivationCircle.bmp");
-	MainRenderer->SetRenderPos({ 1850, 1800 });
+	Renderer_ActivationCircle = CreateRenderer();
+	Renderer_ActivationCircle->SetRenderScale({ 200, 200 });
+	Renderer_ActivationCircle->SetTexture("MiniBossActivationCircle.bmp");
+	Renderer_ActivationCircle->SetRenderPos({ 1850, 1800 });
 
-	Collsion = CreateCollision(CollisionOrder::Map);
-	Collsion->SetCollisionScale({ 240, 240 });
-	Collsion->SetCollisionType(CollisionType::CirCle);
-	Collsion->SetCollisionPos({ 1850, 1800 });
+	Collsion_ActivationCircle = CreateCollision(CollisionOrder::Map);
+	Collsion_ActivationCircle->SetCollisionScale({ 200, 200 });
+	Collsion_ActivationCircle->SetCollisionType(CollisionType::CirCle);
+	Collsion_ActivationCircle->SetCollisionPos({ 1850, 1800 });
 
+	Renderer_Altar = CreateRenderer();
+	Renderer_Altar->SetRenderScale({ 120, 160 });
+	Renderer_Altar->SetTexture("MiniBossAltar.bmp");
+	Renderer_Altar->SetRenderPos({ 1850, 1550 });
+
+	Collsion_Altar = CreateCollision(CollisionOrder::Map);
+	Collsion_Altar->SetCollisionScale({ 120, 160 });
+	Collsion_Altar->SetCollisionType(CollisionType::Rect);
+	Collsion_Altar->SetCollisionPos({ 1850, 1550 });
 
 	InputRenderer = CreateRenderer();
 	InputRenderer->SetRenderScale({ 32, 32 });
 	InputRenderer->SetTexture("F.bmp");
-	InputRenderer->SetRenderPos({ 1850, 1634 });
+	InputRenderer->SetRenderPos({ 1850, 1660 });
 
 	InputRenderer->Off();
-
-
-
 
 	Renderer_FenceUp = CreateRenderer();
 	Renderer_FenceUp->SetRenderScale({ 200, 165 });
@@ -95,24 +101,17 @@ void BossSpawner::Start()
 	Renderer_FenceRight->Off();
 	Renderer_FenceLeft->Off();
 
-
-
-
-
 	Collsion_FenceUp = CreateCollision(CollisionOrder::Map);
 	Collsion_FenceUp->SetCollisionScale({ 200, 83 });
 	Collsion_FenceUp->SetCollisionType(CollisionType::Rect);
 	Collsion_FenceUp->SetCollisionPos({ 1850, 1320 });
 	Collsion_FenceUp->Off();
 
-
-
 	Collsion_FenceDown = CreateCollision(CollisionOrder::Map);
 	Collsion_FenceDown->SetCollisionScale({ 200, 165 });
 	Collsion_FenceDown->SetCollisionType(CollisionType::Rect);
 	Collsion_FenceDown->SetCollisionPos({ 1850, 2224 });
 	Collsion_FenceDown->Off();
-
 
 	Collsion_FenceRight = CreateCollision(CollisionOrder::Map);
 	Collsion_FenceRight->SetCollisionScale({ 24, 298 });
@@ -125,13 +124,12 @@ void BossSpawner::Start()
 	Collsion_FenceLeft->SetCollisionType(CollisionType::Rect);
 	Collsion_FenceLeft->SetCollisionPos({ 1360, 1710 });
 	Collsion_FenceLeft->Off();
-
 }
 
 void BossSpawner::Update(float _Delta)
 {
 	std::vector<GameEngineCollision*> _Col;
-	if (true == Collsion->Collision(CollisionOrder::PlayerBody, _Col
+	if (true == Collsion_ActivationCircle->Collision(CollisionOrder::PlayerBody, _Col
 		, CollisionType::CirCle
 		, CollisionType::CirCle
 	))
@@ -143,8 +141,12 @@ void BossSpawner::Update(float _Delta)
 			// 1. MainRenderer를 비활성한다.
 			// 2. 몬스터를 지정한 위치에 스폰해준다.
 
-			Collsion->Death();
-			MainRenderer->Death();
+			Collsion_ActivationCircle->Death();
+			Renderer_ActivationCircle->Death();
+
+			Renderer_Altar->Death();
+			Collsion_Altar->Death();
+
 			InputRenderer->Off();
 
 			Renderer_FenceUp->On();
@@ -230,6 +232,24 @@ void BossSpawner::Update(float _Delta)
 			GameEngineActor* Actor = Collison->GetActor();
 
 			Actor->AddPos(float4::RIGHT);
+		}
+	}
+
+	if (true == Collsion_Altar->Collision(CollisionOrder::PlayerBody, _Col
+		, CollisionType::Rect
+		, CollisionType::CirCle
+	))
+	{
+
+		// 플레이어를 밀어낸다.
+		for (size_t i = 0; i < _Col.size(); i++)
+		{
+			GameEngineCollision* Collison = _Col[i];
+
+			GameEngineActor* Actor = Collison->GetActor();
+
+			Actor->AddPos(float4::DOWN);
+
 		}
 	}
 }

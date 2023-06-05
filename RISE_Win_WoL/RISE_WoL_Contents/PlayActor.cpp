@@ -12,17 +12,17 @@ PlayActor::~PlayActor()
 {
 }
 
-void PlayActor::Gravity(float _Delta)
-{
-	if (false == IsGravity)
-	{
-		return;
-	}
-
-	GravityVector += float4::DOWN * GravityPower * _Delta;
-
-	AddPos(GravityVector);
-}
+//void PlayActor::Gravity(float _Delta)
+//{
+//	if (false == IsGravity)
+//	{
+//		return;
+//	}
+//
+//	GravityVector += float4::DOWN * GravityPower * _Delta;
+//
+//	AddPos(GravityVector);
+//}
 
 void PlayActor::CameraFocus()
 {

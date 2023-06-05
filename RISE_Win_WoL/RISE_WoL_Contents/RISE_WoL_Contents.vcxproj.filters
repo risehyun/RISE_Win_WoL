@@ -32,12 +32,17 @@
     <Filter Include="01.Level\OBJ\Spawner">
       <UniqueIdentifier>{f75e8860-02c2-4e60-b6cc-2f4da925b6e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Level\OBJ\01.Player">
+      <UniqueIdentifier>{a722b784-6212-4e24-a3e0-2ce321dd1fc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Level\OBJ\02.Enemy">
+      <UniqueIdentifier>{e7968141-0845-415b-8e9e-cb0386becb29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingLevel.cpp">
       <Filter>01.Level</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayLevel.cpp">
       <Filter>01.Level</Filter>
     </ClCompile>
@@ -49,11 +54,9 @@
       <Filter>00.Global</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="Player_State.cpp" />
     <ClCompile Include="BossLevel.cpp">
       <Filter>01.Level</Filter>
     </ClCompile>
-    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="PlayActor.cpp" />
     <ClCompile Include="Skill.cpp">
       <Filter>02.Skills</Filter>
@@ -70,7 +73,6 @@
     <ClCompile Include="SKILL_PlayerWindBoomerang.cpp">
       <Filter>02.Skills\Player</Filter>
     </ClCompile>
-    <ClCompile Include="GlobalValue.cpp" />
     <ClCompile Include="UI_Button.cpp">
       <Filter>03.UI</Filter>
     </ClCompile>
@@ -80,12 +82,26 @@
     <ClCompile Include="BossSpawner.cpp">
       <Filter>01.Level\OBJ\Spawner</Filter>
     </ClCompile>
+    <ClCompile Include="GlobalValue.cpp">
+      <Filter>00.Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>01.Level\OBJ\01.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_State.cpp">
+      <Filter>01.Level\OBJ\01.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>01.Level\OBJ\02.Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_Swordman.cpp">
+      <Filter>01.Level\OBJ\02.Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
       <Filter>01.Level</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h" />
     <ClInclude Include="PlayLevel.h">
       <Filter>01.Level</Filter>
     </ClInclude>
@@ -103,7 +119,6 @@
     <ClInclude Include="BossLevel.h">
       <Filter>01.Level</Filter>
     </ClInclude>
-    <ClInclude Include="Monster.h" />
     <ClInclude Include="PlayActor.h" />
     <ClInclude Include="Skill.h">
       <Filter>02.Skills</Filter>
@@ -120,7 +135,6 @@
     <ClInclude Include="SKILL_PlayerWindBoomerang.h">
       <Filter>02.Skills\Player</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalValue.h" />
     <ClInclude Include="UI_Button.h">
       <Filter>03.UI</Filter>
     </ClInclude>
@@ -129,6 +143,18 @@
     </ClInclude>
     <ClInclude Include="BossSpawner.h">
       <Filter>01.Level\OBJ\Spawner</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalValue.h">
+      <Filter>00.Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>01.Level\OBJ\01.Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>01.Level\OBJ\02.Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster_Swordman.h">
+      <Filter>01.Level\OBJ\02.Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

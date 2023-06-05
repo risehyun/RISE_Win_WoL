@@ -8,6 +8,8 @@
 
 #include <GameEngineCore/GameEngineLevel.h>
 #include "Monster.h"
+#include "Monster_Swordman.h"
+
 #include <GameEnginePlatform/GameEngineWindow.h>
 
 
@@ -60,7 +62,6 @@ void Effect_Spawn::Update(float _Delta)
 	if (effectLiveTime < GetLiveTime())
 	{
 
-
 		if (nullptr != Renderer)
 		{
 
@@ -69,7 +70,7 @@ void Effect_Spawn::Update(float _Delta)
 
 			if (effectLiveTime == 3.0f)
 			{
-				Monster* NewMonster = GetLevel()->CreateActor<Monster>();
+				Monster* NewMonster = GetLevel()->CreateActor<Monster_Swordman>();
 				NewMonster->SetPos({ 1800, 1600 });
 			}
 

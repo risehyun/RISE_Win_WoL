@@ -1,6 +1,21 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 
+enum class MonsterState
+{
+	Idle,
+	Run,
+	Attack,
+	Max,
+};
+
+enum class MonsterDir
+{
+	Right,
+	Left,
+	Max,
+};
+
 class Monster : public GameEngineActor
 {
 private:

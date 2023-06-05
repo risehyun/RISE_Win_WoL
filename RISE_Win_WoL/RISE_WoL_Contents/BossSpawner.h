@@ -14,7 +14,8 @@ public:
 	BossSpawner& operator=(const BossSpawner& _Other) = delete;
 	BossSpawner& operator=(BossSpawner&& _Other) noexcept = delete;
 
-	GameEngineRenderer* MainRenderer;
+	GameEngineRenderer* Renderer_Altar;
+	GameEngineRenderer* Renderer_ActivationCircle;
 	
 	GameEngineRenderer* InputRenderer;
 
@@ -23,15 +24,13 @@ public:
 	GameEngineRenderer* Renderer_FenceRight;
 	GameEngineRenderer* Renderer_FenceLeft;
 
-	GameEngineCollision* Collsion;
+	GameEngineCollision* Collsion_Altar;
+	GameEngineCollision* Collsion_ActivationCircle;
 
 	GameEngineCollision* Collsion_FenceUp;
 	GameEngineCollision* Collsion_FenceDown;
 	GameEngineCollision* Collsion_FenceRight;
 	GameEngineCollision* Collsion_FenceLeft;
-
-
-
 
 private:
 	void Start() override;

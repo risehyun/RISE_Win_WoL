@@ -12,19 +12,19 @@ public:
 	PlayActor& operator=(const PlayActor& _Other) = delete;
 	PlayActor& operator=(PlayActor&& _Other) noexcept = delete;
 
-	void Gravity(float _Delta);
+	//void Gravity(float _Delta);
 
 	void CameraFocus();
 
-	void GravityOff()
-	{
-		IsGravity = false;
-	}
+	//void GravityOff()
+	//{
+	//	IsGravity = false;
+	//}
 
-	void GravityOn()
-	{
-		IsGravity = true;
-	}
+	//void GravityOn()
+	//{
+	//	IsGravity = true;
+	//}
 
 	void SetGroundTexture(const std::string& _GroundTextureName);
 

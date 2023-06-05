@@ -213,6 +213,7 @@ void GameEngineLevel::ActorLevelEnd()
 		}
 	}
 }
+
 void GameEngineLevel::ActorLevelStart() {
 	for (const std::pair<int, std::list<GameEngineActor*>>& _Pair : AllActors)
 	{
@@ -224,3 +225,64 @@ void GameEngineLevel::ActorLevelStart() {
 		}
 	}
 }
+//
+//void GameEngineLevel::OverCheck(GameEngineLevel* _PrevLevel)
+//{
+//	if (nullptr == _PrevLevel)
+//	{
+//		return;
+//	}
+//
+//	// 이런레벨에 존재하는 이 액터와 관련된 랜더러와
+//	_PrevLevel->MainCamera->OverRelease();
+//	// 이런레벨에 존재하는 이 액터와 관련된 충돌체도
+//	_PrevLevel->CollisionOverRelease();
+//
+//	for (std::pair<const int, std::list<GameEngineActor*>>& _Pair : _PrevLevel->AllActors)
+//	{
+//		std::list<GameEngineActor*>& Group = _Pair.second;
+//
+//		std::list<GameEngineActor*>::iterator StartIter = Group.begin();
+//		std::list<GameEngineActor*>::iterator EndIter = Group.end();
+//
+//		for (; StartIter != EndIter;)
+//		{
+//			GameEngineActor* Actor = *StartIter;
+//
+//			if (false == Actor->IsLevelOver())
+//			{
+//				++StartIter;
+//				continue;
+//			}
+//
+//			Actor->Level = this;
+//
+//			for (GameEngineRenderer* Render : Actor->AllRenderer)
+//			{
+//				if (Render->GetCameraType() == CameraType::MAIN)
+//				{
+//					Render->MainCameraSetting();
+//				}
+//				else
+//				{
+//					Render->UICameraSetting();
+//				}
+//
+//				Render->SetOrder(Render->GetOrder());
+//			}
+//
+//			for (GameEngineCollision* Collision : Actor->AllCollision)
+//			{
+//				Collision->SetOrder(Collision->GetOrder());
+//			}
+//
+//
+//
+//
+//			AllActors[Actor->GetOrder()].push_back(Actor);
+//
+//			StartIter = Group.erase(StartIter);
+//		}
+//	}
+//
+//}

@@ -29,7 +29,6 @@ void PlayUIManager::Start()
 	{
 		GameEngineRenderer* Ptr = CreateUIRenderer("UI_HPBAR.bmp", RenderOrder::PlayUI);
 		Ptr->SetRenderPos({ 170, 52 });
-
 		Ptr->SetRenderScale({ 150, 20 });
 		Ptr->SetTexture("UI_HPBAR.bmp");
 	}

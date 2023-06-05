@@ -29,32 +29,12 @@ void Monster::AllMonsterDeath()
 
 void Monster::Update(float _Delta)
 {
-	float4 Dir = Player::GetMainPlayer()->GetPos() - GetPos();
 
-	Dir.Normalize();
 
-	AddPos(Dir * _Delta * 100.0f);
 }
 
 void Monster::Start()
 {
-	if (false == ResourcesManager::GetInst().IsLoadTexture("SWORDMAN_TEST.Bmp"))
-	{
-		GameEnginePath FilePath;
-		FilePath.SetCurrentPath();
-		FilePath.MoveParentToExistsChild("ContentsResources");
-		FilePath.MoveChild("ContentsResources\\Texture\\Monster\\");
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("SWORDMAN_TEST.bmp"));
-	}
 
-	{
-		GameEngineRenderer* Ptr = CreateRenderer("SWORDMAN_TEST.bmp", RenderOrder::Play);
-		Ptr->SetRenderScale({ 150, 150 });
-		Ptr->SetTexture("SWORDMAN_TEST.bmp");
-	}
-
-	GameEngineCollision* BodyCollsion = CreateCollision(CollisionOrder::MonsterBody);
-	BodyCollsion->SetCollisionScale({ 100, 100 });
-	BodyCollsion->SetCollisionType(CollisionType::CirCle);
 
 }

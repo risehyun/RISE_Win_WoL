@@ -5,6 +5,12 @@
 #include <map>
 #include <vector>
 
+enum class CameraType
+{
+	MAIN,
+	UI,
+};
+
 class GameEngineSprite;
 class GameEngineActor;
 class GameEngineWindowTexture;
@@ -23,10 +29,6 @@ public:
 	GameEngineRenderer(GameEngineRenderer&& _Other) noexcept = delete;
 	GameEngineRenderer& operator=(const GameEngineRenderer& _Other) = delete;
 	GameEngineRenderer& operator=(GameEngineRenderer&& _Other) noexcept = delete;
-
-	void SetSprite(const std::string& _Name, size_t _Index = 0);
-
-	void SetTexture(const std::string& _Name);
 
 	void SetRenderPos(const float4& _Value)
 	{
@@ -56,8 +58,18 @@ public:
 	}
 
 
-	void SetRenderScaleToTexture();
 
+	CameraType GetCameraType()
+	{
+		return CameraTypeValue;
+	}
+
+
+	void SetSprite(const std::string& _Name, size_t _Index = 0);
+
+	void SetTexture(const std::string& _Name);
+
+	void SetRenderScaleToTexture();
 
 	void SetOrder(int _Order) override;
 
@@ -79,6 +91,11 @@ private:
 
 	float4 CopyPos;
 	float4 CopyScale;
+
+	CameraType CameraTypeValue = CameraType::MAIN;
+	std::string Text;
+
+	void TextRender(float _DeltaTime);
 
 	void Render(float _DeltaTime);
 
@@ -126,6 +143,21 @@ public:
 		return CurAnimation->IsEnd;
 	}
 
+private:
 	std::map<std::string, Animation> AllAnimation;
 	Animation* CurAnimation = nullptr;
+
+
+	/////////////////////////////////// Text°ü·Ã
+public:
+	void SetText(const std::string& _Text, int _TextScale = 20, const std::string& _Face = "±¼¸²")
+	{
+		Text = _Text;
+		TextScale = _TextScale;
+		Face = _Face;
+	}
+
+private:
+	std::string Face;
+	int TextScale;
 };
