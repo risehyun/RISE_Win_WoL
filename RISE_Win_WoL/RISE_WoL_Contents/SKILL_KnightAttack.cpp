@@ -4,6 +4,7 @@
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 
+#include "Player.h"
 #include "ContentsEnum.h"
 
 void SKILL_KnightAttack::Start()
@@ -38,7 +39,7 @@ void SKILL_KnightAttack::Start()
 
 	// 中宜端 持失
 	{
-		SkillCollsion = CreateCollision(CollisionOrder::MonsterBody);
+		SkillCollsion = CreateCollision(CollisionOrder::MonsterSkill);
 		SkillCollsion->SetCollisionScale({ 100, 100 });
 		SkillCollsion->SetCollisionType(CollisionType::CirCle);
 	}
@@ -46,6 +47,7 @@ void SKILL_KnightAttack::Start()
 
 void SKILL_KnightAttack::Update(float _Delta)
 {
+
 
 	if (0.3f < GetLiveTime())
 	{

@@ -39,8 +39,30 @@ Player::~Player()
 
 }
 
+void Player::SetInitStat()
+{
+	// 이후 Define으로 변경
+	m_fMoveSpeed = 100.0f;
+	m_fDashSpeed = 200.0f;
+	m_fAttackSpeed = 100.0f;
+	m_iMaxHp = 500;
+	m_iCurHp = m_iMaxHp;
+	m_iMaxMp = 200;
+	m_iCurMp = m_iMaxMp;
+	m_fAttackRange = 100.0f;
+	m_iTotalGold = 0;
+	m_iTotalCrystal = 0;
+}
+
+void Player::OnDamaged()
+{
+	m_iCurHp -= 10;
+}
+
 void Player::Start()
 {
+
+	SetInitStat();
 
 	Dir = PlayerDir::Down;
 
@@ -65,11 +87,6 @@ void Player::Start()
 
 			ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("RIGHT_COMPLETE.bmp"), 11, 7);
 
-		}
-
-		if(false == ResourcesManager::GetInst().IsLoadTexture("idle.Bmp"))
-		{
-			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("idle.bmp"));
 		}
 
 		if (false == ResourcesManager::GetInst().IsLoadTexture("Fireball_0.Bmp"))
@@ -99,50 +116,42 @@ void Player::Start()
 #pragma region 애니메이션 생성
 		{
 			// 렌더러 설정
-//			MainRenderer = CreateRenderer(RenderOrder::Play);
 			MainRenderer = CreateRenderer(1000);
 			MainRenderer->SetRenderScale({ 100, 100 });
 
 
 			// IDLE
 			MainRenderer->CreateAnimation("Left_Idle", "LEFT_COMPLETE.bmp", 0, 0, 0.1f, true);
-
 			MainRenderer->CreateAnimation("Right_Idle", "RIGHT_COMPLETE.bmp", 0, 0, 0.1f, true);
-
 			MainRenderer->CreateAnimation("Down_Idle", "FRONT_COMPLETE.bmp", 0, 0, 0.1f, true);
-
 			MainRenderer->CreateAnimation("Up_Idle", "BACK_COMPLETE.bmp", 0, 0, 0.1f, true);
 
 			// RUN
 			MainRenderer->CreateAnimation("Down_Run", "FRONT_COMPLETE.bmp", 12, 14, 0.1f, true);
-
 			MainRenderer->CreateAnimation("Up_Run", "BACK_COMPLETE.bmp", 12, 14, 0.1f, true);
-
 			MainRenderer->CreateAnimation("Left_Run", "LEFT_COMPLETE.bmp", 12, 16, 0.1f, true);
-			
 			MainRenderer->CreateAnimation("Right_Run", "RIGHT_COMPLETE.bmp", 12, 16, 0.1f, true);
 
 			
-			// Dash
+			// DASH
 			MainRenderer->CreateAnimation("Down_Dash", "FRONT_COMPLETE.bmp", 23, 25, 0.1f, false);
-
 			MainRenderer->CreateAnimation("Up_Dash", "BACK_COMPLETE.bmp", 23, 25, 0.1f, false);
-
 			MainRenderer->CreateAnimation("Left_Dash", "LEFT_COMPLETE.bmp", 23, 25, 0.1f, false);
-
 			MainRenderer->CreateAnimation("Right_Dash", "RIGHT_COMPLETE.bmp", 23, 25, 0.1f, false);
-
 
 
 			// NORMAL ATTACK
 			MainRenderer->CreateAnimation("Down_Attack", "FRONT_COMPLETE.bmp", 33, 36, 0.05f, false);
-
 			MainRenderer->CreateAnimation("Up_Attack", "BACK_COMPLETE.bmp", 55, 58, 0.05f, false);
-			 
 			MainRenderer->CreateAnimation("Left_Attack", "LEFT_COMPLETE.bmp", 33, 36, 0.05f, false);
-
 			MainRenderer->CreateAnimation("Right_Attack", "RIGHT_COMPLETE.bmp", 33, 36, 0.05f, false);
 
+
+			// DAMAGE
+			MainRenderer->CreateAnimation("Down_DAMAGE", "FRONT_COMPLETE.bmp", 56, 57, 0.05f, false);
+			MainRenderer->CreateAnimation("Up_DAMAGE", "BACK_COMPLETE.bmp", 66, 67, 0.05f, false);
+			MainRenderer->CreateAnimation("Left_DAMAGE", "LEFT_COMPLETE.bmp", 66, 67, 0.05f, false);
+			MainRenderer->CreateAnimation("Right_DAMAGE", "RIGHT_COMPLETE.bmp", 66, 67, 0.05f, false);
 
 		}
 
@@ -183,18 +192,38 @@ void Player::Start()
 
 void Player::Update(float _Delta)
 {
-
 	// 디버깅용 모든 몬스터를 없애는 함수 발동
 	if (true == GameEngineInput::IsDown('L'))
 	{
 		Monster::AllMonsterDeath();
 	}
 
-	// Order 테스트
+	// 충돌 디버그
 	if (true == GameEngineInput::IsDown('J'))
 	{
 	//	MainRenderer->SetOrder(-200);
 		GameEngineLevel::CollisionDebugRenderSwitch();
+	}
+
+	std::vector<GameEngineCollision*> _Col;
+	if (true == BodyCollsion->Collision(CollisionOrder::MonsterSkill, _Col
+		, CollisionType::CirCle
+		, CollisionType::CirCle
+	))
+	{
+
+		
+		for (size_t i = 0; i < _Col.size(); i++)
+		{
+			GameEngineCollision* Collison = _Col[i];
+
+			GameEngineActor* Actor = Collison->GetActor();
+
+			OnDamaged();
+
+			Actor->Death();
+		}
+
 	}
 
 	StateUpdate(_Delta);
@@ -336,10 +365,7 @@ void Player::Render(float _Delta)
 	std::string Text = "";
 
 //	Text += "플레이어 테스트 값 : ";
-//	Text += std::to_string(TestValue);
-
-
-	Text += "500";
+	Text += std::to_string(m_iCurHp);
 	Text += "/500";
 
 	HDC dc = GameEngineWindow::MainWindow.GetBackBuffer()->GetImageDC();
@@ -409,3 +435,4 @@ void Player::Render(float _Delta)
 	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
 }
+

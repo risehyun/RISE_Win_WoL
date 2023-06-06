@@ -12,19 +12,8 @@ public:
 	PlayActor& operator=(const PlayActor& _Other) = delete;
 	PlayActor& operator=(PlayActor&& _Other) noexcept = delete;
 
-	//void Gravity(float _Delta);
 
 	void CameraFocus();
-
-	//void GravityOff()
-	//{
-	//	IsGravity = false;
-	//}
-
-	//void GravityOn()
-	//{
-	//	IsGravity = true;
-	//}
 
 	void SetGroundTexture(const std::string& _GroundTextureName);
 
@@ -33,12 +22,19 @@ public:
 	float4 ActorCameraPos();
 
 protected:
+	float	m_fMoveSpeed = 0.0f;
+	float	m_fAttackSpeed = 0.0f;
+	float	m_fAttackRange = 0.0f;
+	int		m_iMaxHp = 0;
+	int		m_iCurHp = 0;
+
+	virtual void SetInitStat();
+
+	virtual void OnDamaged();
 
 private:
 	class GameEngineWindowTexture* GroundTexture = nullptr;
 
-	bool IsGravity = false;
 
-	float GravityPower = 10.0f;
-	float4 GravityVector = float4::ZERO;
+
 };

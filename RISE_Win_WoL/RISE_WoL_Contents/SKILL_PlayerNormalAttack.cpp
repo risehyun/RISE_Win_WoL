@@ -71,10 +71,7 @@ void SKILL_PlayerNormalAttack::Update(float _Delta)
 		}
 	}
 
-
-	
-
-	if (0.4f < GetLiveTime())
+	if (0.3f < GetLiveTime())
 	{
 		if (nullptr != Renderer)
 		{

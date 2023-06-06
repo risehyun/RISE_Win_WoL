@@ -12,18 +12,6 @@ PlayActor::~PlayActor()
 {
 }
 
-//void PlayActor::Gravity(float _Delta)
-//{
-//	if (false == IsGravity)
-//	{
-//		return;
-//	}
-//
-//	GravityVector += float4::DOWN * GravityPower * _Delta;
-//
-//	AddPos(GravityVector);
-//}
-
 void PlayActor::CameraFocus()
 {
 	float4 WindowScale = GameEngineWindow::MainWindow.GetScale();
@@ -53,4 +41,12 @@ int PlayActor::GetGroundColor(unsigned int _DefaultColor, float4 _Pos)
 float4 PlayActor::ActorCameraPos()
 {
 	return GetPos() - GetLevel()->GetMainCamera()->GetPos();
+}
+
+void PlayActor::SetInitStat()
+{
+}
+
+void PlayActor::OnDamaged()
+{
 }

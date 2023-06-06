@@ -8,6 +8,8 @@ enum class PlayerState
 	Attack,
 	Skill_ICEBLAST,
 	Dash,
+	Damage,
+	Death,
 	Max, // default
 };
 
@@ -42,25 +44,28 @@ public:
 
 	GameEngineRenderer* MainRenderer = nullptr;
 
+	// 임시로 옮겨둠
+	void OnDamagedStart();
+
 protected:
 	void StateUpdate(float _Delta);
 
 	void IdleStart();
 	void RunStart();
 	void DashStart();
-
 	void AttackStart();
 	void Skill_ICEBLAST_Start();
+
 
 
 
 	void IdleUpdate(float _Delta);
 	void RunUpdate(float _Delta);
 	void DashUpdate(float _Delta);
-
 	void AttackUpdate(float _Delta);
-
 	void Skill_ICEBLAST_Update();
+	void OnDamagedUpdate();
+
 
 	void ChanageState(PlayerState State);
 
@@ -82,6 +87,18 @@ private:
 	void Start() override;
 	void Update(float _Delta) override;
 	void Render(float _Delta) override;
+
+	void SetInitStat() override;
+	void OnDamaged() override;
+
+	// Stat
+	float	m_fDashSpeed = 0.0f;
+	
+	int		m_iMaxMp = 0;
+	int		m_iCurMp = 0;
+	int		m_iTotalGold = 0;
+	int		m_iTotalCrystal = 0;
+
 
 	////////////////////// DebugValue
 	float4 LeftCheck = { -50.0f, 0.0f };

@@ -87,8 +87,6 @@ void Monster_Swordman::Update(float _Delta)
 
 	Dir.Normalize();
 
-
-
 	AddPos(Dir * _Delta * 100.0f);
 
 	StateUpdate(_Delta);
@@ -110,7 +108,6 @@ void Monster_Swordman::Render(float _Delta)
 
 }
 
-
 void Monster_Swordman::IdleStart()
 {
 	MainRenderer->ChangeAnimation("Left_Idle");
@@ -126,11 +123,6 @@ void Monster_Swordman::AttackStart()
 	MainRenderer->ChangeAnimation("Right_ATTACK");
 }
 
-
-
-
-
-
 void Monster_Swordman::IdleUpdate(float _Delta)
 {
 
@@ -143,7 +135,7 @@ void Monster_Swordman::RunUpdate(float _Delta)
 
 void Monster_Swordman::AttackUpdate(float _Delta)
 {
-	if (0.5f < GetLiveTime())
+	if (1.0f < GetLiveTime())
 	{
 		SKILL_KnightAttack* NewAttack = GetLevel()->CreateActor<SKILL_KnightAttack>();
 
@@ -154,6 +146,12 @@ void Monster_Swordman::AttackUpdate(float _Delta)
 		ChanageState(MonsterState::Run);
 		ResetLiveTime();
 	}
+
+	// 플레이어와 충돌할 경우
+
+	
+
+
 }
 
 void Monster_Swordman::StateUpdate(float _Delta)
@@ -181,7 +179,6 @@ void Monster_Swordman::StateUpdate(float _Delta)
 		break;
 	}
 }
-
 
 void Monster_Swordman::ChanageState(MonsterState _State)
 {

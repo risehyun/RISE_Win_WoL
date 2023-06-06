@@ -41,6 +41,29 @@ void Player::Skill_ICEBLAST_Start()
 	ChangeAnimationState("Attack");
 }
 
+void Player::OnDamagedStart()
+{
+	if (false == IsDeath())
+	{
+		// 1. 데미지 처리
+		m_iCurHp -= 10;
+
+
+		
+		// 2. 데미지 애니메이션 처리
+//		ChangeAnimationState("Damage");
+		MainRenderer->ChangeAnimation("Down_DAMAGE");
+		
+		// 3. 데미지 텍스트 렌더링
+
+		int a = 0;
+	}
+
+}
+
+
+
+
 void Player::IdleUpdate(float _Delta)
 {
 	if (true == MainRenderer->IsAnimationEnd())
