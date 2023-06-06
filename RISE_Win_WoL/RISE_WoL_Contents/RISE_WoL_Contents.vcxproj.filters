@@ -35,7 +35,13 @@
     <Filter Include="01.Level\OBJ\01.Player">
       <UniqueIdentifier>{a722b784-6212-4e24-a3e0-2ce321dd1fc8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Level\OBJ\02.Enemy">
+    <Filter Include="02.Skills\Monster">
+      <UniqueIdentifier>{08cd0309-02c5-4506-b7cd-4476a93f40f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Skills\Monster\Knight">
+      <UniqueIdentifier>{14e87151-5228-4361-af67-f8f57173c228}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Level\OBJ\02.Monster">
       <UniqueIdentifier>{e7968141-0845-415b-8e9e-cb0386becb29}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -92,10 +98,13 @@
       <Filter>01.Level\OBJ\01.Player</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
-      <Filter>01.Level\OBJ\02.Enemy</Filter>
+      <Filter>01.Level\OBJ\02.Monster</Filter>
     </ClCompile>
     <ClCompile Include="Monster_Swordman.cpp">
-      <Filter>01.Level\OBJ\02.Enemy</Filter>
+      <Filter>01.Level\OBJ\02.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="SKILL_KnightAttack.cpp">
+      <Filter>02.Skills\Monster\Knight</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -151,10 +160,13 @@
       <Filter>01.Level\OBJ\01.Player</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h">
-      <Filter>01.Level\OBJ\02.Enemy</Filter>
+      <Filter>01.Level\OBJ\02.Monster</Filter>
     </ClInclude>
     <ClInclude Include="Monster_Swordman.h">
-      <Filter>01.Level\OBJ\02.Enemy</Filter>
+      <Filter>01.Level\OBJ\02.Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="SKILL_KnightAttack.h">
+      <Filter>02.Skills\Monster\Knight</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

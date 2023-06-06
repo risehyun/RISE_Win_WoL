@@ -183,22 +183,6 @@ void Player::Start()
 
 void Player::Update(float _Delta)
 {
-	//std::vector<GameEngineCollision*> _Col;
-	//if (true == BodyCollsion->Collision(CollisionOrder::MonsterBody, _Col
-	//	, CollisionType::CirCle // 나를 사각형으로 봐줘
-	//	, CollisionType::CirCle // 상대도 사각형으로 봐줘
-	//))
-	//{
-	//	for (size_t i = 0; i < _Col.size(); i++)
-	//	{
-	//		GameEngineCollision* Collison = _Col[i];
-
-	//		GameEngineActor* Actor = Collison->GetActor();
-
-	//		Actor->Death();
-	//	}
-	//	// 나는 몬스터랑 충돌한거야.
-	//}
 
 	// 디버깅용 모든 몬스터를 없애는 함수 발동
 	if (true == GameEngineInput::IsDown('L'))
@@ -211,12 +195,6 @@ void Player::Update(float _Delta)
 	{
 	//	MainRenderer->SetOrder(-200);
 		GameEngineLevel::CollisionDebugRenderSwitch();
-	}
-
-	// Order 테스트
-	if (true == GameEngineInput::IsDown('U'))
-	{
-	//	MainRenderer->SetOrder(1000);
 	}
 
 	StateUpdate(_Delta);

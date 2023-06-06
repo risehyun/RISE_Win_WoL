@@ -6,6 +6,8 @@ enum class MonsterState
 	Idle,
 	Run,
 	Attack,
+	Damage,
+	Death,
 	Max,
 };
 

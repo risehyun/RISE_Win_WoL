@@ -182,6 +182,7 @@
     <ClInclude Include="PlayLevel.h" />
     <ClInclude Include="PlayUIManager.h" />
     <ClInclude Include="Skill.h" />
+    <ClInclude Include="SKILL_KnightAttack.h" />
     <ClInclude Include="SKILL_PlayerNormalAttack.h" />
     <ClInclude Include="SKILL_PlayerWindBoomerang.h" />
     <ClInclude Include="TitleLevel.h" />
@@ -208,6 +209,7 @@
     <ClCompile Include="PlayLevel.cpp" />
     <ClCompile Include="PlayUIManager.cpp" />
     <ClCompile Include="Skill.cpp" />
+    <ClCompile Include="SKILL_KnightAttack.cpp" />
     <ClCompile Include="SKILL_PlayerNormalAttack.cpp" />
     <ClCompile Include="SKILL_PlayerWindBoomerang.cpp" />
     <ClCompile Include="TitleLevel.cpp" />
