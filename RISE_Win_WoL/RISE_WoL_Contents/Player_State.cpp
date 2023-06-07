@@ -15,6 +15,9 @@
 
 #include "SKILL_PlayerNormalAttack.h"
 #include "SKILL_PlayerWindBoomerang.h"
+#include <GameEngineCore/GameEngineCore.h>
+
+
 
 void Player::IdleStart()
 {
@@ -41,35 +44,20 @@ void Player::Skill_ICEBLAST_Start()
 	ChangeAnimationState("Attack");
 }
 
-void Player::OnDamagedStart()
+void Player::DeathStart()
 {
-	if (false == IsDeath())
-	{
-		// 1. 데미지 처리
-		m_iCurHp -= 10;
-
-
-		
-		// 2. 데미지 애니메이션 처리
-//		ChangeAnimationState("Damage");
-		MainRenderer->ChangeAnimation("Down_DAMAGE");
-		
-		// 3. 데미지 텍스트 렌더링
-
-		int a = 0;
-	}
-
+	BGMPlayer = GameEngineSound::SoundPlay("PLAYER_DIE.mp3");
+	ChangeAnimationState("Death");
 }
 
-
-
+void Player::OnDamagedStart()
+{
+	ChangeAnimationState("Damage");
+}
 
 void Player::IdleUpdate(float _Delta)
 {
-	if (true == MainRenderer->IsAnimationEnd())
-	{
-		++TestValue;
-	}
+
 
 	// 자신의 위치에 해당하는 픽셀의 색상을 체크하기 위해 가져온다.
 	unsigned int Color = GetGroundColor(RGB(255, 255, 255));
@@ -129,7 +117,7 @@ void Player::IdleUpdate(float _Delta)
 			NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
 			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_RIGHT");
 		}
-		
+
 		if (Dir == PlayerDir::Up)
 		{
 			NewAttack->SetDir(float4::UP);
@@ -144,8 +132,8 @@ void Player::IdleUpdate(float _Delta)
 			NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
 			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_DOWN");
 		}
-		
-	
+
+
 		return;
 	}
 
@@ -172,7 +160,7 @@ void Player::IdleUpdate(float _Delta)
 			NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
 			NewAttack->Renderer->ChangeAnimation("ATTACK_WINDBOOMERANG");
 		}
-		
+
 		if (Dir == PlayerDir::Up)
 		{
 			NewAttack->SetDir(float4::UP);
@@ -187,7 +175,7 @@ void Player::IdleUpdate(float _Delta)
 			NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
 			NewAttack->Renderer->ChangeAnimation("ATTACK_WINDBOOMERANG");
 		}
-	
+
 
 		return;
 	}
@@ -343,7 +331,7 @@ void Player::DashUpdate(float _Delta)
 		unsigned int Color = GetGroundColor(RGB(255, 255, 255));
 		if (RGB(255, 255, 255) == Color)
 		{
-			
+
 		}
 
 		else
@@ -454,4 +442,37 @@ void Player::AttackUpdate(float _Delta)
 	}
 
 	return;
+}
+
+void Player::OnDamagedUpdate(float _Delta)
+{
+	DirCheck();
+
+	if (true == IsDeath()) {
+		ChanageState(PlayerState::Death);
+	}
+
+	else if (true == GameEngineInput::IsDown('A')
+		|| true == GameEngineInput::IsDown('W')
+		|| true == GameEngineInput::IsDown('S')
+		|| true == GameEngineInput::IsDown('D'))
+	{
+//		DirCheck();
+		ChanageState(PlayerState::Run);
+		return;
+	}
+
+	if (true == MainRenderer->IsAnimationEnd())
+	{
+		ChanageState(PlayerState::Idle);
+	}
+}
+
+void Player::DeathUpdate(float _Delta)
+{
+	// 추후 페이드아웃 추가
+	if (true == MainRenderer->IsAnimationEnd())
+	{
+		GameEngineCore::ChangeLevel("EndingLevel");
+	}
 }

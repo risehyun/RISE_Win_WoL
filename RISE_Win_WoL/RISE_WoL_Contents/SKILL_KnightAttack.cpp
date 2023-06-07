@@ -40,7 +40,7 @@ void SKILL_KnightAttack::Start()
 	// 中宜端 持失
 	{
 		SkillCollsion = CreateCollision(CollisionOrder::MonsterSkill);
-		SkillCollsion->SetCollisionScale({ 100, 100 });
+		SkillCollsion->SetCollisionScale({ 50, 50 });
 		SkillCollsion->SetCollisionType(CollisionType::CirCle);
 	}
 }

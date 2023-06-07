@@ -56,7 +56,8 @@ void Player::SetInitStat()
 
 void Player::OnDamaged()
 {
-	m_iCurHp -= 10;
+	// 수정필요
+	m_iCurHp -= 250;
 }
 
 void Player::Start()
@@ -86,7 +87,6 @@ void Player::Start()
 			ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("LEFT_COMPLETE.bmp"), 11, 7);
 
 			ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("RIGHT_COMPLETE.bmp"), 11, 7);
-
 		}
 
 		if (false == ResourcesManager::GetInst().IsLoadTexture("Fireball_0.Bmp"))
@@ -126,6 +126,7 @@ void Player::Start()
 			MainRenderer->CreateAnimation("Down_Idle", "FRONT_COMPLETE.bmp", 0, 0, 0.1f, true);
 			MainRenderer->CreateAnimation("Up_Idle", "BACK_COMPLETE.bmp", 0, 0, 0.1f, true);
 
+
 			// RUN
 			MainRenderer->CreateAnimation("Down_Run", "FRONT_COMPLETE.bmp", 12, 14, 0.1f, true);
 			MainRenderer->CreateAnimation("Up_Run", "BACK_COMPLETE.bmp", 12, 14, 0.1f, true);
@@ -148,10 +149,17 @@ void Player::Start()
 
 
 			// DAMAGE
-			MainRenderer->CreateAnimation("Down_DAMAGE", "FRONT_COMPLETE.bmp", 56, 57, 0.05f, false);
-			MainRenderer->CreateAnimation("Up_DAMAGE", "BACK_COMPLETE.bmp", 66, 67, 0.05f, false);
-			MainRenderer->CreateAnimation("Left_DAMAGE", "LEFT_COMPLETE.bmp", 66, 67, 0.05f, false);
-			MainRenderer->CreateAnimation("Right_DAMAGE", "RIGHT_COMPLETE.bmp", 66, 67, 0.05f, false);
+			MainRenderer->CreateAnimation("Down_Damage", "FRONT_COMPLETE.bmp", 56, 57, 0.1f, false);
+			MainRenderer->CreateAnimation("Up_Damage", "BACK_COMPLETE.bmp", 66, 67, 0.1f, false);
+			MainRenderer->CreateAnimation("Left_Damage", "LEFT_COMPLETE.bmp", 66, 67, 0.1f, false);
+			MainRenderer->CreateAnimation("Right_Damage", "RIGHT_COMPLETE.bmp", 66, 67, 0.1f, false);
+
+
+			// DEATH
+			MainRenderer->CreateAnimation("Down_Death", "FRONT_COMPLETE.bmp", 66, 72, 0.1f, false);
+			MainRenderer->CreateAnimation("Up_Death", "FRONT_COMPLETE.bmp", 66, 72, 0.1f, false);
+			MainRenderer->CreateAnimation("Left_Death", "FRONT_COMPLETE.bmp", 66, 72, 0.1f, false);
+			MainRenderer->CreateAnimation("Right_Death", "FRONT_COMPLETE.bmp", 66, 72, 0.1f, false);
 
 		}
 
@@ -174,8 +182,6 @@ void Player::Start()
 
 	float4 WinScale = GameEngineWindow::MainWindow.GetScale();
 
-//	SetPos(WinScale.Half());
-
 	// 레벨별로 캐릭터 시작 위치가 다름
 	// playLevel의 경우 { 1850, 1700 }
 	// bossLevel의 경우 { 1710, 2610 }
@@ -186,6 +192,17 @@ void Player::Start()
 		BodyCollsion = CreateCollision(CollisionOrder::PlayerBody);
 		BodyCollsion->SetCollisionScale({ 100, 100 });
 		BodyCollsion->SetCollisionType(CollisionType::CirCle);
+	}
+
+
+	if (nullptr == GameEngineSound::FindSound("PLAYER_DIE.mp3"))
+	{
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+		FilePath.MoveChild("ContentsResources\\Sound\\");
+
+		GameEngineSound::SoundLoad(FilePath.PlusFilePath("PLAYER_DIE.mp3"));
 	}
 
 }
@@ -205,6 +222,7 @@ void Player::Update(float _Delta)
 		GameEngineLevel::CollisionDebugRenderSwitch();
 	}
 
+
 	std::vector<GameEngineCollision*> _Col;
 	if (true == BodyCollsion->Collision(CollisionOrder::MonsterSkill, _Col
 		, CollisionType::CirCle
@@ -212,7 +230,7 @@ void Player::Update(float _Delta)
 	))
 	{
 
-		
+
 		for (size_t i = 0; i < _Col.size(); i++)
 		{
 			GameEngineCollision* Collison = _Col[i];
@@ -221,10 +239,24 @@ void Player::Update(float _Delta)
 
 			OnDamaged();
 
-			Actor->Death();
+			if (m_iCurHp <= 0)
+			{
+				ChanageState(PlayerState::Death);
+			}
+
+			else
+			{
+				ChanageState(PlayerState::Damage);
+
+				Actor->Death();
+			}
+
 		}
 
 	}
+
+
+
 
 	StateUpdate(_Delta);
 
@@ -249,6 +281,12 @@ void Player::StateUpdate(float _Delta)
 
 	case PlayerState::Skill_ICEBLAST:
 		return AttackUpdate(_Delta);
+
+	case PlayerState::Damage:
+		return OnDamagedUpdate(_Delta);
+
+	case PlayerState::Death:
+		return DeathUpdate(_Delta);
 
 	default:
 		break;
@@ -279,6 +317,14 @@ void Player::ChanageState(PlayerState _State)
 
 		case PlayerState::Dash:
 			DashStart();
+			break;
+
+		case PlayerState::Damage:
+			OnDamagedStart();
+			break;
+
+		case PlayerState::Death:
+			DeathStart();
 			break;
 	
 		default:
@@ -364,9 +410,17 @@ void Player::Render(float _Delta)
 
 	std::string Text = "";
 
-//	Text += "플레이어 테스트 값 : ";
-	Text += std::to_string(m_iCurHp);
-	Text += "/500";
+	if (m_iCurHp < 0)
+	{
+		Text += "0";
+	}
+
+	else
+	{
+		Text += std::to_string(m_iCurHp);
+	}
+
+	Text += "/"+std::to_string(m_iMaxHp);
 
 	HDC dc = GameEngineWindow::MainWindow.GetBackBuffer()->GetImageDC();
 

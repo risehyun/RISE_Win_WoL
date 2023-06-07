@@ -199,6 +199,7 @@ void Monster_Swordman::ChanageState(MonsterState _State)
 			break;
 
 		case MonsterState::Damage:
+
 			break;
 
 		case MonsterState::Death:

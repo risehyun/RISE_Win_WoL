@@ -1,5 +1,6 @@
 #pragma once
 #include "PlayActor.h"
+#include <GameEnginePlatform/GameEngineSound.h>
 
 enum class PlayerState
 {
@@ -55,6 +56,7 @@ protected:
 	void DashStart();
 	void AttackStart();
 	void Skill_ICEBLAST_Start();
+	void DeathStart();
 
 
 
@@ -64,7 +66,8 @@ protected:
 	void DashUpdate(float _Delta);
 	void AttackUpdate(float _Delta);
 	void Skill_ICEBLAST_Update();
-	void OnDamagedUpdate();
+	void OnDamagedUpdate(float _Delta);
+	void DeathUpdate(float _Delta);
 
 
 	void ChanageState(PlayerState State);
@@ -82,6 +85,8 @@ protected:
 	void ChangeAnimationState(const std::string& _StateName);
 
 private:
+	GameEngineSoundPlayer BGMPlayer;
+
 	void LevelStart() override;
 
 	void Start() override;
