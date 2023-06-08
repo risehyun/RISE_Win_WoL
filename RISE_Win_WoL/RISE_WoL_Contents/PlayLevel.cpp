@@ -19,6 +19,7 @@
 
 #include "PlayUIManager.h"
 
+#include "NPC_ITEMSHOP.h"
 
 #include "ContentsEnum.h"
 
@@ -80,6 +81,21 @@ void PlayLevel::Start()
 	NewSpawn->SetPos({ 1850, 1800 });
 
 	NewSpawn->SpawnObject(SpawnType::Player, { 100, 365 });
+
+
+
+
+
+
+
+
+
+
+
+
+	NPC_ITEMSHOP* NewShop = CreateActor<NPC_ITEMSHOP>();
+	NewShop->SetPos({ 670, 1600 });
+
 }
 
 void PlayLevel::Update(float _Delta)

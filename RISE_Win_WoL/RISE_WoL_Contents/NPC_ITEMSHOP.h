@@ -17,5 +17,9 @@ protected:
 private:
 	void Start() override;
 	void Update(float _Delta) override;
+
+	GameEngineRenderer* MainRenderer = nullptr;
+
+	GameEngineRenderer* PotionRenderer = nullptr;
 };
 
