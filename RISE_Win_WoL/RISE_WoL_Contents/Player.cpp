@@ -455,8 +455,42 @@ void Player::Render(float _Delta)
 	SelectObject(dc, hOldFont);
 	DeleteObject(hFont);
 
+	
 
-	std::string Text2 = "00:00";
+
+
+
+	// 게임 러닝 타임 표시 => 추후 따로 함수로 빼도 됨
+	RunningTime += _Delta;
+
+	int RunningTimeMin = static_cast<int>(RunningTime) / 60;
+	int RunningTimeSec = static_cast<int>(RunningTime) % 60;
+
+	std::string RunningTimeText = "";
+
+	if (RunningTimeMin < 10 && RunningTimeSec < 10)
+	{
+		RunningTimeText += "0"+std::to_string(RunningTimeMin);
+		RunningTimeText += " : 0" + std::to_string(RunningTimeSec);
+	}
+
+	else if (RunningTimeMin < 10)
+	{
+		RunningTimeText += "0" + std::to_string(RunningTimeMin);
+		RunningTimeText += " : " + std::to_string(RunningTimeSec);
+	}
+
+	else if (RunningTimeSec < 10)
+	{
+		RunningTimeText += std::to_string(RunningTimeMin);
+		RunningTimeText += " : 0" + std::to_string(RunningTimeSec);
+	}
+
+	else
+	{
+		RunningTimeText += std::to_string(RunningTimeMin);
+		RunningTimeText += " : " + std::to_string(RunningTimeSec);
+	}
 
 
 	HFONT hFont2 = CreateFont(30, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("Lato"));
@@ -464,7 +498,7 @@ void Player::Render(float _Delta)
 	SetTextColor(dc, RGB(255, 255, 255));					// 텍스트 색상 설정
 	SetBkMode(dc, TRANSPARENT);
 
-	TextOutA(dc, 612, 80, Text2.c_str(), static_cast<int>(Text.size()));
+	TextOutA(dc, 612, 80, RunningTimeText.c_str(), static_cast<int>(Text.size()));
 
 
 	SelectObject(dc, hOldFont2);
