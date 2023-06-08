@@ -205,6 +205,16 @@ void Player::Start()
 		GameEngineSound::SoundLoad(FilePath.PlusFilePath("PLAYER_DIE.mp3"));
 	}
 
+	if (nullptr == GameEngineSound::FindSound("PLAYER_HITED.mp3"))
+	{
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+		FilePath.MoveChild("ContentsResources\\Sound\\");
+
+		GameEngineSound::SoundLoad(FilePath.PlusFilePath("PLAYER_HITED.mp3"));
+	}
+
 }
 
 void Player::Update(float _Delta)

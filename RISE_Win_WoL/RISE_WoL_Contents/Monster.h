@@ -1,5 +1,7 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
+//#include <GameEngineCore/GameEngineActor.h>
+#include "PlayActor.h"
+#include <GameEnginePlatform/GameEngineSound.h>
 
 enum class MonsterState
 {
@@ -18,7 +20,7 @@ enum class MonsterDir
 	Max,
 };
 
-class Monster : public GameEngineActor
+class Monster : public PlayActor
 {
 private:
 	static std::list<Monster*> AllMonster;
@@ -40,5 +42,8 @@ protected:
 private:
 	void Start() override;
 	void Update(float _Delta) override;
+
+	void SetInitStat() override;
+	void OnDamaged() override;
 
 };

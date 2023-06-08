@@ -27,14 +27,23 @@ void Monster_Swordman::DirCheck()
 
 void Monster_Swordman::ChangeAnimationState(const std::string& _StateName)
 {
+	std::string AnimationName = "Left_";
+
+	AnimationName += _StateName;
+	CurState = _StateName;
+	MainRenderer->ChangeAnimation(AnimationName);
+
 }
 
 void Monster_Swordman::LevelStart()
 {
+
 }
 
 void Monster_Swordman::Start()
 {
+	SetInitStat();
+
 	if (false == ResourcesManager::GetInst().IsLoadTexture("SWORDMAN_TEST.Bmp"))
 	{
 		GameEnginePath FilePath;
@@ -68,9 +77,33 @@ void Monster_Swordman::Start()
 		MainRenderer->CreateAnimation("Left_ATTACK", "SWORDMAN_LEFT.bmp", 12, 14, 0.1f, false);
 		MainRenderer->CreateAnimation("Right_ATTACK", "SWORDMAN_RIGHT.bmp", 12, 14, 0.1f, false);
 
-	
-		// 시작 애니메이션
-		MainRenderer->ChangeAnimation("Left_Move");
+		// DAMAGE
+		MainRenderer->CreateAnimation("Left_Damage", "SWORDMAN_LEFT.bmp", 18, 19, 0.1f, true);
+		MainRenderer->CreateAnimation("Right_Damage", "SWORDMAN_RIGHT.bmp", 18, 19, 0.1f, true);
+
+		// DEATH
+		MainRenderer->CreateAnimation("Left_Death", "SWORDMAN_LEFT.bmp", 24, 28, 0.1f, true);
+		MainRenderer->CreateAnimation("Right_Death", "SWORDMAN_RIGHT.bmp", 24, 28, 0.1f, true);
+
+		if (nullptr == GameEngineSound::FindSound("ENEMY_DIED.mp3"))
+		{
+			GameEnginePath FilePath;
+			FilePath.SetCurrentPath();
+			FilePath.MoveParentToExistsChild("ContentsResources");
+			FilePath.MoveChild("ContentsResources\\Sound\\");
+
+			GameEngineSound::SoundLoad(FilePath.PlusFilePath("ENEMY_DIED.mp3"));
+		}
+
+		if (nullptr == GameEngineSound::FindSound("ENEMY_HITTED.mp3"))
+		{
+			GameEnginePath FilePath;
+			FilePath.SetCurrentPath();
+			FilePath.MoveParentToExistsChild("ContentsResources");
+			FilePath.MoveChild("ContentsResources\\Sound\\");
+
+			GameEngineSound::SoundLoad(FilePath.PlusFilePath("ENEMY_HITTED.mp3"));
+		}
 
 	}
 
@@ -82,23 +115,59 @@ void Monster_Swordman::Start()
 
 void Monster_Swordman::Update(float _Delta)
 {
-	//// 생성 직후부터 플레이어를 쫓아서 이동
-	float4 Dir = Player::GetMainPlayer()->GetPos() - GetPos();
 
-	Dir.Normalize();
-
-	AddPos(Dir * _Delta * 100.0f);
-
-	StateUpdate(_Delta);
-
-	std::vector<GameEngineCollision*> _ColTest;
-	if (true == BodyCollsion->Collision(CollisionOrder::PlayerBody, _ColTest
-		, CollisionType::CirCle
-		, CollisionType::CirCle
-	))
+	if (!(m_iCurHp <= 0))
 	{
-		ChanageState(MonsterState::Attack);
+
+		// 플레이어와 자신의 몸이 충돌하면 공격 상태로 전환
+		std::vector<GameEngineCollision*> _ColTest;
+		if (true == BodyCollsion->Collision(CollisionOrder::PlayerBody, _ColTest
+			, CollisionType::CirCle
+			, CollisionType::CirCle
+		))
+		{
+			ChanageState(MonsterState::Attack);
+		}
+
+		// 플레이어의 스킬과 자신의 몸이 충돌하면 데미지 상태로 전환
+		std::vector<GameEngineCollision*> _Col;
+		if (true == BodyCollsion->Collision(CollisionOrder::PlayerSkill, _Col
+			, CollisionType::CirCle
+			, CollisionType::CirCle
+		))
+		{
+
+
+			for (size_t i = 0; i < _Col.size(); i++)
+			{
+				GameEngineCollision* Collison = _Col[i];
+
+				GameEngineActor* Actor = Collison->GetActor();
+
+				OnDamaged();
+
+				if (m_iCurHp <= 0)
+				{
+					ChanageState(MonsterState::Death);
+				}
+
+				else
+				{
+					ChanageState(MonsterState::Damage);
+
+					Actor->Death();
+				}
+
+			}
+		}
+
+
+
 	}
+
+		
+
+		StateUpdate(_Delta);
 
 }
 
@@ -108,19 +177,47 @@ void Monster_Swordman::Render(float _Delta)
 
 }
 
+void Monster_Swordman::SetInitStat()
+{
+	// 이후 Define으로 변경
+	m_fMoveSpeed = 100.0f;
+	m_fAttackSpeed = 100.0f;
+	m_iMaxHp = 100;
+	m_iCurHp = m_iMaxHp;
+	m_fAttackRange = 100.0f;
+}
+
+void Monster_Swordman::OnDamaged()
+{
+	// 추휴에 R-value는 공격 주체의 공격력으로 바뀌고 이걸 매개변수로 받아서 처리하는 것으로 수정
+	m_iCurHp -= 25;
+}
+
 void Monster_Swordman::IdleStart()
 {
-	MainRenderer->ChangeAnimation("Left_Idle");
+	ChangeAnimationState("Idle");
 }
 
 void Monster_Swordman::RunStart()
 {
-	MainRenderer->ChangeAnimation("Left_Move");
+	ChangeAnimationState("Move");
 }
 
 void Monster_Swordman::AttackStart()
 {
-	MainRenderer->ChangeAnimation("Right_ATTACK");
+	ChangeAnimationState("Attack");
+}
+
+void Monster_Swordman::DamageStart()
+{
+	EffectPlayer = GameEngineSound::SoundPlay("ENEMY_HITTED.mp3");
+	ChangeAnimationState("Damage");
+}
+
+void Monster_Swordman::DeathStart()
+{
+	EffectPlayer = GameEngineSound::SoundPlay("ENEMY_DIED.mp3");
+	ChangeAnimationState("Death");
 }
 
 void Monster_Swordman::IdleUpdate(float _Delta)
@@ -130,7 +227,11 @@ void Monster_Swordman::IdleUpdate(float _Delta)
 
 void Monster_Swordman::RunUpdate(float _Delta)
 {
+	float4 Dir = Player::GetMainPlayer()->GetPos() - GetPos();
 
+	Dir.Normalize();
+
+	AddPos(Dir * _Delta * 100.0f);
 }
 
 void Monster_Swordman::AttackUpdate(float _Delta)
@@ -146,11 +247,28 @@ void Monster_Swordman::AttackUpdate(float _Delta)
 		ChanageState(MonsterState::Run);
 		ResetLiveTime();
 	}
+}
 
-	// 플레이어와 충돌할 경우
+void Monster_Swordman::DamageUpdate(float _Delta)
+{
+	if (true == IsDeath()) {
+		ChanageState(MonsterState::Death);
+	}
 
-	
+	if (true == MainRenderer->IsAnimationEnd())
+	{
+		ChanageState(MonsterState::Run);
+	}
+}
 
+void Monster_Swordman::DeathUpdate(float _Delta)
+{
+	EffectPlayer.Stop();
+
+	if (true == MainRenderer->IsAnimationEnd())
+	{
+		Death();
+	}
 
 }
 
@@ -171,11 +289,11 @@ void Monster_Swordman::StateUpdate(float _Delta)
 		break;
 
 	case MonsterState::Damage:
-
+		DamageUpdate(_Delta);
 		break;
 
 	case MonsterState::Death:
-
+		DeathUpdate(_Delta);
 		break;
 	}
 }
@@ -199,10 +317,11 @@ void Monster_Swordman::ChanageState(MonsterState _State)
 			break;
 
 		case MonsterState::Damage:
-
+			DamageStart();
 			break;
 
 		case MonsterState::Death:
+			DeathStart();
 			break;
 
 		default:

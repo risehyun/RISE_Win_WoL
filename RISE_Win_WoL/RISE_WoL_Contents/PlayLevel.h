@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
+#include <GameEnginePlatform/GameEngineSound.h>
 
 class PlayLevel : public GameEngineLevel
 {
@@ -24,5 +25,6 @@ private:
 
 	class BackGround* BackGroundPtr;
 	class Player* LevelPlayer = nullptr;
+	GameEngineSoundPlayer BGMPlayer;
 
 };

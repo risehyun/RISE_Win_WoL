@@ -46,12 +46,17 @@ void Player::Skill_ICEBLAST_Start()
 
 void Player::DeathStart()
 {
-	BGMPlayer = GameEngineSound::SoundPlay("PLAYER_DIE.mp3");
+	EffectPlayer = GameEngineSound::SoundPlay("PLAYER_DIE.mp3");
+	EffectPlayer.SetVolume(10.0f);
 	ChangeAnimationState("Death");
 }
 
 void Player::OnDamagedStart()
 {
+
+
+	EffectPlayer = GameEngineSound::SoundPlay("PLAYER_HITED.mp3");
+	EffectPlayer.SetVolume(10.0f);
 	ChangeAnimationState("Damage");
 }
 
@@ -473,6 +478,7 @@ void Player::DeathUpdate(float _Delta)
 	// 추후 페이드아웃 추가
 	if (true == MainRenderer->IsAnimationEnd())
 	{
+		EffectPlayer.Stop();
 		GameEngineCore::ChangeLevel("EndingLevel");
 	}
 }

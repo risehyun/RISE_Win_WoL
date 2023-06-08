@@ -14,7 +14,7 @@ public:
 		Speed = _Speed;
 	}
 
-	GameEngineRenderer* SkillRenderer;
+	GameEngineRenderer* SkillRenderer = nullptr;
 	GameEngineCollision* SkillCollsion = nullptr;
 
 private:

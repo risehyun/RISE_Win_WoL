@@ -44,7 +44,7 @@ void SKILL_PlayerNormalAttack::Start()
 
 	// 中宜端 持失
 	{
-		BodyCollsion = CreateCollision(CollisionOrder::PlayerBody);
+		BodyCollsion = CreateCollision(CollisionOrder::PlayerSkill);
 		BodyCollsion->SetCollisionScale({ 100, 100 });
 		BodyCollsion->SetCollisionType(CollisionType::CirCle);
 	}
@@ -52,24 +52,6 @@ void SKILL_PlayerNormalAttack::Start()
 
 void SKILL_PlayerNormalAttack::Update(float _Delta)
 {
-	if (nullptr != BodyCollsion)
-	{
-		std::vector<GameEngineCollision*> _Col;
-		if (true == BodyCollsion->Collision(CollisionOrder::MonsterBody, _Col
-			, CollisionType::CirCle
-			, CollisionType::CirCle
-		))
-		{
-			for (size_t i = 0; i < _Col.size(); i++)
-			{
-				GameEngineCollision* Collison = _Col[i];
-
-				GameEngineActor* Actor = Collison->GetActor();
-
-				Actor->Death();
-			}
-		}
-	}
 
 	if (0.3f < GetLiveTime())
 	{

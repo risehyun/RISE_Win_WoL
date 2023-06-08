@@ -85,7 +85,7 @@ protected:
 	void ChangeAnimationState(const std::string& _StateName);
 
 private:
-	GameEngineSoundPlayer BGMPlayer;
+	GameEngineSoundPlayer EffectPlayer;
 
 	void LevelStart() override;
 

@@ -17,7 +17,7 @@ public:
 		Speed = _Speed;
 	}
 
-	GameEngineRenderer* Renderer;
+	GameEngineRenderer* Renderer = nullptr;
 	GameEngineCollision* BodyCollsion = nullptr;
 
 private:

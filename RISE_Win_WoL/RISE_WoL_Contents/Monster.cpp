@@ -33,6 +33,16 @@ void Monster::Update(float _Delta)
 
 }
 
+void Monster::SetInitStat()
+{
+
+}
+
+void Monster::OnDamaged()
+{
+
+}
+
 void Monster::Start()
 {
 

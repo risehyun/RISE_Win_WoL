@@ -42,11 +42,16 @@ void PlayLevel::Start()
 		GameEnginePath FolderPath = FilePath;
 		FilePath.MoveChild("ContentsResources\\Texture\\");
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("stage1_Col.bmp"));
+	}
 
+	if (nullptr == GameEngineSound::FindSound("Earth.wav"))
+	{
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+		FilePath.MoveChild("ContentsResources\\Sound\\");
 
-// 애니메이션을 사용하는 경우 중복해서 로드하면 오류 발생함
-//		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("SPAWN_PLAYER.bmp"));
-
+		GameEngineSound::SoundLoad(FilePath.PlusFilePath("Earth.wav"));
 	}
 
 	BackGroundPtr = CreateActor<BackGround>();
@@ -111,9 +116,7 @@ void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	LevelPlayer->SetGroundTexture("stage1_Col.bmp");
 
-	//float4 WinScale = GameEngineWindow::MainWindow.GetScale();
-
-	//GetMainCamera()->SetPos(LevelPlayer->GetPos() - WinScale.Half());
+	BGMPlayer = GameEngineSound::SoundPlay("Earth.wav");
 
 }
 

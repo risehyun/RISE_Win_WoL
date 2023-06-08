@@ -37,7 +37,7 @@ void SKILL_PlayerWindBoomerang::Start()
 
 	// 中宜端 持失
 	{
-		BodyCollsion = CreateCollision(CollisionOrder::PlayerBody);
+		BodyCollsion = CreateCollision(CollisionOrder::PlayerSkill);
 		BodyCollsion->SetCollisionScale({ 100, 100 });
 		BodyCollsion->SetCollisionType(CollisionType::CirCle);
 	}

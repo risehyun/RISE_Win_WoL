@@ -72,6 +72,7 @@ void Effect_Spawn::Update(float _Delta)
 			{
 				Monster* NewMonster = GetLevel()->CreateActor<Monster_Swordman>();
 				NewMonster->SetPos({ 1800, 1600 });
+		
 			}
 
 			this->Death();

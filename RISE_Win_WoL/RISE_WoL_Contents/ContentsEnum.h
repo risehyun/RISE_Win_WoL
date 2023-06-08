@@ -18,6 +18,7 @@ enum class CollisionOrder
 	Map,
 	Potal,
 	PlayerBody,
+	PlayerSkill,
 	MonsterBody,
 	MonsterSkill,
 };

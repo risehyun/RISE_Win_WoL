@@ -20,10 +20,15 @@ protected:
 	void IdleStart();
 	void RunStart();
 	void AttackStart();
+	void DamageStart();
+	void DeathStart();
 
 	void IdleUpdate(float _Delta);
 	void RunUpdate(float _Delta);
 	void AttackUpdate(float _Delta);
+	void DamageUpdate(float _Delta);
+	void DeathUpdate(float _Delta);
+
 
 	void ChanageState(MonsterState State);
 
@@ -38,11 +43,19 @@ protected:
 	void ChangeAnimationState(const std::string& _StateName);
 
 private:
+	GameEngineSoundPlayer EffectPlayer;
+
 	void LevelStart() override;
 
 	void Start() override;
 	void Update(float _Delta) override;
 	void Render(float _Delta) override;
+
+
+
+	void SetInitStat() override;
+	void OnDamaged() override;
+
 
 	////////////////////// DebugValue
 	float4 LeftCheck = { -50.0f, 0.0f };
