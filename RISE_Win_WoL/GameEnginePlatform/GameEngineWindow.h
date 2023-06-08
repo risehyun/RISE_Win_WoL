@@ -61,6 +61,8 @@ public:
 
 	void DoubleBuffering();
 
+	void CursorOff();
+
 	static bool IsFocus()
 	{
 		return IsFocusValue;

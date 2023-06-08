@@ -3,6 +3,7 @@
 #include "ContentsEnum.h"
 
 #include <GameEngineCore/GameEngineRenderer.h>
+#include <GameEnginePlatform/GameEngineWindow.h>
 
 PlayUIManager* PlayUIManager::UI = nullptr;
 
@@ -40,4 +41,19 @@ void PlayUIManager::Start()
 		Ptr->SetRenderScale({ 118, 10 });
 		Ptr->SetTexture("UI_MANABAR.bmp");
 	}
+
+
+
+	
+		MousePtr = CreateUIRenderer("UI_MOUSE.bmp", RenderOrder::PlayUI);
+		MousePtr->SetRenderScale({ 44, 44 });
+		MousePtr->SetTexture("UI_MOUSE.bmp");
+
+
+}
+
+void PlayUIManager::Update(float _Delta)
+{
+	float4 t = GameEngineWindow::MainWindow.GetMousePos();
+	MousePtr->SetRenderPos(t);
 }

@@ -19,7 +19,8 @@ public:
 
 protected:
 	void Start() override;
+	void Update(float _Delta) override;
 
 private:
-
+	GameEngineRenderer* MousePtr = nullptr;
 };

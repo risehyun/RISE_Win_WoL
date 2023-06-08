@@ -1,10 +1,8 @@
 #pragma once
 #include "Skill.h"
 
-class SKILL_PlayerWindBoomerang : public Skill
+class SKILL_EarthenAegis : public Skill
 {
-
-public:
 	void SetDir(const float4& _Dir)
 	{
 		Dir = _Dir;
@@ -26,3 +24,4 @@ private:
 	void Update(float _Delta) override;
 
 };
+

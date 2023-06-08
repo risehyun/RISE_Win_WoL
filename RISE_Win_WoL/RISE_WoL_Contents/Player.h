@@ -115,4 +115,11 @@ private:
 
 
 	float RunningTime = 0.0f;
+
+
+
+
+
+
+	float fRadian = 0.0f;
 };

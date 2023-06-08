@@ -34,6 +34,10 @@ PlayLevel::~PlayLevel()
 
 void PlayLevel::Start()
 {
+
+	GameEngineWindow::MainWindow.CursorOff();
+
+
 	if (false == ResourcesManager::GetInst().IsLoadTexture("stage1_Col.Bmp"))
 	{
 		GameEnginePath FilePath;

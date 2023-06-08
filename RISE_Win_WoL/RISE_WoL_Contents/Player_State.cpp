@@ -144,6 +144,14 @@ void Player::IdleUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsDown(VK_RBUTTON))
 	{
+
+
+
+
+
+
+
+
 		float4 MovePos = float4::ZERO;
 
 		ChanageState(PlayerState::Attack);
@@ -233,7 +241,7 @@ void Player::RunUpdate(float _Delta)
 
 	DirCheck();
 
-	float Speed = 200.0f;
+	float Speed = 400.0f;
 
 	float4 MovePos = float4::ZERO;
 	float4 CheckPos = float4::ZERO;
@@ -283,6 +291,11 @@ void Player::RunUpdate(float _Delta)
 		ChanageState(PlayerState::Attack);
 
 
+		
+
+
+
+
 		SKILL_PlayerNormalAttack* NewAttack = GetLevel()->CreateActor<SKILL_PlayerNormalAttack>();
 
 		DirCheck();
@@ -315,8 +328,6 @@ void Player::RunUpdate(float _Delta)
 			NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
 			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_DOWN");
 		}
-
-
 
 		return;
 	}
@@ -364,7 +375,7 @@ void Player::DashUpdate(float _Delta)
 
 	DirCheck();
 
-	float Speed = 400.0f;
+	float Speed = 500.0f;
 
 	float4 MovePos = float4::ZERO;
 	float4 CheckPos = float4::ZERO;
@@ -396,10 +407,6 @@ void Player::DashUpdate(float _Delta)
 		CheckPos = { 15.0f, 30.0f };
 		MovePos = { 0.0f, Speed * _Delta };
 	}
-
-	//AddPos(MovePos);
-	//GetLevel()->GetMainCamera()->AddPos(MovePos);
-
 
 	unsigned int Color = GetGroundColor(RGB(255, 255, 255), CheckPos);
 	if (Color == RGB(255, 255, 255))
@@ -462,7 +469,7 @@ void Player::OnDamagedUpdate(float _Delta)
 		|| true == GameEngineInput::IsDown('S')
 		|| true == GameEngineInput::IsDown('D'))
 	{
-//		DirCheck();
+		//		DirCheck();
 		ChanageState(PlayerState::Run);
 		return;
 	}

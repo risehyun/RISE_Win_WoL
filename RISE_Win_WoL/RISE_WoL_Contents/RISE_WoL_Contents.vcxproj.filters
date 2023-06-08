@@ -113,6 +113,9 @@
     <ClCompile Include="ContentCore.cpp">
       <Filter>ETC</Filter>
     </ClCompile>
+    <ClCompile Include="SKILL_EarthenAegis.cpp">
+      <Filter>02.Skills\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -178,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="ContentCore.h">
       <Filter>ETC</Filter>
+    </ClInclude>
+    <ClInclude Include="SKILL_EarthenAegis.h">
+      <Filter>02.Skills\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

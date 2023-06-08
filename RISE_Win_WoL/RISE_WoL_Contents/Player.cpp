@@ -1,5 +1,4 @@
 #include "Player.h"
-
 #pragma region Headers
 
 #include "ContentsEnum.h"
@@ -111,6 +110,8 @@ void Player::Start()
 			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_SKILLBAR.bmp"));
 
 			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_MANABAR.bmp"));
+
+			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_MOUSE.bmp"));
 		}
 
 #pragma region 애니메이션 생성
@@ -444,12 +445,9 @@ void Player::Render(float _Delta)
 	TextOutA(dc, 150, 20, Text.c_str(), static_cast<int>(Text.size()));
 
 
-
-
-
 	std::string GoldText = "000";
 
-	TextOutA(dc, 654, 724, GoldText.c_str(), static_cast<int>(Text.size()));
+	TextOutA(dc, 654, 724, GoldText.c_str(), static_cast<int>(GoldText.size()));
 
 	//// 텍스트 출력
 	SelectObject(dc, hOldFont);
@@ -533,4 +531,5 @@ void Player::Render(float _Delta)
 	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
 }
+
 
