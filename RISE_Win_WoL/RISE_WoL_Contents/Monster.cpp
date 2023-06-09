@@ -38,7 +38,7 @@ void Monster::SetInitStat()
 
 }
 
-void Monster::OnDamaged()
+void Monster::OnDamaged(int _iAttackPower)
 {
 
 }

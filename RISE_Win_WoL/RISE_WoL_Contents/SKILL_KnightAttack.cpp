@@ -43,6 +43,9 @@ void SKILL_KnightAttack::Start()
 		SkillCollsion->SetCollisionScale({ 50, 50 });
 		SkillCollsion->SetCollisionType(CollisionType::CirCle);
 	}
+
+
+	m_iAttackPower = 10;
 }
 
 void SKILL_KnightAttack::Update(float _Delta)

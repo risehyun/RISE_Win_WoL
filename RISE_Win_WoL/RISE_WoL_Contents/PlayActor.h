@@ -22,15 +22,17 @@ public:
 	float4 ActorCameraPos();
 
 protected:
-	float	m_fMoveSpeed = 0.0f;
-	float	m_fAttackSpeed = 0.0f;
-	float	m_fAttackRange = 0.0f;
-	int		m_iMaxHp = 0;
-	int		m_iCurHp = 0;
+	//float	m_fMoveSpeed = 0.0f;
+	//float	m_fAttackSpeed = 0.0f;
+	//float	m_fAttackRange = 0.0f;
+
+	//int		m_iAttackPower = 0;
+	//int		m_iMaxHp = 0;
+	//int		m_iCurHp = 0;
 
 	virtual void SetInitStat();
 
-	virtual void OnDamaged();
+	virtual void OnDamaged(int _iAttackPower);
 
 private:
 	class GameEngineWindowTexture* GroundTexture = nullptr;

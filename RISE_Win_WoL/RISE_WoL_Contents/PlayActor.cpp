@@ -47,6 +47,6 @@ void PlayActor::SetInitStat()
 {
 }
 
-void PlayActor::OnDamaged()
+void PlayActor::OnDamaged(int _iAttackPower)
 {
 }

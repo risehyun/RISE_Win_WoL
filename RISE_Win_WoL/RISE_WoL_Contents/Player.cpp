@@ -53,16 +53,20 @@ void Player::SetInitStat()
 	m_iTotalCrystal = 0;
 }
 
-void Player::OnDamaged()
+void Player::OnDamaged(int _iAttackPower)
 {
 	// 수정필요
-	m_iCurHp -= 250;
+	m_iCurHp -= _iAttackPower;
+	
+	int a = m_iCurHp;
 }
 
 void Player::Start()
 {
 
 	SetInitStat();
+
+	int a = m_iMaxHp;
 
 	Dir = PlayerDir::Down;
 
@@ -248,7 +252,7 @@ void Player::Update(float _Delta)
 
 			GameEngineActor* Actor = Collison->GetActor();
 
-			OnDamaged();
+			OnDamaged(Actor->GetAttackPower());
 
 			if (m_iCurHp <= 0)
 			{

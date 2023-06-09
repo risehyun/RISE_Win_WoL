@@ -48,6 +48,9 @@ void SKILL_PlayerNormalAttack::Start()
 		BodyCollsion->SetCollisionScale({ 100, 100 });
 		BodyCollsion->SetCollisionType(CollisionType::CirCle);
 	}
+
+	// 추후 define으로 이동
+	m_iAttackPower = 10;
 }
 
 void SKILL_PlayerNormalAttack::Update(float _Delta)

@@ -36,6 +36,11 @@ public:
 		return Pos;
 	}
 
+	int GetAttackPower() const
+	{
+		return m_iAttackPower;
+	}
+
 	// ÀÌ¸§ÀÌ ¾ø´Â ºó ·»´õ·¯¸¦ ¸¸µì´Ï´Ù.
 	template<typename EnumType>
 	GameEngineRenderer* CreateRenderer(EnumType _Order)
@@ -94,6 +99,16 @@ protected:
 	virtual void LevelStart() {}
 	virtual void LevelEnd() {}
 
+
+
+	float	m_fMoveSpeed = 0.0f;
+	float	m_fAttackSpeed = 0.0f;
+	float	m_fAttackRange = 0.0f;
+
+	int		m_iAttackPower = 0;
+	int		m_iMaxHp = 0;
+	int		m_iCurHp = 0;
+
 private:
 	GameEngineLevel* Level;
 
@@ -102,6 +117,14 @@ private:
 
 	std::list<GameEngineRenderer*> AllRenderer;
 	std::list<GameEngineCollision*> AllCollision;
+
+
+
+
+
+
+
+
 
 
 	void ActorRelease();

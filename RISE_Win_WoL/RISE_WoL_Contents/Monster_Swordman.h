@@ -13,6 +13,7 @@ public:
 	Monster_Swordman& operator=(Monster_Swordman&& _Other) noexcept = delete;
 
 	GameEngineRenderer* MainRenderer = nullptr;
+	GameEngineRenderer* DamageRenderer = nullptr;
 
 protected:
 	void StateUpdate(float _Delta);
@@ -54,7 +55,7 @@ private:
 
 
 	void SetInitStat() override;
-	void OnDamaged() override;
+	void OnDamaged(int _iAttackPower) override;
 
 
 	////////////////////// DebugValue
@@ -62,6 +63,8 @@ private:
 	float4 RightCheck = { 50.0f, 0.0f };
 	float4 UpCheck = { 0.0f, -50.0f };
 	float4 DownCheck = { 0.0f, 50.0f };
+
+	float fDamageRendererDuration = 0;
 
 };
 

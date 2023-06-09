@@ -44,6 +44,7 @@ private:
 	void Update(float _Delta) override;
 
 	void SetInitStat() override;
-	void OnDamaged() override;
+	void OnDamaged(int _iAttackPower) override;
+
 
 };

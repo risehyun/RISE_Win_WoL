@@ -144,7 +144,7 @@ void Monster_Swordman::Update(float _Delta)
 
 				GameEngineActor* Actor = Collison->GetActor();
 
-				OnDamaged();
+				OnDamaged(Actor->GetAttackPower());
 
 				if (m_iCurHp <= 0)
 				{
@@ -165,14 +165,19 @@ void Monster_Swordman::Update(float _Delta)
 
 	}
 
-		
 
-		StateUpdate(_Delta);
+
+	StateUpdate(_Delta);
+
+
+
+
 
 }
 
 void Monster_Swordman::Render(float _Delta)
 {
+
 
 
 }
@@ -187,10 +192,33 @@ void Monster_Swordman::SetInitStat()
 	m_fAttackRange = 100.0f;
 }
 
-void Monster_Swordman::OnDamaged()
+void Monster_Swordman::OnDamaged(int _AttackPower)
 {
 	// 추휴에 R-value는 공격 주체의 공격력으로 바뀌고 이걸 매개변수로 받아서 처리하는 것으로 수정
-	m_iCurHp -= 25;
+	m_iCurHp -= _AttackPower;
+
+	if (DamageRenderer == nullptr)
+	{
+		DamageRenderer = CreateRenderer(RenderOrder::Play);
+		DamageRenderer->SetRenderPos({ 0, -100 });
+		DamageRenderer->SetRenderScale({ 200, 40 });
+	}
+
+	DamageRenderer->SetText(std::to_string(_AttackPower), 20);
+	DamageRenderer->On();
+	//if (DamageRenderer != nullptr)
+	//{
+
+	//	fDamageRendererDuration += _Delta;
+
+	//	if (0.3f < fDamageRendererDuration)
+	//	{
+
+	//		DamageRenderer->SetText("", 20);
+
+	//	}
+	//}
+
 }
 
 void Monster_Swordman::IdleStart()
@@ -257,8 +285,18 @@ void Monster_Swordman::DamageUpdate(float _Delta)
 
 	if (true == MainRenderer->IsAnimationEnd())
 	{
+		DamageRenderer->Off();
 		ChanageState(MonsterState::Run);
 	}
+
+	//fDamageRendererDuration += _Delta;
+	//float fT = fDamageRendererDuration / 0.6f;
+
+	//if (DamageRenderer != nullptr && fT >= 1.f) {
+	//	DamageRenderer->Off();
+	//	return;
+	//}
+
 }
 
 void Monster_Swordman::DeathUpdate(float _Delta)

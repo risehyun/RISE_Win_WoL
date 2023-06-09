@@ -94,7 +94,7 @@ private:
 	void Render(float _Delta) override;
 
 	void SetInitStat() override;
-	void OnDamaged() override;
+	void OnDamaged(int _iAttackPower) override;
 
 	// Stat
 	float	m_fDashSpeed = 0.0f;

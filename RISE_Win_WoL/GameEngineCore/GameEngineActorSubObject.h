@@ -2,6 +2,7 @@
 #include "GameEngineObject.h"
 
 class GameEngineActor;
+
 class GameEngineActorSubObject : public GameEngineObject
 {
 	friend class GameEngineLevel;
