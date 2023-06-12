@@ -119,13 +119,5 @@ private:
 	std::list<GameEngineCollision*> AllCollision;
 
 
-
-
-
-
-
-
-
-
 	void ActorRelease();
 };

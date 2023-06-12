@@ -16,6 +16,8 @@
 #include "Monster.h"
 #include "Monster_Swordman.h"
 
+#include "UI_KeyboardF.h"
+
 #include <GameEnginePlatform/GameEngineWindow.h>
 
 BossSpawner::BossSpawner()
@@ -39,8 +41,6 @@ void BossSpawner::Start()
 		FilePath.MoveChild("ContentsResources\\Texture\\");
 
 		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("MiniBossActivationCircle.bmp"), 8, 8);
-
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("F.bmp"));
 
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("PRISON_HOR.bmp"));
 
@@ -69,13 +69,14 @@ void BossSpawner::Start()
 	Collsion_Altar->SetCollisionType(CollisionType::Rect);
 	Collsion_Altar->SetCollisionPos({ 1850, 1550 });
 
-	InputRenderer = CreateRenderer();
-	InputRenderer->SetRenderScale({ 32, 32 });
-	InputRenderer->SetTexture("F.bmp");
-	InputRenderer->SetRenderPos({ 1850, 1660 });
 
-	InputRenderer->Off();
+	// 스포너가 아예 멤버로 가지고 있도록 한다
+	m_InteractUI = GetLevel()->CreateActor<UI_KeyboardF>();
+	m_InteractUI->SetPos({ 1850, 1660 });
+	m_InteractUI->GetMainRenderer()->Off();
 
+
+	// 벡터로 만들어서 한번에 렌더링하고 해제하도록 수정
 	Renderer_FenceUp = CreateRenderer();
 	Renderer_FenceUp->SetRenderScale({ 200, 165 });
 	Renderer_FenceUp->SetTexture("PRISON_HOR.bmp");
@@ -134,7 +135,7 @@ void BossSpawner::Update(float _Delta)
 		, CollisionType::CirCle
 	))
 	{
-		InputRenderer->On();
+		m_InteractUI->GetMainRenderer()->On();
 
 		if (true == GameEngineInput::IsDown('F'))
 		{
@@ -147,7 +148,7 @@ void BossSpawner::Update(float _Delta)
 			Renderer_Altar->Death();
 			Collsion_Altar->Death();
 
-			InputRenderer->Off();
+			m_InteractUI->Off();
 
 			Renderer_FenceUp->On();
 			Renderer_FenceDown->On();
@@ -168,7 +169,7 @@ void BossSpawner::Update(float _Delta)
 
 	else
 	{
-		InputRenderer->Off();
+		m_InteractUI->GetMainRenderer()->Off();
 	}
 
 	if (true == Collsion_FenceUp->Collision(CollisionOrder::PlayerBody, _Col

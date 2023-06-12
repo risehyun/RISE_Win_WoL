@@ -94,7 +94,7 @@ void PlayLevel::Start()
 
 
 	NPC_ITEMSHOP* NewShop = CreateActor<NPC_ITEMSHOP>();
-	NewShop->SetPos({ 670, 1600 });
+	NewShop->SetPos({ 700, 1600 });
 
 }
 

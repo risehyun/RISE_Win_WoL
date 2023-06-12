@@ -47,6 +47,9 @@
     <Filter Include="01.Level\OBJ\00.PlayActor">
       <UniqueIdentifier>{7ca2b6ec-111a-4ca5-8532-beb453996ac8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Level\OBJ\03.Item">
+      <UniqueIdentifier>{015750a9-3adb-45d6-866d-48063242afb0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingLevel.cpp">
@@ -116,6 +119,12 @@
     <ClCompile Include="SKILL_EarthenAegis.cpp">
       <Filter>02.Skills\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_KeyboardF.cpp">
+      <Filter>03.UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -184,6 +193,12 @@
     </ClInclude>
     <ClInclude Include="SKILL_EarthenAegis.h">
       <Filter>02.Skills\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_KeyboardF.h">
+      <Filter>03.UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
