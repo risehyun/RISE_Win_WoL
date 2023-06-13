@@ -20,6 +20,7 @@
 #include "PlayUIManager.h"
 
 #include "NPC_ITEMSHOP.h"
+#include "NPC_ArcanaShop.h"
 
 #include "ContentsEnum.h"
 
@@ -84,14 +85,8 @@ void PlayLevel::Start()
 
 
 
-
-
-
-
-
-
-
-
+	NPC_ArcanaShop* NewArcanaShop = CreateActor<NPC_ArcanaShop>();
+	NewArcanaShop->SetPos({ 3000, 1600 });
 
 	NPC_ITEMSHOP* NewShop = CreateActor<NPC_ITEMSHOP>();
 	NewShop->SetPos({ 700, 1600 });

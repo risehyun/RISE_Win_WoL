@@ -12,7 +12,7 @@ public:
 	Item(Item&& _Other) noexcept = delete;
 	Item& operator=(const Item& _Other) = delete;
 	Item& operator=(Item&& _Other) noexcept = delete;
-	UI_KeyboardF* m_InteractUI;
+	UI_KeyboardF* m_InteractUI = nullptr;
 
 	GameEngineRenderer* GetMainRenderer()
 	{

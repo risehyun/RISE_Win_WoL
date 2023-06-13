@@ -134,6 +134,7 @@ void GameEngineWindow::MyRegisterClass(HINSTANCE hInstance)
 	wcex.hIcon = nullptr;
 //	wcex.hCursor = LoadCursor(hInstance, MAKEINTRESOURCE(IDC_CURSOR1));
 	wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
+
 	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 2);
 	wcex.lpszMenuName = nullptr;
 	wcex.lpszClassName = "DefaultWindow";

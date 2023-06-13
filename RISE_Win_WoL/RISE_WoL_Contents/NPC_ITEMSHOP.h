@@ -19,7 +19,5 @@ private:
 	void Update(float _Delta) override;
 
 	GameEngineRenderer* MainRenderer = nullptr;
-
-	GameEngineRenderer* PotionRenderer = nullptr;
 };
 

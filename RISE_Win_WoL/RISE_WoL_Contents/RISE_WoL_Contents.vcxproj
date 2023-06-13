@@ -162,6 +162,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ARCANA_EarthenAegis.h" />
+    <ClInclude Include="ARCANA_SnowflakeChakrams.h" />
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="BossLevel.h" />
     <ClInclude Include="BossSpawner.h" />
@@ -183,6 +185,8 @@
     <ClInclude Include="ITEM_VampiresEyeglasses.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Monster_Swordman.h" />
+    <ClInclude Include="NPC_ArcanaShop.h" />
+    <ClInclude Include="NPC_Collector.h" />
     <ClInclude Include="NPC_ITEMSHOP.h" />
     <ClInclude Include="PlayActor.h" />
     <ClInclude Include="Player.h" />
@@ -198,6 +202,8 @@
     <ClInclude Include="UI_KeyboardF.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ARCANA_EarthenAegis.cpp" />
+    <ClCompile Include="ARCANA_SnowflakeChakrams.cpp" />
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="BossLevel.cpp" />
     <ClCompile Include="BossSpawner.cpp" />
@@ -218,6 +224,8 @@
     <ClCompile Include="ITEM_VampiresEyeglasses.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Monster_Swordman.cpp" />
+    <ClCompile Include="NPC_ArcanaShop.cpp" />
+    <ClCompile Include="NPC_Collector.cpp" />
     <ClCompile Include="NPC_ITEMSHOP.cpp" />
     <ClCompile Include="PlayActor.cpp" />
     <ClCompile Include="Player.cpp" />

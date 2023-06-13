@@ -43,13 +43,6 @@ void NPC_ITEMSHOP::Start()
 		
 	MainRenderer->SetRenderScale({ 100, 150 });
 
-
-	//PotionRenderer = CreateRenderer("ITEM_POTION.bmp", RenderOrder::BackGround);
-
-	//PotionRenderer->SetRenderScale({ 80, 120 });
-
-	//PotionRenderer->SetRenderPos({ -255, -35 });
-
 	{
 		GameEngineRenderer* Ptr = CreateRenderer("GROUND_ITEMSHOP.bmp", RenderOrder::BackGround);
 

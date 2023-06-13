@@ -50,6 +50,12 @@
     <Filter Include="01.Level\OBJ\03.Item">
       <UniqueIdentifier>{015750a9-3adb-45d6-866d-48063242afb0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Level\OBJ\04.Arcana">
+      <UniqueIdentifier>{a02fcf45-c752-4ff7-a181-407f7e021c22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Level\OBJ\03.Item\Relics">
+      <UniqueIdentifier>{bd97f36e-387e-4c94-abfa-7b020729a27e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingLevel.cpp">
@@ -119,28 +125,42 @@
     <ClCompile Include="SKILL_EarthenAegis.cpp">
       <Filter>02.Skills\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>01.Level\OBJ\03.Item</Filter>
-    </ClCompile>
     <ClCompile Include="UI_KeyboardF.cpp">
       <Filter>03.UI</Filter>
     </ClCompile>
-    <ClCompile Include="ITEM_AmuletofSundering.cpp">
-      <Filter>01.Level\OBJ\03.Item</Filter>
+    <ClCompile Include="NPC_ArcanaShop.cpp">
+      <Filter>01.Level\OBJ\NPC</Filter>
     </ClCompile>
-    <ClCompile Include="ITEM_GiantsHeart.cpp">
-      <Filter>01.Level\OBJ\03.Item</Filter>
+    <ClCompile Include="ITEM_AmuletofSundering.cpp">
+      <Filter>01.Level\OBJ\03.Item\Relics</Filter>
     </ClCompile>
     <ClCompile Include="ITEM_AnalyticalMonocle.cpp">
-      <Filter>01.Level\OBJ\03.Item</Filter>
+      <Filter>01.Level\OBJ\03.Item\Relics</Filter>
     </ClCompile>
     <ClCompile Include="ITEM_DaggerofMidas.cpp">
-      <Filter>01.Level\OBJ\03.Item</Filter>
+      <Filter>01.Level\OBJ\03.Item\Relics</Filter>
+    </ClCompile>
+    <ClCompile Include="ITEM_GiantsHeart.cpp">
+      <Filter>01.Level\OBJ\03.Item\Relics</Filter>
     </ClCompile>
     <ClCompile Include="ITEM_VampiresEyeglasses.cpp">
+      <Filter>01.Level\OBJ\03.Item\Relics</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
       <Filter>01.Level\OBJ\03.Item</Filter>
     </ClCompile>
-    <ClCompile Include="ITEM_Potion.cpp" />
+    <ClCompile Include="ITEM_Potion.cpp">
+      <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ARCANA_EarthenAegis.cpp">
+      <Filter>01.Level\OBJ\04.Arcana</Filter>
+    </ClCompile>
+    <ClCompile Include="ARCANA_SnowflakeChakrams.cpp">
+      <Filter>01.Level\OBJ\04.Arcana</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC_Collector.cpp">
+      <Filter>01.Level\OBJ\NPC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -210,27 +230,41 @@
     <ClInclude Include="SKILL_EarthenAegis.h">
       <Filter>02.Skills\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>01.Level\OBJ\03.Item</Filter>
-    </ClInclude>
     <ClInclude Include="UI_KeyboardF.h">
       <Filter>03.UI</Filter>
     </ClInclude>
-    <ClInclude Include="ITEM_AmuletofSundering.h">
-      <Filter>01.Level\OBJ\03.Item</Filter>
+    <ClInclude Include="NPC_ArcanaShop.h">
+      <Filter>01.Level\OBJ\NPC</Filter>
     </ClInclude>
-    <ClInclude Include="ITEM_GiantsHeart.h">
-      <Filter>01.Level\OBJ\03.Item</Filter>
+    <ClInclude Include="ITEM_AmuletofSundering.h">
+      <Filter>01.Level\OBJ\03.Item\Relics</Filter>
     </ClInclude>
     <ClInclude Include="ITEM_AnalyticalMonocle.h">
-      <Filter>01.Level\OBJ\03.Item</Filter>
+      <Filter>01.Level\OBJ\03.Item\Relics</Filter>
     </ClInclude>
     <ClInclude Include="ITEM_DaggerofMidas.h">
-      <Filter>01.Level\OBJ\03.Item</Filter>
+      <Filter>01.Level\OBJ\03.Item\Relics</Filter>
+    </ClInclude>
+    <ClInclude Include="ITEM_GiantsHeart.h">
+      <Filter>01.Level\OBJ\03.Item\Relics</Filter>
     </ClInclude>
     <ClInclude Include="ITEM_VampiresEyeglasses.h">
+      <Filter>01.Level\OBJ\03.Item\Relics</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
       <Filter>01.Level\OBJ\03.Item</Filter>
     </ClInclude>
-    <ClInclude Include="ITEM_Potion.h" />
+    <ClInclude Include="ITEM_Potion.h">
+      <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ARCANA_EarthenAegis.h">
+      <Filter>01.Level\OBJ\04.Arcana</Filter>
+    </ClInclude>
+    <ClInclude Include="ARCANA_SnowflakeChakrams.h">
+      <Filter>01.Level\OBJ\04.Arcana</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC_Collector.h">
+      <Filter>01.Level\OBJ\NPC</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
