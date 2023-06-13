@@ -175,6 +175,12 @@
     <ClInclude Include="EndingLevel.h" />
     <ClInclude Include="GlobalValue.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ITEM_AmuletofSundering.h" />
+    <ClInclude Include="ITEM_AnalyticalMonocle.h" />
+    <ClInclude Include="ITEM_DaggerofMidas.h" />
+    <ClInclude Include="ITEM_GiantsHeart.h" />
+    <ClInclude Include="ITEM_Potion.h" />
+    <ClInclude Include="ITEM_VampiresEyeglasses.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Monster_Swordman.h" />
     <ClInclude Include="NPC_ITEMSHOP.h" />
@@ -204,6 +210,12 @@
     <ClCompile Include="EndingLevel.cpp" />
     <ClCompile Include="GlobalValue.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ITEM_AmuletofSundering.cpp" />
+    <ClCompile Include="ITEM_AnalyticalMonocle.cpp" />
+    <ClCompile Include="ITEM_DaggerofMidas.cpp" />
+    <ClCompile Include="ITEM_GiantsHeart.cpp" />
+    <ClCompile Include="ITEM_Potion.cpp" />
+    <ClCompile Include="ITEM_VampiresEyeglasses.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Monster_Swordman.cpp" />
     <ClCompile Include="NPC_ITEMSHOP.cpp" />

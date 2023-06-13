@@ -95,7 +95,6 @@ void Effect_Spawn::SpawnObject(SpawnType spawnType, float4 _Scale)
 {
 	Renderer = CreateRenderer();
 	Renderer->SetRenderScale({ _Scale });
-//	Renderer->SetRenderScale({ 100, 365 });
 	Renderer->SetOrder(1000);
 
 	switch (spawnType)

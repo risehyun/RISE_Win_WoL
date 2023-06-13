@@ -509,30 +509,30 @@ void Player::Render(float _Delta)
 
 
 	// 픽셀 충돌 작동 확인을 위한 디버깅용 충돌체
-	CollisionData Data;
+	//CollisionData Data;
 
-	Data.Pos = ActorCameraPos();
-	Data.Scale = { 5,5 };
+	//Data.Pos = ActorCameraPos();
+	//Data.Scale = { 5,5 };
 
-	// 캐릭터 중심점
-	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
+	//// 캐릭터 중심점
+	//Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
-	// 왼쪽
-	Data.Pos = ActorCameraPos() + LeftCheck;
-	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
+	//// 왼쪽
+	//Data.Pos = ActorCameraPos() + LeftCheck;
+	//Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
-	// 오른쪽
-	Data.Pos = ActorCameraPos() + RightCheck;
-	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
+	//// 오른쪽
+	//Data.Pos = ActorCameraPos() + RightCheck;
+	//Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
-	// 위
-	Data.Pos = ActorCameraPos() + UpCheck;
-	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
+	//// 위
+	//Data.Pos = ActorCameraPos() + UpCheck;
+	//Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
 
-	// 아래
-	Data.Pos = ActorCameraPos() + DownCheck;
-	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
+	//// 아래
+	//Data.Pos = ActorCameraPos() + DownCheck;
+	//Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
 }
 

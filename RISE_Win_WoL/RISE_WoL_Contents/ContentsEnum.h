@@ -21,4 +21,5 @@ enum class CollisionOrder
 	PlayerSkill,
 	MonsterBody,
 	MonsterSkill,
+	Item,
 };

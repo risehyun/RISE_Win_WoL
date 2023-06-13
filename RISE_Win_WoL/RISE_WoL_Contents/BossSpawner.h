@@ -15,7 +15,7 @@ public:
 	BossSpawner& operator=(const BossSpawner& _Other) = delete;
 	BossSpawner& operator=(BossSpawner&& _Other) noexcept = delete;
 
-	class UI_KeyboardF* m_InteractUI;
+	UI_KeyboardF* m_InteractUI;
 
 	GameEngineRenderer* Renderer_Altar;
 	GameEngineRenderer* Renderer_ActivationCircle;

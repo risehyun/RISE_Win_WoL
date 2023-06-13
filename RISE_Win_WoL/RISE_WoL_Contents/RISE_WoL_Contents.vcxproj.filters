@@ -125,6 +125,22 @@
     <ClCompile Include="UI_KeyboardF.cpp">
       <Filter>03.UI</Filter>
     </ClCompile>
+    <ClCompile Include="ITEM_AmuletofSundering.cpp">
+      <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ITEM_GiantsHeart.cpp">
+      <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ITEM_AnalyticalMonocle.cpp">
+      <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ITEM_DaggerofMidas.cpp">
+      <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ITEM_VampiresEyeglasses.cpp">
+      <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ITEM_Potion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -200,5 +216,21 @@
     <ClInclude Include="UI_KeyboardF.h">
       <Filter>03.UI</Filter>
     </ClInclude>
+    <ClInclude Include="ITEM_AmuletofSundering.h">
+      <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ITEM_GiantsHeart.h">
+      <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ITEM_AnalyticalMonocle.h">
+      <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ITEM_DaggerofMidas.h">
+      <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ITEM_VampiresEyeglasses.h">
+      <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ITEM_Potion.h" />
   </ItemGroup>
 </Project>

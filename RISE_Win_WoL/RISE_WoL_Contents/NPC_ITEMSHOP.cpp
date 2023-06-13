@@ -1,8 +1,16 @@
 #include "NPC_ITEMSHOP.h"
 #include <GameEngineCore/ResourcesManager.h>
 #include "ContentsEnum.h"
+#include <GameEngineCore/GameEngineLevel.h>
 
 #include <GameEngineCore/GameEngineRenderer.h>
+#include <GameEngineCore/GameEngineCollision.h>
+
+#include "ITEM_AmuletofSundering.h"
+#include "ITEM_GiantsHeart.h"
+#include "ITEM_AnalyticalMonocle.h"
+#include "ITEM_DaggerofMidas.h"
+#include "ITEM_VampiresEyeglasses.h"
 
 NPC_ITEMSHOP::NPC_ITEMSHOP()
 {
@@ -29,14 +37,7 @@ void NPC_ITEMSHOP::Start()
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("NPC_ITEMSHOP.bmp"));
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("GROUND_ITEMSHOP.bmp"));
 
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("ITEM_POTION.bmp"));
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("ITEM_AmuletofSundering.bmp"));
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("ITEM_AnalyticalMonocle.bmp"));
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("ITEM_DaggerofMidas.bmp"));
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("ITEM_VampiresEyeglasses.bmp"));
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("ITEM_GiantsHeart.bmp"));
-		
-		
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("ITEM_POTION.bmp"));		
 	}
 
 	MainRenderer = CreateRenderer("NPC_ITEMSHOP.bmp", RenderOrder::BackGround);
@@ -59,51 +60,43 @@ void NPC_ITEMSHOP::Start()
 	}
 
 
-	// 아이템 렌더링 테스트 -> 추후 아이템 목록을 리스트화해서 출력
 
-	{
-		GameEngineRenderer* Ptr = CreateRenderer("ITEM_AmuletofSundering.bmp", RenderOrder::BackGround);
+	// 리팩토링 할 때 리스트로 묶어서 관리하도록 수정
+	ITEM_AmuletofSundering* NewAmulet = GetLevel()->CreateActor<ITEM_AmuletofSundering>();
+	ITEM_GiantsHeart* NewHeart = GetLevel()->CreateActor<ITEM_GiantsHeart>();
+	ITEM_AnalyticalMonocle* NewMonocle = GetLevel()->CreateActor<ITEM_AnalyticalMonocle>();
+	ITEM_DaggerofMidas* NewDagger = GetLevel()->CreateActor<ITEM_DaggerofMidas>();
+	ITEM_VampiresEyeglasses* NewEyeglasses = GetLevel()->CreateActor<ITEM_VampiresEyeglasses>();
 
-		Ptr->SetRenderScale({ 74, 100 });
+	NewHeart->GetMainRenderer()->SetRenderPos({ 500, 1800 });
+	NewHeart->GetBodyCollsion()->SetCollisionPos({ 500, 1800 });
 
-		Ptr->SetRenderPos({ 0, 200 });
-	}
+	NewMonocle->GetMainRenderer()->SetRenderPos({ 600, 1800 });
+	NewMonocle->GetBodyCollsion()->SetCollisionPos({ 600, 1800 });
 
-	{
-		GameEngineRenderer* Ptr = CreateRenderer("ITEM_AnalyticalMonocle.bmp", RenderOrder::BackGround);
+	NewAmulet->GetMainRenderer()->SetRenderPos({ 700, 1800 });
+	NewAmulet->GetBodyCollsion()->SetCollisionPos({ 700, 1800 });
 
-		Ptr->SetRenderScale({ 74, 100 });
+	NewDagger->GetMainRenderer()->SetRenderPos({ 800, 1800 });
+	NewDagger->GetBodyCollsion()->SetCollisionPos({ 800, 1800 });
 
-		Ptr->SetRenderPos({ 80, 200 });
-	}
+	NewEyeglasses->GetMainRenderer()->SetRenderPos({ 900, 1800 });
+	NewEyeglasses->GetBodyCollsion()->SetCollisionPos({ 900, 1800 });
 
-	{
-		GameEngineRenderer* Ptr = CreateRenderer("ITEM_DaggerofMidas.bmp", RenderOrder::BackGround);
+	//{
+	//	GameEngineRenderer* Ptr = CreateRenderer("ITEM_AnalyticalMonocle.bmp", RenderOrder::BackGround);
 
-		Ptr->SetRenderScale({ 74, 100 });
+	//	Ptr->SetRenderScale({ 74, 100 });
 
-		Ptr->SetRenderPos({ -80, 200 });
-	}
+	//	Ptr->SetRenderPos({ 80, 200 });
+	//}
 
-	{
-		GameEngineRenderer* Ptr = CreateRenderer("ITEM_VampiresEyeglasses.bmp", RenderOrder::BackGround);
+	//{
+	//	GameEngineRenderer* Ptr = CreateRenderer("ITEM_GiantsHeart.bmp", RenderOrder::BackGround);
 
-		Ptr->SetRenderScale({ 74, 100 });
+	//	Ptr->SetRenderScale({ 74, 100 });
 
-		Ptr->SetRenderPos({ -160, 200 });
-	}
-
-	{
-		GameEngineRenderer* Ptr = CreateRenderer("ITEM_GiantsHeart.bmp", RenderOrder::BackGround);
-
-		Ptr->SetRenderScale({ 74, 100 });
-
-		Ptr->SetRenderPos({ 160, 200 });
-	}
-
-
-	//GameEngineCollision* BodyCollsion = CreateCollision(CollisionOrder::Map);
-	//BodyCollsion->SetCollisionScale({ 100, 100 });
-	//BodyCollsion->SetCollisionType(CollisionType::CirCle);
+	//	Ptr->SetRenderPos({ 160, 200 });
+	//}
 
 }
