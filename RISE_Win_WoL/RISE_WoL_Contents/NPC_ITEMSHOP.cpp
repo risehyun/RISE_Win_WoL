@@ -11,6 +11,7 @@
 #include "ITEM_AnalyticalMonocle.h"
 #include "ITEM_DaggerofMidas.h"
 #include "ITEM_VampiresEyeglasses.h"
+#include "ITEM_Potion.h"
 
 NPC_ITEMSHOP::NPC_ITEMSHOP()
 {
@@ -36,8 +37,6 @@ void NPC_ITEMSHOP::Start()
 
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("NPC_ITEMSHOP.bmp"));
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("GROUND_ITEMSHOP.bmp"));
-
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("ITEM_POTION.bmp"));		
 	}
 
 	MainRenderer = CreateRenderer("NPC_ITEMSHOP.bmp", RenderOrder::BackGround);
@@ -45,11 +44,11 @@ void NPC_ITEMSHOP::Start()
 	MainRenderer->SetRenderScale({ 100, 150 });
 
 
-	PotionRenderer = CreateRenderer("ITEM_POTION.bmp", RenderOrder::BackGround);
+	//PotionRenderer = CreateRenderer("ITEM_POTION.bmp", RenderOrder::BackGround);
 
-	PotionRenderer->SetRenderScale({ 80, 120 });
+	//PotionRenderer->SetRenderScale({ 80, 120 });
 
-	PotionRenderer->SetRenderPos({ -255, -35 });
+	//PotionRenderer->SetRenderPos({ -255, -35 });
 
 	{
 		GameEngineRenderer* Ptr = CreateRenderer("GROUND_ITEMSHOP.bmp", RenderOrder::BackGround);
@@ -59,14 +58,14 @@ void NPC_ITEMSHOP::Start()
 		Ptr->SetRenderPos({ 0, 200 });
 	}
 
-
-
 	// 리팩토링 할 때 리스트로 묶어서 관리하도록 수정
 	ITEM_AmuletofSundering* NewAmulet = GetLevel()->CreateActor<ITEM_AmuletofSundering>();
 	ITEM_GiantsHeart* NewHeart = GetLevel()->CreateActor<ITEM_GiantsHeart>();
 	ITEM_AnalyticalMonocle* NewMonocle = GetLevel()->CreateActor<ITEM_AnalyticalMonocle>();
 	ITEM_DaggerofMidas* NewDagger = GetLevel()->CreateActor<ITEM_DaggerofMidas>();
 	ITEM_VampiresEyeglasses* NewEyeglasses = GetLevel()->CreateActor<ITEM_VampiresEyeglasses>();
+	ITEM_Potion* NewPotion = GetLevel()->CreateActor<ITEM_Potion>();
+
 
 	NewHeart->GetMainRenderer()->SetRenderPos({ 500, 1800 });
 	NewHeart->GetBodyCollsion()->SetCollisionPos({ 500, 1800 });
@@ -83,20 +82,7 @@ void NPC_ITEMSHOP::Start()
 	NewEyeglasses->GetMainRenderer()->SetRenderPos({ 900, 1800 });
 	NewEyeglasses->GetBodyCollsion()->SetCollisionPos({ 900, 1800 });
 
-	//{
-	//	GameEngineRenderer* Ptr = CreateRenderer("ITEM_AnalyticalMonocle.bmp", RenderOrder::BackGround);
-
-	//	Ptr->SetRenderScale({ 74, 100 });
-
-	//	Ptr->SetRenderPos({ 80, 200 });
-	//}
-
-	//{
-	//	GameEngineRenderer* Ptr = CreateRenderer("ITEM_GiantsHeart.bmp", RenderOrder::BackGround);
-
-	//	Ptr->SetRenderScale({ 74, 100 });
-
-	//	Ptr->SetRenderPos({ 160, 200 });
-	//}
+	NewPotion->GetMainRenderer()->SetRenderPos({ 450, 1600 });
+	NewPotion->GetBodyCollsion()->SetCollisionPos({ 450, 1600 });
 
 }

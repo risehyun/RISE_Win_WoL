@@ -27,7 +27,7 @@ void ITEM_Potion::Start()
 	// 렌더러 생성과 로딩된 텍스처 지정
 	MainRenderer = CreateRenderer();
 	MainRenderer->SetTexture("ITEM_POTION.bmp");
-	MainRenderer->SetRenderScale({ 74, 100 });
+	MainRenderer->SetRenderScale({ 80, 120 });
 
 	// 충돌체 생성
 	{
@@ -37,17 +37,15 @@ void ITEM_Potion::Start()
 	}
 
 	m_InteractUI = GetLevel()->CreateActor<UI_KeyboardF>();
-	m_InteractUI->SetPos({ 700, 1710 });
+	m_InteractUI->SetPos({ 445, 1470 });
 	m_InteractUI->GetMainRenderer()->SetOrder(2);
 	m_InteractUI->GetMainRenderer()->Off();
 
-
-	//DescriptRenerer = CreateRenderer();
-	//DescriptRenerer->SetText("ITEM_Descript_AmuletofSundering.bmp");
-	//DescriptRenerer->SetRenderScale({ 220, 115 });
-	//DescriptRenerer->SetRenderPos({ 700, 1650 });
-	//DescriptRenerer->SetOrder(1);
-	//DescriptRenerer->Off();
+	DescriptRenerer = CreateRenderer();
+	DescriptRenerer->SetText("치료 물약", 20);
+	DescriptRenerer->SetRenderPos({ 400, 1500 });
+	DescriptRenerer->SetOrder(1);
+	DescriptRenerer->Off();
 
 }
 
