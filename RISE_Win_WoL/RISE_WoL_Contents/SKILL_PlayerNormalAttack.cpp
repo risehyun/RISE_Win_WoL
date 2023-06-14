@@ -50,7 +50,7 @@ void SKILL_PlayerNormalAttack::Start()
 	}
 
 	// 추후 define으로 이동
-	m_iAttackPower = 10;
+	m_iAttackPower = 25;
 }
 
 void SKILL_PlayerNormalAttack::Update(float _Delta)

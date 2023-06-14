@@ -162,6 +162,9 @@ void BossSpawner::Update(float _Delta)
 			Effect_Spawn* Spawn = GetLevel()->CreateActor<Effect_Spawn>();
 			Spawn->SpawnObject(SpawnType::Swordman, { 100, 200 });
 			Spawn->SetPos({ 1850, 1634 });
+
+
+
 			
 		}
 	}
@@ -251,5 +254,18 @@ void BossSpawner::Update(float _Delta)
 			Actor->AddPos(float4::DOWN);
 
 		}
+	}
+
+	if (true == GameEngineInput::IsDown('P'))
+	{
+		Renderer_FenceUp->Off();
+		Renderer_FenceDown->Off();
+		Renderer_FenceRight->Off();
+		Renderer_FenceLeft->Off();
+
+		Collsion_FenceUp->Off();
+		Collsion_FenceDown->Off();
+		Collsion_FenceRight->Off();
+		Collsion_FenceLeft->Off();
 	}
 }
