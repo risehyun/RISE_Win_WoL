@@ -173,6 +173,7 @@
     </ClInclude>
     <ClInclude Include="ContentCore.h" />
     <ClInclude Include="ContentsEnum.h" />
+    <ClInclude Include="Effect_CastingCircle.h" />
     <ClInclude Include="Effect_Spawn.h" />
     <ClInclude Include="EndingLevel.h" />
     <ClInclude Include="GlobalValue.h" />
@@ -194,6 +195,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayLevel.h" />
     <ClInclude Include="PlayUIManager.h" />
+    <ClInclude Include="PROP_TreasureChestMiniBoss.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="SKILL_EarthenAegis.h" />
     <ClInclude Include="SKILL_KnightAttack.h" />
@@ -215,6 +217,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ContentCore.cpp" />
+    <ClCompile Include="Effect_CastingCircle.cpp" />
     <ClCompile Include="Effect_Spawn.cpp" />
     <ClCompile Include="EndingLevel.cpp" />
     <ClCompile Include="GlobalValue.cpp" />
@@ -237,6 +240,7 @@
     <ClCompile Include="Player_State.cpp" />
     <ClCompile Include="PlayLevel.cpp" />
     <ClCompile Include="PlayUIManager.cpp" />
+    <ClCompile Include="PROP_TreasureChestMiniBoss.cpp" />
     <ClCompile Include="Skill.cpp" />
     <ClCompile Include="SKILL_EarthenAegis.cpp" />
     <ClCompile Include="SKILL_KnightAttack.cpp" />

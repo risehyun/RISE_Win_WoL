@@ -41,18 +41,6 @@ void Effect_Spawn::Start()
 		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("SPAWN_SWORDMAN.bmp"), 32, 1);
 	}
 
-	// 렌더러 생성과 로딩된 텍스처 지정
-	//Renderer = CreateRenderer();
-	//Renderer->SetRenderScale({ 100, 365 });
-	//Renderer->SetOrder(1000);
-
-	//// 애니메이션 생성
-	//Renderer->CreateAnimation("SPAWN_PLAYER", "SPAWN_PLAYER.bmp", 0, 7, 0.1f, false);
-
-	//Renderer->CreateAnimation("SPAWN_SWORDMAN", "SPAWN_SWORDMAN.bmp", 0, 31, 0.1f, false);
-
-//	Renderer->ChangeAnimation("SPAWN_SWORDMAN");
-
 }
 
 

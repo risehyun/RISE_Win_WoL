@@ -56,6 +56,9 @@
     <Filter Include="01.Level\OBJ\03.Item\Relics">
       <UniqueIdentifier>{bd97f36e-387e-4c94-abfa-7b020729a27e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Level\OBJ\05.Props">
+      <UniqueIdentifier>{4d8e22e9-dbb6-4bf1-9d04-bbcd51106769}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingLevel.cpp">
@@ -170,6 +173,12 @@
     <ClCompile Include="ITEM_Gold.cpp">
       <Filter>01.Level\OBJ\03.Item</Filter>
     </ClCompile>
+    <ClCompile Include="Effect_CastingCircle.cpp">
+      <Filter>01.Level\OBJ\Spawner</Filter>
+    </ClCompile>
+    <ClCompile Include="PROP_TreasureChestMiniBoss.cpp">
+      <Filter>01.Level\OBJ\05.Props</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -283,6 +292,12 @@
     </ClInclude>
     <ClInclude Include="ITEM_Gold.h">
       <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect_CastingCircle.h">
+      <Filter>01.Level\OBJ\Spawner</Filter>
+    </ClInclude>
+    <ClInclude Include="PROP_TreasureChestMiniBoss.h">
+      <Filter>01.Level\OBJ\05.Props</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

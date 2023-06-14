@@ -28,7 +28,8 @@
 
 
 // 06-14 테스트용
-#include "ITEM_Gold.h"
+#include "Effect_CastingCircle.h"
+#include "PROP_TreasureChestMiniBoss.h"
 
 
 PlayLevel::PlayLevel()
@@ -103,10 +104,17 @@ void PlayLevel::Start()
 	NPC_Outfit* NewOutfit = CreateActor<NPC_Outfit>();
 	NewOutfit->SetPos({ 1850, 700 });
 
-
 	//// 아이템 드롭 테스트용
 	//ITEM_Gold* NewGold = CreateActor<ITEM_Gold>();
 	//NewGold->SetPos({ 1850, 1700 });
+
+	Effect_CastingCircle* NewEffect = CreateActor<Effect_CastingCircle>();
+	NewEffect->SetPos({ 1850, 1700 });
+
+	PROP_TreasureChestMiniBoss* NewChest = CreateActor<PROP_TreasureChestMiniBoss>();
+	NewChest->SetPos({ 1870, 1650 });
+
+	// 다시 포탈 생성 이펙트가 나오고, 포탈이 사용가능해진다.
 
 }
 

@@ -19,8 +19,6 @@ public:
 
 	GameEngineRenderer* Renderer_Altar;
 	GameEngineRenderer* Renderer_ActivationCircle;
-	
-//	GameEngineRenderer* InputRenderer;
 
 	GameEngineRenderer* Renderer_FenceUp;
 	GameEngineRenderer* Renderer_FenceDown;
