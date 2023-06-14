@@ -27,6 +27,10 @@
 #include "ContentsEnum.h"
 
 
+// 06-14 테스트용
+#include "ITEM_Gold.h"
+
+
 PlayLevel::PlayLevel()
 {
 }
@@ -99,6 +103,10 @@ void PlayLevel::Start()
 	NPC_Outfit* NewOutfit = CreateActor<NPC_Outfit>();
 	NewOutfit->SetPos({ 1850, 700 });
 
+
+	//// 아이템 드롭 테스트용
+	//ITEM_Gold* NewGold = CreateActor<ITEM_Gold>();
+	//NewGold->SetPos({ 1850, 1700 });
 
 }
 

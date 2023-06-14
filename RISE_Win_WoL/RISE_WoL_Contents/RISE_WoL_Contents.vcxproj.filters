@@ -167,6 +167,9 @@
     <ClCompile Include="UI_Inventory.cpp">
       <Filter>03.UI</Filter>
     </ClCompile>
+    <ClCompile Include="ITEM_Gold.cpp">
+      <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -277,6 +280,9 @@
     </ClInclude>
     <ClInclude Include="UI_Inventory.h">
       <Filter>03.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ITEM_Gold.h">
+      <Filter>01.Level\OBJ\03.Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -48,6 +48,8 @@ public:
 	// 임시로 옮겨둠
 	void OnDamagedStart();
 
+	void SetTotalGold(int _GoldCount);
+
 protected:
 	void StateUpdate(float _Delta);
 

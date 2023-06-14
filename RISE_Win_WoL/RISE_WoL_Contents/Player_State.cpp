@@ -5,7 +5,6 @@
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 
-
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
@@ -58,6 +57,11 @@ void Player::OnDamagedStart()
 	EffectPlayer = GameEngineSound::SoundPlay("PLAYER_HITED.mp3");
 	EffectPlayer.SetVolume(10.0f);
 	ChangeAnimationState("Damage");
+}
+
+void Player::SetTotalGold(int _GoldCount)
+{
+	m_iTotalGold += _GoldCount;
 }
 
 void Player::IdleUpdate(float _Delta)
@@ -432,7 +436,6 @@ void Player::DashUpdate(float _Delta)
 
 		ResetLiveTime();
 	}
-
 
 	return;
 }

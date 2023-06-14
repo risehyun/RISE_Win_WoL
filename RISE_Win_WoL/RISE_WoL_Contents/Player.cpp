@@ -240,12 +240,7 @@ void Player::Update(float _Delta)
 	}
 
 
-	// 인벤토리 호출
-	if (true == GameEngineInput::IsDown(VK_TAB))
-	{
-		// 1. 인벤토리 UI On
 
-	}
 
 
 	std::vector<GameEngineCollision*> _Col;
@@ -433,6 +428,11 @@ void Player::LevelStart()
 void Player::Render(float _Delta)
 {
 
+
+	
+		
+
+
 	std::string Text = "";
 
 	if (m_iCurHp < 0)
@@ -459,7 +459,9 @@ void Player::Render(float _Delta)
 	TextOutA(dc, 150, 20, Text.c_str(), static_cast<int>(Text.size()));
 
 
-	std::string GoldText = "000";
+
+	// 골드 보유량 표시
+	std::string GoldText = std::to_string(m_iTotalGold);
 
 	TextOutA(dc, 654, 724, GoldText.c_str(), static_cast<int>(GoldText.size()));
 

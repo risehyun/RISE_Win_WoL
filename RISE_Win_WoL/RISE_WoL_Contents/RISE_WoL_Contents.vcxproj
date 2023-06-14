@@ -181,6 +181,7 @@
     <ClInclude Include="ITEM_AnalyticalMonocle.h" />
     <ClInclude Include="ITEM_DaggerofMidas.h" />
     <ClInclude Include="ITEM_GiantsHeart.h" />
+    <ClInclude Include="ITEM_Gold.h" />
     <ClInclude Include="ITEM_Potion.h" />
     <ClInclude Include="ITEM_VampiresEyeglasses.h" />
     <ClInclude Include="Monster.h" />
@@ -222,6 +223,7 @@
     <ClCompile Include="ITEM_AnalyticalMonocle.cpp" />
     <ClCompile Include="ITEM_DaggerofMidas.cpp" />
     <ClCompile Include="ITEM_GiantsHeart.cpp" />
+    <ClCompile Include="ITEM_Gold.cpp" />
     <ClCompile Include="ITEM_Potion.cpp" />
     <ClCompile Include="ITEM_VampiresEyeglasses.cpp" />
     <ClCompile Include="Monster.cpp" />

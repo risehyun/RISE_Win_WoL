@@ -58,6 +58,10 @@ private:
 	void OnDamaged(int _iAttackPower) override;
 
 
+	/// 아이템 드롭 테스트용
+	void DropItem(float4 _DropPos);
+
+
 	////////////////////// DebugValue
 	float4 LeftCheck = { -50.0f, 0.0f };
 	float4 RightCheck = { 50.0f, 0.0f };

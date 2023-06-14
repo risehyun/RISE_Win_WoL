@@ -11,6 +11,10 @@
 
 #include "SKILL_KnightAttack.h"
 
+
+// 아이템 드롭 테스트용
+#include "ITEM_Gold.h"
+
 Monster_Swordman::Monster_Swordman()
 {
 
@@ -194,7 +198,6 @@ void Monster_Swordman::SetInitStat()
 
 void Monster_Swordman::OnDamaged(int _AttackPower)
 {
-	// 추휴에 R-value는 공격 주체의 공격력으로 바뀌고 이걸 매개변수로 받아서 처리하는 것으로 수정
 	m_iCurHp -= _AttackPower;
 
 	if (DamageRenderer == nullptr)
@@ -221,6 +224,12 @@ void Monster_Swordman::OnDamaged(int _AttackPower)
 
 }
 
+void Monster_Swordman::DropItem(float4 _DropPos)
+{
+	ITEM_Gold* NewGold = GetLevel()->CreateActor<ITEM_Gold>();
+	NewGold->SetPos({ _DropPos });
+}
+
 void Monster_Swordman::IdleStart()
 {
 	ChangeAnimationState("Idle");
@@ -244,6 +253,8 @@ void Monster_Swordman::DamageStart()
 
 void Monster_Swordman::DeathStart()
 {
+	DropItem(GetPos());
+
 	EffectPlayer = GameEngineSound::SoundPlay("ENEMY_DIED.mp3");
 	ChangeAnimationState("Death");
 }
