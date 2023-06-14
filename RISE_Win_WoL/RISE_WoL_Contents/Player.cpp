@@ -20,6 +20,8 @@
 #include "Monster.h"
 #include "SKILL_PlayerNormalAttack.h"
 
+#include "UI_Inventory.h"
+
 #include <GameEngineCore/GameEngineCollision.h>
 
 #include <GameEnginePlatform/GameEngineSound.h>
@@ -235,6 +237,14 @@ void Player::Update(float _Delta)
 	{
 	//	MainRenderer->SetOrder(-200);
 		GameEngineLevel::CollisionDebugRenderSwitch();
+	}
+
+
+	// 인벤토리 호출
+	if (true == GameEngineInput::IsDown(VK_TAB))
+	{
+		// 1. 인벤토리 UI On
+
 	}
 
 

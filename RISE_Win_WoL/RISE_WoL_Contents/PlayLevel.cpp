@@ -21,6 +21,8 @@
 
 #include "NPC_ITEMSHOP.h"
 #include "NPC_ArcanaShop.h"
+#include "NPC_Collector.h"
+#include "NPC_Outfit.h"
 
 #include "ContentsEnum.h"
 
@@ -70,6 +72,8 @@ void PlayLevel::Start()
 
 	CreateActor<PlayUIManager>();
 
+
+
 	// 보스스포너 -> 따로 빼기
 
 	BossSpawner* NewSpawner = CreateActor<BossSpawner>();
@@ -83,13 +87,18 @@ void PlayLevel::Start()
 
 	NewSpawn->SpawnObject(SpawnType::Player, { 100, 365 });
 
-
-
 	NPC_ArcanaShop* NewArcanaShop = CreateActor<NPC_ArcanaShop>();
 	NewArcanaShop->SetPos({ 3000, 1600 });
 
 	NPC_ITEMSHOP* NewShop = CreateActor<NPC_ITEMSHOP>();
 	NewShop->SetPos({ 700, 1600 });
+
+	NPC_Collector* NewCollector = CreateActor<NPC_Collector>();
+	NewCollector->SetPos({ 1850, 2800} );
+
+	NPC_Outfit* NewOutfit = CreateActor<NPC_Outfit>();
+	NewOutfit->SetPos({ 1850, 700 });
+
 
 }
 

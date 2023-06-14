@@ -161,6 +161,12 @@
     <ClCompile Include="NPC_Collector.cpp">
       <Filter>01.Level\OBJ\NPC</Filter>
     </ClCompile>
+    <ClCompile Include="NPC_Outfit.cpp">
+      <Filter>01.Level\OBJ\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Inventory.cpp">
+      <Filter>03.UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -265,6 +271,12 @@
     </ClInclude>
     <ClInclude Include="NPC_Collector.h">
       <Filter>01.Level\OBJ\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC_Outfit.h">
+      <Filter>01.Level\OBJ\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Inventory.h">
+      <Filter>03.UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
