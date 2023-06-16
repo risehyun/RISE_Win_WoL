@@ -208,6 +208,8 @@ void GameEngineRenderer::CreateAnimation(
 	}
 
 	GameEngineRenderer::Animation& Animation = AllAnimation[UpperName];
+
+	Animation.Name = _AniamtionName;
 	Animation.Sprite = Sprite;
 
 	if (_Start != -1)

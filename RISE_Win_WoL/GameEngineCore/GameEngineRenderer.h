@@ -103,6 +103,7 @@ private:
 	class Animation
 	{
 	public:
+		std::string Name = "";
 		GameEngineSprite* Sprite = nullptr;
 		size_t CurFrame = 0;
 		size_t StartFrame = -1;
@@ -141,6 +142,11 @@ public:
 	bool IsAnimationEnd()
 	{
 		return CurAnimation->IsEnd;
+	}
+
+	bool IsAnimation(const std::string& _Name)
+	{
+		return CurAnimation->Name == _Name;
 	}
 
 private:
