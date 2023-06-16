@@ -179,6 +179,9 @@
     <ClCompile Include="PROP_TreasureChestMiniBoss.cpp">
       <Filter>01.Level\OBJ\05.Props</Filter>
     </ClCompile>
+    <ClCompile Include="PROP_Teleport.cpp">
+      <Filter>01.Level\OBJ\05.Props</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -297,6 +300,9 @@
       <Filter>01.Level\OBJ\Spawner</Filter>
     </ClInclude>
     <ClInclude Include="PROP_TreasureChestMiniBoss.h">
+      <Filter>01.Level\OBJ\05.Props</Filter>
+    </ClInclude>
+    <ClInclude Include="PROP_Teleport.h">
       <Filter>01.Level\OBJ\05.Props</Filter>
     </ClInclude>
   </ItemGroup>

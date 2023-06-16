@@ -41,7 +41,6 @@ void PROP_TreasureChestMiniBoss::Start()
 	MainRenderer->CreateAnimation("Idle_TreasureChest", "TreasureChestMiniBoss_.bmp", 0, 0, 0.1f, false);
 	MainRenderer->CreateAnimation("Open_TreasureChest", "TreasureChestMiniBoss_.bmp", 1, 4, 0.1f, false);
 
-
 	BodyCollision = CreateCollision(CollisionOrder::Map);
 	BodyCollision->SetCollisionScale({ 100, 100 });
 	BodyCollision->SetCollisionType(CollisionType::CirCle);
@@ -53,14 +52,12 @@ void PROP_TreasureChestMiniBoss::Start()
 
 void PROP_TreasureChestMiniBoss::Update(float _Delta)
 {
-
 	// 함수를 애니메이션 이름으로 작동시킬 수 있도록 수정 필요
 	if (true == MainRenderer->IsAnimation("Open_TreasureChest")
 		&& true == MainRenderer->IsAnimationEnd())
 	{
 		Death();
 	}
-
 
 	std::vector<GameEngineCollision*> _Col;
 	if (true == BodyCollision->Collision(CollisionOrder::PlayerSkill, _Col
@@ -90,7 +87,4 @@ void PROP_TreasureChestMiniBoss::Update(float _Delta)
 
 
 	}
-
-
-
 }

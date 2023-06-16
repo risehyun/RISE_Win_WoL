@@ -195,6 +195,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayLevel.h" />
     <ClInclude Include="PlayUIManager.h" />
+    <ClInclude Include="PROP_Teleport.h" />
     <ClInclude Include="PROP_TreasureChestMiniBoss.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="SKILL_EarthenAegis.h" />
@@ -240,6 +241,7 @@
     <ClCompile Include="Player_State.cpp" />
     <ClCompile Include="PlayLevel.cpp" />
     <ClCompile Include="PlayUIManager.cpp" />
+    <ClCompile Include="PROP_Teleport.cpp" />
     <ClCompile Include="PROP_TreasureChestMiniBoss.cpp" />
     <ClCompile Include="Skill.cpp" />
     <ClCompile Include="SKILL_EarthenAegis.cpp" />

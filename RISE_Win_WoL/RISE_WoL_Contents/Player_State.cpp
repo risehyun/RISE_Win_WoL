@@ -14,6 +14,8 @@
 
 #include "SKILL_PlayerNormalAttack.h"
 #include "SKILL_PlayerWindBoomerang.h"
+#include "SKILL_EarthenAegis.h"
+
 #include <GameEngineCore/GameEngineCore.h>
 
 
@@ -48,6 +50,11 @@ void Player::DeathStart()
 	EffectPlayer = GameEngineSound::SoundPlay("PLAYER_DIE.mp3");
 	EffectPlayer.SetVolume(10.0f);
 	ChangeAnimationState("Death");
+}
+
+void Player::Skill_EarthenAegis_Start()
+{
+	ChangeAnimationState("Attack");
 }
 
 void Player::OnDamagedStart()
@@ -200,7 +207,9 @@ void Player::IdleUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsDown('Q'))
 	{
-		ChanageState(PlayerState::Attack);
+		ChanageState(PlayerState::Skill_EarthenAegis);
+		SKILL_EarthenAegis* NewAttack = GetLevel()->CreateActor<SKILL_EarthenAegis>();
+		NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
 		return;
 	}
 
@@ -443,11 +452,6 @@ void Player::DashUpdate(float _Delta)
 // 수정 필요
 void Player::AttackUpdate(float _Delta)
 {
-
-
-
-
-
 	if (1.5f <= GetLiveTime())
 	{
 		DirCheck();
@@ -491,4 +495,10 @@ void Player::DeathUpdate(float _Delta)
 		EffectPlayer.Stop();
 		GameEngineCore::ChangeLevel("EndingLevel");
 	}
+}
+
+void Player::Skill_EarthenAgis_Update(float _Delta)
+{
+	// 8개 원이 시간에 따라 중심점을 기준으로 공전
+
 }

@@ -308,6 +308,9 @@ void Player::StateUpdate(float _Delta)
 	case PlayerState::Death:
 		return DeathUpdate(_Delta);
 
+	case PlayerState::Skill_EarthenAegis:
+		return Skill_EarthenAgis_Update(_Delta);
+
 	default:
 		break;
 	}
@@ -345,6 +348,10 @@ void Player::ChanageState(PlayerState _State)
 
 		case PlayerState::Death:
 			DeathStart();
+			break;
+
+		case PlayerState::Skill_EarthenAegis:
+			Skill_EarthenAegis_Start();
 			break;
 	
 		default:

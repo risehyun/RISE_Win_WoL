@@ -3,7 +3,12 @@
 
 class GameEngineMath
 {
+public:
+	static const float PI;
+	static const float PI2;
 
+	static const float D2R;
+	static const float R2D;
 };
 
 class float4
@@ -187,5 +192,14 @@ public:
 		return X > Y ? X : Y;
 	}
 
+public:
+	inline float4 GetUnitVectorFromDeg(const float _Degree)
+	{
+		return GetUnitVectorFromRad(_Degree * GameEngineMath::D2R);
+	}
 
+	inline float4 GetUnitVectorFromRad(const float _Rad)
+	{
+		return { cosf(_Rad), sinf(_Rad) };
+	}
 };

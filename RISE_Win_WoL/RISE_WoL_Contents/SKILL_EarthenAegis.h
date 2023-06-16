@@ -14,6 +14,19 @@ class SKILL_EarthenAegis : public Skill
 	}
 
 	GameEngineRenderer* Renderer = nullptr;
+
+
+	// 렌더링 테스트용 임시 객체
+	GameEngineRenderer* Renderer2 = nullptr;
+	GameEngineRenderer* Renderer3 = nullptr;
+	GameEngineRenderer* Renderer4 = nullptr;
+	GameEngineRenderer* Renderer5 = nullptr;
+	GameEngineRenderer* Renderer6 = nullptr;
+	GameEngineRenderer* Renderer7 = nullptr;
+	GameEngineRenderer* Renderer8 = nullptr;
+
+
+
 	GameEngineCollision* BodyCollsion = nullptr;
 
 private:

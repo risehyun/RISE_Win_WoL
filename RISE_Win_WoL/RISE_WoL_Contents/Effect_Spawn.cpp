@@ -11,6 +11,7 @@
 #include "Monster_Swordman.h"
 
 #include <GameEnginePlatform/GameEngineWindow.h>
+#include <GameEngineBase/GameEngineRandom.h>
 
 
 Effect_Spawn::Effect_Spawn()
@@ -59,7 +60,10 @@ void Effect_Spawn::Update(float _Delta)
 			if (effectLiveTime == 3.0f)
 			{
 				Monster* NewMonster = GetLevel()->CreateActor<Monster_Swordman>();
-				NewMonster->SetPos({ 1800, 1600 });
+				
+
+				int Test2 = GameEngineRandom::MainRandom.RandomInt(0, 500);
+				NewMonster->SetPos({ 1800+static_cast<float>(Test2), 1600 + static_cast<float>(Test2) });
 		
 			}
 
