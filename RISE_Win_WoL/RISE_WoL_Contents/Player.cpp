@@ -553,6 +553,25 @@ void Player::Render(float _Delta)
 	//Data.Pos = ActorCameraPos() + DownCheck;
 	//Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
+
+
+	{
+		std::string Text = "";
+		Text += "플레이어 테스트 값 : ";
+		Text += std::to_string(1.0f / _Delta);
+		TextOutA(dc, 2, 3, Text.c_str(), static_cast<int>(Text.size()));
+	}
+
+	{
+		float4 PlayerPos = GameEngineWindow::MainWindow.GetScale().Half();
+		float4 MousePos = GameEngineWindow::MainWindow.GetMousePos();
+		float4 Dir = PlayerPos - MousePos;
+
+		std::string Text = "";
+		Text += "마우스 앵글 값 : ";
+		Text += std::to_string(Dir.AngleDeg());
+		TextOutA(dc, 2, 20, Text.c_str(), static_cast<int>(Text.size()));
+	}
 }
 
 
