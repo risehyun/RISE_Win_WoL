@@ -27,15 +27,56 @@ Monster_Swordman::~Monster_Swordman()
 
 void Monster_Swordman::DirCheck()
 {
+	float4 DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
+
+	// 플레이어의 위치가 자신 기준으로 왼쪽에 있을 경우
+	if (DirDeg.AngleDeg() > 90 && DirDeg.AngleDeg() < 270)
+	{
+		Dir = MonsterDir::Left;
+		ChangeAnimationState(CurState);
+		return;
+	}
+
+	else
+	{
+		Dir = MonsterDir::Right;
+		ChangeAnimationState(CurState);
+		return;
+	}
 }
 
 void Monster_Swordman::ChangeAnimationState(const std::string& _StateName)
 {
-	std::string AnimationName = "Left_";
+	std::string AnimationName;
+	switch (Dir)
+	{
+	case MonsterDir::Right:
+		AnimationName = "Right_";
+		break;
+
+	case MonsterDir::Left:
+		AnimationName = "Left_";
+		break;
+
+	default:
+		break;
+	}
+
+
+
+
+	//std::string AnimationName = "Left_";
 
 	AnimationName += _StateName;
 	CurState = _StateName;
 	MainRenderer->ChangeAnimation(AnimationName);
+
+}
+
+void Monster_Swordman::ChangeState(MonsterState _State)
+{
+
+
 
 }
 
@@ -130,6 +171,7 @@ void Monster_Swordman::Update(float _Delta)
 			, CollisionType::CirCle
 		))
 		{
+			DirCheck();
 			ChanageState(MonsterState::Attack);
 		}
 
@@ -152,11 +194,13 @@ void Monster_Swordman::Update(float _Delta)
 
 				if (m_iCurHp <= 0)
 				{
+					DirCheck();
 					ChanageState(MonsterState::Death);
 				}
 
 				else
 				{
+					DirCheck();
 					ChanageState(MonsterState::Damage);
 
 					Actor->Death();
@@ -209,18 +253,6 @@ void Monster_Swordman::OnDamaged(int _AttackPower)
 
 	DamageRenderer->SetText(std::to_string(_AttackPower), 20);
 	DamageRenderer->On();
-	//if (DamageRenderer != nullptr)
-	//{
-
-	//	fDamageRendererDuration += _Delta;
-
-	//	if (0.3f < fDamageRendererDuration)
-	//	{
-
-	//		DamageRenderer->SetText("", 20);
-
-	//	}
-	//}
 
 }
 
@@ -232,21 +264,25 @@ void Monster_Swordman::DropItem(float4 _DropPos)
 
 void Monster_Swordman::IdleStart()
 {
+//	DirCheck();
 	ChangeAnimationState("Idle");
 }
 
 void Monster_Swordman::RunStart()
 {
+//	DirCheck();
 	ChangeAnimationState("Move");
 }
 
 void Monster_Swordman::AttackStart()
 {
+//	DirCheck();
 	ChangeAnimationState("Attack");
 }
 
 void Monster_Swordman::DamageStart()
 {
+//	DirCheck();
 	EffectPlayer = GameEngineSound::SoundPlay("ENEMY_HITTED.mp3");
 	ChangeAnimationState("Damage");
 }
@@ -254,7 +290,7 @@ void Monster_Swordman::DamageStart()
 void Monster_Swordman::DeathStart()
 {
 	DropItem(GetPos());
-
+//	DirCheck();
 	EffectPlayer = GameEngineSound::SoundPlay("ENEMY_DIED.mp3");
 	ChangeAnimationState("Death");
 }
@@ -266,6 +302,13 @@ void Monster_Swordman::IdleUpdate(float _Delta)
 
 void Monster_Swordman::RunUpdate(float _Delta)
 {
+
+	//	float4 PlayerPos = Player::GetMainPlayer()->GetPos();
+	//	float4 MousePos = GameEngineWindow::MainWindow.GetMousePos();
+	//	float4 Dir = PlayerPos - MousePos;
+
+	DirCheck();
+
 	float4 Dir = Player::GetMainPlayer()->GetPos() - GetPos();
 
 	Dir.Normalize();
@@ -277,11 +320,13 @@ void Monster_Swordman::AttackUpdate(float _Delta)
 {
 	if (1.0f < GetLiveTime())
 	{
+		DirCheck();
 		SKILL_KnightAttack* NewAttack = GetLevel()->CreateActor<SKILL_KnightAttack>();
 
 		NewAttack->SetDir(float4::LEFT);
 		NewAttack->SetPos(GetPos() + float4{ -100.0f, 0.0f, 0.0f, 0.0f });
 		NewAttack->SkillRenderer->ChangeAnimation("ATTACK_LEFT");
+
 
 		ChanageState(MonsterState::Run);
 		ResetLiveTime();
@@ -291,12 +336,14 @@ void Monster_Swordman::AttackUpdate(float _Delta)
 void Monster_Swordman::DamageUpdate(float _Delta)
 {
 	if (true == IsDeath()) {
+		DirCheck();
 		ChanageState(MonsterState::Death);
 	}
 
 	if (true == MainRenderer->IsAnimationEnd())
 	{
 		DamageRenderer->Off();
+		DirCheck();
 		ChanageState(MonsterState::Run);
 	}
 

@@ -42,6 +42,7 @@ protected:
 
 	void DirCheck();
 	void ChangeAnimationState(const std::string& _StateName);
+	void ChangeState(MonsterState _State);
 
 private:
 	GameEngineSoundPlayer EffectPlayer;

@@ -553,8 +553,6 @@ void Player::Render(float _Delta)
 	//Data.Pos = ActorCameraPos() + DownCheck;
 	//Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
-
-
 	{
 		std::string Text = "";
 		Text += "플레이어 테스트 값 : ";
