@@ -17,6 +17,8 @@ enum class MonsterDir
 {
 	Right,
 	Left,
+	Up,
+	Down,
 	Max,
 };
 

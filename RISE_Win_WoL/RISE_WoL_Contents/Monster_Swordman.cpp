@@ -29,7 +29,6 @@ void Monster_Swordman::DirCheck()
 {
 	float4 DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
 
-	// 플레이어의 위치가 자신 기준으로 왼쪽에 있을 경우
 	if (DirDeg.AngleDeg() > 90 && DirDeg.AngleDeg() < 270)
 	{
 		Dir = MonsterDir::Left;
@@ -48,6 +47,7 @@ void Monster_Swordman::DirCheck()
 void Monster_Swordman::ChangeAnimationState(const std::string& _StateName)
 {
 	std::string AnimationName;
+
 	switch (Dir)
 	{
 	case MonsterDir::Right:
@@ -303,10 +303,6 @@ void Monster_Swordman::IdleUpdate(float _Delta)
 void Monster_Swordman::RunUpdate(float _Delta)
 {
 
-	//	float4 PlayerPos = Player::GetMainPlayer()->GetPos();
-	//	float4 MousePos = GameEngineWindow::MainWindow.GetMousePos();
-	//	float4 Dir = PlayerPos - MousePos;
-
 	DirCheck();
 
 	float4 Dir = Player::GetMainPlayer()->GetPos() - GetPos();
@@ -320,13 +316,47 @@ void Monster_Swordman::AttackUpdate(float _Delta)
 {
 	if (1.0f < GetLiveTime())
 	{
-		DirCheck();
-		SKILL_KnightAttack* NewAttack = GetLevel()->CreateActor<SKILL_KnightAttack>();
+		float4 DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
 
-		NewAttack->SetDir(float4::LEFT);
-		NewAttack->SetPos(GetPos() + float4{ -100.0f, 0.0f, 0.0f, 0.0f });
-		NewAttack->SkillRenderer->ChangeAnimation("ATTACK_LEFT");
+		// 오
+		if ((DirDeg.AngleDeg() > 0 && DirDeg.AngleDeg() < 45)
+			|| (DirDeg.AngleDeg() > 315 && DirDeg.AngleDeg() < 360))
+		{
+			SKILL_KnightAttack* NewAttack = GetLevel()->CreateActor<SKILL_KnightAttack>();
 
+			NewAttack->SetDir(float4::LEFT);
+			NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
+			NewAttack->SkillRenderer->ChangeAnimation("ATTACK_RIGHT");
+
+		}
+
+		if (DirDeg.AngleDeg() > 225 && DirDeg.AngleDeg() < 316)
+		{
+			SKILL_KnightAttack* NewAttack = GetLevel()->CreateActor<SKILL_KnightAttack>();
+
+			NewAttack->SetDir(float4::LEFT);
+			NewAttack->SetPos(GetPos() + float4{ 0.0f, -100.0f, 0.0f, 0.0f });
+			NewAttack->SkillRenderer->ChangeAnimation("ATTACK_UP");
+		}
+
+		// 왼
+		if (DirDeg.AngleDeg() > 135 && DirDeg.AngleDeg() < 225)
+		{
+			SKILL_KnightAttack* NewAttack = GetLevel()->CreateActor<SKILL_KnightAttack>();
+
+			NewAttack->SetDir(float4::RIGHT);
+			NewAttack->SetPos(GetPos() + float4{ -400.0f, 0.0f, 0.0f, 0.0f });
+			NewAttack->SkillRenderer->ChangeAnimation("ATTACK_LEFT");
+		}
+
+		if (DirDeg.AngleDeg() > 44 && DirDeg.AngleDeg() < 135)
+		{
+			SKILL_KnightAttack* NewAttack = GetLevel()->CreateActor<SKILL_KnightAttack>();
+
+			NewAttack->SetDir(float4::RIGHT);
+			NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
+			NewAttack->SkillRenderer->ChangeAnimation("ATTACK_DOWN");
+		}
 
 		ChanageState(MonsterState::Run);
 		ResetLiveTime();
@@ -346,14 +376,6 @@ void Monster_Swordman::DamageUpdate(float _Delta)
 		DirCheck();
 		ChanageState(MonsterState::Run);
 	}
-
-	//fDamageRendererDuration += _Delta;
-	//float fT = fDamageRendererDuration / 0.6f;
-
-	//if (DamageRenderer != nullptr && fT >= 1.f) {
-	//	DamageRenderer->Off();
-	//	return;
-	//}
 
 }
 
