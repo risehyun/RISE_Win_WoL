@@ -9,6 +9,7 @@ enum class PlayerState
 	Attack,
 	Skill_ICEBLAST,
 	Skill_EarthenAegis,
+	Skill_SnowflakeChakrams,
 	Dash,
 	Damage,
 	Death,
@@ -62,6 +63,7 @@ protected:
 	void DeathStart();
 
 	void Skill_EarthenAegis_Start();
+	void Skill_SnowflakeChakrams_Start();
 
 
 	void IdleUpdate(float _Delta);
@@ -72,6 +74,7 @@ protected:
 	void OnDamagedUpdate(float _Delta);
 	void DeathUpdate(float _Delta);
 	void Skill_EarthenAgis_Update(float _Delta);
+	void Skill_SnowflakeChakrams_Update(float _Delta);
 
 
 	void ChanageState(PlayerState State);

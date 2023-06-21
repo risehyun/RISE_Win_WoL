@@ -1,9 +1,9 @@
 #pragma once
 #include "Skill.h"
 
-class SKILL_EarthenAegis : public Skill
+class SKILL_SnowflakeChakrams : public Skill
 {
-	void SetDir(const float4& _Dir)
+	void SetDir(const float4 & _Dir)
 	{
 		Dir = _Dir;
 	}
@@ -19,22 +19,10 @@ class SKILL_EarthenAegis : public Skill
 	// 렌더링 테스트용 임시 객체
 	GameEngineRenderer* Renderer2 = nullptr;
 	GameEngineRenderer* Renderer3 = nullptr;
-	GameEngineRenderer* Renderer4 = nullptr;
-	GameEngineRenderer* Renderer5 = nullptr;
-	GameEngineRenderer* Renderer6 = nullptr;
-	GameEngineRenderer* Renderer7 = nullptr;
-	GameEngineRenderer* Renderer8 = nullptr;
-
-
 
 	GameEngineCollision* BodyCollsion = nullptr;
 	GameEngineCollision* BodyCollsion2 = nullptr;
 	GameEngineCollision* BodyCollsion3 = nullptr;
-	GameEngineCollision* BodyCollsion4 = nullptr;
-	GameEngineCollision* BodyCollsion5 = nullptr;
-	GameEngineCollision* BodyCollsion6 = nullptr;
-	GameEngineCollision* BodyCollsion7 = nullptr;
-	GameEngineCollision* BodyCollsion8 = nullptr;
 
 private:
 	float4 Dir;

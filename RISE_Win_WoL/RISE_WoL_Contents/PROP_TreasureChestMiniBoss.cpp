@@ -52,7 +52,6 @@ void PROP_TreasureChestMiniBoss::Start()
 
 void PROP_TreasureChestMiniBoss::Update(float _Delta)
 {
-	// 함수를 애니메이션 이름으로 작동시킬 수 있도록 수정 필요
 	if (true == MainRenderer->IsAnimation("Open_TreasureChest")
 		&& true == MainRenderer->IsAnimationEnd())
 	{

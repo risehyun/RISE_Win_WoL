@@ -202,6 +202,7 @@
     <ClInclude Include="SKILL_KnightAttack.h" />
     <ClInclude Include="SKILL_PlayerNormalAttack.h" />
     <ClInclude Include="SKILL_PlayerWindBoomerang.h" />
+    <ClInclude Include="SKILL_SnowflakeChakrams.h" />
     <ClInclude Include="TitleLevel.h" />
     <ClInclude Include="UI_Button.h" />
     <ClInclude Include="UI_Inventory.h" />
@@ -248,6 +249,7 @@
     <ClCompile Include="SKILL_KnightAttack.cpp" />
     <ClCompile Include="SKILL_PlayerNormalAttack.cpp" />
     <ClCompile Include="SKILL_PlayerWindBoomerang.cpp" />
+    <ClCompile Include="SKILL_SnowflakeChakrams.cpp" />
     <ClCompile Include="TitleLevel.cpp" />
     <ClCompile Include="UI_Button.cpp" />
     <ClCompile Include="UI_Inventory.cpp" />

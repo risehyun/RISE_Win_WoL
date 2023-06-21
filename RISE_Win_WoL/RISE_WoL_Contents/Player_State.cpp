@@ -15,6 +15,7 @@
 #include "SKILL_PlayerNormalAttack.h"
 #include "SKILL_PlayerWindBoomerang.h"
 #include "SKILL_EarthenAegis.h"
+#include "SKILL_SnowflakeChakrams.h"
 
 #include <GameEngineCore/GameEngineCore.h>
 
@@ -53,6 +54,11 @@ void Player::DeathStart()
 }
 
 void Player::Skill_EarthenAegis_Start()
+{
+	ChangeAnimationState("Attack");
+}
+
+void Player::Skill_SnowflakeChakrams_Start()
 {
 	ChangeAnimationState("Attack");
 }
@@ -156,13 +162,6 @@ void Player::IdleUpdate(float _Delta)
 	if (true == GameEngineInput::IsDown(VK_RBUTTON))
 	{
 
-
-
-
-
-
-
-
 		float4 MovePos = float4::ZERO;
 
 		ChanageState(PlayerState::Attack);
@@ -209,9 +208,21 @@ void Player::IdleUpdate(float _Delta)
 	{
 		ChanageState(PlayerState::Skill_EarthenAegis);
 		SKILL_EarthenAegis* NewAttack = GetLevel()->CreateActor<SKILL_EarthenAegis>();
-		NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
+		NewAttack->SetPos(GetPos() + float4{ 0.0f, 0.0f, 0.0f, 0.0f });
 		return;
 	}
+
+
+	if (true == GameEngineInput::IsDown('E'))
+	{
+		ChanageState(PlayerState::Skill_SnowflakeChakrams);
+		SKILL_SnowflakeChakrams* NewAttack = GetLevel()->CreateActor<SKILL_SnowflakeChakrams>();
+		NewAttack->SetPos(GetPos() + float4{ 0.0f, 0.0f, 0.0f, 0.0f });
+		return;
+	}
+
+
+
 
 	if (true == GameEngineInput::IsUp(VK_SPACE))
 	{
@@ -499,6 +510,17 @@ void Player::DeathUpdate(float _Delta)
 
 void Player::Skill_EarthenAgis_Update(float _Delta)
 {
-	// 8개 원이 시간에 따라 중심점을 기준으로 공전
+	if (true == MainRenderer->IsAnimationEnd())
+	{
+		ChanageState(PlayerState::Idle);
+	}
 
+}
+
+void Player::Skill_SnowflakeChakrams_Update(float _Delta)
+{
+	if (true == MainRenderer->IsAnimationEnd())
+	{
+		ChanageState(PlayerState::Idle);
+	}
 }

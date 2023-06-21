@@ -62,11 +62,6 @@ void Monster_Swordman::ChangeAnimationState(const std::string& _StateName)
 		break;
 	}
 
-
-
-
-	//std::string AnimationName = "Left_";
-
 	AnimationName += _StateName;
 	CurState = _StateName;
 	MainRenderer->ChangeAnimation(AnimationName);
@@ -318,7 +313,6 @@ void Monster_Swordman::AttackUpdate(float _Delta)
 	{
 		float4 DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
 
-		// ¿À
 		if ((DirDeg.AngleDeg() > 0 && DirDeg.AngleDeg() < 45)
 			|| (DirDeg.AngleDeg() > 315 && DirDeg.AngleDeg() < 360))
 		{
@@ -339,13 +333,12 @@ void Monster_Swordman::AttackUpdate(float _Delta)
 			NewAttack->SkillRenderer->ChangeAnimation("ATTACK_UP");
 		}
 
-		// ¿Þ
 		if (DirDeg.AngleDeg() > 135 && DirDeg.AngleDeg() < 225)
 		{
 			SKILL_KnightAttack* NewAttack = GetLevel()->CreateActor<SKILL_KnightAttack>();
 
 			NewAttack->SetDir(float4::RIGHT);
-			NewAttack->SetPos(GetPos() + float4{ -400.0f, 0.0f, 0.0f, 0.0f });
+			NewAttack->SetPos(GetPos() + float4{ -100.0f, 0.0f, 0.0f, 0.0f });
 			NewAttack->SkillRenderer->ChangeAnimation("ATTACK_LEFT");
 		}
 

@@ -182,6 +182,9 @@
     <ClCompile Include="PROP_Teleport.cpp">
       <Filter>01.Level\OBJ\05.Props</Filter>
     </ClCompile>
+    <ClCompile Include="SKILL_SnowflakeChakrams.cpp">
+      <Filter>02.Skills\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -304,6 +307,9 @@
     </ClInclude>
     <ClInclude Include="PROP_Teleport.h">
       <Filter>01.Level\OBJ\05.Props</Filter>
+    </ClInclude>
+    <ClInclude Include="SKILL_SnowflakeChakrams.h">
+      <Filter>02.Skills\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

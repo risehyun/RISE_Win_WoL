@@ -311,6 +311,9 @@ void Player::StateUpdate(float _Delta)
 	case PlayerState::Skill_EarthenAegis:
 		return Skill_EarthenAgis_Update(_Delta);
 
+	case PlayerState::Skill_SnowflakeChakrams:
+		return Skill_EarthenAgis_Update(_Delta);
+
 	default:
 		break;
 	}
@@ -352,6 +355,10 @@ void Player::ChanageState(PlayerState _State)
 
 		case PlayerState::Skill_EarthenAegis:
 			Skill_EarthenAegis_Start();
+			break;
+
+		case PlayerState::Skill_SnowflakeChakrams:
+			Skill_SnowflakeChakrams_Start();
 			break;
 	
 		default:
@@ -434,12 +441,6 @@ void Player::LevelStart()
 
 void Player::Render(float _Delta)
 {
-
-
-	
-		
-
-
 	std::string Text = "";
 
 	if (m_iCurHp < 0)
@@ -553,12 +554,7 @@ void Player::Render(float _Delta)
 	//Data.Pos = ActorCameraPos() + DownCheck;
 	//Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
-	{
-		std::string Text = "";
-		Text += "플레이어 테스트 값 : ";
-		Text += std::to_string(1.0f / _Delta);
-		TextOutA(dc, 2, 3, Text.c_str(), static_cast<int>(Text.size()));
-	}
+
 
 	{
 		float4 PlayerPos = GameEngineWindow::MainWindow.GetScale().Half();
