@@ -12,7 +12,7 @@
 void SKILL_PlayerWindBoomerang::Start()
 {
 	// 스킬 텍스처 로딩
-	if (false == ResourcesManager::GetInst().IsLoadTexture("PLAYER_WINDBOOMERANG_ATTACK.bmp"))
+	if (false == ResourcesManager::GetInst().IsLoadTexture("ICE_BLAST.bmp"))
 	{
 
 		GameEnginePath FilePath;
@@ -21,19 +21,18 @@ void SKILL_PlayerWindBoomerang::Start()
 
 		GameEnginePath FolderPath = FilePath;
 
-		FilePath.MoveChild("ContentsResources\\Texture\\Skill\\PlayerSkills\\");
+		FilePath.MoveChild("ContentsResources\\Texture\\Skill");
 
-		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("PLAYER_WINDBOOMERANG_ATTACK.bmp"), 4, 1);
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("ICE_BLAST.bmp"), 6, 1);
 	}
 
 	// 렌더러 생성과 로딩된 텍스처 지정
 	Renderer = CreateRenderer();
-	Renderer->SetRenderScale({ 100, 100 });
-	Renderer->SetTexture("PLAYER_WINDBOOMERANG_ATTACK.bmp");
+	Renderer->SetRenderScale({ 200, 200 });
 
 	// 애니메이션 생성
-	Renderer->CreateAnimation("ATTACK_WINDBOOMERANG", "PLAYER_WINDBOOMERANG_ATTACK.bmp", 0, 3, 0.1f, true);
-
+	Renderer->CreateAnimation("ATTACK_WINDBOOMERANG", "ICE_BLAST.bmp", 2, 0, 0.2f, true);
+	Renderer->CreateAnimation("ATTACK_WINDBOOMERANG_END", "ICE_BLAST.bmp", 2, 0, 0.2f, false);
 
 	// 충돌체 생성
 	{
@@ -52,14 +51,21 @@ void SKILL_PlayerWindBoomerang::Update(float _Delta)
 	// livetime으로 구분
 	// 도착지점은 처음 생성되었을 때의 지점이 되어야하고
 	// 플레이어 중심에 부딪히면 소멸하는 방식도 있음
-	if (0.4f <= GetLiveTime())
+	if (2.0f > GetLiveTime())
 	{
 		AddPos(NextPos);
 	}
 
 	else
 	{
-		AddPos(-NextPos);
+		if (Player::GetMainPlayer()->GetPos().X < GetPos().X
+			|| Player::GetMainPlayer()->GetPos().X > GetPos().X
+			|| Player::GetMainPlayer()->GetPos().Y < GetPos().Y
+			|| Player::GetMainPlayer()->GetPos().Y > GetPos().Y)
+		{
+			AddPos(-NextPos);
+		}
+			
 	}
 
 
@@ -83,7 +89,7 @@ void SKILL_PlayerWindBoomerang::Update(float _Delta)
 		}
 	}
 
-	if (0.8f < GetLiveTime())
+	if (4.0f < GetLiveTime())
 	{
 		if (nullptr != Renderer)
 		{
