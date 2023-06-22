@@ -236,51 +236,45 @@ void SKILL_EarthenAegis::Update(float _Delta)
 			Renderers[i]->SetRenderPos(Range);
 			Collisions[i]->SetCollisionPos(Range);
 
-
 			// 특정 각도가 될 때마다 애니메이션 교체
-			if (RollAngle > 0.0f && RollAngle < 45.0f)
-			{
-				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index0");
-			}
-
-			if (RollAngle > 45.0f && RollAngle < 90.0f)
-			{
-				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index10");
-			}
-
-			if (RollAngle > 90.0f && RollAngle < 135.0f)
-			{
-				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index9");
-			}
-
-			if (RollAngle > 135.0f && RollAngle < 175.0f)
-			{
-				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index8");
-			}
-
-			if (RollAngle > 210.0f && RollAngle < 245.0f)
-			{
-				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index6");
-			}
-
-			if (RollAngle > 245.0f && RollAngle < 275.0f)
-			{
-				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index5");
-			}
-
-			if (RollAngle > 275.0f && RollAngle < 305.0f)
-			{
-				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index3");
-			}
-
-			if (RollAngle > 305.0f && RollAngle < 335.0f)
+			if (Range.AngleDeg() > 0.0f && Range.AngleDeg() < 45.0f)
 			{
 				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index2");
 			}
 
-			if (RollAngle > 335.0f && RollAngle < 365.0f)
+			if (Range.AngleDeg() > 45.0f && Range.AngleDeg() < 90.0f)
 			{
-				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index1");
+				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index0");
+			}
+
+			if (Range.AngleDeg() > 90.0f && Range.AngleDeg() < 135.0f)
+			{
+				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index11");
+			}
+
+			if (Range.AngleDeg() > 135.0f && Range.AngleDeg() < 180.0f)
+			{
+				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index9");
+			}
+
+			if (Range.AngleDeg() > 180.0f && Range.AngleDeg() < 225.0f)
+			{
+				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index8");
+			}
+
+			if (Range.AngleDeg() > 225.0f && Range.AngleDeg() < 270.0f)
+			{
+				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index6");
+			}
+
+			if (Range.AngleDeg() > 270.0f && Range.AngleDeg() < 315.0f)
+			{
+				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index5");
+			}
+
+			if (Range.AngleDeg() > 315.0f && Range.AngleDeg() < 360.0f)
+			{
+				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index3");
 			}
 
 		}
@@ -323,7 +317,7 @@ void SKILL_EarthenAegis::Render(float _Delta)
 	HDC dc = GameEngineWindow::MainWindow.GetBackBuffer()->GetImageDC();
 	std::string Text = "";
 	Text += "스킬 앵글 테스트 값 : ";
-	Text += std::to_string(RollAngle);
+	Text += std::to_string(Range.AngleDeg());
 	TextOutA(dc, 2, 3, Text.c_str(), static_cast<int>(Text.size()));
 
 }
