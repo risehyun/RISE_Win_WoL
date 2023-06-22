@@ -104,36 +104,36 @@ void SKILL_EarthenAegis::Start()
 	for (size_t i = 0; i < Renderers.size(); i++)
 	{
 		Renderers[i]->CreateAnimation("RockPop", "RockPop.bmp", 0, 3, 0.05f, false);
-		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Dgr360", "ARCANA_EarthenAegis_ALL.bmp", 0, 0, 0.2f, true);
-		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Dgr30", "ARCANA_EarthenAegis_ALL.bmp", 1, 1, 0.2f, true);
-		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Dgr60", "ARCANA_EarthenAegis_ALL.bmp", 2, 2, 0.2f, true);
-		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Dgr90", "ARCANA_EarthenAegis_ALL.bmp", 3, 3, 0.2f, true);
-		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Dgr120", "ARCANA_EarthenAegis_ALL.bmp", 4, 4, 0.2f, true);
-		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Dgr150", "ARCANA_EarthenAegis_ALL.bmp", 5, 5, 0.2f, true);
-		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Dgr180", "ARCANA_EarthenAegis_ALL.bmp", 6, 6, 0.2f, true);
-		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Dgr210", "ARCANA_EarthenAegis_ALL.bmp", 7, 7, 0.2f, true);
-		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Dgr240", "ARCANA_EarthenAegis_ALL.bmp", 8, 8, 0.2f, true);
-		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Dgr270", "ARCANA_EarthenAegis_ALL.bmp", 9, 9, 0.2f, true);
-		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Dgr300", "ARCANA_EarthenAegis_ALL.bmp", 10, 10, 0.2f, true);
-		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Dgr330", "ARCANA_EarthenAegis_ALL.bmp", 11, 11, 0.2f, true);
+		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Index0", "ARCANA_EarthenAegis_ALL.bmp", 0, 0, 0.2f, true);
+		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Index1", "ARCANA_EarthenAegis_ALL.bmp", 1, 1, 0.2f, true);
+		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Index2", "ARCANA_EarthenAegis_ALL.bmp", 2, 2, 0.2f, true);
+		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Index3", "ARCANA_EarthenAegis_ALL.bmp", 3, 3, 0.2f, true);
+		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Index4", "ARCANA_EarthenAegis_ALL.bmp", 4, 4, 0.2f, true);
+		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Index5", "ARCANA_EarthenAegis_ALL.bmp", 5, 5, 0.2f, true);
+		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Index6", "ARCANA_EarthenAegis_ALL.bmp", 6, 6, 0.2f, true);
+		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Index7", "ARCANA_EarthenAegis_ALL.bmp", 7, 7, 0.2f, true);
+		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Index8", "ARCANA_EarthenAegis_ALL.bmp", 8, 8, 0.2f, true);
+		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Index9", "ARCANA_EarthenAegis_ALL.bmp", 9, 9, 0.2f, true);
+		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Index10", "ARCANA_EarthenAegis_ALL.bmp", 10, 10, 0.2f, true);
+		Renderers[i]->CreateAnimation("ATTACK_EarthenAegis_Index11", "ARCANA_EarthenAegis_ALL.bmp", 11, 11, 0.2f, true);
 	}
 
 
-	Renderers[0]->ChangeAnimation("ATTACK_EarthenAegis_Dgr90");
+	Renderers[0]->ChangeAnimation("ATTACK_EarthenAegis_Index3");
 
-	Renderers[1]->ChangeAnimation("ATTACK_EarthenAegis_Dgr270");
+	Renderers[1]->ChangeAnimation("ATTACK_EarthenAegis_Index9");
 
-	Renderers[2]->ChangeAnimation("ATTACK_EarthenAegis_Dgr180");
+	Renderers[2]->ChangeAnimation("ATTACK_EarthenAegis_Index6");
 
-	Renderers[3]->ChangeAnimation("ATTACK_EarthenAegis_Dgr360");
+	Renderers[3]->ChangeAnimation("ATTACK_EarthenAegis_Index0");
 
-	Renderers[4]->ChangeAnimation("ATTACK_EarthenAegis_Dgr210");
+	Renderers[4]->ChangeAnimation("ATTACK_EarthenAegis_Index7");
 
-	Renderers[5]->ChangeAnimation("ATTACK_EarthenAegis_Dgr30");
+	Renderers[5]->ChangeAnimation("ATTACK_EarthenAegis_Index1");
 
-	Renderers[6]->ChangeAnimation("ATTACK_EarthenAegis_Dgr150");
+	Renderers[6]->ChangeAnimation("ATTACK_EarthenAegis_Index5");
 
-	Renderers[7]->ChangeAnimation("ATTACK_EarthenAegis_Dgr330");
+	Renderers[7]->ChangeAnimation("ATTACK_EarthenAegis_Index11");
 
 #pragma endregion
 
@@ -214,12 +214,10 @@ void SKILL_EarthenAegis::Start()
 
 void SKILL_EarthenAegis::Update(float _Delta)
 {
-
 	// 중심축인 플레이어를 기준으로 이동시 스킬도 이동거리에 맞춰서 이동
 	float4 Dir = Player::GetMainPlayer()->GetPos() - GetPos();
 
 	AddPos(Dir * _Delta * 400.0f);
-
 
 	// 회전
 	RollAngle += _Delta * 360.0f;
@@ -233,8 +231,6 @@ void SKILL_EarthenAegis::Update(float _Delta)
 	{
 		Range = float4::GetUnitVectorFromDeg(RollAngle + (360.0f / 8) * i) * 100.0f;
 
-
-
 		if (GetLiveTime() < 5.0f)
 		{
 			Renderers[i]->SetRenderPos(Range);
@@ -244,83 +240,68 @@ void SKILL_EarthenAegis::Update(float _Delta)
 			// 특정 각도가 될 때마다 애니메이션 교체
 			if (RollAngle > 0.0f && RollAngle < 45.0f)
 			{
-				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Dgr360");
+				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index0");
 			}
 
 			if (RollAngle > 45.0f && RollAngle < 90.0f)
 			{
-				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Dgr300");
+				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index10");
 			}
 
 			if (RollAngle > 90.0f && RollAngle < 135.0f)
 			{
-				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Dgr270");
+				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index9");
 			}
 
 			if (RollAngle > 135.0f && RollAngle < 175.0f)
 			{
-				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Dgr240");
+				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index8");
 			}
 
 			if (RollAngle > 210.0f && RollAngle < 245.0f)
 			{
-				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Dgr180");
+				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index6");
 			}
 
 			if (RollAngle > 245.0f && RollAngle < 275.0f)
 			{
-				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Dgr150");
+				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index5");
 			}
 
 			if (RollAngle > 275.0f && RollAngle < 305.0f)
 			{
-				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Dgr90");
+				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index3");
 			}
 
 			if (RollAngle > 305.0f && RollAngle < 335.0f)
 			{
-				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Dgr60");
+				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index2");
 			}
 
 			if (RollAngle > 335.0f && RollAngle < 365.0f)
 			{
-				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Dgr30");
+				Renderers[i]->ChangeAnimation("ATTACK_EarthenAegis_Index1");
 			}
 
 		}
 
 		else if (GetLiveTime() > 5.0f && GetLiveTime() < 7.0f)
 		{
-			// 오른쪽 아래
-			Renderers[0]->ChangeAnimation("ATTACK_EarthenAegis_Dgr30");
+			Renderers[0]->ChangeAnimation("ATTACK_EarthenAegis_Index1");
 
+			Renderers[1]->ChangeAnimation("ATTACK_EarthenAegis_Index0");
 
-			// 아래
-			Renderers[1]->ChangeAnimation("ATTACK_EarthenAegis_Dgr360");
+			Renderers[2]->ChangeAnimation("ATTACK_EarthenAegis_Index11");
 
+			Renderers[3]->ChangeAnimation("ATTACK_EarthenAegis_Index9");
 
-			// O
-			Renderers[2]->ChangeAnimation("ATTACK_EarthenAegis_Dgr330");
+			Renderers[4]->ChangeAnimation("ATTACK_EarthenAegis_Index7");
 
+			Renderers[5]->ChangeAnimation("ATTACK_EarthenAegis_Index6");
 
-			// 왼 (9)
-			Renderers[3]->ChangeAnimation("ATTACK_EarthenAegis_Dgr270");
+			Renderers[6]->ChangeAnimation("ATTACK_EarthenAegis_Index5");
 
-
-			// O
-			Renderers[4]->ChangeAnimation("ATTACK_EarthenAegis_Dgr210");
-
-
-			// O
-			Renderers[5]->ChangeAnimation("ATTACK_EarthenAegis_Dgr180");
-
-
-			// O
-			Renderers[6]->ChangeAnimation("ATTACK_EarthenAegis_Dgr150");
-
-			// O
-			Renderers[7]->ChangeAnimation("ATTACK_EarthenAegis_Dgr90");
-
+			Renderers[7]->ChangeAnimation("ATTACK_EarthenAegis_Index3");
 		}
 
 
