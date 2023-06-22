@@ -23,17 +23,20 @@ void SKILL_Fireball::Start()
 		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("ARCANA_Fireball_Left.bmp"), 5, 1);
 		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("ARCANA_Fireball_Up.bmp"), 5, 1);
 		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("ARCANA_Fireball_Down.bmp"), 5, 1);
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("ARCANA_Fireball_Explosion.bmp"), 7, 1);
+
 	}
 
-
 	Renderer = CreateRenderer();
-	Renderer->SetRenderScale({ 120, 100 });
+	Renderer->SetRenderScale({ 140, 100 });
 
-		// 局聪皋捞记 积己
+	// 局聪皋捞记 积己
 	Renderer->CreateAnimation("ARCANA_Fireball_Right", "ARCANA_Fireball_Right.bmp", 0, 4, 0.2f, false);
 	Renderer->CreateAnimation("ARCANA_Fireball_Left", "ARCANA_Fireball_Left.bmp", 0, 4, 0.2f, false);
 	Renderer->CreateAnimation("ARCANA_Fireball_Up", "ARCANA_Fireball_Up.bmp", 0, 4, 0.2f, false);
 	Renderer->CreateAnimation("ARCANA_Fireball_Down", "ARCANA_Fireball_Down.bmp", 0, 2, 0.2f, false);
+
+	Renderer->CreateAnimation("ARCANA_Fireball_Explosion", "ARCANA_Fireball_Explosion.bmp", 0, 6, 0.2f, false);
 
 	// 面倒眉 积己
 	{
@@ -48,5 +51,23 @@ void SKILL_Fireball::Start()
 
 void SKILL_Fireball::Update(float _Delta)
 {
+	if (true == Renderer->IsAnimationEnd())
+	{
+
+		Dir = float4::ZERO;
+
+		Renderer->SetRenderScale({ 240, 200 });
+		Renderer->ChangeAnimation("ARCANA_Fireball_Explosion");
+
+		if (Renderer->IsAnimation("ARCANA_Fireball_Explosion") && Renderer->IsAnimationEnd())
+		{
+			Death();
+		}
+	}
+
+	float4 NextPos = Dir * _Delta * Speed;
+	AddPos(NextPos);
+
+
 
 }

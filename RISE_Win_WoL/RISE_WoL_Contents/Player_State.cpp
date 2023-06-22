@@ -212,6 +212,7 @@ void Player::IdleUpdate(float _Delta)
 			NewAttack->SetDir(float4::RIGHT);
 			NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
 			NewAttack->Renderer->ChangeAnimation("ARCANA_Fireball_Right");
+			NewAttack->Renderer->SetRenderScale({ 120, 80 });
 		}
 
 		if (Dir == PlayerDir::Up)
@@ -219,6 +220,7 @@ void Player::IdleUpdate(float _Delta)
 			NewAttack->SetDir(float4::UP);
 			NewAttack->SetPos(GetPos() + float4{ 0.0f, -100.0f, 0.0f, 0.0f });
 			NewAttack->Renderer->ChangeAnimation("ARCANA_Fireball_Up");
+			NewAttack->Renderer->SetRenderScale({ 160, 120 });
 		}
 
 		if (Dir == PlayerDir::Down)
@@ -226,6 +228,7 @@ void Player::IdleUpdate(float _Delta)
 			NewAttack->SetDir(float4::DOWN);
 			NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
 			NewAttack->Renderer->ChangeAnimation("ARCANA_Fireball_Down");
+			NewAttack->Renderer->SetRenderScale({ 160, 120 });
 		}
 
 		return;

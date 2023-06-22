@@ -19,7 +19,7 @@ public:
 
 private:
 	float4 Dir;
-	float Speed = 500.0f;
+	float Speed = 200.0f;
 
 	void Start() override;
 	void Update(float _Delta) override;
