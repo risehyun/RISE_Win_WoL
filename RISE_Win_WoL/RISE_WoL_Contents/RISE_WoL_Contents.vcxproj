@@ -205,6 +205,7 @@
     <ClInclude Include="PROP_TreasureChestMiniBoss.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="SKILL_EarthenAegis.h" />
+    <ClInclude Include="SKILL_Fireball.h" />
     <ClInclude Include="SKILL_KnightAttack.h" />
     <ClInclude Include="SKILL_PlayerNormalAttack.h" />
     <ClInclude Include="SKILL_PlayerWindBoomerang.h" />
@@ -255,6 +256,7 @@
     <ClCompile Include="PROP_TreasureChestMiniBoss.cpp" />
     <ClCompile Include="Skill.cpp" />
     <ClCompile Include="SKILL_EarthenAegis.cpp" />
+    <ClCompile Include="SKILL_Fireball.cpp" />
     <ClCompile Include="SKILL_KnightAttack.cpp" />
     <ClCompile Include="SKILL_PlayerNormalAttack.cpp" />
     <ClCompile Include="SKILL_PlayerWindBoomerang.cpp" />

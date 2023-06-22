@@ -1,5 +1,7 @@
 #include "Player.h"
 
+#pragma region Headers
+
 #include "ContentsEnum.h"
 
 #include <GameEngineCore/GameEngineRenderer.h>
@@ -17,8 +19,11 @@
 #include "SKILL_EarthenAegis.h"
 #include "SKILL_SnowflakeChakrams.h"
 #include "SKILL_Tornado.h"
+#include "SKILL_Fireball.h"
 
 #include <GameEngineCore/GameEngineCore.h>
+
+#pragma endregion
 
 void Player::IdleStart()
 {
@@ -36,11 +41,6 @@ void Player::DashStart()
 }
 
 void Player::AttackStart()
-{
-	ChangeAnimationState("Attack");
-}
-
-void Player::Skill_ICEBLAST_Start()
 {
 	ChangeAnimationState("Attack");
 }
@@ -67,10 +67,13 @@ void Player::Skill_Tornado_Start()
 	ChangeAnimationState("Attack");
 }
 
+void Player::Skill_Fireball_Start()
+{
+	ChangeAnimationState("Attack");
+}
+
 void Player::OnDamagedStart()
 {
-
-
 	EffectPlayer = GameEngineSound::SoundPlay("PLAYER_HITED.mp3");
 	EffectPlayer.SetVolume(10.0f);
 	ChangeAnimationState("Damage");
@@ -83,8 +86,6 @@ void Player::SetTotalGold(int _GoldCount)
 
 void Player::IdleUpdate(float _Delta)
 {
-
-
 	// 자신의 위치에 해당하는 픽셀의 색상을 체크하기 위해 가져온다.
 	unsigned int Color = GetGroundColor(RGB(255, 255, 255));
 	if (RGB(255, 255, 255) == Color)
@@ -159,7 +160,6 @@ void Player::IdleUpdate(float _Delta)
 			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_DOWN");
 		}
 
-
 		return;
 	}
 
@@ -186,7 +186,6 @@ void Player::IdleUpdate(float _Delta)
 		return;
 	}
 
-
 	if (true == GameEngineInput::IsDown('E'))
 	{
 		ChanageState(PlayerState::Skill_SnowflakeChakrams);
@@ -195,6 +194,42 @@ void Player::IdleUpdate(float _Delta)
 		return;
 	}
 
+	if (true == GameEngineInput::IsDown('Z'))
+	{
+		ChanageState(PlayerState::Skill_ExplodingFireball);
+		SKILL_Fireball* NewAttack = GetLevel()->CreateActor<SKILL_Fireball>();
+		DirCheck();
+
+		if (Dir == PlayerDir::Left)
+		{
+			NewAttack->SetDir(float4::LEFT);
+			NewAttack->SetPos(GetPos() + float4{ -100.0f, 0.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ARCANA_Fireball_Left");
+		}
+
+		if (Dir == PlayerDir::Right)
+		{
+			NewAttack->SetDir(float4::RIGHT);
+			NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ARCANA_Fireball_Right");
+		}
+
+		if (Dir == PlayerDir::Up)
+		{
+			NewAttack->SetDir(float4::UP);
+			NewAttack->SetPos(GetPos() + float4{ 0.0f, -100.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ARCANA_Fireball_Up");
+		}
+
+		if (Dir == PlayerDir::Down)
+		{
+			NewAttack->SetDir(float4::DOWN);
+			NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ARCANA_Fireball_Down");
+		}
+
+		return;
+	}
 
 	if (true == GameEngineInput::IsUp(VK_SPACE))
 	{
@@ -204,10 +239,8 @@ void Player::IdleUpdate(float _Delta)
 
 }
 
-
 void Player::RunUpdate(float _Delta)
 {
-
 	unsigned int Color = GetGroundColor(RGB(255, 255, 255));
 	if (RGB(255, 255, 255) == Color)
 	{
@@ -231,9 +264,7 @@ void Player::RunUpdate(float _Delta)
 			CheckColor = GetGroundColor(RGB(255, 255, 255), float4::DOWN);
 			AddPos(float4::DOWN);
 		}
-
 	}
-
 
 	DirCheck();
 
@@ -281,16 +312,9 @@ void Player::RunUpdate(float _Delta)
 		}
 	}
 
-
 	if (true == GameEngineInput::IsDown(VK_LBUTTON))
 	{
 		ChanageState(PlayerState::Attack);
-
-
-		
-
-
-
 
 		SKILL_PlayerNormalAttack* NewAttack = GetLevel()->CreateActor<SKILL_PlayerNormalAttack>();
 
@@ -336,38 +360,33 @@ void Player::RunUpdate(float _Delta)
 
 }
 
-
 void Player::DashUpdate(float _Delta)
 {
+	unsigned int Color = GetGroundColor(RGB(255, 255, 255));
+	if (RGB(255, 255, 255) == Color)
 	{
-		unsigned int Color = GetGroundColor(RGB(255, 255, 255));
-		if (RGB(255, 255, 255) == Color)
-		{
 
-		}
-
-		else
-		{
-			unsigned int CheckColor = GetGroundColor(RGB(255, 255, 255), float4::UP);
-
-			while (CheckColor != RGB(255, 255, 255))
-			{
-				CheckColor = GetGroundColor(RGB(255, 255, 255), float4::UP);
-				AddPos(float4::UP);
-			}
-
-			CheckColor = GetGroundColor(RGB(255, 255, 255), float4::DOWN);
-
-			while (CheckColor != RGB(255, 255, 255))
-			{
-				CheckColor = GetGroundColor(RGB(255, 255, 255), float4::DOWN);
-				AddPos(float4::DOWN);
-			}
-
-		}
 	}
 
+	else
+	{
+		unsigned int CheckColor = GetGroundColor(RGB(255, 255, 255), float4::UP);
 
+		while (CheckColor != RGB(255, 255, 255))
+		{
+			CheckColor = GetGroundColor(RGB(255, 255, 255), float4::UP);
+			AddPos(float4::UP);
+		}
+
+		CheckColor = GetGroundColor(RGB(255, 255, 255), float4::DOWN);
+
+		while (CheckColor != RGB(255, 255, 255))
+		{
+			CheckColor = GetGroundColor(RGB(255, 255, 255), float4::DOWN);
+			AddPos(float4::DOWN);
+		}
+
+	}
 
 	DirCheck();
 
@@ -378,39 +397,36 @@ void Player::DashUpdate(float _Delta)
 
 	if (Dir == PlayerDir::Left)
 	{
-
 		CheckPos = { -15.0f, -30.0f };
 		MovePos = { -Speed * _Delta, 0.0f };
 	}
 
 	else if (Dir == PlayerDir::Right)
 	{
-
 		CheckPos = { 15.0f, -30.0f };
 		MovePos = { Speed * _Delta, 0.0f };
 	}
 
 	else if (Dir == PlayerDir::Up)
 	{
-
 		CheckPos = { -15.0f, 30.0f };
 		MovePos = { 0.0f, -Speed * _Delta };
 	}
 
 	else if (Dir == PlayerDir::Down)
 	{
-
 		CheckPos = { 15.0f, 30.0f };
 		MovePos = { 0.0f, Speed * _Delta };
 	}
 
-	unsigned int Color = GetGroundColor(RGB(255, 255, 255), CheckPos);
-	if (Color == RGB(255, 255, 255))
 	{
-		AddPos(MovePos);
-		GetLevel()->GetMainCamera()->AddPos(MovePos);
+		unsigned int Color = GetGroundColor(RGB(255, 255, 255), CheckPos);
+		if (Color == RGB(255, 255, 255))
+		{
+			AddPos(MovePos);
+			GetLevel()->GetMainCamera()->AddPos(MovePos);
+		}
 	}
-
 
 	if (1.5f <= GetLiveTime())
 	{
@@ -459,7 +475,6 @@ void Player::OnDamagedUpdate(float _Delta)
 		|| true == GameEngineInput::IsDown('S')
 		|| true == GameEngineInput::IsDown('D'))
 	{
-		//		DirCheck();
 		ChanageState(PlayerState::Run);
 		return;
 	}
@@ -497,6 +512,18 @@ void Player::Skill_SnowflakeChakrams_Update(float _Delta)
 	}
 }
 
-void Player::Skill_Tornado_Update()
+void Player::Skill_Tornado_Update(float _Delta)
 {
+	if (true == MainRenderer->IsAnimationEnd())
+	{
+		ChanageState(PlayerState::Idle);
+	}
+}
+
+void Player::Skill_Fireball_Update(float _Delta)
+{
+	if (true == MainRenderer->IsAnimationEnd())
+	{
+		ChanageState(PlayerState::Idle);
+	}
 }

@@ -28,7 +28,6 @@ void SKILL_Tornado::Start()
 	Renderer->ChangeAnimation("ARCANA_Tornado");
 	Renderer->SetOrder(2);
 
-
 	BodyCollsion = CreateCollision(CollisionOrder::PlayerSkill);
 	BodyCollsion->SetCollisionScale({ 300, 300 });
 	BodyCollsion->SetCollisionType(CollisionType::CirCle);
@@ -42,7 +41,6 @@ void SKILL_Tornado::Start()
 
 void SKILL_Tornado::Update(float _Delta)
 {
-
 	// 피격 마다 범위 안의 몬스터를 안으로 조금씩 끌어들였다가(4 HIT), 마지막 타에서 밖으로 튕겨보냄(1 HIT)
 
 	float4 NextPos = { _Delta * Speed };

@@ -197,6 +197,9 @@
     <ClCompile Include="SKILL_Tornado.cpp">
       <Filter>02.Skills\Player</Filter>
     </ClCompile>
+    <ClCompile Include="SKILL_Fireball.cpp">
+      <Filter>02.Skills\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -330,6 +333,9 @@
       <Filter>01.Level\OBJ</Filter>
     </ClInclude>
     <ClInclude Include="SKILL_Tornado.h">
+      <Filter>02.Skills\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="SKILL_Fireball.h">
       <Filter>02.Skills\Player</Filter>
     </ClInclude>
   </ItemGroup>

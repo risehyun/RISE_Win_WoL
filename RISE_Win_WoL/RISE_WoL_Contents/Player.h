@@ -7,10 +7,10 @@ enum class PlayerState
 	Idle,
 	Run,
 	Attack,
-	Skill_ICEBLAST,
 	Skill_EarthenAegis,
 	Skill_SnowflakeChakrams,
 	Skill_Tornado,
+	Skill_ExplodingFireball,
 	Dash,
 	Damage,
 	Death,
@@ -66,7 +66,7 @@ protected:
 	void Skill_EarthenAegis_Start();
 	void Skill_SnowflakeChakrams_Start();
 	void Skill_Tornado_Start();
-	void Skill_ICEBLAST_Start();
+	void Skill_Fireball_Start();
 
 	void IdleUpdate(float _Delta);
 	void RunUpdate(float _Delta);
@@ -76,11 +76,10 @@ protected:
 	void OnDamagedUpdate(float _Delta);
 	void DeathUpdate(float _Delta);
 
-	void Skill_ICEBLAST_Update();
 	void Skill_EarthenAgis_Update(float _Delta);
 	void Skill_SnowflakeChakrams_Update(float _Delta);
-	void Skill_Tornado_Update();
-
+	void Skill_Tornado_Update(float _Delta);
+	void Skill_Fireball_Update(float _Delta);
 
 	void ChanageState(PlayerState State);
 
@@ -124,14 +123,7 @@ private:
 	float4 DownCheck = { 0.0f, 50.0f };
 
 
-
-
 	float RunningTime = 0.0f;
-
-
-
-
-
 
 	float fRadian = 0.0f;
 };

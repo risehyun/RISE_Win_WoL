@@ -29,7 +29,7 @@ void SKILL_PlayerNormalAttack::Start()
 	// 렌더러 생성과 로딩된 텍스처 지정
 	Renderer = CreateRenderer();
 	Renderer->SetRenderScale({ 100, 100 });
-	Renderer->SetTexture("PLAYER_NORMAL_ATTACK.bmp");
+//	Renderer->SetTexture("PLAYER_NORMAL_ATTACK.bmp");
 
 
 	// 애니메이션 생성

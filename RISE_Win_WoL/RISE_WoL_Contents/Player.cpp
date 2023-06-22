@@ -94,11 +94,6 @@ void Player::Start()
 			ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("RIGHT_COMPLETE.bmp"), 11, 7);
 		}
 
-		if (false == ResourcesManager::GetInst().IsLoadTexture("Fireball_0.Bmp"))
-		{		
-			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Fireball_0.bmp"));
-		}
-
 		if (false == ResourcesManager::GetInst().IsLoadTexture("DashAirBurst.Bmp"))
 		{
 			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("DashAirBurst.bmp"));
@@ -240,10 +235,6 @@ void Player::Update(float _Delta)
 		GameEngineLevel::CollisionDebugRenderSwitch();
 	}
 
-
-
-
-
 	std::vector<GameEngineCollision*> _Col;
 	if (true == BodyCollsion->Collision(CollisionOrder::MonsterSkill, _Col
 		, CollisionType::CirCle
@@ -276,9 +267,6 @@ void Player::Update(float _Delta)
 
 	}
 
-
-
-
 	StateUpdate(_Delta);
 
 	CameraFocus();
@@ -300,9 +288,6 @@ void Player::StateUpdate(float _Delta)
 	case PlayerState::Attack:
 		return AttackUpdate(_Delta);
 
-	case PlayerState::Skill_ICEBLAST:
-		return AttackUpdate(_Delta);
-
 	case PlayerState::Damage:
 		return OnDamagedUpdate(_Delta);
 
@@ -314,6 +299,9 @@ void Player::StateUpdate(float _Delta)
 
 	case PlayerState::Skill_SnowflakeChakrams:
 		return Skill_EarthenAgis_Update(_Delta);
+
+	case PlayerState::Skill_ExplodingFireball:
+		return Skill_Fireball_Update(_Delta);
 
 	default:
 		break;
@@ -338,10 +326,6 @@ void Player::ChanageState(PlayerState _State)
 			AttackStart();
 			break;
 
-		case PlayerState::Skill_ICEBLAST:
-			Skill_ICEBLAST_Start();
-			break;
-
 		case PlayerState::Dash:
 			DashStart();
 			break;
@@ -362,6 +346,9 @@ void Player::ChanageState(PlayerState _State)
 			Skill_SnowflakeChakrams_Start();
 			break;
 
+		case PlayerState::Skill_ExplodingFireball:
+			Skill_Fireball_Start();
+			break;
 	
 		default:
 			break;
@@ -569,5 +556,3 @@ void Player::Render(float _Delta)
 		TextOutA(dc, 2, 20, Text.c_str(), static_cast<int>(Text.size()));
 	}
 }
-
-
