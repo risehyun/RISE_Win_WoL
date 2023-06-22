@@ -125,6 +125,7 @@ void Player::Start()
 			// ·»´õ·¯ ¼³Á¤
 			MainRenderer = CreateRenderer(1000);
 			MainRenderer->SetRenderScale({ 100, 100 });
+			MainRenderer->SetOrder(1);
 
 
 			// IDLE
@@ -360,6 +361,7 @@ void Player::ChanageState(PlayerState _State)
 		case PlayerState::Skill_SnowflakeChakrams:
 			Skill_SnowflakeChakrams_Start();
 			break;
+
 	
 		default:
 			break;

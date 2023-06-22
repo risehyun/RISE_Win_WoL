@@ -16,10 +16,9 @@
 #include "SKILL_PlayerWindBoomerang.h"
 #include "SKILL_EarthenAegis.h"
 #include "SKILL_SnowflakeChakrams.h"
+#include "SKILL_Tornado.h"
 
 #include <GameEngineCore/GameEngineCore.h>
-
-
 
 void Player::IdleStart()
 {
@@ -59,6 +58,11 @@ void Player::Skill_EarthenAegis_Start()
 }
 
 void Player::Skill_SnowflakeChakrams_Start()
+{
+	ChangeAnimationState("Attack");
+}
+
+void Player::Skill_Tornado_Start()
 {
 	ChangeAnimationState("Attack");
 }
@@ -164,45 +168,15 @@ void Player::IdleUpdate(float _Delta)
 
 		float4 MovePos = float4::ZERO;
 
-		ChanageState(PlayerState::Attack);
-
-		SKILL_PlayerWindBoomerang* NewAttack = GetLevel()->CreateActor<SKILL_PlayerWindBoomerang>();
-
 		DirCheck();
 
-		if (Dir == PlayerDir::Left)
-		{
-			NewAttack->SetDir(float4::LEFT);
-			NewAttack->SetPos(GetPos() + float4{ -100.0f, 0.0f, 0.0f, 0.0f });
-			NewAttack->Renderer->ChangeAnimation("ATTACK_WINDBOOMERANG");
-		}
+		ChanageState(PlayerState::Attack);
 
-		if (Dir == PlayerDir::Right)
-		{
-			NewAttack->SetDir(float4::RIGHT);
-			NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
-			NewAttack->Renderer->ChangeAnimation("ATTACK_WINDBOOMERANG");
-		}
-
-		if (Dir == PlayerDir::Up)
-		{
-			NewAttack->SetDir(float4::UP);
-			NewAttack->SetPos(GetPos() + float4{ 0.0f, -100.0f, 0.0f, 0.0f });
-			NewAttack->Renderer->ChangeAnimation("ATTACK_WINDBOOMERANG");
-		}
-
-
-		if (Dir == PlayerDir::Down)
-		{
-			NewAttack->SetDir(float4::DOWN);
-			NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
-			NewAttack->Renderer->ChangeAnimation("ATTACK_WINDBOOMERANG");
-		}
-
+		SKILL_Tornado* NewAttack = GetLevel()->CreateActor<SKILL_Tornado>();
+		NewAttack->SetPos({ GetPos() });
 
 		return;
 	}
-
 
 	if (true == GameEngineInput::IsDown('Q'))
 	{
@@ -220,8 +194,6 @@ void Player::IdleUpdate(float _Delta)
 		NewAttack->SetPos(GetPos() + float4{ 0.0f, 0.0f, 0.0f, 0.0f });
 		return;
 	}
-
-
 
 
 	if (true == GameEngineInput::IsUp(VK_SPACE))
@@ -523,4 +495,8 @@ void Player::Skill_SnowflakeChakrams_Update(float _Delta)
 	{
 		ChanageState(PlayerState::Idle);
 	}
+}
+
+void Player::Skill_Tornado_Update()
+{
 }

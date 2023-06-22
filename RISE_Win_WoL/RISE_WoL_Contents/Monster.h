@@ -13,6 +13,16 @@ enum class MonsterState
 	Max,
 };
 
+enum class BossState
+{
+	Idle,
+	Run,
+	NormalAttack,
+	Damage,
+	Death,
+	Max,
+};
+
 enum class MonsterDir
 {
 	Right,

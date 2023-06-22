@@ -68,13 +68,6 @@ void Monster_Swordman::ChangeAnimationState(const std::string& _StateName)
 
 }
 
-void Monster_Swordman::ChangeState(MonsterState _State)
-{
-
-
-
-}
-
 void Monster_Swordman::LevelStart()
 {
 
@@ -167,7 +160,7 @@ void Monster_Swordman::Update(float _Delta)
 		))
 		{
 			DirCheck();
-			ChanageState(MonsterState::Attack);
+			ChangeState(MonsterState::Attack);
 		}
 
 		// 플레이어의 스킬과 자신의 몸이 충돌하면 데미지 상태로 전환
@@ -190,31 +183,24 @@ void Monster_Swordman::Update(float _Delta)
 				if (m_iCurHp <= 0)
 				{
 					DirCheck();
-					ChanageState(MonsterState::Death);
+					ChangeState(MonsterState::Death);
 				}
 
 				else
 				{
 					DirCheck();
-					ChanageState(MonsterState::Damage);
+					ChangeState(MonsterState::Damage);
 
+					// 수정필요
 					Actor->Death();
 				}
 
 			}
 		}
 
-
-
 	}
 
-
-
 	StateUpdate(_Delta);
-
-
-
-
 
 }
 
@@ -285,7 +271,6 @@ void Monster_Swordman::DamageStart()
 void Monster_Swordman::DeathStart()
 {
 	DropItem(GetPos());
-//	DirCheck();
 	EffectPlayer = GameEngineSound::SoundPlay("ENEMY_DIED.mp3");
 	ChangeAnimationState("Death");
 }
@@ -351,7 +336,7 @@ void Monster_Swordman::AttackUpdate(float _Delta)
 			NewAttack->SkillRenderer->ChangeAnimation("ATTACK_DOWN");
 		}
 
-		ChanageState(MonsterState::Run);
+		ChangeState(MonsterState::Run);
 		ResetLiveTime();
 	}
 }
@@ -360,14 +345,14 @@ void Monster_Swordman::DamageUpdate(float _Delta)
 {
 	if (true == IsDeath()) {
 		DirCheck();
-		ChanageState(MonsterState::Death);
+		ChangeState(MonsterState::Death);
 	}
 
 	if (true == MainRenderer->IsAnimationEnd())
 	{
 		DamageRenderer->Off();
 		DirCheck();
-		ChanageState(MonsterState::Run);
+		ChangeState(MonsterState::Run);
 	}
 
 }
@@ -409,7 +394,7 @@ void Monster_Swordman::StateUpdate(float _Delta)
 	}
 }
 
-void Monster_Swordman::ChanageState(MonsterState _State)
+void Monster_Swordman::ChangeState(MonsterState _State)
 {
 	if (_State != State)
 	{

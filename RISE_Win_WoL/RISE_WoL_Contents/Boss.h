@@ -13,47 +13,40 @@ public:
 	Boss& operator=(Boss&& _Other) noexcept = delete;
 
 	GameEngineRenderer* MainRenderer = nullptr;
-
+	GameEngineCollision* BodyCollision = nullptr;
 
 	GameEngineRenderer* TestRenderer = nullptr;
-
-
-
 	GameEngineRenderer* DamageRenderer = nullptr;
 
 protected:
-	//void StateUpdate(float _Delta);
+	void StateUpdate(float _Delta);
 
-	//void IdleStart();
-	//void RunStart();
-	//void AttackStart();
-	//void DamageStart();
-	//void DeathStart();
+	void IdleStart();
+	void RunStart();
+	void AttackStart();
+	void DamageStart();
+	void DeathStart();
 
-	//void IdleUpdate(float _Delta);
-	//void RunUpdate(float _Delta);
-	//void AttackUpdate(float _Delta);
-	//void DamageUpdate(float _Delta);
-	//void DeathUpdate(float _Delta);
+	void IdleUpdate(float _Delta);
+	void RunUpdate(float _Delta);
+	void AttackUpdate(float _Delta);
+	void DamageUpdate(float _Delta);
+	void DeathUpdate(float _Delta);
 
 
-	//void ChanageState(MonsterState State);
-
-	MonsterState State = MonsterState::Max;
+	BossState State = BossState::Max;
 
 	MonsterDir Dir = MonsterDir::Right;
 	std::string CurState = "";
 
 	GameEngineCollision* BodyCollsion = nullptr;
 
-	//void DirCheck();
-	//void ChangeAnimationState(const std::string & _StateName);
-	//void ChangeState(MonsterState _State);
+	void DirCheck();
+	void ChangeAnimationState(const std::string & _StateName);
+	void ChangeState(BossState _State);
 
 private:
 	GameEngineSoundPlayer EffectPlayer;
-
-	//void LevelStart() override;
 
 	void Start() override;
 	void Update(float _Delta) override;
@@ -61,8 +54,8 @@ private:
 
 
 
-	//void SetInitStat() override;
-	//void OnDamaged(int _iAttackPower) override;
+	void SetInitStat() override;
+	void OnDamaged(int _iAttackPower) override;
 
 
 	///// 아이템 드롭 테스트용

@@ -31,7 +31,8 @@ protected:
 	void DeathUpdate(float _Delta);
 
 
-	void ChanageState(MonsterState State);
+	void ChangeState(MonsterState _State);
+
 
 	MonsterState State = MonsterState::Max;
 
@@ -42,7 +43,7 @@ protected:
 
 	void DirCheck();
 	void ChangeAnimationState(const std::string& _StateName);
-	void ChangeState(MonsterState _State);
+
 
 private:
 	GameEngineSoundPlayer EffectPlayer;

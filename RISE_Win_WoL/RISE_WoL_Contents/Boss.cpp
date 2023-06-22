@@ -16,11 +16,14 @@
 Boss::Boss()
 {
 }
+
 Boss::~Boss()
 {
 }
+
 void Boss::Start()
 {
+	SetInitStat();
 
 	if (false == ResourcesManager::GetInst().IsLoadTexture("BOSS_LEFT.Bmp"))
 	{
@@ -30,7 +33,6 @@ void Boss::Start()
 		FilePath.MoveChild("ContentsResources\\Texture\\Monster\\Boss");
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("BOSS_LEFT.bmp"));
 
-		// 텍스처 로딩과 함께 애니메이션을 위한 시트 분할
 		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("BOSS_LEFT.bmp"), 9, 6);
 	}
 
@@ -122,4 +124,185 @@ void Boss::Update(float _Delta)
 void Boss::Render(float _Delta)
 {
 
+}
+
+void Boss::SetInitStat()
+{
+	// 이후 Define으로 변경
+	m_fMoveSpeed = 100.0f;
+	m_fAttackSpeed = 100.0f;
+	m_iMaxHp = 100;
+	m_iCurHp = m_iMaxHp;
+	m_fAttackRange = 100.0f;
+}
+
+void Boss::OnDamaged(int _iAttackPower)
+{
+	m_iCurHp -= _iAttackPower;
+
+	if (DamageRenderer == nullptr)
+	{
+		DamageRenderer = CreateRenderer(RenderOrder::Play);
+		DamageRenderer->SetRenderPos({ 0, -100 });
+		DamageRenderer->SetRenderScale({ 200, 40 });
+	}
+
+	DamageRenderer->SetText(std::to_string(_iAttackPower), 20);
+	DamageRenderer->On();
+}
+
+void Boss::StateUpdate(float _Delta)
+{
+	switch (State)
+	{
+	case BossState::Idle:
+		IdleUpdate(_Delta);
+		break;
+
+	case BossState::Run:
+		RunUpdate(_Delta);
+		break;
+
+	case BossState::NormalAttack:
+		AttackUpdate(_Delta);
+		break;
+
+	case BossState::Damage:
+		DamageUpdate(_Delta);
+		break;
+
+	case BossState::Death:
+		DeathUpdate(_Delta);
+		break;
+	}
+}
+
+
+#pragma region State Start
+void Boss::IdleStart()
+{
+	ChangeAnimationState("Idle");
+}
+
+void Boss::RunStart()
+{
+	ChangeAnimationState("Move");
+}
+
+void Boss::AttackStart()
+{
+	ChangeAnimationState("Attack");
+}
+
+void Boss::DamageStart()
+{
+	ChangeAnimationState("Damage");
+}
+
+void Boss::DeathStart()
+{
+	ChangeAnimationState("Death");
+}
+
+#pragma endregion
+
+
+#pragma region Start Update
+void Boss::IdleUpdate(float _Delta)
+{
+}
+
+void Boss::RunUpdate(float _Delta)
+{
+}
+
+void Boss::AttackUpdate(float _Delta)
+{
+}
+
+void Boss::DamageUpdate(float _Delta)
+{
+}
+
+void Boss::DeathUpdate(float _Delta)
+{
+}
+
+#pragma endregion
+
+void Boss::ChangeState(BossState _State)
+{
+	if (_State != State)
+	{
+		switch (_State)
+		{
+		case BossState::Idle:
+			IdleStart();
+			break;
+
+		case BossState::Run:
+			RunStart();
+			break;
+
+		case BossState::NormalAttack:
+			AttackStart();
+			break;
+
+		case BossState::Damage:
+			DamageStart();
+			break;
+
+		case BossState::Death:
+			DeathStart();
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	State = _State;
+}
+
+void Boss::DirCheck()
+{
+	float4 DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
+
+	if (DirDeg.AngleDeg() > 90 && DirDeg.AngleDeg() < 270)
+	{
+		Dir = MonsterDir::Left;
+		ChangeAnimationState(CurState);
+		return;
+	}
+
+	else
+	{
+		Dir = MonsterDir::Right;
+		ChangeAnimationState(CurState);
+		return;
+	}
+}
+
+
+void Boss::ChangeAnimationState(const std::string& _StateName)
+{
+	std::string AnimationName;
+
+	switch (Dir)
+	{
+	case MonsterDir::Right:
+		AnimationName = "Right_";
+		break;
+
+	case MonsterDir::Left:
+		AnimationName = "Left_";
+		break;
+
+	default:
+		break;
+	}
+
+	AnimationName += _StateName;
+	CurState = _StateName;
+	MainRenderer->ChangeAnimation(AnimationName);
 }

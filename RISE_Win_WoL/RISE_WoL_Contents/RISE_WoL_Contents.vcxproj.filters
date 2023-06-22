@@ -59,7 +59,7 @@
     <Filter Include="01.Level\OBJ\05.Props">
       <UniqueIdentifier>{4d8e22e9-dbb6-4bf1-9d04-bbcd51106769}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Level\OBJ\Boss">
+    <Filter Include="01.Level\OBJ\02.Monster\Boss">
       <UniqueIdentifier>{dbf59319-b81c-4d24-9a50-bb513ccde403}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -189,10 +189,13 @@
       <Filter>02.Skills\Player</Filter>
     </ClCompile>
     <ClCompile Include="Boss.cpp">
-      <Filter>01.Level\OBJ\Boss</Filter>
+      <Filter>01.Level\OBJ\02.Monster\Boss</Filter>
     </ClCompile>
     <ClCompile Include="EFFECT_RedCastingCircle.cpp">
       <Filter>01.Level\OBJ</Filter>
+    </ClCompile>
+    <ClCompile Include="SKILL_Tornado.cpp">
+      <Filter>02.Skills\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -321,10 +324,13 @@
       <Filter>02.Skills\Player</Filter>
     </ClInclude>
     <ClInclude Include="Boss.h">
-      <Filter>01.Level\OBJ\Boss</Filter>
+      <Filter>01.Level\OBJ\02.Monster\Boss</Filter>
     </ClInclude>
     <ClInclude Include="EFFECT_RedCastingCircle.h">
       <Filter>01.Level\OBJ</Filter>
+    </ClInclude>
+    <ClInclude Include="SKILL_Tornado.h">
+      <Filter>02.Skills\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
