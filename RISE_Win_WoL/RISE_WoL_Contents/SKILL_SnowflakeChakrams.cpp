@@ -23,7 +23,6 @@ void SKILL_SnowflakeChakrams::Start()
 
 	}
 
-
 	// 렌더러 생성 - 위
 	{
 		GameEngineRenderer* Renderer = CreateRenderer();
@@ -86,13 +85,11 @@ void SKILL_SnowflakeChakrams::Start()
 
 void SKILL_SnowflakeChakrams::Update(float _Delta)
 {
-
 	// 중심축인 플레이어를 기준으로 이동시 스킬도 이동거리에 맞춰서 이동
 	float4 Dir = Player::GetMainPlayer()->GetPos() - GetPos();
-
 	AddPos(Dir * _Delta * 400.0f);
 
-	RollAngle += _Delta * 270.0f;
+	RollAngle += _Delta * 360.0f;
 
 	if (RollAngle >= 360.0f)
 	{

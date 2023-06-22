@@ -1,5 +1,6 @@
 #pragma once
 #include "Skill.h"
+#include <vector>
 
 class SKILL_EarthenAegis : public Skill
 {
@@ -12,6 +13,11 @@ class SKILL_EarthenAegis : public Skill
 	{
 		Speed = _Speed;
 	}
+
+
+	std::vector<GameEngineRenderer*> Renderers;
+	std::vector<GameEngineCollision*> Collisions;
+
 
 	GameEngineRenderer* Renderer = nullptr;
 
