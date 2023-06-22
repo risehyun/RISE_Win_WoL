@@ -165,6 +165,7 @@
     <ClInclude Include="ARCANA_EarthenAegis.h" />
     <ClInclude Include="ARCANA_SnowflakeChakrams.h" />
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="BossLevel.h" />
     <ClInclude Include="BossSpawner.h" />
     <ClInclude Include="Bullet.h">
@@ -174,6 +175,7 @@
     <ClInclude Include="ContentCore.h" />
     <ClInclude Include="ContentsEnum.h" />
     <ClInclude Include="Effect_CastingCircle.h" />
+    <ClInclude Include="EFFECT_RedCastingCircle.h" />
     <ClInclude Include="Effect_Spawn.h" />
     <ClInclude Include="EndingLevel.h" />
     <ClInclude Include="GlobalValue.h" />
@@ -212,6 +214,7 @@
     <ClCompile Include="ARCANA_EarthenAegis.cpp" />
     <ClCompile Include="ARCANA_SnowflakeChakrams.cpp" />
     <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossLevel.cpp" />
     <ClCompile Include="BossSpawner.cpp" />
     <ClCompile Include="Bullet.cpp">
@@ -220,6 +223,7 @@
     </ClCompile>
     <ClCompile Include="ContentCore.cpp" />
     <ClCompile Include="Effect_CastingCircle.cpp" />
+    <ClCompile Include="EFFECT_RedCastingCircle.cpp" />
     <ClCompile Include="Effect_Spawn.cpp" />
     <ClCompile Include="EndingLevel.cpp" />
     <ClCompile Include="GlobalValue.cpp" />

@@ -23,23 +23,46 @@ void SKILL_PlayerWindBoomerang::Start()
 
 		FilePath.MoveChild("ContentsResources\\Texture\\Skill");
 
-		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("ICE_BLAST.bmp"), 6, 1);
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("ICE_BLAST.bmp"), 5, 1);
 	}
 
 	// 坊歹矾 积己苞 肺爹等 咆胶贸 瘤沥
 	Renderer = CreateRenderer();
 	Renderer->SetRenderScale({ 200, 200 });
+	Renderer->SetRenderPos({ -100, 0 });
+
+	Renderer2 = CreateRenderer();
+	Renderer2->SetRenderPos({ -200, 0 });
+	Renderer2->SetRenderScale({ 200, 200 });
+
+	Renderer3 = CreateRenderer();
+	Renderer3->SetRenderScale({ 200, 200 });
+	Renderer3->SetRenderPos({ -300, 0 });
+
+	Renderer4 = CreateRenderer();
+	Renderer4->SetRenderScale({ 200, 200 });
+	Renderer4->SetRenderPos({ -400, 0 });
 
 	// 局聪皋捞记 积己
-	Renderer->CreateAnimation("ATTACK_WINDBOOMERANG", "ICE_BLAST.bmp", 2, 0, 0.2f, true);
+	Renderer->CreateAnimation("ATTACK_WINDBOOMERANG", "ICE_BLAST.bmp", 0, 2, 0.2f, true);
 	Renderer->CreateAnimation("ATTACK_WINDBOOMERANG_END", "ICE_BLAST.bmp", 2, 0, 0.2f, false);
 
+
+	Renderer2->CreateAnimation("ATTACK_WINDBOOMERANG2", "ICE_BLAST.bmp", 2, 2, 0.2f, true);
+	Renderer3->CreateAnimation("ATTACK_WINDBOOMERANG2", "ICE_BLAST.bmp", 2, 2, 0.2f, true);
+	Renderer4->CreateAnimation("ATTACK_WINDBOOMERANG3", "ICE_BLAST.bmp", 3, 4, 0.2f, true);
+
+	Renderer2->ChangeAnimation("ATTACK_WINDBOOMERANG2");
+	Renderer3->ChangeAnimation("ATTACK_WINDBOOMERANG2");
+	Renderer4->ChangeAnimation("ATTACK_WINDBOOMERANG3");
+
 	// 面倒眉 积己
-	{
-		BodyCollsion = CreateCollision(CollisionOrder::PlayerSkill);
-		BodyCollsion->SetCollisionScale({ 100, 100 });
-		BodyCollsion->SetCollisionType(CollisionType::CirCle);
-	}
+	
+	BodyCollsion = CreateCollision(CollisionOrder::PlayerSkill);
+	BodyCollsion->SetCollisionScale({ 100, 100 });
+	BodyCollsion->SetCollisionType(CollisionType::CirCle);
+	BodyCollsion->SetCollisionPos({ -100, 0 });
+	
 }
 
 void SKILL_PlayerWindBoomerang::Update(float _Delta)
@@ -54,40 +77,76 @@ void SKILL_PlayerWindBoomerang::Update(float _Delta)
 	if (2.0f > GetLiveTime())
 	{
 		AddPos(NextPos);
+
+		// 单固瘤 贸府
+		if (nullptr != BodyCollsion)
+		{
+			std::vector<GameEngineCollision*> _Col;
+			if (true == BodyCollsion->Collision(CollisionOrder::MonsterBody, _Col
+				, CollisionType::CirCle
+				, CollisionType::CirCle
+			))
+			{
+				for (size_t i = 0; i < _Col.size(); i++)
+				{
+					GameEngineCollision* Collison = _Col[i];
+
+					GameEngineActor* Actor = Collison->GetActor();
+
+					Actor->AddPos({ Dir * _Delta * Speed });
+
+					if (2.0f < GetLiveTime())
+					{
+						Actor->AddPos(-NextPos);
+					}
+
+				}
+			}
+		}
 	}
 
 	else
 	{
+
+
 		if (Player::GetMainPlayer()->GetPos().X < GetPos().X
 			|| Player::GetMainPlayer()->GetPos().X > GetPos().X
 			|| Player::GetMainPlayer()->GetPos().Y < GetPos().Y
 			|| Player::GetMainPlayer()->GetPos().Y > GetPos().Y)
 		{
 			AddPos(-NextPos);
+
+			// 单固瘤 贸府
+			if (nullptr != BodyCollsion)
+			{
+				std::vector<GameEngineCollision*> _Col;
+				if (true == BodyCollsion->Collision(CollisionOrder::MonsterBody, _Col
+					, CollisionType::CirCle
+					, CollisionType::CirCle
+				))
+				{
+					for (size_t i = 0; i < _Col.size(); i++)
+					{
+						GameEngineCollision* Collison = _Col[i];
+
+						GameEngineActor* Actor = Collison->GetActor();
+
+						Actor->SetPos(-NextPos);
+					}
+				}
+			}
+
+			//if (BodyCollsion != nullptr)
+			//{
+			//	BodyCollsion->SetCollisionPos({ 400, 0 });
+			//}
+
 		}
 			
 	}
 
 
-	// 单固瘤 贸府
-	if (nullptr != BodyCollsion)
-	{
-		std::vector<GameEngineCollision*> _Col;
-		if (true == BodyCollsion->Collision(CollisionOrder::MonsterBody, _Col
-			, CollisionType::CirCle
-			, CollisionType::CirCle
-		))
-		{
-			for (size_t i = 0; i < _Col.size(); i++)
-			{
-				GameEngineCollision* Collison = _Col[i];
-
-				GameEngineActor* Actor = Collison->GetActor();
-
-				Actor->Death();
-			}
-		}
-	}
+	
 
 	if (4.0f < GetLiveTime())
 	{
@@ -95,6 +154,15 @@ void SKILL_PlayerWindBoomerang::Update(float _Delta)
 		{
 			Renderer->Death();
 			Renderer = nullptr;
+
+			Renderer2->Death();
+			Renderer2 = nullptr;
+
+			Renderer3->Death();
+			Renderer3 = nullptr;
+
+			Renderer4->Death();
+			Renderer4 = nullptr;
 
 			BodyCollsion->Death();
 			BodyCollsion = nullptr;

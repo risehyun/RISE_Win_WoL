@@ -10,6 +10,7 @@
 #include "Player.h"
 #include "BackGround.h"
 
+#include "Boss.h"
 
 BossLevel::BossLevel()
 {
@@ -73,6 +74,11 @@ void BossLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	float4 WinScale = GameEngineWindow::MainWindow.GetScale();
 
 	//GetMainCamera()->SetPos(LevelPlayer->GetPos() - WinScale.Half());
+
+
+	Boss* NewBoss = CreateActor<Boss>();
+
+	NewBoss->SetPos({ 1850, 1800 });
 
 }
 

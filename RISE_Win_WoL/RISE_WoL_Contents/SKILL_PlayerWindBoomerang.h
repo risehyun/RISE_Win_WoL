@@ -16,6 +16,11 @@ public:
 	}
 
 	GameEngineRenderer* Renderer = nullptr;
+	GameEngineRenderer* Renderer2 = nullptr;
+	GameEngineRenderer* Renderer3 = nullptr;
+	GameEngineRenderer* Renderer4 = nullptr;
+
+
 	GameEngineCollision* BodyCollsion = nullptr;
 
 private:
