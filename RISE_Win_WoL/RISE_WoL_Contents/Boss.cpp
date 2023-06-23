@@ -12,6 +12,8 @@
 
 #include <GameEngineCore/GameEngineLevel.h>
 
+#include <GameEngineBase/GameEngineMath.h>
+
 
 Boss::Boss()
 {
@@ -67,57 +69,127 @@ void Boss::Start()
 
 void Boss::Update(float _Delta)
 {
-	float4 playerPos = Player::GetMainPlayer()->GetPos();
-	float4 Dir = playerPos - GetPos();
+	float4 TargetPos = Player::GetMainPlayer()->GetPos();
+
+	static float m_fTickTime = 0.0f;
+	static float m_fFallY = 0.0f;
+	static float m_fInitY = 0.0f;
+
+	m_fTickTime += _Delta;
 
 
-	Dir.Normalize();
-
-
-
-	float4 MovePos;
-
-	if (true == GameEngineInput::IsPress('P'))
+	if (GetLiveTime() < 1.0f)
 	{
-		EFFECT_RedCastingCircle* NewCircle = GetLevel()->CreateActor<EFFECT_RedCastingCircle>();
 
-		NewCircle->GetMainRenderer()->SetRenderPos({ playerPos });
+		m_fFallY = GetTarget.Y;
+		m_fInitY = GetTarget.Y - 200.0f;
 
-		if (GetLiveTime() < 4.0f)
-		{
+		float fT = m_fTickTime / 0.2f;
+		SetPos(float4{ GetTarget.X, (m_fInitY * (1.f - fT) + (m_fInitY - 100.0f) * fT) });
 
-			AddPos(float4::UP * 100.0f * _Delta);
+		return;
+		//	}
 
-			MainRenderer->ChangeAnimation("Left_Jump");
-		}
-
-		if (GetLiveTime() > 2.0f && GetLiveTime() < 4.0f)
-		{
-			MainRenderer->ChangeAnimation("Left_JumpAir");
-
-			AddPos((float4::UP + float4::LEFT) * 50.0f * _Delta);
-		}
-
-		if (GetLiveTime() > 4.0f && GetLiveTime() < 5.0f)
-		{
-			MainRenderer->ChangeAnimation("Left_JumpFall");
-			
-			AddPos(Dir * _Delta * 100.0f);
-		}
-
-		if (GetLiveTime() > 5.0f)
-		{
-			MainRenderer->ChangeAnimation("Left_JumpGround");
-
-			AddPos(Dir * _Delta * 100.0f);
-		}
 
 
 	}
+
+	if (GetLiveTime() > 1.0f)
+	{
+		if (GetPos().Y < m_fFallY)
+		{
+			AddPos(float4::DOWN);
+		}
+	}
+
+	//if (true == GameEngineInput::IsPress('P'))
+	//{
+
+	//	float4 TargetPos = Player::GetMainPlayer()->GetPos();
+
+	//	float Angle = 45.0f;
+
+	//	float gravity = 9.8f;
+
+	//	float4 BossPos = GetPos();
+
+
+	//	float target_Distance = (TargetPos - BossPos).Size();
+	//	float jump_velocity = target_Distance / (sinf(2 * Angle * GameEngineMath::D2R) / gravity);
+
+	//	float Vx = sqrtf(jump_velocity) * cosf(Angle * GameEngineMath::D2R);
+	//	float Vy = sqrtf(jump_velocity) * sinf(Angle * GameEngineMath::D2R);
+
+	//	float flightDuration = target_Distance / Vx;
+
+	//	AddPos(float4::GetUnitVectorFromDeg(Vx * _Delta));
+
+
+	//	//	MainRenderer->SetRenderPos(TargetPos - BossPos);
+
+	//	float elapse_time = 0.0f;
+
+	//	AddPos(float4::GetUnitVectorFromDeg(Vy - (gravity * elapse_time)) * _Delta);
+
+	//}
+
+
+
+
+
+
+
+	//float4 playerPos = Player::GetMainPlayer()->GetPos();
+	//float4 Dir = playerPos - GetPos();
+
+
+	//Dir.Normalize();
+
+
+
+	//float4 MovePos;
+
+	//if (true == GameEngineInput::IsPress('P'))
+	//{
+	//	EFFECT_RedCastingCircle* NewCircle = GetLevel()->CreateActor<EFFECT_RedCastingCircle>();
+
+	//	NewCircle->GetMainRenderer()->SetRenderPos({ playerPos });
+
+	//	if (GetLiveTime() < 4.0f)
+	//	{
+
+	//		AddPos(float4::UP * 100.0f * _Delta);
+
+	//		MainRenderer->ChangeAnimation("Left_Jump");
+	//	}
+
+	//	if (GetLiveTime() > 2.0f && GetLiveTime() < 4.0f)
+	//	{
+	//		MainRenderer->ChangeAnimation("Left_JumpAir");
+
+	//		AddPos((float4::UP + float4::LEFT) * 50.0f * _Delta);
+	//	}
+
+	//	if (GetLiveTime() > 4.0f && GetLiveTime() < 5.0f)
+	//	{
+	//		MainRenderer->ChangeAnimation("Left_JumpFall");
+	//		
+	//		AddPos(Dir * _Delta * 100.0f);
+	//	}
+
+	//	if (GetLiveTime() > 5.0f)
+	//	{
+	//		MainRenderer->ChangeAnimation("Left_JumpGround");
+
+	//		AddPos(Dir * _Delta * 100.0f);
+	//	}
+
+
+	//}
 	//Dir.Normalize();
 
 	//AddPos(Dir * _Delta * 100.0f);
-//	MainRenderer->SetRenderPos();
+	//	MainRenderer->SetRenderPos();
 
 }
 

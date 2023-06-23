@@ -117,6 +117,33 @@ public:
 		return ReturnValue;
 	}
 
+	float4 operator/(const float4& _Other) const
+	{
+		float4 ReturnValue;
+
+		ReturnValue.X = X / _Other.X;
+		ReturnValue.Y = Y / _Other.Y;
+		ReturnValue.Z = Z / _Other.Z;
+
+		return ReturnValue;
+	}
+
+
+	float4 operator/(const float _Value) const
+	{
+		float4 ReturnValue;
+
+		ReturnValue.X = X / _Value;
+		ReturnValue.Y = Y / _Value;
+		ReturnValue.Z = Z / _Value;
+
+		return ReturnValue;
+	}
+
+
+
+
+
 	float4& operator+=(const float4& _Other)
 	{
 		X += _Other.X;

@@ -151,7 +151,7 @@ void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	LevelPlayer->SetGroundTexture("stage1_Col.bmp");
 
-	BGMPlayer = GameEngineSound::SoundPlay("Earth.wav");
+//	BGMPlayer = GameEngineSound::SoundPlay("Earth.wav");
 
 }
 
