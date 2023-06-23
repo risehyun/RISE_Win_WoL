@@ -30,7 +30,7 @@ void UI_Inventory::Start()
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_INVENTORY.bmp"));
 	}
 
-	MainRenderer = CreateRenderer();
+	MainRenderer = CreateUIRenderer();
 	MainRenderer->SetRenderScale({ 576, 865 });
 	MainRenderer->SetTexture("UI_INVENTORY.bmp");
 }

@@ -68,6 +68,4 @@ void SKILL_Fireball::Update(float _Delta)
 	float4 NextPos = Dir * _Delta * Speed;
 	AddPos(NextPos);
 
-
-
 }

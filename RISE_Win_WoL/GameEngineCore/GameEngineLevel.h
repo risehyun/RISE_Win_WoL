@@ -66,20 +66,14 @@ private:
 	GameEngineCamera* UICamera;
 
 	std::map<int, std::list<GameEngineActor*>> AllActors;
-
-
 	std::map<int, std::list<GameEngineCollision*>> AllCollision;
 
 
 	void ActorInit(GameEngineActor* _Actor, int _Order);
 
-
-
 	void ActorLevelEnd();
 
 	void ActorLevelStart();
-
-
 
 	void ActorUpdate(float _Delta);
 

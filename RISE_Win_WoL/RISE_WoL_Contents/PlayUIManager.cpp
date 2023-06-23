@@ -9,6 +9,8 @@
 
 
 #include "UI_Inventory.h"
+#include "UI_SkillBar.h"
+
 #include <GameEngineCore/ResourcesManager.h>
 
 PlayUIManager* PlayUIManager::UI = nullptr;
@@ -64,6 +66,10 @@ void PlayUIManager::Start()
 
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_INVEN_BASE.bmp"));
 	}
+	
+	// 스킬바 적용
+	UI_SkillBar* NewSkillBar = GetLevel()->CreateActor<UI_SkillBar>();
+	NewSkillBar->GetMainRenderer()->SetRenderPos({ 225, 740 });
 
 
 }

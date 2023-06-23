@@ -108,7 +108,7 @@ void Player::Start()
 
 			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_MONEY.bmp"));
 
-			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_SKILLBAR.bmp"));
+//			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_SKILLBAR.bmp"));
 
 			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_MANABAR.bmp"));
 
@@ -175,12 +175,12 @@ void Player::Start()
 			Ptr->SetTexture("UI_MONEY.bmp");
 		}
 
-		{
-			GameEngineRenderer* Ptr = CreateRenderer("UI_SKILLBAR.bmp", RenderOrder::Play);
-			Ptr->SetRenderPos({ -425, 340 });
-			Ptr->SetRenderScale({ 400, 100 });
-			Ptr->SetTexture("UI_SKILLBAR.bmp");
-		}
+		//{
+		//	GameEngineRenderer* Ptr = CreateRenderer("UI_SKILLBAR.bmp", RenderOrder::Play);
+		//	Ptr->SetRenderPos({ -425, 340 });
+		//	Ptr->SetRenderScale({ 400, 100 });
+		//	Ptr->SetTexture("UI_SKILLBAR.bmp");
+		//}
 	}
 
 	float4 WinScale = GameEngineWindow::MainWindow.GetScale();

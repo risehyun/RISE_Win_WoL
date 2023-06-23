@@ -200,6 +200,9 @@
     <ClCompile Include="SKILL_Fireball.cpp">
       <Filter>02.Skills\Player</Filter>
     </ClCompile>
+    <ClCompile Include="UI_SkillBar.cpp">
+      <Filter>03.UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -337,6 +340,9 @@
     </ClInclude>
     <ClInclude Include="SKILL_Fireball.h">
       <Filter>02.Skills\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_SkillBar.h">
+      <Filter>03.UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
