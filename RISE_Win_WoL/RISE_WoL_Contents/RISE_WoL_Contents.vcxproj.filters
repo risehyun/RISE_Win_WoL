@@ -212,6 +212,15 @@
     <ClCompile Include="SKILL_Boss_AncientEarthDrill.cpp">
       <Filter>02.Skills\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="ITEM_HealthCrystal.cpp">
+      <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClCompile>
+    <ClCompile Include="EFFECT_GoldCastingCircle.cpp">
+      <Filter>01.Level\OBJ</Filter>
+    </ClCompile>
+    <ClCompile Include="ITEM_HPBall.cpp">
+      <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -358,6 +367,15 @@
     </ClInclude>
     <ClInclude Include="SKILL_Boss_AncientEarthDrill.h">
       <Filter>02.Skills\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="ITEM_HealthCrystal.h">
+      <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClInclude>
+    <ClInclude Include="EFFECT_GoldCastingCircle.h">
+      <Filter>01.Level\OBJ</Filter>
+    </ClInclude>
+    <ClInclude Include="ITEM_HPBall.h">
+      <Filter>01.Level\OBJ\03.Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -39,6 +39,7 @@ void EFFECT_RedCastingCircle::Start()
 		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("IceBlast.bmp"), 3, 1);
 	}
 
+
 	MainRenderer = CreateRenderer();
 	MainRenderer->SetOrder(0);
 	MainRenderer->SetRenderScale({ 200, 200 });

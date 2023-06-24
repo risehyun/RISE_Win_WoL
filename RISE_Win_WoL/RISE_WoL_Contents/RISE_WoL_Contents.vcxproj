@@ -179,6 +179,7 @@
     <ClInclude Include="ContentCore.h" />
     <ClInclude Include="ContentsEnum.h" />
     <ClInclude Include="Effect_CastingCircle.h" />
+    <ClInclude Include="EFFECT_GoldCastingCircle.h" />
     <ClInclude Include="EFFECT_RedCastingCircle.h" />
     <ClInclude Include="Effect_Spawn.h" />
     <ClInclude Include="EndingLevel.h" />
@@ -189,6 +190,8 @@
     <ClInclude Include="ITEM_DaggerofMidas.h" />
     <ClInclude Include="ITEM_GiantsHeart.h" />
     <ClInclude Include="ITEM_Gold.h" />
+    <ClInclude Include="ITEM_HealthCrystal.h" />
+    <ClInclude Include="ITEM_HPBall.h" />
     <ClInclude Include="ITEM_Potion.h" />
     <ClInclude Include="ITEM_VampiresEyeglasses.h" />
     <ClInclude Include="Monster.h" />
@@ -232,6 +235,7 @@
     </ClCompile>
     <ClCompile Include="ContentCore.cpp" />
     <ClCompile Include="Effect_CastingCircle.cpp" />
+    <ClCompile Include="EFFECT_GoldCastingCircle.cpp" />
     <ClCompile Include="EFFECT_RedCastingCircle.cpp" />
     <ClCompile Include="Effect_Spawn.cpp" />
     <ClCompile Include="EndingLevel.cpp" />
@@ -242,6 +246,8 @@
     <ClCompile Include="ITEM_DaggerofMidas.cpp" />
     <ClCompile Include="ITEM_GiantsHeart.cpp" />
     <ClCompile Include="ITEM_Gold.cpp" />
+    <ClCompile Include="ITEM_HealthCrystal.cpp" />
+    <ClCompile Include="ITEM_HPBall.cpp" />
     <ClCompile Include="ITEM_Potion.cpp" />
     <ClCompile Include="ITEM_VampiresEyeglasses.cpp" />
     <ClCompile Include="Monster.cpp" />

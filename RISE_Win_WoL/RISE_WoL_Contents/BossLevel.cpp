@@ -7,6 +7,9 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 
+#include "ITEM_HealthCrystal.h"
+#include "EFFECT_GoldCastingCircle.h"
+
 #include "Player.h"
 #include "BackGround.h"
 
@@ -41,6 +44,7 @@ void BossLevel::Start()
 
 	LevelPlayer->SetGroundTexture("BossStage_Col_resize.bmp");
 
+
 }
 
 void BossLevel::Update(float _Delta)
@@ -66,18 +70,24 @@ void BossLevel::Release()
 
 void BossLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	//if (nullptr == LevelPlayer)
-	//{
-	//	MsgBoxAssert("플레이어를 세팅해주지 않았습니다");
-	//}
+	if (nullptr == LevelPlayer)
+	{
+		MsgBoxAssert("플레이어를 세팅해주지 않았습니다");
+	}
 
 	float4 WinScale = GameEngineWindow::MainWindow.GetScale();
 
 	//GetMainCamera()->SetPos(LevelPlayer->GetPos() - WinScale.Half());
 
+	ITEM_HealthCrystal* HealthCrystal = CreateActor<ITEM_HealthCrystal>();
+	HealthCrystal->SetPos({ 1720, 1600 });
+
+	EFFECT_GoldCastingCircle* GoldCastingCircle = CreateActor<EFFECT_GoldCastingCircle>();
+	GoldCastingCircle->SetPos({ 1720, 1650 });
+
+
 
 	Boss* NewBoss = CreateActor<Boss>();
-
 	NewBoss->SetPos({ 1850, 1400 });
 
 }

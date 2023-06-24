@@ -73,8 +73,6 @@ void PROP_TreasureChestMiniBoss::Update(float _Delta)
 
 		int Test = GameEngineRandom::MainRandom.RandomInt(1, 10);
 
-		int a = 0;
-
 		for (size_t i = 0; i < Test; i++)
 		{
 			int Test2 = GameEngineRandom::MainRandom.RandomInt(0, 500);
