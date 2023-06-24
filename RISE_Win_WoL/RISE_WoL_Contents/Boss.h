@@ -1,6 +1,8 @@
 #pragma once
 #include "Monster.h"
 
+#include "SKILL_Boss_AncientEarthDrill.h"
+
 class Boss : public Monster
 {
 public:
@@ -22,21 +24,24 @@ protected:
 	void StateUpdate(float _Delta);
 
 	void IdleStart();
-	void RunStart();
-	void AttackStart();
+
+	void Skill_SeismicSlam_Start();
+	void Skill_AncientEarthDrill_Start();
+
 	void DamageStart();
 	void DeathStart();
 
 	void IdleUpdate(float _Delta);
-	void RunUpdate(float _Delta);
 	void AttackUpdate(float _Delta);
 	void DamageUpdate(float _Delta);
 	void DeathUpdate(float _Delta);
 
+	void Skill_SeismicSlam_Update(float _Delta);
+	void Skill_AncientEarthDrill_Update(float _Delta);
 
 	BossState State = BossState::Max;
 
-	MonsterDir Dir = MonsterDir::Right;
+	BossDir Dir = BossDir::Left;
 	std::string CurState = "";
 
 	GameEngineCollision* BodyCollsion = nullptr;
@@ -56,6 +61,9 @@ private:
 
 	void SetInitStat() override;
 	void OnDamaged(int _iAttackPower) override;
+
+	float4 DirDeg;
+	SKILL_Boss_AncientEarthDrill* NewAttack;
 
 
 	///// 아이템 드롭 테스트용

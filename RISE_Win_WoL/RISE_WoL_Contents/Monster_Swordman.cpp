@@ -170,8 +170,6 @@ void Monster_Swordman::Update(float _Delta)
 			, CollisionType::CirCle
 		))
 		{
-
-
 			for (size_t i = 0; i < _Col.size(); i++)
 			{
 				GameEngineCollision* Collison = _Col[i];
@@ -245,7 +243,6 @@ void Monster_Swordman::DropItem(float4 _DropPos)
 
 void Monster_Swordman::IdleStart()
 {
-//	DirCheck();
 	ChangeAnimationState("Idle");
 }
 
@@ -257,7 +254,6 @@ void Monster_Swordman::RunStart()
 
 void Monster_Swordman::AttackStart()
 {
-//	DirCheck();
 	ChangeAnimationState("Attack");
 }
 

@@ -47,7 +47,7 @@ private:
 	float Speed = 500.0f;
 
 	float RollAngle = 45.0f;
-	float Degree;
+	float Degree = 0.0f;
 	float4 Range;
 
 	void Start() override;

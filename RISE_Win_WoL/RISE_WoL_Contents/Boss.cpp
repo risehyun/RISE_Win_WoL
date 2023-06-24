@@ -8,12 +8,15 @@
 #include "Player.h"
 #include "EFFECT_RedCastingCircle.h"
 
+#include "SKILL_Boss_AncientEarthDrill.h"
+
 #include <GameEnginePlatform/GameEngineInput.h>
 
 #include <GameEngineCore/GameEngineLevel.h>
 
 #include <GameEngineBase/GameEngineMath.h>
 
+#include <GameEnginePlatform/GameEngineInput.h>
 
 Boss::Boss()
 {
@@ -21,181 +24,6 @@ Boss::Boss()
 
 Boss::~Boss()
 {
-}
-
-void Boss::Start()
-{
-	SetInitStat();
-
-	if (false == ResourcesManager::GetInst().IsLoadTexture("BOSS_LEFT.Bmp"))
-	{
-		GameEnginePath FilePath;
-		FilePath.SetCurrentPath();
-		FilePath.MoveParentToExistsChild("ContentsResources");
-		FilePath.MoveChild("ContentsResources\\Texture\\Monster\\Boss");
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("BOSS_LEFT.bmp"));
-
-		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("BOSS_LEFT.bmp"), 9, 6);
-	}
-
-	if (false == ResourcesManager::GetInst().IsLoadTexture("RedCastingCircle.Bmp"))
-	{
-		GameEnginePath FilePath;
-		FilePath.SetCurrentPath();
-		FilePath.MoveParentToExistsChild("ContentsResources");
-		FilePath.MoveChild("ContentsResources\\Texture\\Effect");
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("RedCastingCircle.bmp"));
-	}
-
-
-	MainRenderer = CreateRenderer(RenderOrder::Play);
-	MainRenderer->SetRenderScale({ 150, 200 });
-	MainRenderer->CreateAnimation("Left_Idle", "BOSS_LEFT.bmp", 0, 0, 0.1f, true);
-	MainRenderer->CreateAnimation("Left_Jump", "BOSS_LEFT.bmp", 27, 28, 0.2f, false);
-	MainRenderer->CreateAnimation("Left_JumpAir", "BOSS_LEFT.bmp", 29, 30, 0.2f, false);
-	MainRenderer->CreateAnimation("Left_JumpFall", "BOSS_LEFT.bmp", 31, 32, 0.5f, false);
-	MainRenderer->CreateAnimation("Left_JumpGround", "BOSS_LEFT.bmp", 33, 34, 0.5f, false);
-	MainRenderer->ChangeAnimation("Left_Idle");
-	MainRenderer->SetRenderPos({ 0,0 });
-
-
-	//TestRenderer = CreateRenderer();
-	//TestRenderer->SetRenderScale({ 200, 200 });
-	//TestRenderer->SetTexture("RedCastingCircle.bmp");
-	//TestRenderer->SetRenderPos({ 0.0f, 0.0f });
-
-
-}
-
-void Boss::Update(float _Delta)
-{
-	float4 TargetPos = Player::GetMainPlayer()->GetPos();
-
-	static float m_fTickTime = 0.0f;
-	static float m_fFallY = 0.0f;
-	static float m_fInitY = 0.0f;
-
-	m_fTickTime += _Delta;
-
-
-	if (GetLiveTime() < 1.0f)
-	{
-
-		m_fFallY = GetTarget.Y;
-		m_fInitY = GetTarget.Y - 200.0f;
-
-		float fT = m_fTickTime / 0.2f;
-		SetPos(float4{ GetTarget.X, (m_fInitY * (1.f - fT) + (m_fInitY - 100.0f) * fT) });
-
-		return;
-		//	}
-
-
-
-	}
-
-	if (GetLiveTime() > 1.0f)
-	{
-		if (GetPos().Y < m_fFallY)
-		{
-			AddPos(float4::DOWN);
-		}
-	}
-
-	//if (true == GameEngineInput::IsPress('P'))
-	//{
-
-	//	float4 TargetPos = Player::GetMainPlayer()->GetPos();
-
-	//	float Angle = 45.0f;
-
-	//	float gravity = 9.8f;
-
-	//	float4 BossPos = GetPos();
-
-
-	//	float target_Distance = (TargetPos - BossPos).Size();
-	//	float jump_velocity = target_Distance / (sinf(2 * Angle * GameEngineMath::D2R) / gravity);
-
-	//	float Vx = sqrtf(jump_velocity) * cosf(Angle * GameEngineMath::D2R);
-	//	float Vy = sqrtf(jump_velocity) * sinf(Angle * GameEngineMath::D2R);
-
-	//	float flightDuration = target_Distance / Vx;
-
-	//	AddPos(float4::GetUnitVectorFromDeg(Vx * _Delta));
-
-
-	//	//	MainRenderer->SetRenderPos(TargetPos - BossPos);
-
-	//	float elapse_time = 0.0f;
-
-	//	AddPos(float4::GetUnitVectorFromDeg(Vy - (gravity * elapse_time)) * _Delta);
-
-	//}
-
-
-
-
-
-
-
-	//float4 playerPos = Player::GetMainPlayer()->GetPos();
-	//float4 Dir = playerPos - GetPos();
-
-
-	//Dir.Normalize();
-
-
-
-	//float4 MovePos;
-
-	//if (true == GameEngineInput::IsPress('P'))
-	//{
-	//	EFFECT_RedCastingCircle* NewCircle = GetLevel()->CreateActor<EFFECT_RedCastingCircle>();
-
-	//	NewCircle->GetMainRenderer()->SetRenderPos({ playerPos });
-
-	//	if (GetLiveTime() < 4.0f)
-	//	{
-
-	//		AddPos(float4::UP * 100.0f * _Delta);
-
-	//		MainRenderer->ChangeAnimation("Left_Jump");
-	//	}
-
-	//	if (GetLiveTime() > 2.0f && GetLiveTime() < 4.0f)
-	//	{
-	//		MainRenderer->ChangeAnimation("Left_JumpAir");
-
-	//		AddPos((float4::UP + float4::LEFT) * 50.0f * _Delta);
-	//	}
-
-	//	if (GetLiveTime() > 4.0f && GetLiveTime() < 5.0f)
-	//	{
-	//		MainRenderer->ChangeAnimation("Left_JumpFall");
-	//		
-	//		AddPos(Dir * _Delta * 100.0f);
-	//	}
-
-	//	if (GetLiveTime() > 5.0f)
-	//	{
-	//		MainRenderer->ChangeAnimation("Left_JumpGround");
-
-	//		AddPos(Dir * _Delta * 100.0f);
-	//	}
-
-
-	//}
-	//Dir.Normalize();
-
-	//AddPos(Dir * _Delta * 100.0f);
-	//	MainRenderer->SetRenderPos();
-
-}
-
-void Boss::Render(float _Delta)
-{
-
 }
 
 void Boss::SetInitStat()
@@ -206,6 +34,157 @@ void Boss::SetInitStat()
 	m_iMaxHp = 100;
 	m_iCurHp = m_iMaxHp;
 	m_fAttackRange = 100.0f;
+}
+
+void Boss::DirCheck()
+{
+	float4 DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
+
+	if (DirDeg.AngleDeg() > 90 && DirDeg.AngleDeg() < 270)
+	{
+		Dir = BossDir::Left;
+		ChangeAnimationState(CurState);
+		return;
+	}
+
+	else
+	{
+		Dir = BossDir::Right;
+		ChangeAnimationState(CurState);
+		return;
+	}
+}
+
+void Boss::ChangeAnimationState(const std::string& _StateName)
+{
+	std::string AnimationName;
+
+	switch (Dir)
+	{
+	case BossDir::Right:
+		AnimationName = "Right_";
+		break;
+
+	case BossDir::Left:
+		AnimationName = "Left_";
+		break;
+
+	default:
+		break;
+	}
+
+	AnimationName += _StateName;
+	CurState = _StateName;
+	MainRenderer->ChangeAnimation(AnimationName);
+}
+
+void Boss::Start()
+{
+	SetInitStat();
+
+	GameEnginePath FilePath;
+	FilePath.SetCurrentPath();
+	FilePath.MoveParentToExistsChild("ContentsResources");
+	FilePath.MoveChild("ContentsResources\\Texture\\Monster\\Boss");
+
+	if (false == ResourcesManager::GetInst().IsLoadTexture("BOSS_LEFT.Bmp"))
+	{
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("BOSS_LEFT.bmp"), 9, 6);
+	}
+
+	if (false == ResourcesManager::GetInst().IsLoadTexture("BOSS_RIGHT.Bmp"))
+	{
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("BOSS_RIGHT.bmp"), 9, 6);
+	}
+
+	if (false == ResourcesManager::GetInst().IsLoadTexture("BOSS_ATTACK.Bmp"))
+	{
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("BOSS_ATTACK.bmp"), 6, 4);
+	}
+
+	MainRenderer = CreateRenderer(RenderOrder::Play);
+	MainRenderer->SetRenderScale({ 150, 200 });
+
+	MainRenderer->CreateAnimation("Left_Idle", "BOSS_LEFT.bmp", 0, 0, 0.1f, true);
+	MainRenderer->CreateAnimation("Left_Jump", "BOSS_LEFT.bmp", 27, 28, 0.2f, false);
+	MainRenderer->CreateAnimation("Left_JumpAir", "BOSS_LEFT.bmp", 29, 30, 0.2f, false);
+	MainRenderer->CreateAnimation("Left_JumpFall", "BOSS_LEFT.bmp", 31, 32, 0.5f, false);
+	MainRenderer->CreateAnimation("Left_JumpGround", "BOSS_LEFT.bmp", 33, 34, 0.5f, false);
+	MainRenderer->CreateAnimation("Left_Damage", "BOSS_LEFT.bmp", 36, 37, 0.5f, false);
+	MainRenderer->CreateAnimation("Left_Death", "BOSS_LEFT.bmp", 45, 46, 0.5f, false);
+
+	MainRenderer->CreateAnimation("Right_Idle", "BOSS_RIGHT.bmp", 0, 0, 0.1f, true);
+	MainRenderer->CreateAnimation("Right_Jump", "BOSS_RIGHT.bmp", 27, 28, 0.2f, false);
+	MainRenderer->CreateAnimation("Right_JumpAir", "BOSS_RIGHT.bmp", 29, 30, 0.2f, false);
+	MainRenderer->CreateAnimation("Right_JumpFall", "BOSS_RIGHT.bmp", 31, 32, 0.5f, false);
+	MainRenderer->CreateAnimation("Right_JumpGround", "BOSS_RIGHT.bmp", 33, 34, 0.5f, false);
+	MainRenderer->CreateAnimation("Right_Damage", "BOSS_RIGHT.bmp", 36, 37, 0.5f, false);
+	MainRenderer->CreateAnimation("Right_Death", "BOSS_RIGHT.bmp", 45, 46, 0.5f, false);
+
+	MainRenderer->CreateAnimation("Left_Attack", "BOSS_ATTACK.bmp", 0, 5, 0.2f, false);
+	MainRenderer->CreateAnimation("Right_Attack", "BOSS_ATTACK.bmp", 6, 11, 0.2f, false);
+	MainRenderer->CreateAnimation("Up_Attack", "BOSS_ATTACK.bmp", 12, 17, 0.2f, false);
+	MainRenderer->CreateAnimation("Down_Attack", "BOSS_ATTACK.bmp", 18, 23, 0.2f, false);
+
+
+	BodyCollsion = CreateCollision(CollisionOrder::MonsterBody);
+	BodyCollsion->SetCollisionScale({ 100, 100 });
+	BodyCollsion->SetCollisionType(CollisionType::CirCle);
+
+	MainRenderer->ChangeAnimation("Left_Idle");
+	MainRenderer->SetOrder(1);
+
+}
+
+void Boss::Update(float _Delta)
+{
+	if (GameEngineInput::IsDown('T'))
+	{
+		ChangeState(BossState::Skill_AncientEarthDrill);
+	}
+
+	if (!(m_iCurHp <= 0))
+	{
+
+		// 플레이어의 스킬과 자신의 몸이 충돌하면 데미지 상태로 전환
+		std::vector<GameEngineCollision*> _Col;
+		if (true == BodyCollsion->Collision(CollisionOrder::PlayerSkill, _Col
+			, CollisionType::CirCle
+			, CollisionType::CirCle
+		))
+		{
+			for (size_t i = 0; i < _Col.size(); i++)
+			{
+				GameEngineCollision* Collison = _Col[i];
+
+				GameEngineActor* Actor = Collison->GetActor();
+
+				OnDamaged(Actor->GetAttackPower());
+
+
+				if (m_iCurHp > 0)
+				{
+					ChangeState(BossState::Damage);
+					// 수정필요
+					Actor->Death();
+				}
+
+				else
+				{
+					DirCheck();
+					ChangeState(BossState::Death);
+				}
+
+			}
+		}
+	}
+
+	StateUpdate(_Delta);
+}
+
+void Boss::Render(float _Delta)
+{
+
 }
 
 void Boss::OnDamaged(int _iAttackPower)
@@ -223,31 +202,6 @@ void Boss::OnDamaged(int _iAttackPower)
 	DamageRenderer->On();
 }
 
-void Boss::StateUpdate(float _Delta)
-{
-	switch (State)
-	{
-	case BossState::Idle:
-		IdleUpdate(_Delta);
-		break;
-
-	case BossState::Run:
-		RunUpdate(_Delta);
-		break;
-
-	case BossState::NormalAttack:
-		AttackUpdate(_Delta);
-		break;
-
-	case BossState::Damage:
-		DamageUpdate(_Delta);
-		break;
-
-	case BossState::Death:
-		DeathUpdate(_Delta);
-		break;
-	}
-}
 
 
 #pragma region State Start
@@ -256,13 +210,15 @@ void Boss::IdleStart()
 	ChangeAnimationState("Idle");
 }
 
-void Boss::RunStart()
+void Boss::Skill_SeismicSlam_Start()
 {
-	ChangeAnimationState("Move");
+	ChangeAnimationState("Jump");
 }
 
-void Boss::AttackStart()
+void Boss::Skill_AncientEarthDrill_Start()
 {
+	DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
+	NewAttack = GetLevel()->CreateActor<SKILL_Boss_AncientEarthDrill>();
 	ChangeAnimationState("Attack");
 }
 
@@ -282,10 +238,7 @@ void Boss::DeathStart()
 #pragma region Start Update
 void Boss::IdleUpdate(float _Delta)
 {
-}
 
-void Boss::RunUpdate(float _Delta)
-{
 }
 
 void Boss::AttackUpdate(float _Delta)
@@ -294,13 +247,166 @@ void Boss::AttackUpdate(float _Delta)
 
 void Boss::DamageUpdate(float _Delta)
 {
+
+	if (true == IsDeath()) {
+		//	DirCheck();
+		ChangeState(BossState::Death);
+	}
+
+	if (true == MainRenderer->IsAnimationEnd())
+	{
+		DamageRenderer->Off();
+		//	DirCheck();
+		ChangeState(BossState::Idle);
+	}
+
 }
 
 void Boss::DeathUpdate(float _Delta)
 {
+	if (true == MainRenderer->IsAnimationEnd())
+	{
+		Death();
+	}
+}
+
+void Boss::Skill_SeismicSlam_Update(float _Delta)
+{
+	float4 TargetPos = Player::GetMainPlayer()->GetPos();
+
+	static float TickTime = 0.0f;
+	static float FallY = 0.0f;
+	static float StartY = 0.0f;
+
+	//// **TODO : 처음에 시작 위치를 기억해서 스폰한 뒤, 다음 스테이트로 넘어가게 만들도록 수정
+	////float4 CirclePos = TargetPos - GetPos();
+	////TestRenderer->SetRenderPos({ CirclePos });
+
+	TickTime += _Delta;
+
+
+	if (TickTime < 0.4f)
+	{
+		MainRenderer->ChangeAnimation("Left_Jump");
+	}
+
+	if (TickTime > 0.4f && TickTime < 0.8f)
+	{
+		FallY = TargetPos.Y;
+		StartY = TargetPos.Y - 200.0f;
+
+		float fT = TickTime / 0.2f;
+		SetPos(float4{ TargetPos.X, (StartY * (1.f - fT) + (StartY - 100.0f) * fT) });
+
+
+		MainRenderer->ChangeAnimation("Left_JumpAir");
+
+		return;
+	}
+
+	if (TickTime > 0.8f)
+	{
+		if (GetPos().Y < FallY)
+		{
+			AddPos(float4::DOWN);
+			MainRenderer->ChangeAnimation("Left_JumpFall");
+		}
+
+		MainRenderer->ChangeAnimation("Left_JumpGround");
+
+		if (true == MainRenderer->IsAnimationEnd())
+		{
+			ChangeState(BossState::Idle);
+		}
+	}
+}
+
+void Boss::Skill_AncientEarthDrill_Update(float _Delta)
+{
+	float Speed = 500.0f;
+
+	float4 MovePos = float4::ZERO;
+
+ 
+
+	if ((DirDeg.AngleDeg() > 0 && DirDeg.AngleDeg() < 45)
+		|| (DirDeg.AngleDeg() > 315 && DirDeg.AngleDeg() < 360))
+	{
+
+		NewAttack->SetDir(float4::RIGHT);
+		NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
+		NewAttack->SkillRenderer->ChangeAnimation("AncientEarthDrill_RIGHT");
+		MainRenderer->ChangeAnimation("Up_Attack");
+		MovePos = { Speed * _Delta, 0.0f  };
+
+		AddPos(MovePos);
+
+		if (true == MainRenderer->IsAnimationEnd())
+		{
+			NewAttack->Death();
+			ChangeState(BossState::Idle);
+		}
+	}
+
+	if (DirDeg.AngleDeg() > 225 && DirDeg.AngleDeg() < 316)
+	{
+
+		NewAttack->SetDir(float4::RIGHT);
+		NewAttack->SetPos(GetPos() + float4{ 0.0f, -100.0f, 0.0f, 0.0f });
+		NewAttack->SkillRenderer->ChangeAnimation("AncientEarthDrill_UP");
+		MainRenderer->ChangeAnimation("Right_Attack");
+		MovePos = { 0.0f, -Speed * _Delta };
+
+		AddPos(MovePos);
+
+		if (true == MainRenderer->IsAnimationEnd())
+		{
+			NewAttack->Death();
+			ChangeState(BossState::Idle);
+		}
+	}
+
+	if (DirDeg.AngleDeg() > 135 && DirDeg.AngleDeg() < 225)
+	{
+
+		NewAttack->SetDir(float4::LEFT);
+		NewAttack->SetPos(GetPos() + float4{ -100.0f, 0.0f, 0.0f, 0.0f });
+		NewAttack->SkillRenderer->ChangeAnimation("AncientEarthDrill_LEFT");
+		MainRenderer->ChangeAnimation("Left_Attack");
+		MovePos = { -Speed * _Delta, 0.0f };
+
+		AddPos(MovePos);
+
+		if (true == MainRenderer->IsAnimationEnd())
+		{
+			NewAttack->Death();
+			ChangeState(BossState::Idle);
+		}
+	}
+
+	if (DirDeg.AngleDeg() > 44 && DirDeg.AngleDeg() < 135)
+	{
+
+		NewAttack->SetDir(float4::LEFT);
+		NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
+		NewAttack->SkillRenderer->ChangeAnimation("AncientEarthDrill_DOWN");
+		MainRenderer->ChangeAnimation("Down_Attack");
+		MovePos = { 0.0f, Speed * _Delta };
+
+		AddPos(MovePos);
+
+		if (true == MainRenderer->IsAnimationEnd())
+		{
+			NewAttack->Death();
+			ChangeState(BossState::Idle);
+		}
+	}
 }
 
 #pragma endregion
+
+
+
 
 void Boss::ChangeState(BossState _State)
 {
@@ -312,12 +418,12 @@ void Boss::ChangeState(BossState _State)
 			IdleStart();
 			break;
 
-		case BossState::Run:
-			RunStart();
+		case BossState::Skill_SeismicSlam:
+			Skill_SeismicSlam_Start();
 			break;
 
-		case BossState::NormalAttack:
-			AttackStart();
+		case BossState::Skill_AncientEarthDrill:
+			Skill_AncientEarthDrill_Start();
 			break;
 
 		case BossState::Damage:
@@ -336,45 +442,30 @@ void Boss::ChangeState(BossState _State)
 	State = _State;
 }
 
-void Boss::DirCheck()
+void Boss::StateUpdate(float _Delta)
 {
-	float4 DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
-
-	if (DirDeg.AngleDeg() > 90 && DirDeg.AngleDeg() < 270)
+	switch (State)
 	{
-		Dir = MonsterDir::Left;
-		ChangeAnimationState(CurState);
-		return;
-	}
+	case BossState::Idle:
+		IdleUpdate(_Delta);
+		break;
 
-	else
-	{
-		Dir = MonsterDir::Right;
-		ChangeAnimationState(CurState);
-		return;
+	case BossState::Skill_SeismicSlam:
+		Skill_SeismicSlam_Update(_Delta);
+		break;
+
+	case BossState::Skill_AncientEarthDrill:
+		Skill_AncientEarthDrill_Update(_Delta);
+		break;
+
+	case BossState::Damage:
+		DamageUpdate(_Delta);
+		break;
+
+	case BossState::Death:
+		DeathUpdate(_Delta);
+		break;
 	}
 }
 
 
-void Boss::ChangeAnimationState(const std::string& _StateName)
-{
-	std::string AnimationName;
-
-	switch (Dir)
-	{
-	case MonsterDir::Right:
-		AnimationName = "Right_";
-		break;
-
-	case MonsterDir::Left:
-		AnimationName = "Left_";
-		break;
-
-	default:
-		break;
-	}
-
-	AnimationName += _StateName;
-	CurState = _StateName;
-	MainRenderer->ChangeAnimation(AnimationName);
-}

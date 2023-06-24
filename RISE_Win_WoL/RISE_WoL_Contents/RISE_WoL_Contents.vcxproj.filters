@@ -62,6 +62,9 @@
     <Filter Include="01.Level\OBJ\02.Monster\Boss">
       <UniqueIdentifier>{dbf59319-b81c-4d24-9a50-bb513ccde403}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.Skills\Boss">
+      <UniqueIdentifier>{85366237-ff21-47d2-b95d-4745dc027111}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingLevel.cpp">
@@ -203,6 +206,12 @@
     <ClCompile Include="UI_SkillBar.cpp">
       <Filter>03.UI</Filter>
     </ClCompile>
+    <ClCompile Include="SKILL_Boss_SeismicSlam.cpp">
+      <Filter>02.Skills\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="SKILL_Boss_AncientEarthDrill.cpp">
+      <Filter>02.Skills\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -343,6 +352,12 @@
     </ClInclude>
     <ClInclude Include="UI_SkillBar.h">
       <Filter>03.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SKILL_Boss_SeismicSlam.h">
+      <Filter>02.Skills\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="SKILL_Boss_AncientEarthDrill.h">
+      <Filter>02.Skills\Boss</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

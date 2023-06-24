@@ -16,14 +16,23 @@ enum class MonsterState
 enum class BossState
 {
 	Idle,
-	Run,
-	NormalAttack,
+	Skill_SeismicSlam,
+	Skill_AncientEarthDrill,
 	Damage,
 	Death,
 	Max,
 };
 
 enum class MonsterDir
+{
+	Right,
+	Left,
+	Up,
+	Down,
+	Max,
+};
+
+enum class BossDir
 {
 	Right,
 	Left,
