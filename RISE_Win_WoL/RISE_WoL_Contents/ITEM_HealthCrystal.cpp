@@ -36,33 +36,36 @@ void ITEM_HealthCrystal::Start()
 	BodyCollsion = CreateCollision(CollisionOrder::Item);
 	BodyCollsion->SetCollisionScale({ 50, 50 });
 	BodyCollsion->SetCollisionType(CollisionType::CirCle);
-
 }
 
 void ITEM_HealthCrystal::Update(float _Delta)
 {
+
+	float fT = _Delta / 0.2f;
+
 	std::vector<GameEngineCollision*> _Col;
 	if (true == BodyCollsion->Collision(CollisionOrder::PlayerSkill, _Col
 		, CollisionType::CirCle
 		, CollisionType::CirCle
 	))
 	{
-
 		for (size_t i = 0; i < 2; i++)
 		{
-			int OffSet = GameEngineRandom::MainRandom.RandomInt(0, 50);
+			int OffSet = GameEngineRandom::MainRandom.RandomInt(-100, 100);
 			ITEM_HPBall* NewHPBall = GetLevel()->CreateActor<ITEM_HPBall>();
-			NewHPBall->SetPos({ 1700, 1600 });
-			NewHPBall->SetOrder(2);
-			
-		}
 
+			NewHPBall->SetPos({ 1700 + static_cast<float>(OffSet), 1600 });
+
+			NewHPBall->AddPos(float4::UP * 100.0f);
+			NewHPBall->AddPos((float4::UP + float4::LEFT) * static_cast<float>(OffSet) * fT);
+			NewHPBall->SetOrder(2);
+
+			HpBall.push_back(NewHPBall);
+
+		}
 
 		BodyCollsion->Off();
 
-
-
-//		, 
-
 	}
+
 }

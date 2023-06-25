@@ -2,6 +2,9 @@
 #include <GameEngineCore/ResourcesManager.h>
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include "ContentsEnum.h"
+
+#include "Player.h"
 
 void ITEM_HPBall::Start()
 {
@@ -16,14 +19,28 @@ void ITEM_HPBall::Start()
 
 
 	MainRenderer = CreateRenderer();
-	MainRenderer->SetOrder(3);
+	MainRenderer->SetOrder(1);
 	MainRenderer->SetRenderScale({ 64, 64 });
 	MainRenderer->SetTexture("ITEM_HPBall.bmp");
 
 
+	BodyCollsion = CreateCollision(CollisionOrder::Item);
+	BodyCollsion->SetCollisionScale({ 64, 64 });
+	BodyCollsion->SetCollisionType(CollisionType::CirCle);
 
 }
 
 void ITEM_HPBall::Update(float _Delta)
 {
+	std::vector<GameEngineCollision*> _Col;
+	if (true == BodyCollsion->Collision(CollisionOrder::PlayerBody, _Col
+		, CollisionType::CirCle
+		, CollisionType::CirCle
+	))
+	{
+		if (true == Player::GetMainPlayer()->AddCurHp(100))
+		{
+			Death();
+		}
+	}
 }

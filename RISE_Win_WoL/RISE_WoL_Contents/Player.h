@@ -53,6 +53,17 @@ public:
 
 	void SetTotalGold(int _GoldCount);
 
+	bool AddCurHp(int _Hp)
+	{
+		if (m_iCurHp >= m_iMaxHp)
+		{
+			return false;
+		}
+
+		m_iCurHp += _Hp;
+		return true;
+	}
+
 protected:
 	void StateUpdate(float _Delta);
 
