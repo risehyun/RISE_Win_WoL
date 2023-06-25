@@ -314,10 +314,6 @@ void SKILL_EarthenAegis::Update(float _Delta)
 void SKILL_EarthenAegis::Render(float _Delta)
 {
 
-	HDC dc = GameEngineWindow::MainWindow.GetBackBuffer()->GetImageDC();
-	std::string Text = "";
-	Text += "스킬 앵글 테스트 값 : ";
-	Text += std::to_string(Range.AngleDeg());
-	TextOutA(dc, 2, 3, Text.c_str(), static_cast<int>(Text.size()));
+	
 
 }

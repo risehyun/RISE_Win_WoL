@@ -65,6 +65,9 @@
     <Filter Include="02.Skills\Boss">
       <UniqueIdentifier>{85366237-ff21-47d2-b95d-4745dc027111}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.Skills\Monster\Archer">
+      <UniqueIdentifier>{bb33925a-f2d1-4166-87c9-8a33c519ae71}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingLevel.cpp">
@@ -221,6 +224,12 @@
     <ClCompile Include="ITEM_HPBall.cpp">
       <Filter>01.Level\OBJ\03.Item</Filter>
     </ClCompile>
+    <ClCompile Include="Monster_Archer.cpp">
+      <Filter>01.Level\OBJ\02.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="SKILL_ArcherAttack.cpp">
+      <Filter>02.Skills\Monster\Archer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -376,6 +385,12 @@
     </ClInclude>
     <ClInclude Include="ITEM_HPBall.h">
       <Filter>01.Level\OBJ\03.Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster_Archer.h">
+      <Filter>01.Level\OBJ\02.Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="SKILL_ArcherAttack.h">
+      <Filter>02.Skills\Monster\Archer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

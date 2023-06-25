@@ -27,6 +27,10 @@
 #include "ContentsEnum.h"
 
 
+// 06-25 테스트용
+#include "Monster_Archer.h"
+
+
 // 06-14 테스트용
 #include "Effect_CastingCircle.h"
 #include "PROP_TreasureChestMiniBoss.h"
@@ -98,7 +102,7 @@ void PlayLevel::Start()
 	NewShop->SetPos({ 700, 1600 });
 
 	NPC_Collector* NewCollector = CreateActor<NPC_Collector>();
-	NewCollector->SetPos({ 1850, 2800} );
+	NewCollector->SetPos({ 1850, 2800 });
 
 	NPC_Outfit* NewOutfit = CreateActor<NPC_Outfit>();
 	NewOutfit->SetPos({ 1850, 700 });
@@ -117,6 +121,13 @@ void PlayLevel::Start()
 	NewTeleport->SetPos({ 1850, 2000 });
 
 
+
+
+
+
+
+	Monster_Archer* NewMonster = CreateActor<Monster_Archer>();
+	NewMonster->SetPos({ 1850, 1800 });
 
 }
 
