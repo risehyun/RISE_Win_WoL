@@ -95,6 +95,9 @@ void PlayLevel::Start()
 
 	NewSpawn->SpawnObject(SpawnType::Player, { 100, 365 });
 
+
+
+
 	NPC_ArcanaShop* NewArcanaShop = CreateActor<NPC_ArcanaShop>();
 	NewArcanaShop->SetPos({ 3000, 1600 });
 
@@ -122,12 +125,11 @@ void PlayLevel::Start()
 
 
 
+	//Monster_Archer* NewMonster = CreateActor<Monster_Archer>();
+	//NewMonster->SetPos({ 1850, 2000 });
 
-
-
-
-	Monster_Archer* NewMonster = CreateActor<Monster_Archer>();
-	NewMonster->SetPos({ 1850, 1800 });
+	//Monster_Archer* NewMonster2 = CreateActor<Monster_Archer>();
+	//NewMonster->SetPos({ 1850, 2000 });
 
 }
 

@@ -14,8 +14,10 @@
 #include "ContentsEnum.h"
 #include <GameEnginePlatform/GameEngineInput.h>
 #include "Monster.h"
-#include "Monster_Swordman.h"
 
+
+#include "Monster_Swordman.h"
+#include "Monster_Archer.h"
 
 #include <GameEnginePlatform/GameEngineWindow.h>
 
@@ -174,6 +176,8 @@ void BossSpawner::Update(float _Delta)
 			Spawn3->SpawnObject(SpawnType::Swordman, { 100, 200 });
 			Spawn3->SetPos({ 1750, 1634 });
 
+
+			
 			
 		}
 	}

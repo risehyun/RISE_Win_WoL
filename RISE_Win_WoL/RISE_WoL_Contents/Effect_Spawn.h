@@ -5,6 +5,7 @@ enum class SpawnType
 {
 	Player,
 	Swordman,
+	Archer,
 };
 
 class Effect_Spawn : public GameEngineActor

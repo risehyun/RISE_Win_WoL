@@ -76,6 +76,8 @@ void SKILL_ArcherAttack::Start()
 	m_iAttackPower = 10;
 
 	SkillRenderer->ChangeAnimation("Arrow_INDEX0");
+
+
 }
 
 void SKILL_ArcherAttack::Update(float _Delta)
@@ -83,7 +85,7 @@ void SKILL_ArcherAttack::Update(float _Delta)
 
 	if (1.0f < GetLiveTime())
 	{
-		float4 DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
+		DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
 
 		// À§
 		if (DirDeg.AngleDeg() >= 258.75f && DirDeg.AngleDeg() < 281.25f)
@@ -97,7 +99,6 @@ void SKILL_ArcherAttack::Update(float _Delta)
 				SetDir(DirDeg);
 
 			}
-
 
 		}
 
@@ -123,7 +124,9 @@ void SKILL_ArcherAttack::Update(float _Delta)
 				SkillRenderer->ChangeAnimation("ArrowShot_INDEX2");
 				SetDir(DirDeg);
 
+
 			}
+
 		}
 
 		else if (DirDeg.AngleDeg() >= 326.25f && DirDeg.AngleDeg() < 348.75f)
@@ -135,7 +138,9 @@ void SKILL_ArcherAttack::Update(float _Delta)
 				SkillRenderer->ChangeAnimation("ArrowShot_INDEX3");
 				SetDir(DirDeg);
 
+
 			}
+
 		}
 
 		else if (DirDeg.AngleDeg() >= 11.25f && DirDeg.AngleDeg() < 33.75f)
@@ -146,6 +151,7 @@ void SKILL_ArcherAttack::Update(float _Delta)
 			{
 				SkillRenderer->ChangeAnimation("ArrowShot_INDEX4");
 				SetDir(DirDeg);
+
 
 			}
 
@@ -160,6 +166,7 @@ void SKILL_ArcherAttack::Update(float _Delta)
 				SkillRenderer->ChangeAnimation("ArrowShot_INDEX5");
 				SetDir(DirDeg);
 
+
 			}
 
 		}
@@ -172,6 +179,7 @@ void SKILL_ArcherAttack::Update(float _Delta)
 			{
 				SkillRenderer->ChangeAnimation("ArrowShot_INDEX6");
 				SetDir(DirDeg);
+
 
 			}
 
@@ -186,6 +194,7 @@ void SKILL_ArcherAttack::Update(float _Delta)
 				SkillRenderer->ChangeAnimation("ArrowShot_INDEX7");
 				SetDir(DirDeg);
 
+
 			}
 
 		}
@@ -198,6 +207,7 @@ void SKILL_ArcherAttack::Update(float _Delta)
 			{
 				SkillRenderer->ChangeAnimation("ArrowShot_INDEX8");
 				SetDir(DirDeg);
+
 
 			}
 
@@ -213,6 +223,8 @@ void SKILL_ArcherAttack::Update(float _Delta)
 				SetDir(DirDeg);
 
 			}
+
+	
 		}
 
 		else if (DirDeg.AngleDeg() >= 146.25f && DirDeg.AngleDeg() < 168.75f)
@@ -225,6 +237,7 @@ void SKILL_ArcherAttack::Update(float _Delta)
 				SetDir(DirDeg);
 
 			}
+
 		}
 
 		else if (DirDeg.AngleDeg() >= 168.75f && DirDeg.AngleDeg() < 191.25f)
@@ -235,6 +248,7 @@ void SKILL_ArcherAttack::Update(float _Delta)
 			{
 				SkillRenderer->ChangeAnimation("ArrowShot_INDEX11");
 				SetDir(DirDeg);
+
 
 			}
 
@@ -249,7 +263,9 @@ void SKILL_ArcherAttack::Update(float _Delta)
 				SkillRenderer->ChangeAnimation("ArrowShot_INDEX12");
 				SetDir(DirDeg);
 
+
 			}
+
 		}
 
 
@@ -262,7 +278,9 @@ void SKILL_ArcherAttack::Update(float _Delta)
 				SkillRenderer->ChangeAnimation("ArrowShot_INDEX13");
 				SetDir(DirDeg);
 
+
 			}
+
 		}
 
 		else if (DirDeg.AngleDeg() >= 236.25f && DirDeg.AngleDeg() < 258.75f)
@@ -274,7 +292,9 @@ void SKILL_ArcherAttack::Update(float _Delta)
 				SkillRenderer->ChangeAnimation("ArrowShot_INDEX14");
 				SetDir(DirDeg);
 
+
 			}
+
 		}
 
 		else
@@ -286,6 +306,7 @@ void SKILL_ArcherAttack::Update(float _Delta)
 				SkillRenderer->ChangeAnimation("ArrowShot_INDEX15");
 				SetDir(DirDeg);
 
+
 			}
 
 		}
@@ -294,7 +315,7 @@ void SKILL_ArcherAttack::Update(float _Delta)
 
 	}
 
-	if (GetLiveTime() > 1.0f)
+	if (GetLiveTime() > 1.f)
 	{
 		Death();
 	}

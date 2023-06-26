@@ -63,7 +63,7 @@ void Monster_Archer::Start()
 
 	// 충돌체 설정
 	BodyCollsion = CreateCollision(CollisionOrder::MonsterBody);
-	BodyCollsion->SetCollisionScale({ 100, 100 });
+	BodyCollsion->SetCollisionScale({ 500, 500 });
 	BodyCollsion->SetCollisionType(CollisionType::CirCle);
 
 	ChangeState(MonsterState::Idle);
@@ -73,6 +73,11 @@ void Monster_Archer::Start()
 
 void Monster_Archer::Update(float _Delta)
 {
+
+	if (true == IsAttackable())
+	{
+		ChangeState(MonsterState::Attack);
+	}
 
 	if (!(m_iCurHp <= 0))
 	{
@@ -218,6 +223,23 @@ void Monster_Archer::DeathStart()
 void Monster_Archer::IdleUpdate(float _Delta)
 {
 	DirCheck();
+
+
+	float4 fPosDis = GetPos() - Player::GetMainPlayer()->GetPos();
+
+
+	float fLength = fPosDis.Size();
+
+	if (fLength > 300.0f)
+	{
+
+		fPosDis *= -1.0f;
+		ChangeAnimationState("Move");
+
+	}
+
+	AddPos(fPosDis * _Delta);
+
 }
 
 void Monster_Archer::RunUpdate(float _Delta)
@@ -252,7 +274,7 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 303.75f && DirDeg.AngleDeg() < 326.25f)
 		{
-	
+
 			Arrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
 
@@ -295,7 +317,7 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 78.75f && DirDeg.AngleDeg() < 101.25f)
 		{
-	
+
 			Arrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
 
@@ -304,7 +326,7 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 101.25f && DirDeg.AngleDeg() < 123.75f)
 		{
-	
+
 			Arrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
 
@@ -312,7 +334,7 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 123.75f && DirDeg.AngleDeg() < 146.25f)
 		{
-		
+
 			Arrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
 
@@ -320,7 +342,7 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 146.25f && DirDeg.AngleDeg() < 168.75f)
 		{
-	
+
 			Arrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
 
@@ -329,7 +351,7 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 168.75f && DirDeg.AngleDeg() < 191.25f)
 		{
-			
+
 			Arrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
 		}
@@ -362,7 +384,7 @@ void Monster_Archer::AttackUpdate(float _Delta)
 		}
 
 		ResetLiveTime();
-		
+
 
 		if (true == MainRenderer->IsAnimationEnd())
 		{

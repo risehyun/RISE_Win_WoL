@@ -22,6 +22,7 @@ public:
 	GameEngineRenderer* SkillRenderer = nullptr;
 	GameEngineCollision* SkillCollsion = nullptr;
 	float4 Dir;
+	float4 DirDeg;
 
 private:
 
