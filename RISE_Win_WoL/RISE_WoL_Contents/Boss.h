@@ -1,7 +1,9 @@
 #pragma once
 #include "Monster.h"
+#include <vector>
 
 #include "SKILL_Boss_AncientEarthDrill.h"
+#include "SKILL_Boss_TowersofTerra.h"
 
 class Boss : public Monster
 {
@@ -20,6 +22,10 @@ public:
 	GameEngineRenderer* TestRenderer = nullptr;
 	GameEngineRenderer* DamageRenderer = nullptr;
 
+
+	std::vector<SKILL_Boss_TowersofTerra*> Towers;
+
+
 protected:
 	void StateUpdate(float _Delta);
 
@@ -27,6 +33,7 @@ protected:
 
 	void Skill_SeismicSlam_Start();
 	void Skill_AncientEarthDrill_Start();
+	void Skill_TowersofTerra_Start();
 
 	void DamageStart();
 	void DeathStart();
@@ -38,6 +45,7 @@ protected:
 
 	void Skill_SeismicSlam_Update(float _Delta);
 	void Skill_AncientEarthDrill_Update(float _Delta);
+	void Skill_TowersofTerra_Update(float _Delta);
 
 	BossState State = BossState::Max;
 
@@ -45,6 +53,7 @@ protected:
 	std::string CurState = "";
 
 	GameEngineCollision* BodyCollsion = nullptr;
+
 
 	void DirCheck();
 	void ChangeAnimationState(const std::string & _StateName);

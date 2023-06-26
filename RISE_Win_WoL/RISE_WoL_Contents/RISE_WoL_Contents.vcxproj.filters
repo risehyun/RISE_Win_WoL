@@ -230,6 +230,9 @@
     <ClCompile Include="SKILL_ArcherAttack.cpp">
       <Filter>02.Skills\Monster\Archer</Filter>
     </ClCompile>
+    <ClCompile Include="SKILL_Boss_TowersofTerra.cpp">
+      <Filter>02.Skills\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -391,6 +394,9 @@
     </ClInclude>
     <ClInclude Include="SKILL_ArcherAttack.h">
       <Filter>02.Skills\Monster\Archer</Filter>
+    </ClInclude>
+    <ClInclude Include="SKILL_Boss_TowersofTerra.h">
+      <Filter>02.Skills\Boss</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

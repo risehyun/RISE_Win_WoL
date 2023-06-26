@@ -88,7 +88,7 @@ void BossLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 
 	Boss* NewBoss = CreateActor<Boss>();
-	NewBoss->SetPos({ 1850, 1400 });
+	NewBoss->SetPos({ 1750, 700 });
 
 }
 

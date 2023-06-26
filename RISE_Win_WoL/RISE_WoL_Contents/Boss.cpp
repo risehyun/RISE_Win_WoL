@@ -9,6 +9,7 @@
 #include "EFFECT_RedCastingCircle.h"
 
 #include "SKILL_Boss_AncientEarthDrill.h"
+#include "SKILL_Boss_TowersofTerra.h"
 
 #include <GameEnginePlatform/GameEngineInput.h>
 
@@ -17,6 +18,8 @@
 #include <GameEngineBase/GameEngineMath.h>
 
 #include <GameEnginePlatform/GameEngineInput.h>
+
+#include <vector>
 
 Boss::Boss()
 {
@@ -138,9 +141,23 @@ void Boss::Start()
 
 void Boss::Update(float _Delta)
 {
+	float TickTime = 0.0f;
+
+	if (GameEngineInput::IsDown('Y'))
+	{
+		ChangeState(BossState::Skill_SeismicSlam);
+	}
+
+
 	if (GameEngineInput::IsDown('T'))
 	{
 		ChangeState(BossState::Skill_AncientEarthDrill);
+	}
+
+
+	if (GameEngineInput::IsDown('U'))
+	{
+		ChangeState(BossState::Skill_TowersofTerra);
 	}
 
 	if (!(m_iCurHp <= 0))
@@ -222,6 +239,11 @@ void Boss::Skill_AncientEarthDrill_Start()
 	ChangeAnimationState("Attack");
 }
 
+void Boss::Skill_TowersofTerra_Start()
+{
+	ChangeAnimationState("Attack");
+}
+
 void Boss::DamageStart()
 {
 	ChangeAnimationState("Damage");
@@ -281,7 +303,6 @@ void Boss::Skill_SeismicSlam_Update(float _Delta)
 	//// **TODO : 처음에 시작 위치를 기억해서 스폰한 뒤, 다음 스테이트로 넘어가게 만들도록 수정
 	////float4 CirclePos = TargetPos - GetPos();
 	////TestRenderer->SetRenderPos({ CirclePos });
-
 	TickTime += _Delta;
 
 
@@ -327,7 +348,7 @@ void Boss::Skill_AncientEarthDrill_Update(float _Delta)
 
 	float4 MovePos = float4::ZERO;
 
- 
+
 
 	if ((DirDeg.AngleDeg() > 0 && DirDeg.AngleDeg() < 45)
 		|| (DirDeg.AngleDeg() > 315 && DirDeg.AngleDeg() < 360))
@@ -337,7 +358,7 @@ void Boss::Skill_AncientEarthDrill_Update(float _Delta)
 		NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
 		NewAttack->SkillRenderer->ChangeAnimation("AncientEarthDrill_RIGHT");
 		MainRenderer->ChangeAnimation("Up_Attack");
-		MovePos = { Speed * _Delta, 0.0f  };
+		MovePos = { Speed * _Delta, 0.0f };
 
 		AddPos(MovePos);
 
@@ -403,6 +424,169 @@ void Boss::Skill_AncientEarthDrill_Update(float _Delta)
 	}
 }
 
+void Boss::Skill_TowersofTerra_Update(float _Delta)
+{
+	// 오른쪽
+	for (size_t i = 0; i < 6; i++)
+	{
+
+		SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
+
+		NewTower->SetOrder(-5500);
+
+		if (i == 0)
+		{
+			NewTower->SetPos({ GetPos().X + 200.0f, GetPos().Y });
+		}
+
+		else
+		{
+			NewTower->SetPos({ GetPos().X + 200.0f + 100.0f * i + 1, GetPos().Y });
+		}
+
+		Towers.push_back(NewTower);
+	}
+
+	// 오른쪽 위
+	for (size_t i = 0; i < 3; i++)
+	{
+
+		SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
+		NewTower->SetOrder(-1000);
+
+		if (i == 0)
+		{
+			NewTower->SetPos({ GetPos().X + 100.0f, GetPos().Y - 100.0f });
+		}
+		 
+		else
+		{
+			NewTower->SetPos({ GetPos().X + 100.0f * i + 1, GetPos().Y - 100.0f * i + 1 });
+		}
+
+		Towers.push_back(NewTower);
+	}
+
+	// 오른쪽 아래
+	for (size_t i = 0; i < 3; i++)
+	{
+		
+		SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
+		NewTower->SetOrder(-1000);
+
+		if (i == 0)
+		{
+			NewTower->SetPos({ GetPos().X + 100.0f, GetPos().Y + 100.0f});
+		}
+
+		else
+		{
+			NewTower->SetPos({ GetPos().X + 100.0f * i + 1, GetPos().Y + 100.0f * i + 1 });
+		}
+
+		Towers.push_back(NewTower);
+	}
+
+	// 아래
+	for (size_t i = 0; i < 1; i++)
+	{
+
+		SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
+
+		if (i == 0)
+		{
+			NewTower->SetPos({ GetPos().X, GetPos().Y + 200.0f });
+		}
+
+		else
+		{
+			NewTower->SetPos({ GetPos().X, GetPos().Y + 200.0f * i + 1 });
+		}
+
+		Towers.push_back(NewTower);
+	}
+
+	// 위
+	for (size_t i = 0; i < 1; i++)
+	{
+
+		SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
+
+		if (i == 0)
+		{
+			NewTower->SetPos({ GetPos().X, GetPos().Y - 200.0f });
+		}
+
+		else
+		{
+			NewTower->SetPos({ GetPos().X, GetPos().Y - 200.0f * i + 1 });
+		}
+
+		Towers.push_back(NewTower);
+	}
+
+	// 왼쪽
+	for (size_t i = 0; i < 6; i++)
+	{
+
+		SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
+
+		if (i == 0)
+		{
+			NewTower->SetPos({ GetPos().X - 200.0f, GetPos().Y });
+		}
+
+		else
+		{
+			NewTower->SetPos({ GetPos().X - 200.0f - 100.0f * i + 1, GetPos().Y });
+		}
+
+		Towers.push_back(NewTower);
+	}
+
+	// 왼쪽 아래
+	for (size_t i = 0; i < 3; i++)
+	{
+
+		SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
+		NewTower->SetOrder(-5500);
+		if (i == 0)
+		{
+			NewTower->SetPos({ GetPos().X - 100.0f, GetPos().Y + 100.0f });
+		}
+
+		else
+		{
+			NewTower->SetPos({ GetPos().X - 100.0f * i + 1, GetPos().Y + 100.0f * i + 1 });
+		}
+
+		Towers.push_back(NewTower);
+	}
+
+	// 왼쪽 위
+	for (size_t i = 0; i < 3; i++)
+	{
+
+		SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
+		NewTower->SetOrder(-5500);
+		if (i == 0)
+		{
+			NewTower->SetPos({ GetPos().X - 100.0f, GetPos().Y - 100.0f });
+		}
+
+		else
+		{
+			NewTower->SetPos({ GetPos().X - 100.0f * i + 1, GetPos().Y - 100.0f * i + 1 });
+		}
+
+		Towers.push_back(NewTower);
+	}
+
+
+	ChangeState(BossState::Idle);
+
+}
+
 #pragma endregion
 
 
@@ -424,6 +608,10 @@ void Boss::ChangeState(BossState _State)
 
 		case BossState::Skill_AncientEarthDrill:
 			Skill_AncientEarthDrill_Start();
+			break;
+
+		case BossState::Skill_TowersofTerra:
+			Skill_TowersofTerra_Start();
 			break;
 
 		case BossState::Damage:
@@ -456,6 +644,10 @@ void Boss::StateUpdate(float _Delta)
 
 	case BossState::Skill_AncientEarthDrill:
 		Skill_AncientEarthDrill_Update(_Delta);
+		break;
+
+	case BossState::Skill_TowersofTerra:
+		Skill_TowersofTerra_Update(_Delta);
 		break;
 
 	case BossState::Damage:

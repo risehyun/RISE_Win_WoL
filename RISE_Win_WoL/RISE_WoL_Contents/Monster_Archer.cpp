@@ -74,10 +74,10 @@ void Monster_Archer::Start()
 void Monster_Archer::Update(float _Delta)
 {
 
-	if (true == IsAttackable())
-	{
-		ChangeState(MonsterState::Attack);
-	}
+	//if (true == IsAttackable())
+	//{
+	//	ChangeState(MonsterState::Attack);
+	//}
 
 	if (!(m_iCurHp <= 0))
 	{

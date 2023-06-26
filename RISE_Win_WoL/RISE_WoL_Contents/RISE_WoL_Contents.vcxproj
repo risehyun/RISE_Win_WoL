@@ -211,6 +211,7 @@
     <ClInclude Include="SKILL_ArcherAttack.h" />
     <ClInclude Include="SKILL_Boss_AncientEarthDrill.h" />
     <ClInclude Include="SKILL_Boss_SeismicSlam.h" />
+    <ClInclude Include="SKILL_Boss_TowersofTerra.h" />
     <ClInclude Include="SKILL_EarthenAegis.h" />
     <ClInclude Include="SKILL_Fireball.h" />
     <ClInclude Include="SKILL_KnightAttack.h" />
@@ -270,6 +271,7 @@
     <ClCompile Include="SKILL_ArcherAttack.cpp" />
     <ClCompile Include="SKILL_Boss_AncientEarthDrill.cpp" />
     <ClCompile Include="SKILL_Boss_SeismicSlam.cpp" />
+    <ClCompile Include="SKILL_Boss_TowersofTerra.cpp" />
     <ClCompile Include="SKILL_EarthenAegis.cpp" />
     <ClCompile Include="SKILL_Fireball.cpp" />
     <ClCompile Include="SKILL_KnightAttack.cpp" />

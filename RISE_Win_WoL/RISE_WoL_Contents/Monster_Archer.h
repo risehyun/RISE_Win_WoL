@@ -71,4 +71,3 @@ private:
 	float4 DownCheck = { 0.0f, 50.0f };
 
 };
-
