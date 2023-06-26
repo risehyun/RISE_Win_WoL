@@ -68,6 +68,9 @@
     <Filter Include="02.Skills\Monster\Archer">
       <UniqueIdentifier>{bb33925a-f2d1-4166-87c9-8a33c519ae71}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Level\OBJ\02.Monster\MiniBoss">
+      <UniqueIdentifier>{98eb072c-2a92-438a-b01f-703982088555}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingLevel.cpp">
@@ -233,6 +236,9 @@
     <ClCompile Include="SKILL_Boss_TowersofTerra.cpp">
       <Filter>02.Skills\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="MiniBoss_GrandSummoner.cpp">
+      <Filter>01.Level\OBJ\02.Monster\MiniBoss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -397,6 +403,9 @@
     </ClInclude>
     <ClInclude Include="SKILL_Boss_TowersofTerra.h">
       <Filter>02.Skills\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniBoss_GrandSummoner.h">
+      <Filter>01.Level\OBJ\02.Monster\MiniBoss</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

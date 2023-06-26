@@ -31,6 +31,10 @@
 #include "Monster_Archer.h"
 
 
+// 06-26 테스트용
+#include "MiniBoss_GrandSummoner.h"
+
+
 // 06-14 테스트용
 #include "Effect_CastingCircle.h"
 #include "PROP_TreasureChestMiniBoss.h"
@@ -124,6 +128,8 @@ void PlayLevel::Start()
 	NewTeleport->SetPos({ 1850, 2000 });
 
 
+	MiniBoss_GrandSummoner* NewMonster = CreateActor<MiniBoss_GrandSummoner>();
+	NewMonster->SetPos({ 1850, 2000 });
 
 	//Monster_Archer* NewMonster = CreateActor<Monster_Archer>();
 	//NewMonster->SetPos({ 1850, 2000 });

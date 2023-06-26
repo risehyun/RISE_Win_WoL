@@ -67,8 +67,6 @@ void Monster_Archer::Start()
 	BodyCollsion->SetCollisionType(CollisionType::CirCle);
 
 	ChangeState(MonsterState::Idle);
-
-	SetInitStat();
 }
 
 void Monster_Archer::Update(float _Delta)
