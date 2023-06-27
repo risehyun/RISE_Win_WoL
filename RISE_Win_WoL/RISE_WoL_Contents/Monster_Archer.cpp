@@ -257,8 +257,6 @@ void Monster_Archer::AttackUpdate(float _Delta)
 		// À§
 		if (DirDeg.AngleDeg() >= 258.75f && DirDeg.AngleDeg() < 281.25f)
 		{
-
-
 			Arrow->SetPos(GetPos() + float4{ 0.0f, -20.0f, 0.0f, 0.0f });
 
 		}
@@ -459,7 +457,6 @@ void Monster_Archer::ChangeAnimationState(const std::string& _StateName)
 	CurState = _StateName;
 	MainRenderer->ChangeAnimation(AnimationName);
 }
-
 
 void Monster_Archer::Render(float _Delta)
 {

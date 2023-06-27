@@ -504,7 +504,6 @@ void Player::Render(float _Delta)
 
 	TextOutA(dc, 612, 80, RunningTimeText.c_str(), static_cast<int>(Text.size()));
 
-
 	SelectObject(dc, hOldFont2);
 	DeleteObject(hFont2);
 

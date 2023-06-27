@@ -71,6 +71,9 @@
     <Filter Include="01.Level\OBJ\02.Monster\MiniBoss">
       <UniqueIdentifier>{98eb072c-2a92-438a-b01f-703982088555}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.Skills\MiniBoss">
+      <UniqueIdentifier>{a20f4e95-b8f5-4e2d-be8b-4a5f43f74caa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingLevel.cpp">
@@ -239,6 +242,9 @@
     <ClCompile Include="MiniBoss_GrandSummoner.cpp">
       <Filter>01.Level\OBJ\02.Monster\MiniBoss</Filter>
     </ClCompile>
+    <ClCompile Include="MiniBoss_GrandSummoner_Fireball.cpp">
+      <Filter>02.Skills\MiniBoss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -406,6 +412,9 @@
     </ClInclude>
     <ClInclude Include="MiniBoss_GrandSummoner.h">
       <Filter>01.Level\OBJ\02.Monster\MiniBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniBoss_GrandSummoner_Fireball.h">
+      <Filter>02.Skills\MiniBoss</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

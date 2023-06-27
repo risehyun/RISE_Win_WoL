@@ -1,5 +1,7 @@
 #pragma once
 #include "Monster.h"
+#include "MiniBoss_GrandSummoner_Fireball.h"
+#include <vector>
 
 class MiniBoss_GrandSummoner : public Monster
 {
@@ -15,26 +17,31 @@ public:
 	GameEngineRenderer* MainRenderer = nullptr;
 	GameEngineRenderer* DamageRenderer = nullptr;
 
+	std::vector<MiniBoss_GrandSummoner_Fireball*> AllFireball;
+
+	int AttackIndex = -1;
+
+	float4 NextPos;
 
 protected:
 	void StateUpdate(float _Delta);
 
 	void IdleStart();
 	void RunStart();
-	void AttackStart();
+	void Skill_Fireball_Start();
 	void DamageStart();
 	void DeathStart();
 
 	void IdleUpdate(float _Delta);
 	void RunUpdate(float _Delta);
-	void AttackUpdate(float _Delta);
+	void Skill_Fireball_Update(float _Delta);
 	void DamageUpdate(float _Delta);
 	void DeathUpdate(float _Delta);
 
 
-	void ChangeState(MonsterState _State);
+	void ChangeState(MiniBossState _State);
 
-	MonsterState State = MonsterState::Max;
+	MiniBossState State = MiniBossState::Max;
 
 	MonsterDir Dir = MonsterDir::Right;
 	std::string CurState = "";

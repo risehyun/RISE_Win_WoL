@@ -195,6 +195,7 @@
     <ClInclude Include="ITEM_Potion.h" />
     <ClInclude Include="ITEM_VampiresEyeglasses.h" />
     <ClInclude Include="MiniBoss_GrandSummoner.h" />
+    <ClInclude Include="MiniBoss_GrandSummoner_Fireball.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Monster_Archer.h" />
     <ClInclude Include="Monster_Swordman.h" />
@@ -255,6 +256,7 @@
     <ClCompile Include="ITEM_Potion.cpp" />
     <ClCompile Include="ITEM_VampiresEyeglasses.cpp" />
     <ClCompile Include="MiniBoss_GrandSummoner.cpp" />
+    <ClCompile Include="MiniBoss_GrandSummoner_Fireball.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Monster_Archer.cpp" />
     <ClCompile Include="Monster_Swordman.cpp" />

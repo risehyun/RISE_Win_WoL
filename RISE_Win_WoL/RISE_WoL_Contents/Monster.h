@@ -1,5 +1,4 @@
 #pragma once
-//#include <GameEngineCore/GameEngineActor.h>
 #include "PlayActor.h"
 #include <GameEnginePlatform/GameEngineSound.h>
 
@@ -19,6 +18,15 @@ enum class BossState
 	Skill_SeismicSlam,
 	Skill_AncientEarthDrill,
 	Skill_TowersofTerra,
+	Damage,
+	Death,
+	Max,
+};
+
+enum class MiniBossState
+{
+	Idle,
+	Skill_Fireball,
 	Damage,
 	Death,
 	Max,
