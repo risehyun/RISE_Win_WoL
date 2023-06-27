@@ -262,6 +262,8 @@ void Player::Update(float _Delta)
 
 	StateUpdate(_Delta);
 
+	DirCheck();
+
 	CameraFocus();
 }
 

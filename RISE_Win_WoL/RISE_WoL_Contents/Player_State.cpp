@@ -42,6 +42,7 @@ void Player::DashStart()
 
 void Player::AttackStart()
 {
+	DirCheck();
 	ChangeAnimationState("Attack");
 }
 
@@ -123,7 +124,7 @@ void Player::IdleUpdate(float _Delta)
 	}
 
 	// 일반 공격
-	if (true == GameEngineInput::IsUp(VK_LBUTTON))
+	if (true == GameEngineInput::IsDown(VK_LBUTTON))
 	{
 		ChanageState(PlayerState::Attack);
 
@@ -391,7 +392,7 @@ void Player::DashUpdate(float _Delta)
 
 	}
 
-	DirCheck();
+//	DirCheck();
 
 	float Speed = 500.0f;
 
@@ -454,12 +455,11 @@ void Player::DashUpdate(float _Delta)
 // 수정 필요
 void Player::AttackUpdate(float _Delta)
 {
-	if (1.5f <= GetLiveTime())
+	if (MainRenderer->IsAnimationEnd())
 	{
 		DirCheck();
 		ChanageState(PlayerState::Idle);
 
-		ResetLiveTime();
 	}
 
 	return;
@@ -467,7 +467,7 @@ void Player::AttackUpdate(float _Delta)
 
 void Player::OnDamagedUpdate(float _Delta)
 {
-	DirCheck();
+//	DirCheck();
 
 	if (true == IsDeath()) {
 		ChanageState(PlayerState::Death);

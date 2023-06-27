@@ -68,7 +68,7 @@ void MiniBoss_GrandSummoner::Start()
 
 	// 충돌체 설정
 	BodyCollsion = CreateCollision(CollisionOrder::MonsterBody);
-	BodyCollsion->SetCollisionScale({ 80, 300 });
+	BodyCollsion->SetCollisionScale({ 140, 200 });
 	BodyCollsion->SetCollisionType(CollisionType::CirCle);
 
 	MainRenderer->ChangeAnimation("Left_Idle");
@@ -82,6 +82,45 @@ void MiniBoss_GrandSummoner::Update(float _Delta)
 	{
 		ChangeState(MiniBossState::Skill_Fireball);
 	}
+
+	if (!(m_iCurHp <= 0))
+	{
+		// 플레이어의 스킬과 자신의 몸이 충돌하면 데미지 상태로 전환
+		std::vector<GameEngineCollision*> _Col;
+		if (true == BodyCollsion->Collision(CollisionOrder::PlayerSkill, _Col
+			, CollisionType::CirCle
+			, CollisionType::CirCle
+		))
+		{
+			for (size_t i = 0; i < _Col.size(); i++)
+			{
+				GameEngineCollision* Collison = _Col[i];
+
+				GameEngineActor* Actor = Collison->GetActor();
+
+				OnDamaged(Actor->GetAttackPower());
+
+				if (m_iCurHp <= 0)
+				{
+					DirCheck();
+					ChangeState(MiniBossState::Death);
+				}
+
+				else
+				{
+					DirCheck();
+					ChangeState(MiniBossState::Damage);
+
+					// 수정필요
+					Actor->Death();
+				}
+
+			}
+		}
+
+
+	}
+
 
 	DirCheck();
 
@@ -173,96 +212,6 @@ void MiniBoss_GrandSummoner::RunStart()
 void MiniBoss_GrandSummoner::Skill_Fireball_Start()
 {
 	ChangeAnimationState("Attack");
-
-	//// 플레이어의 위치를 체크한다.
-	//float4 DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
-
-
-
-	//// 오른쪽
-	//if (DirDeg.AngleDeg() > 315.0f && DirDeg.AngleDeg() < 360.0f || DirDeg.AngleDeg() > 0.0f && DirDeg.AngleDeg() < 45.0f)
-	//{
-
-	//	// Pos를 세팅하고 벡터 안에 넣어서 Update에서 돌린다.
-	//	{
-	//		MiniBoss_GrandSummoner_Fireball* NewFireball = GetLevel()->CreateActor<MiniBoss_GrandSummoner_Fireball>();
-	//		NewFireball->SetPos(float4{ GetPos().X - 20.0f, GetPos().Y });
-	//		NewFireball->SetDir(float4::RIGHT);
-	//		AllFireball.push_back(NewFireball);
-
-
-	//		MiniBoss_GrandSummoner_Fireball* NewFireball2 = GetLevel()->CreateActor<MiniBoss_GrandSummoner_Fireball>();
-	//		NewFireball2->SetPos(float4{ GetPos().X - 10.0f, GetPos().Y + -40.0f });
-	//		NewFireball2->GetMainRenderer()->ChangeAnimation("ATTACK_Index3");
-	//		NewFireball2->SetDir(float4::RIGHT);
-	//		AllFireball.push_back(NewFireball2);
-
-	//		MiniBoss_GrandSummoner_Fireball* NewFireball3 = GetLevel()->CreateActor<MiniBoss_GrandSummoner_Fireball>();
-	//		NewFireball3->SetPos(float4{ GetPos().X - 10.0f, GetPos().Y + 40.0f });
-	//		NewFireball3->GetMainRenderer()->ChangeAnimation("ATTACK_Index13");
-	//		NewFireball3->SetDir(float4::RIGHT);
-	//		AllFireball.push_back(NewFireball3);
-
-
-	//	}
-
-	//	AttackIndex = 0;
-
-	//}
-
-	//// 아래쪽
-	//if (DirDeg.AngleDeg() > 45.0f && DirDeg.AngleDeg() < 135.0f)
-	//{
-	//	MiniBoss_GrandSummoner_Fireball* NewFireball = GetLevel()->CreateActor<MiniBoss_GrandSummoner_Fireball>();
-	//	NewFireball->SetPos(float4{ GetPos().X - 20.0f, GetPos().Y });
-
-	//	MiniBoss_GrandSummoner_Fireball* NewFireball2 = GetLevel()->CreateActor<MiniBoss_GrandSummoner_Fireball>();
-	//	NewFireball2->SetPos(float4{ GetPos().X - 10.0f, GetPos().Y + -40.0f });
-	//	NewFireball2->GetMainRenderer()->ChangeAnimation("ATTACK_Index3");
-
-	//	MiniBoss_GrandSummoner_Fireball* NewFireball3 = GetLevel()->CreateActor<MiniBoss_GrandSummoner_Fireball>();
-	//	NewFireball3->SetPos(float4{ GetPos().X - 10.0f, GetPos().Y + 40.0f });
-	//	NewFireball3->GetMainRenderer()->ChangeAnimation("ATTACK_Index13");
-
-	//	NewFireball3->SetDir(float4::DOWN);
-	//}
-
-	//// 오른쪽
-	//if (DirDeg.AngleDeg() > 135.0f && DirDeg.AngleDeg() < 225.0f)
-	//{
-	//	MiniBoss_GrandSummoner_Fireball* NewFireball = GetLevel()->CreateActor<MiniBoss_GrandSummoner_Fireball>();
-	//	NewFireball->SetPos(float4{ GetPos().X - 20.0f, GetPos().Y });
-
-	//	MiniBoss_GrandSummoner_Fireball* NewFireball2 = GetLevel()->CreateActor<MiniBoss_GrandSummoner_Fireball>();
-	//	NewFireball2->SetPos(float4{ GetPos().X - 10.0f, GetPos().Y + -40.0f });
-	//	NewFireball2->GetMainRenderer()->ChangeAnimation("ATTACK_Index3");
-
-	//	MiniBoss_GrandSummoner_Fireball* NewFireball3 = GetLevel()->CreateActor<MiniBoss_GrandSummoner_Fireball>();
-	//	NewFireball3->SetPos(float4{ GetPos().X - 10.0f, GetPos().Y + 40.0f });
-	//	NewFireball3->GetMainRenderer()->ChangeAnimation("ATTACK_Index13");
-
-	//	NewFireball3->SetDir(float4::LEFT);
-	//}
-
-	//// 위
-	//if (DirDeg.AngleDeg() > 225.0f && DirDeg.AngleDeg() < 315.0f)
-	//{
-	//	MiniBoss_GrandSummoner_Fireball* NewFireball = GetLevel()->CreateActor<MiniBoss_GrandSummoner_Fireball>();
-	//	NewFireball->SetPos(float4{ GetPos().X - 20.0f, GetPos().Y });
-
-	//	MiniBoss_GrandSummoner_Fireball* NewFireball2 = GetLevel()->CreateActor<MiniBoss_GrandSummoner_Fireball>();
-	//	NewFireball2->SetPos(float4{ GetPos().X - 10.0f, GetPos().Y + -40.0f });
-	//	NewFireball2->GetMainRenderer()->ChangeAnimation("ATTACK_Index3");
-
-	//	MiniBoss_GrandSummoner_Fireball* NewFireball3 = GetLevel()->CreateActor<MiniBoss_GrandSummoner_Fireball>();
-	//	NewFireball3->SetPos(float4{ GetPos().X - 10.0f, GetPos().Y + 40.0f });
-	//	NewFireball3->GetMainRenderer()->ChangeAnimation("ATTACK_Index13");
-
-	//	NewFireball3->SetDir(float4::UP);
-
-	//}
-
-
 }
 
 void MiniBoss_GrandSummoner::DamageStart()
@@ -274,7 +223,6 @@ void MiniBoss_GrandSummoner::DeathStart()
 {
 	ChangeAnimationState("Death");
 }
-
 
 void MiniBoss_GrandSummoner::IdleUpdate(float _Delta)
 {
@@ -520,14 +468,27 @@ void MiniBoss_GrandSummoner::Skill_Fireball_Update(float _Delta)
 
 void MiniBoss_GrandSummoner::DamageUpdate(float _Delta)
 {
+	if (true == IsDeath()) {
+		DirCheck();
+		ChangeState(MiniBossState::Death);
+	}
+
+	if (true == MainRenderer->IsAnimationEnd())
+	{
+		//		DamageRenderer->Off();
+		DirCheck();
+		ChangeState(MiniBossState::Idle);
+	}
+
 }
 
 void MiniBoss_GrandSummoner::DeathUpdate(float _Delta)
 {
-
+	if (true == MainRenderer->IsAnimationEnd())
+	{
+		Death();
+	}
 }
-
-
 
 void MiniBoss_GrandSummoner::ChangeAnimationState(const std::string& _StateName)
 {
@@ -569,5 +530,5 @@ void MiniBoss_GrandSummoner::SetInitStat()
 
 void MiniBoss_GrandSummoner::OnDamaged(int _iAttackPower)
 {
-
+	m_iCurHp -= _iAttackPower;
 }
