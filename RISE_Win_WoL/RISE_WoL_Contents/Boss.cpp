@@ -338,6 +338,7 @@ void Boss::Skill_SeismicSlam_Update(float _Delta)
 		if (true == MainRenderer->IsAnimationEnd())
 		{
 			ChangeState(BossState::Idle);
+			TickTime = 0.0f;
 		}
 	}
 }
