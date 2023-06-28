@@ -23,7 +23,6 @@ public:
 
 	std::vector<SKILL_MiniBoss_GrandSummoner_Magicball*> AllMagicball;
 
-
 	int AttackIndex = -1;
 
 	float4 NextPos;
@@ -36,6 +35,7 @@ protected:
 
 	void Skill_Fireball_Start();
 	void Skill_MagicOrbWallRush_Start();
+	void Skill_MagicOrbAssault_Start();
 
 	void DamageStart();
 	void DeathStart();
@@ -47,6 +47,7 @@ protected:
 
 	void Skill_Fireball_Update(float _Delta);
 	void Skill_MagicOrbWallRush_Update(float _Delta);
+	void Skill_MagicOrbAssault_Update(float _Delta);
 
 	void DamageUpdate(float _Delta);
 	void DeathUpdate(float _Delta);
