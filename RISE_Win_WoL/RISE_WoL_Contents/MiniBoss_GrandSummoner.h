@@ -1,6 +1,8 @@
 #pragma once
 #include "Monster.h"
-#include "MiniBoss_GrandSummoner_Fireball.h"
+#include "SKILL_MiniBoss_GrandSummoner_Fireball.h"
+#include "SKILL_MiniBoss_GrandSummoner_Magicball.h"
+
 #include <vector>
 
 class MiniBoss_GrandSummoner : public Monster
@@ -17,7 +19,10 @@ public:
 	GameEngineRenderer* MainRenderer = nullptr;
 	GameEngineRenderer* DamageRenderer = nullptr;
 
-	std::vector<MiniBoss_GrandSummoner_Fireball*> AllFireball;
+	std::vector<SKILL_MiniBoss_GrandSummoner_Fireball*> AllFireball;
+
+	std::vector<SKILL_MiniBoss_GrandSummoner_Magicball*> AllMagicball;
+
 
 	int AttackIndex = -1;
 
@@ -28,13 +33,21 @@ protected:
 
 	void IdleStart();
 	void RunStart();
+
 	void Skill_Fireball_Start();
+	void Skill_MagicOrbWallRush_Start();
+
 	void DamageStart();
 	void DeathStart();
+	
+
 
 	void IdleUpdate(float _Delta);
 	void RunUpdate(float _Delta);
+
 	void Skill_Fireball_Update(float _Delta);
+	void Skill_MagicOrbWallRush_Update(float _Delta);
+
 	void DamageUpdate(float _Delta);
 	void DeathUpdate(float _Delta);
 

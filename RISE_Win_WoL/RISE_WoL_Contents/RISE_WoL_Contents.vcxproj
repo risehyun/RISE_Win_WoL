@@ -195,7 +195,7 @@
     <ClInclude Include="ITEM_Potion.h" />
     <ClInclude Include="ITEM_VampiresEyeglasses.h" />
     <ClInclude Include="MiniBoss_GrandSummoner.h" />
-    <ClInclude Include="MiniBoss_GrandSummoner_Fireball.h" />
+    <ClInclude Include="SKILL_MiniBoss_GrandSummoner_Fireball.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Monster_Archer.h" />
     <ClInclude Include="Monster_Swordman.h" />
@@ -217,6 +217,7 @@
     <ClInclude Include="SKILL_EarthenAegis.h" />
     <ClInclude Include="SKILL_Fireball.h" />
     <ClInclude Include="SKILL_KnightAttack.h" />
+    <ClInclude Include="SKILL_MiniBoss_GrandSummoner_Magicball.h" />
     <ClInclude Include="SKILL_PlayerNormalAttack.h" />
     <ClInclude Include="SKILL_PlayerWindBoomerang.h" />
     <ClInclude Include="SKILL_SnowflakeChakrams.h" />
@@ -256,7 +257,7 @@
     <ClCompile Include="ITEM_Potion.cpp" />
     <ClCompile Include="ITEM_VampiresEyeglasses.cpp" />
     <ClCompile Include="MiniBoss_GrandSummoner.cpp" />
-    <ClCompile Include="MiniBoss_GrandSummoner_Fireball.cpp" />
+    <ClCompile Include="SKILL_MiniBoss_GrandSummoner_Fireball.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Monster_Archer.cpp" />
     <ClCompile Include="Monster_Swordman.cpp" />
@@ -279,6 +280,7 @@
     <ClCompile Include="SKILL_EarthenAegis.cpp" />
     <ClCompile Include="SKILL_Fireball.cpp" />
     <ClCompile Include="SKILL_KnightAttack.cpp" />
+    <ClCompile Include="SKILL_MiniBoss_GrandSummoner_Magicball.cpp" />
     <ClCompile Include="SKILL_PlayerNormalAttack.cpp" />
     <ClCompile Include="SKILL_PlayerWindBoomerang.cpp" />
     <ClCompile Include="SKILL_SnowflakeChakrams.cpp" />

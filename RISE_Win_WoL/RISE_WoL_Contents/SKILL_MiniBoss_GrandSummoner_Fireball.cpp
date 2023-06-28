@@ -1,4 +1,4 @@
-#include "MiniBoss_GrandSummoner_Fireball.h"
+#include "SKILL_MiniBoss_GrandSummoner_Fireball.h"
 
 #include <GameEngineCore/ResourcesManager.h>
 #include <GameEngineCore/GameEngineRenderer.h>
@@ -7,7 +7,7 @@
 #include "Player.h"
 #include "ContentsEnum.h"
 
-void MiniBoss_GrandSummoner_Fireball::Start()
+void SKILL_MiniBoss_GrandSummoner_Fireball::Start()
 {
 
 	if (false == ResourcesManager::GetInst().IsLoadTexture("MiniBoss_GrandSummoner_Fire.bmp"))
@@ -70,7 +70,7 @@ void MiniBoss_GrandSummoner_Fireball::Start()
 
 }
 
-void MiniBoss_GrandSummoner_Fireball::Update(float _Delta)
+void SKILL_MiniBoss_GrandSummoner_Fireball::Update(float _Delta)
 {
 	if (SkillRenderer->IsAnimationEnd())
 	{

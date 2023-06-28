@@ -242,7 +242,10 @@
     <ClCompile Include="MiniBoss_GrandSummoner.cpp">
       <Filter>01.Level\OBJ\02.Monster\MiniBoss</Filter>
     </ClCompile>
-    <ClCompile Include="MiniBoss_GrandSummoner_Fireball.cpp">
+    <ClCompile Include="SKILL_MiniBoss_GrandSummoner_Fireball.cpp">
+      <Filter>02.Skills\MiniBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="SKILL_MiniBoss_GrandSummoner_Magicball.cpp">
       <Filter>02.Skills\MiniBoss</Filter>
     </ClCompile>
   </ItemGroup>
@@ -413,7 +416,10 @@
     <ClInclude Include="MiniBoss_GrandSummoner.h">
       <Filter>01.Level\OBJ\02.Monster\MiniBoss</Filter>
     </ClInclude>
-    <ClInclude Include="MiniBoss_GrandSummoner_Fireball.h">
+    <ClInclude Include="SKILL_MiniBoss_GrandSummoner_Fireball.h">
+      <Filter>02.Skills\MiniBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="SKILL_MiniBoss_GrandSummoner_Magicball.h">
       <Filter>02.Skills\MiniBoss</Filter>
     </ClInclude>
   </ItemGroup>

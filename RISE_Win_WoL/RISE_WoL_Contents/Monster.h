@@ -27,6 +27,7 @@ enum class MiniBossState
 {
 	Idle,
 	Skill_Fireball,
+	Skill_MagicOrbWallRush,
 	Damage,
 	Death,
 	Max,

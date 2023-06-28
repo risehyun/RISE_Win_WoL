@@ -1,7 +1,7 @@
 #pragma once
 #include "Skill.h"
 
-class MiniBoss_GrandSummoner_Fireball : public Skill
+class SKILL_MiniBoss_GrandSummoner_Fireball : public Skill
 {
 public:
 	void SetDir(const float4& _Dir)
