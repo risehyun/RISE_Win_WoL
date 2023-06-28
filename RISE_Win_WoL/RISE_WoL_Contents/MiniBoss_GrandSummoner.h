@@ -28,6 +28,8 @@ public:
 
 	float4 NextPos;
 
+	float4 DirDeg;
+
 protected:
 	void StateUpdate(float _Delta);
 

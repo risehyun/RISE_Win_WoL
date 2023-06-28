@@ -243,6 +243,7 @@ void MiniBoss_GrandSummoner::Skill_Fireball_Start()
 void MiniBoss_GrandSummoner::Skill_MagicOrbWallRush_Start()
 {
 	ChangeAnimationState("Attack");
+	DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
 }
 
 void MiniBoss_GrandSummoner::Skill_MagicOrbAssault_Start()
@@ -499,9 +500,7 @@ void MiniBoss_GrandSummoner::Skill_Fireball_Update(float _Delta)
 
 void MiniBoss_GrandSummoner::Skill_MagicOrbWallRush_Update(float _Delta)
 {
-
-	float4 DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
-
+	// float4 DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
 	if (AllMagicball.size() == 0)
 	{
 		// 0
@@ -550,10 +549,19 @@ void MiniBoss_GrandSummoner::Skill_MagicOrbWallRush_Update(float _Delta)
 				AllMagicball.push_back(NewMagicball);
 			}
 
-			AttackIndex = 0;
+			for (size_t i = 0; i < AllMagicball.size(); i++)
+			{
+				Speed = 800.0f;
+				NextPos = AllMagicball[i]->GetDir() * _Delta * Speed;
+
+				AllMagicball[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index13");
+
+				NextPos.Y -= 0.5;
+				NextPos.X += 1.5;
+
+			}
+
 		}
-
-
 
 		// 1
 		if (DirDeg.AngleDeg() > 0.0f && DirDeg.AngleDeg() < 90.0f)
@@ -601,7 +609,18 @@ void MiniBoss_GrandSummoner::Skill_MagicOrbWallRush_Update(float _Delta)
 				AllMagicball.push_back(NewMagicball);
 			}
 
-			AttackIndex = 1;
+
+			for (size_t i = 0; i < AllMagicball.size(); i++)
+			{
+				Speed = 800.0f;
+				NextPos = AllMagicball[i]->GetDir() * _Delta * Speed;
+
+				AllMagicball[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index1");
+
+				NextPos.Y += 0.5;
+				NextPos.X += 0.5;
+			}
+
 		}
 
 		// 2
@@ -650,7 +669,17 @@ void MiniBoss_GrandSummoner::Skill_MagicOrbWallRush_Update(float _Delta)
 				AllMagicball.push_back(NewMagicball);
 			}
 
-			AttackIndex = 2;
+			for (size_t i = 0; i < AllMagicball.size(); i++)
+			{
+				Speed = 800.0f;
+				NextPos = AllMagicball[i]->GetDir() * _Delta * Speed;
+
+				AllMagicball[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index6");
+
+				NextPos.Y += 0.5;
+				NextPos.X -= 0.5;
+
+			}
 		}
 
 		// 3
@@ -699,82 +728,35 @@ void MiniBoss_GrandSummoner::Skill_MagicOrbWallRush_Update(float _Delta)
 				AllMagicball.push_back(NewMagicball);
 			}
 
-			AttackIndex = 3;
+			for (size_t i = 0; i < AllMagicball.size(); i++)
+			{
+				Speed = 800.0f;
+				NextPos = AllMagicball[i]->GetDir() * _Delta * Speed;
+
+				AllMagicball[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index10");
+
+				NextPos.Y -= 0.5;
+				NextPos.X -= 1.5;
+
+			}
 
 		}
-
 
 	}
 
-	if (AttackIndex == 0)
+	else
 	{
 		for (size_t i = 0; i < AllMagicball.size(); i++)
 		{
-			Speed = 800.0f;
-			NextPos = AllMagicball[i]->GetDir() * _Delta * Speed;
-
-			AllMagicball[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index13");
-
-			NextPos.Y -= 0.5;
-			NextPos.X += 1.5;
-
 			AllMagicball[i]->AddPos(NextPos);
 		}
-	}
 
-	else if (AttackIndex == 1)
-	{
-
-		for (size_t i = 0; i < AllMagicball.size(); i++)
-		{
-			Speed = 800.0f;
-			NextPos = AllMagicball[i]->GetDir() * _Delta * Speed;
-
-			AllMagicball[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index1");
-
-			NextPos.Y += 0.5;
-			NextPos.X += 0.5;
-
-			AllMagicball[i]->AddPos(NextPos);
-		}
-	}
-
-	else if (AttackIndex == 2)
-	{
-		for (size_t i = 0; i < AllMagicball.size(); i++)
-		{
-			Speed = 800.0f;
-			NextPos = AllMagicball[i]->GetDir() * _Delta * Speed;
-
-			AllMagicball[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index6");
-
-			NextPos.Y += 0.5;
-			NextPos.X -= 0.5;
-
-			AllMagicball[i]->AddPos(NextPos);
-		}
-	}
-
-	else if (AttackIndex == 3)
-	{
-		for (size_t i = 0; i < AllMagicball.size(); i++)
-		{
-			Speed = 800.0f;
-			NextPos = AllMagicball[i]->GetDir() * _Delta * Speed;
-
-			AllMagicball[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index10");
-
-			NextPos.Y -= 0.5;
-			NextPos.X -= 1.5;
-
-			AllMagicball[i]->AddPos(NextPos);
-		}
 	}
 
 	if (true == MainRenderer->IsAnimationEnd())
 	{
-		ChangeState(MiniBossState::Idle);
 		AllMagicball.clear();
+		ChangeState(MiniBossState::Idle);
 	}
 
 }
@@ -844,14 +826,13 @@ void MiniBoss_GrandSummoner::Skill_MagicOrbAssault_Update(float _Delta)
 
 	}
 
-	if (AllMagicorb.size() != 0)
+	else
 	{
 		for (size_t i = 0; i < AllMagicorb.size(); i++)
 		{
+			Speed = 200.0f;
 
 			NextPos = AllMagicorb[i]->GetDir() * _Delta * Speed;
-
-			Speed = 200.0f;
 
 			if (i == 0)
 			{
@@ -861,58 +842,60 @@ void MiniBoss_GrandSummoner::Skill_MagicOrbAssault_Update(float _Delta)
 
 			if (i == 1)
 			{
-				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index4");
+				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index6");
 				NextPos.X -= 0.7f;
 				NextPos.Y += 0.1f;
 			}
 
 			if (i == 2)
 			{
-				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index4");
+				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index8");
 				NextPos.X -= 0.5f;
 			}
 
 			if (i == 3)
 			{
-				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index4");
+				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index10");
 				NextPos.X -= 0.4f;
 				NextPos.Y -= 0.1f;
 			}
 
 			if (i == 4)
 			{
-				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index4");
+				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index14");
 				NextPos.X += 0.4f;
 				NextPos.Y -= 0.1f;
 			}
 
 			if (i == 5)
 			{
-				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index4");
+				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index0");
 				NextPos.X += 0.5f;
 			}
 
 			if (i == 6)
 			{
-				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index4");
+				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index2");
 				NextPos.X += 0.7f;
 				NextPos.Y += 0.1f;
 			}
 
-			AllMagicorb[i]->AddPos(NextPos);
+
+
 		}
 
+	
 	}
 
+	for (size_t i = 0; i < AllMagicorb.size(); i++)
+	{
+		AllMagicorb[i]->AddPos(NextPos);
+	}
 
 	if (true == MainRenderer->IsAnimationEnd())
 	{
+		AllMagicorb.clear();
 		ChangeState(MiniBossState::Idle);
-
-		//if (AllMagicorb.size() != 0)
-		//{
-		//	AllMagicorb.clear();
-		//}
 	}
 }
 
