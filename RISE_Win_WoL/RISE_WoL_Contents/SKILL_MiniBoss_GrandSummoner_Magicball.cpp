@@ -29,35 +29,35 @@ void SKILL_MiniBoss_GrandSummoner_Magicball::Start()
 
 	SkillRenderer->CreateAnimation("MagicBall_Damage", "MiniBoss_GrandSummoner_MagicBall.bmp", 1, 2, 0.2f, false);
 
-	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index0", "MiniBoss_GrandSummoner_MagicBall.bmp", 4, 7, 0.2f, false);
+	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index0", "MiniBoss_GrandSummoner_MagicBall.bmp", 4, 7, 0.6f, false);
 
-	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index1", "MiniBoss_GrandSummoner_MagicBall.bmp", 8, 11, 0.2f, false);
+	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index1", "MiniBoss_GrandSummoner_MagicBall.bmp", 8, 11, 0.6f, false);
 
-	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index2", "MiniBoss_GrandSummoner_MagicBall.bmp", 12, 15, 0.2f, false);
+	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index2", "MiniBoss_GrandSummoner_MagicBall.bmp", 12, 15, 0.6f, false);
 
-	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index3", "MiniBoss_GrandSummoner_MagicBall.bmp", 16, 19, 0.2f, false);
+	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index3", "MiniBoss_GrandSummoner_MagicBall.bmp", 16, 19, 0.6f, false);
 
-	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index4", "MiniBoss_GrandSummoner_MagicBall.bmp", 20, 23, 0.2f, false);
+	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index4", "MiniBoss_GrandSummoner_MagicBall.bmp", 20, 23, 0.6f, false);
 
-	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index5", "MiniBoss_GrandSummoner_MagicBall.bmp", 24, 27, 0.2f, false);
+	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index5", "MiniBoss_GrandSummoner_MagicBall.bmp", 24, 27, 0.6f, false);
 
-	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index6", "MiniBoss_GrandSummoner_MagicBall.bmp", 28, 31, 0.2f, false);
+	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index6", "MiniBoss_GrandSummoner_MagicBall.bmp", 28, 31, 0.6f, false);
 
-	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index7", "MiniBoss_GrandSummoner_MagicBall.bmp", 32, 35, 0.2f, false);
+	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index7", "MiniBoss_GrandSummoner_MagicBall.bmp", 32, 35, 0.6f, false);
 
-	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index8", "MiniBoss_GrandSummoner_MagicBall.bmp", 36, 39, 0.2f, false);
+	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index8", "MiniBoss_GrandSummoner_MagicBall.bmp", 36, 39, 0.6f, false);
 
-	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index9", "MiniBoss_GrandSummoner_MagicBall.bmp", 40, 43, 0.2f, false);
+	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index9", "MiniBoss_GrandSummoner_MagicBall.bmp", 40, 43, 0.6f, false);
 
-	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index10", "MiniBoss_GrandSummoner_MagicBall.bmp", 44, 47, 0.2f, false);
+	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index10", "MiniBoss_GrandSummoner_MagicBall.bmp", 44, 47, 0.6f, false);
 
-	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index11", "MiniBoss_GrandSummoner_MagicBall.bmp", 48, 51, 0.2f, false);
+	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index11", "MiniBoss_GrandSummoner_MagicBall.bmp", 48, 51, 0.6f, false);
 
-	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index12", "MiniBoss_GrandSummoner_MagicBall.bmp", 52, 55, 0.2f, false);
+	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index12", "MiniBoss_GrandSummoner_MagicBall.bmp", 52, 55, 0.6f, false);
 
-	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index13", "MiniBoss_GrandSummoner_MagicBall.bmp", 56, 59, 0.2f, false);
+	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index13", "MiniBoss_GrandSummoner_MagicBall.bmp", 56, 59, 0.6f, false);
 
-	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index14", "MiniBoss_GrandSummoner_MagicBall.bmp", 60, 63, 0.2f, false);
+	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index14", "MiniBoss_GrandSummoner_MagicBall.bmp", 60, 63, 0.6f, false);
 
 	// 中宜端 持失
 	SkillCollsion = CreateCollision(CollisionOrder::MonsterSkill);

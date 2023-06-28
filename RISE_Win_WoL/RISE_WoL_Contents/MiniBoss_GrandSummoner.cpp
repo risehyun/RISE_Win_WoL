@@ -500,7 +500,6 @@ void MiniBoss_GrandSummoner::Skill_Fireball_Update(float _Delta)
 
 void MiniBoss_GrandSummoner::Skill_MagicOrbWallRush_Update(float _Delta)
 {
-	// float4 DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
 	if (AllMagicball.size() == 0)
 	{
 		// 0
@@ -840,40 +839,40 @@ void MiniBoss_GrandSummoner::Skill_MagicOrbAssault_Update(float _Delta)
 				NextPos.Y += 0.5f;
 			}
 
-			if (i == 1)
+			else if (i == 1)
 			{
 				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index6");
 				NextPos.X -= 0.7f;
 				NextPos.Y += 0.1f;
 			}
 
-			if (i == 2)
+			else if (i == 2)
 			{
 				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index8");
 				NextPos.X -= 0.5f;
 			}
 
-			if (i == 3)
+			else if (i == 3)
 			{
 				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index10");
 				NextPos.X -= 0.4f;
 				NextPos.Y -= 0.1f;
 			}
 
-			if (i == 4)
+			else if (i == 4)
 			{
 				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index14");
 				NextPos.X += 0.4f;
 				NextPos.Y -= 0.1f;
 			}
 
-			if (i == 5)
+			else if (i == 5)
 			{
 				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index0");
 				NextPos.X += 0.5f;
 			}
 
-			if (i == 6)
+			else if (i == 6)
 			{
 				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index2");
 				NextPos.X += 0.7f;
@@ -881,15 +880,10 @@ void MiniBoss_GrandSummoner::Skill_MagicOrbAssault_Update(float _Delta)
 			}
 
 
+			AllMagicorb[i]->AddPos(NextPos);
+
 
 		}
-
-	
-	}
-
-	for (size_t i = 0; i < AllMagicorb.size(); i++)
-	{
-		AllMagicorb[i]->AddPos(NextPos);
 	}
 
 	if (true == MainRenderer->IsAnimationEnd())
