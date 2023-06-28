@@ -20,8 +20,9 @@ public:
 	GameEngineRenderer* DamageRenderer = nullptr;
 
 	std::vector<SKILL_MiniBoss_GrandSummoner_Fireball*> AllFireball;
-
 	std::vector<SKILL_MiniBoss_GrandSummoner_Magicball*> AllMagicball;
+	std::vector<SKILL_MiniBoss_GrandSummoner_Magicball*> AllMagicorb;
+
 
 	int AttackIndex = -1;
 

@@ -89,6 +89,11 @@ void MiniBoss_GrandSummoner::Update(float _Delta)
 		ChangeState(MiniBossState::Skill_MagicOrbWallRush);
 	}
 
+	if (true == GameEngineInput::IsDown('U'))
+	{
+		ChangeState(MiniBossState::Skill_MagicOrbAssault);
+	}
+
 	if (!(m_iCurHp <= 0))
 	{
 		// 플레이어의 스킬과 자신의 몸이 충돌하면 데미지 상태로 전환
@@ -127,7 +132,6 @@ void MiniBoss_GrandSummoner::Update(float _Delta)
 
 	}
 
-
 	DirCheck();
 
 	StateUpdate(_Delta);
@@ -149,6 +153,10 @@ void MiniBoss_GrandSummoner::ChangeState(MiniBossState _State)
 
 		case MiniBossState::Skill_MagicOrbWallRush:
 			Skill_MagicOrbWallRush_Start();
+			break;
+
+		case MiniBossState::Skill_MagicOrbAssault:
+			Skill_MagicOrbAssault_Start();
 			break;
 
 		case MiniBossState::Damage:
@@ -182,6 +190,10 @@ void MiniBoss_GrandSummoner::StateUpdate(float _Delta)
 
 	case MiniBossState::Skill_MagicOrbWallRush:
 		Skill_MagicOrbWallRush_Update(_Delta);
+		break;
+
+	case MiniBossState::Skill_MagicOrbAssault:
+		Skill_MagicOrbAssault_Update(_Delta);
 		break;
 
 	case MiniBossState::Damage:
@@ -769,10 +781,138 @@ void MiniBoss_GrandSummoner::Skill_MagicOrbWallRush_Update(float _Delta)
 
 void MiniBoss_GrandSummoner::Skill_MagicOrbAssault_Update(float _Delta)
 {
+
+	if (AllMagicorb.size() == 0)
+	{
+		// 0
+		{
+			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicball = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
+			NewMagicball->SetPos(float4{ GetPos().X, GetPos().Y - 300.0f });
+			NewMagicball->SetDir(float4::DOWN);
+			AllMagicorb.push_back(NewMagicball);
+		}
+
+		// 1
+		{
+			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicball = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
+			NewMagicball->SetPos(float4{ GetPos().X + 200.0f, GetPos().Y - 200.0f });
+			NewMagicball->SetDir(float4::DOWN);
+			AllMagicorb.push_back(NewMagicball);
+		}
+
+		// 2
+		{
+			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicball = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
+			NewMagicball->SetPos(float4{ GetPos().X + 300, GetPos().Y });
+			NewMagicball->SetDir(float4::LEFT);
+			AllMagicorb.push_back(NewMagicball);
+		}
+
+
+		// 3
+		{
+			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicball = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
+			NewMagicball->SetPos(float4{ GetPos().X + 100.0f, GetPos().Y + 200.0f });
+			NewMagicball->SetDir(float4::UP);
+			AllMagicorb.push_back(NewMagicball);
+		}
+
+		// 4
+		{
+			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicball = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
+			NewMagicball->SetPos(float4{ GetPos().X - 100.0f, GetPos().Y + 200.0f });
+			NewMagicball->SetDir(float4::UP);
+			AllMagicorb.push_back(NewMagicball);
+		}
+
+		// 5
+		{
+			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicball = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
+			NewMagicball->SetPos(float4{ GetPos().X - 300, GetPos().Y });
+			NewMagicball->SetDir(float4::RIGHT);
+			AllMagicorb.push_back(NewMagicball);
+		}
+
+
+		// 6
+		{
+			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicball = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
+			NewMagicball->SetPos(float4{ GetPos().X - 200, GetPos().Y - 200.0f });
+			NewMagicball->SetDir(float4::DOWN);
+			AllMagicorb.push_back(NewMagicball);
+		}
+
+	}
+
+	if (AllMagicorb.size() != 0)
+	{
+		for (size_t i = 0; i < AllMagicorb.size(); i++)
+		{
+
+			NextPos = AllMagicorb[i]->GetDir() * _Delta * Speed;
+
+			Speed = 200.0f;
+
+			if (i == 0)
+			{
+				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index4");
+				NextPos.Y += 0.5f;
+			}
+
+			if (i == 1)
+			{
+				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index4");
+				NextPos.X -= 0.7f;
+				NextPos.Y += 0.1f;
+			}
+
+			if (i == 2)
+			{
+				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index4");
+				NextPos.X -= 0.5f;
+			}
+
+			if (i == 3)
+			{
+				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index4");
+				NextPos.X -= 0.4f;
+				NextPos.Y -= 0.1f;
+			}
+
+			if (i == 4)
+			{
+				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index4");
+				NextPos.X += 0.4f;
+				NextPos.Y -= 0.1f;
+			}
+
+			if (i == 5)
+			{
+				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index4");
+				NextPos.X += 0.5f;
+			}
+
+			if (i == 6)
+			{
+				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index4");
+				NextPos.X += 0.7f;
+				NextPos.Y += 0.1f;
+			}
+
+			AllMagicorb[i]->AddPos(NextPos);
+		}
+
+	}
+
+
 	if (true == MainRenderer->IsAnimationEnd())
 	{
 		ChangeState(MiniBossState::Idle);
-		AllFireball.clear();
+
+		//if (AllMagicorb.size() != 0)
+		//{
+		//	AllMagicorb.clear();
+		//}
 	}
 }
 

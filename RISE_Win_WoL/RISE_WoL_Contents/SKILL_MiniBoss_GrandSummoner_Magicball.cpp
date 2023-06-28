@@ -60,9 +60,9 @@ void SKILL_MiniBoss_GrandSummoner_Magicball::Start()
 	SkillRenderer->CreateAnimation("MagicBall_ATTACK_Index14", "MiniBoss_GrandSummoner_MagicBall.bmp", 60, 63, 0.2f, false);
 
 	// 中宜端 持失
-	SkillCollsion = CreateCollision(CollisionOrder::MonsterSkill);
-	SkillCollsion->SetCollisionScale({ 50, 50 });
-	SkillCollsion->SetCollisionType(CollisionType::CirCle);
+	//SkillCollsion = CreateCollision(CollisionOrder::MonsterSkill);
+	//SkillCollsion->SetCollisionScale({ 50, 50 });
+	//SkillCollsion->SetCollisionType(CollisionType::CirCle);
 
 	m_iAttackPower = 10;
 
