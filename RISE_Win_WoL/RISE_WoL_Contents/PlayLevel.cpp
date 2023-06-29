@@ -80,23 +80,22 @@ void PlayLevel::Start()
 
 	BackGroundPtr->Init("stage1.Bmp", "stage1_Col.bmp");
 
-	LevelPlayer = CreateActor<Player>();
+	Player::MainPlayer = CreateActor<Player>();
 
-	LevelPlayer->SetGroundTexture("stage1_Col.bmp");
+
+
 
 	CreateActor<PlayUIManager>();
 
-	// 보스스포너 -> 따로 빼기
 
+
+	// 보스스포너 -> 따로 빼기
 	Spawner = CreateActor<BossSpawner>();
 
 
 	// 플레이어 스폰 효과
-
 	Effect_Spawn* NewSpawn = CreateActor<Effect_Spawn>();
-
 	NewSpawn->SetPos({ 1850, 1800 });
-
 	NewSpawn->SpawnObject(SpawnType::Player, { 100, 365 });
 
 
@@ -113,15 +112,6 @@ void PlayLevel::Start()
 
 	NPC_Outfit* NewOutfit = CreateActor<NPC_Outfit>();
 	NewOutfit->SetPos({ 1850, 700 });
-
-
-	// 임시 테스트
-
-
-	// 다시 포탈 생성 이펙트가 나오고, 포탈이 사용가능해진다.
-
-	//PROP_Teleport* NewTeleport = CreateActor<PROP_Teleport>();
-	//NewTeleport->SetPos({ 1850, 2000 });
 
 
 }
@@ -178,12 +168,14 @@ void PlayLevel::Release()
 
 void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	if (nullptr == LevelPlayer)
-	{
-		MsgBoxAssert("플레이어를 세팅해주지 않았습니다");
-	}
+	//if (nullptr == LevelPlayer)
+	//{
+	//	MsgBoxAssert("플레이어를 세팅해주지 않았습니다");
+	//}
 
-	LevelPlayer->SetGroundTexture("stage1_Col.bmp");
+	Player::MainPlayer->SetGroundTexture("stage1_Col.bmp");
+
+
 
 //	BGMPlayer = GameEngineSound::SoundPlay("Earth.wav");
 
@@ -191,5 +183,5 @@ void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 void PlayLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
-
+	Player::MainPlayer->OverOn();
 }

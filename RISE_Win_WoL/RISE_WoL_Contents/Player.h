@@ -29,14 +29,6 @@ enum class PlayerDir
 class Player : public PlayActor
 {
 
-private:
-	static Player* MainPlayer;
-public:
-	static Player* GetMainPlayer()
-	{
-		return MainPlayer;
-	}
-
 public:
 	Player();
 	~Player();
@@ -45,6 +37,13 @@ public:
 	Player(Player&& _Other) noexcept = delete;
 	Player& operator=(const Player& _Other) = delete;
 	Player& operator=(Player&& _Other) noexcept = delete;
+
+	static Player* MainPlayer;
+
+	static Player* GetMainPlayer()
+	{
+		return MainPlayer;
+	}
 
 	GameEngineRenderer* MainRenderer = nullptr;
 
@@ -107,6 +106,8 @@ protected:
 	void ChangeAnimationState(const std::string& _StateName);
 
 private:
+
+
 	GameEngineSoundPlayer EffectPlayer;
 
 	void LevelStart() override;

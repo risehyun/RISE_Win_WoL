@@ -41,7 +41,7 @@ void Boss::SetInitStat()
 
 void Boss::DirCheck()
 {
-	float4 DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
+	float4 DirDeg = Player::MainPlayer->GetPos() - GetPos();
 
 	if (DirDeg.AngleDeg() > 90 && DirDeg.AngleDeg() < 270)
 	{

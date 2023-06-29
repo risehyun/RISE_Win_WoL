@@ -95,6 +95,22 @@ public:
 		return Level;
 	}
 
+	bool IsLevelOver()
+	{
+		return IsOverValue;
+	}
+
+	void OverOn()
+	{
+		IsOverValue = true;
+	}
+
+	void OverOff()
+	{
+		IsOverValue = false;
+	}
+
+
 protected:
 	virtual void LevelStart() {}
 	virtual void LevelEnd() {}
@@ -110,6 +126,8 @@ protected:
 	int		m_iCurHp = 0;
 
 private:
+	bool IsOverValue = false;
+
 	GameEngineLevel* Level;
 
 	float4 Pos = float4::ZERO;

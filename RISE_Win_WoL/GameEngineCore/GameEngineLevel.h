@@ -55,6 +55,8 @@ public:
 		IsCollisionDebugRender = !IsCollisionDebugRender;
 	}
 
+	void OverCheck(GameEngineLevel* _PrevLevel);
+
 protected:
 	virtual void LevelStart(GameEngineLevel* _PrevLevel) {}
 	virtual void LevelEnd(GameEngineLevel* _NextLevel) {}
@@ -68,12 +70,15 @@ private:
 	std::map<int, std::list<GameEngineActor*>> AllActors;
 	std::map<int, std::list<GameEngineCollision*>> AllCollision;
 
-
 	void ActorInit(GameEngineActor* _Actor, int _Order);
 
 	void ActorLevelEnd();
 
 	void ActorLevelStart();
+
+	void CollisionOverRelease();
+
+	void CollisionRelease();
 
 	void ActorUpdate(float _Delta);
 

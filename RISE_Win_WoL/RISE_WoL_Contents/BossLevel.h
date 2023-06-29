@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
 
+class Player;
 class BossLevel : public GameEngineLevel
 {
 public:
@@ -23,6 +24,6 @@ private:
 	void Release() override;
 
 	class BackGround* BackGroundPtr;
-	class Player* LevelPlayer = nullptr;
+//	class Player* LevelPlayer = nullptr;
 
 };

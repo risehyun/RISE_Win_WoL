@@ -40,17 +40,13 @@ void BossLevel::Start()
 	//	BackGroundPtr->Init("stage1.Bmp", "stage1_Col.bmp", 3.0f, { 640, 400 });
 	BackGroundPtr->Init("BossStage_resize.Bmp", "BossStage_Col_resize.Bmp");
 
-	LevelPlayer = CreateActor<Player>();
-
-	LevelPlayer->SetGroundTexture("BossStage_Col_resize.bmp");
-
-
 }
 
 void BossLevel::Update(float _Delta)
 {
 	if (true == GameEngineInput::IsDown(VK_RIGHT))
 	{
+		Player::MainPlayer->OverOff();
 		GameEngineCore::ChangeLevel("EndingLevel");
 	}
 
@@ -70,14 +66,13 @@ void BossLevel::Release()
 
 void BossLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	if (nullptr == LevelPlayer)
-	{
-		MsgBoxAssert("플레이어를 세팅해주지 않았습니다");
-	}
+
+	Player::MainPlayer->SetGroundTexture("BossStage_Col_resize.bmp");
+	Player::MainPlayer->SetPos({ 1720, 2630 });
 
 	float4 WinScale = GameEngineWindow::MainWindow.GetScale();
 
-	//GetMainCamera()->SetPos(LevelPlayer->GetPos() - WinScale.Half());
+	GetMainCamera()->SetPos(Player::MainPlayer->GetPos() - WinScale.Half());
 
 	ITEM_HealthCrystal* HealthCrystal = CreateActor<ITEM_HealthCrystal>();
 	HealthCrystal->SetPos({ 1720, 1600 });

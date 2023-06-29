@@ -6,6 +6,8 @@
 #include "PROP_TreasureChestMiniBoss.h"
 #include "PROP_Teleport.h"
 
+
+class Player;
 class PlayLevel : public GameEngineLevel
 {
 public:
@@ -28,7 +30,7 @@ private:
 	void Release() override;
 
 	class BackGround* BackGroundPtr;
-	class Player* LevelPlayer = nullptr;
+//	class Player* LevelPlayer = nullptr;
 
 	GameEngineSoundPlayer BGMPlayer;
 
