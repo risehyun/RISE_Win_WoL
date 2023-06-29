@@ -7,6 +7,8 @@
 #include <GameEngineCore/GameEngineCollision.h>
 #include "Player.h"
 
+#include "SKILL_ArcherBow.h"
+
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineLevel.h>
 
@@ -63,7 +65,7 @@ void Monster_Archer::Start()
 
 	// 충돌체 설정
 	BodyCollsion = CreateCollision(CollisionOrder::MonsterBody);
-	BodyCollsion->SetCollisionScale({ 500, 500 });
+	BodyCollsion->SetCollisionScale({ 600, 600 });
 	BodyCollsion->SetCollisionType(CollisionType::CirCle);
 
 	ChangeState(MonsterState::Idle);
@@ -91,6 +93,7 @@ void Monster_Archer::Update(float _Delta)
 			DirCheck();
 			ChangeState(MonsterState::Attack);
 		}
+
 
 		// 플레이어의 스킬과 자신의 몸이 충돌하면 데미지 상태로 전환
 		std::vector<GameEngineCollision*> _Col;
@@ -245,6 +248,7 @@ void Monster_Archer::RunUpdate(float _Delta)
 
 void Monster_Archer::AttackUpdate(float _Delta)
 {
+
 	if (1.0f < GetLiveTime())
 	{
 		float4 DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
@@ -252,16 +256,25 @@ void Monster_Archer::AttackUpdate(float _Delta)
 		// 위
 		if (DirDeg.AngleDeg() >= 258.75f && DirDeg.AngleDeg() < 281.25f)
 		{
+			NewBow = GetLevel()->CreateActor<SKILL_ArcherBow>();
+			NewBow->SkillRenderer->SetRenderPos(GetPos() - NewBow->GetPos());
+			NewBow->SkillRenderer->ChangeAnimation("Arrow_INDEX0");
+
+
 			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
 			NewArrow->SetPos(GetPos() + float4{ 0.0f, -20.0f, 0.0f, 0.0f });
 
 			NewArrow->SetDir(DirDeg);
 			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX0");
-	
 		}
 
 		else if (DirDeg.AngleDeg() >= 281.25f && DirDeg.AngleDeg() < 303.75f)
 		{
+			NewBow = GetLevel()->CreateActor<SKILL_ArcherBow>();
+			NewBow->SkillRenderer->SetRenderPos(GetPos() - NewBow->GetPos());
+			NewBow->SkillRenderer->ChangeAnimation("Arrow_INDEX1");
+
+
 			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
 			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
@@ -272,6 +285,10 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 303.75f && DirDeg.AngleDeg() < 326.25f)
 		{
+			NewBow = GetLevel()->CreateActor<SKILL_ArcherBow>();
+			NewBow->SkillRenderer->SetRenderPos(GetPos() - NewBow->GetPos());
+			NewBow->SkillRenderer->ChangeAnimation("Arrow_INDEX2");
+
 			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
 			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
@@ -281,6 +298,11 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 326.25f && DirDeg.AngleDeg() < 348.75f)
 		{
+			NewBow = GetLevel()->CreateActor<SKILL_ArcherBow>();
+			NewBow->SkillRenderer->SetRenderPos(GetPos() - NewBow->GetPos());
+			NewBow->SkillRenderer->ChangeAnimation("Arrow_INDEX3");
+
+
 			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
 			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
@@ -292,6 +314,10 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 11.25f && DirDeg.AngleDeg() < 33.75f)
 		{
+			NewBow = GetLevel()->CreateActor<SKILL_ArcherBow>();
+			NewBow->SkillRenderer->SetRenderPos(GetPos() - NewBow->GetPos());
+			NewBow->SkillRenderer->ChangeAnimation("Arrow_INDEX4");
+
 			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
 			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
@@ -301,6 +327,10 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 33.75f && DirDeg.AngleDeg() < 56.25f)
 		{
+			NewBow = GetLevel()->CreateActor<SKILL_ArcherBow>();
+			NewBow->SkillRenderer->SetRenderPos(GetPos() - NewBow->GetPos());
+			NewBow->SkillRenderer->ChangeAnimation("Arrow_INDEX5");
+
 			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
 			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
@@ -310,6 +340,10 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 56.25f && DirDeg.AngleDeg() < 78.75f)
 		{
+			NewBow = GetLevel()->CreateActor<SKILL_ArcherBow>();
+			NewBow->SkillRenderer->SetRenderPos(GetPos() - NewBow->GetPos());
+			NewBow->SkillRenderer->ChangeAnimation("Arrow_INDEX6");
+
 			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
 			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
@@ -319,6 +353,10 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 78.75f && DirDeg.AngleDeg() < 101.25f)
 		{
+			NewBow = GetLevel()->CreateActor<SKILL_ArcherBow>();
+			NewBow->SkillRenderer->SetRenderPos(GetPos() - NewBow->GetPos());
+			NewBow->SkillRenderer->ChangeAnimation("Arrow_INDEX7");
+
 			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
 			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
@@ -328,6 +366,10 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 101.25f && DirDeg.AngleDeg() < 123.75f)
 		{
+			NewBow = GetLevel()->CreateActor<SKILL_ArcherBow>();
+			NewBow->SkillRenderer->SetRenderPos(GetPos() - NewBow->GetPos());
+			NewBow->SkillRenderer->ChangeAnimation("Arrow_INDEX8");
+
 			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
 			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
@@ -337,6 +379,10 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 123.75f && DirDeg.AngleDeg() < 146.25f)
 		{
+			NewBow = GetLevel()->CreateActor<SKILL_ArcherBow>();
+			NewBow->SkillRenderer->SetRenderPos(GetPos() - NewBow->GetPos());
+			NewBow->SkillRenderer->ChangeAnimation("Arrow_INDEX9");
+
 			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
 			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
@@ -346,6 +392,10 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 146.25f && DirDeg.AngleDeg() < 168.75f)
 		{
+			NewBow = GetLevel()->CreateActor<SKILL_ArcherBow>();
+			NewBow->SkillRenderer->SetRenderPos(GetPos() - NewBow->GetPos());
+			NewBow->SkillRenderer->ChangeAnimation("Arrow_INDEX10");
+
 			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
 			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
@@ -355,6 +405,10 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 168.75f && DirDeg.AngleDeg() < 191.25f)
 		{
+			NewBow = GetLevel()->CreateActor<SKILL_ArcherBow>();
+			NewBow->SkillRenderer->SetRenderPos(GetPos() - NewBow->GetPos());
+			NewBow->SkillRenderer->ChangeAnimation("Arrow_INDEX11");
+
 			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
 			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
@@ -364,6 +418,10 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 191.25f && DirDeg.AngleDeg() < 213.75f)
 		{
+			NewBow = GetLevel()->CreateActor<SKILL_ArcherBow>();
+			NewBow->SkillRenderer->SetRenderPos(GetPos() - NewBow->GetPos());
+			NewBow->SkillRenderer->ChangeAnimation("Arrow_INDEX12");
+
 			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
 			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
@@ -374,6 +432,10 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 213.75f && DirDeg.AngleDeg() < 236.25f)
 		{
+			NewBow = GetLevel()->CreateActor<SKILL_ArcherBow>();
+			NewBow->SkillRenderer->SetRenderPos(GetPos() - NewBow->GetPos());
+			NewBow->SkillRenderer->ChangeAnimation("Arrow_INDEX13");
+
 			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
 			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
@@ -383,6 +445,10 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else if (DirDeg.AngleDeg() >= 236.25f && DirDeg.AngleDeg() < 258.75f)
 		{
+			NewBow = GetLevel()->CreateActor<SKILL_ArcherBow>();
+			NewBow->SkillRenderer->SetRenderPos(GetPos() - NewBow->GetPos());
+			NewBow->SkillRenderer->ChangeAnimation("Arrow_INDEX14");
+
 			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
 			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
@@ -392,6 +458,10 @@ void Monster_Archer::AttackUpdate(float _Delta)
 
 		else
 		{
+			NewBow = GetLevel()->CreateActor<SKILL_ArcherBow>();
+			NewBow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
+			NewBow->SkillRenderer->ChangeAnimation("Arrow_INDEX15");
+
 			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
 			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
@@ -400,7 +470,6 @@ void Monster_Archer::AttackUpdate(float _Delta)
 		}
 
 
-		ChangeState(MonsterState::Idle);
 		ResetLiveTime();
 
 	}

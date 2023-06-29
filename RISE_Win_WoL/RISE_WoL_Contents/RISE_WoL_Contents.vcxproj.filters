@@ -248,6 +248,9 @@
     <ClCompile Include="SKILL_MiniBoss_GrandSummoner_Magicball.cpp">
       <Filter>02.Skills\MiniBoss</Filter>
     </ClCompile>
+    <ClCompile Include="SKILL_ArcherBow.cpp">
+      <Filter>02.Skills\Monster\Archer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -421,6 +424,9 @@
     </ClInclude>
     <ClInclude Include="SKILL_MiniBoss_GrandSummoner_Magicball.h">
       <Filter>02.Skills\MiniBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="SKILL_ArcherBow.h">
+      <Filter>02.Skills\Monster\Archer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

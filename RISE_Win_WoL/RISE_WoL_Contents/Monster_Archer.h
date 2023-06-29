@@ -1,6 +1,7 @@
 #pragma once
 #include "Monster.h"
 #include "SKILL_ArcherAttack.h"
+#include "SKILL_ArcherBow.h"
 
 class Monster_Archer : public Monster
 {
@@ -16,7 +17,6 @@ public:
 	GameEngineRenderer* MainRenderer = nullptr;
 	GameEngineRenderer* DamageRenderer = nullptr;
 
-	SKILL_ArcherAttack* Arrow = nullptr;
 
 protected:
 	void StateUpdate(float _Delta);
@@ -42,6 +42,7 @@ protected:
 	std::string CurState = "";
 
 	GameEngineCollision* BodyCollsion = nullptr;
+	SKILL_ArcherBow* NewBow = nullptr;
 
 	void DirCheck();
 	void ChangeAnimationState(const std::string& _StateName);
