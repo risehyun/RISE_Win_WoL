@@ -88,7 +88,7 @@ void PlayLevel::Start()
 
 	// 보스스포너 -> 따로 빼기
 
-	BossSpawner* NewSpawner = CreateActor<BossSpawner>();
+	Spawner = CreateActor<BossSpawner>();
 
 
 	// 플레이어 스폰 효과
@@ -116,25 +116,13 @@ void PlayLevel::Start()
 
 
 	// 임시 테스트
-	//Effect_CastingCircle* NewEffect = CreateActor<Effect_CastingCircle>();
-	//NewEffect->SetPos({ 1850, 1700 });
 
-	//PROP_TreasureChestMiniBoss* NewChest = CreateActor<PROP_TreasureChestMiniBoss>();
-	//NewChest->SetPos({ 1870, 1650 });
 
 	// 다시 포탈 생성 이펙트가 나오고, 포탈이 사용가능해진다.
 
 	//PROP_Teleport* NewTeleport = CreateActor<PROP_Teleport>();
 	//NewTeleport->SetPos({ 1850, 2000 });
 
-	//MiniBoss_GrandSummoner* NewMonster = CreateActor<MiniBoss_GrandSummoner>();
-	//NewMonster->SetPos({ 1850, 2000 });
-
-	//Monster_Archer* NewMonster = CreateActor<Monster_Archer>();
-	//NewMonster->SetPos({ 1850, 2000 });
-
-	//Monster_Archer* NewMonster2 = CreateActor<Monster_Archer>();
-	//NewMonster->SetPos({ 1850, 2000 });
 
 }
 
@@ -148,6 +136,34 @@ void PlayLevel::Update(float _Delta)
 	if (true == GameEngineInput::IsDown('J'))
 	{
 		BackGroundPtr->SwitchRender();
+	}
+
+	if (true == Spawner->GetLevelState())
+	{
+		if (NewEffect == nullptr)
+		{
+			NewEffect = CreateActor<Effect_CastingCircle>();
+			NewEffect->SetPos({ 1850, 1700 });
+
+		}
+
+		if (NewChest == nullptr)
+		{
+			NewChest = CreateActor<PROP_TreasureChestMiniBoss>();
+			NewChest->SetPos({ 1870, 1650 });
+		}
+
+		if (NewTeleport == nullptr)
+		{
+			NewTeleport = CreateActor<PROP_Teleport>();
+			NewTeleport->SetPos({ 1850, 2000 });
+
+			Effect_Spawn* NewSpawn = CreateActor<Effect_Spawn>();
+			NewSpawn->SetPos({ 1850, 2000 });
+			NewSpawn->SpawnObject(SpawnType::Player, { 300, 365 });
+
+		}
+
 	}
 
 }

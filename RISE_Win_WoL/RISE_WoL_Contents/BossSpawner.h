@@ -46,6 +46,16 @@ public:
 	GameEngineCollision* Collsion_FenceRight;
 	GameEngineCollision* Collsion_FenceLeft;
 
+	bool GetLevelState()
+	{
+		return IsLevelClear;
+	}
+
+	void SetLevelState()
+	{
+		IsLevelClear = !IsLevelClear;
+	}
+
 	
 
 private:
@@ -61,6 +71,7 @@ private:
 
 	bool IsSpawnStart = false;
 	bool IsAllDeathWait = false;
+	bool IsLevelClear = false;
 
 
 };

@@ -208,6 +208,7 @@ void BossSpawner::MonsterSpawnCheck()
 	if (CurWave == AllSpawnDatas.end())
 	{
 		// 모든 웨이브가 끝났다.
+		SetLevelState();
 
 		Renderer_FenceUp->Off();
 		Renderer_FenceDown->Off();
@@ -300,18 +301,6 @@ void BossSpawner::Update(float _Delta)
 
 			IsSpawnStart = true;
 
-			//Effect_Spawn* Spawn = GetLevel()->CreateActor<Effect_Spawn>();
-			//Spawn->SpawnObject(SpawnType::Swordman, { 100, 200 });
-			//Spawn->SetPos({ 1850, 1634 });
-
-			//Effect_Spawn* Spawn2 = GetLevel()->CreateActor<Effect_Spawn>();
-			//Spawn2->SpawnObject(SpawnType::Swordman, { 100, 200 });
-			//Spawn2->SetPos({ 1800, 1634 });
-
-			//Effect_Spawn* Spawn3 = GetLevel()->CreateActor<Effect_Spawn>();
-			//Spawn3->SpawnObject(SpawnType::Swordman, { 100, 200 });
-			//Spawn3->SetPos({ 1750, 1634 });
-
 			CurWave = AllSpawnDatas.begin();
 
 			ResetLiveTime();
@@ -323,87 +312,87 @@ void BossSpawner::Update(float _Delta)
 		m_InteractUI->GetMainRenderer()->Off();
 	}
 
-	//if (true == Collsion_FenceUp->Collision(CollisionOrder::PlayerBody, _Col
-	//	, CollisionType::Rect
-	//	, CollisionType::CirCle
-	//))
-	//{
-	//	// 플레이어를 밀어낸다.
-	//	for (size_t i = 0; i < _Col.size(); i++)
-	//	{
-	//		GameEngineCollision* Collison = _Col[i];
+	if (true == Collsion_FenceUp->Collision(CollisionOrder::PlayerBody, _Col
+		, CollisionType::Rect
+		, CollisionType::CirCle
+	))
+	{
+		// 플레이어를 밀어낸다.
+		for (size_t i = 0; i < _Col.size(); i++)
+		{
+			GameEngineCollision* Collison = _Col[i];
 
-	//		GameEngineActor* Actor = Collison->GetActor();
+			GameEngineActor* Actor = Collison->GetActor();
 
-	//		Actor->AddPos(float4::DOWN);
-	//	}
-	//}
+			Actor->AddPos(float4::DOWN);
+		}
+	}
 
-	//if (true == Collsion_FenceDown->Collision(CollisionOrder::PlayerBody, _Col
-	//	, CollisionType::Rect
-	//	, CollisionType::CirCle
-	//))
-	//{
-	//	// 플레이어를 밀어낸다.
-	//	for (size_t i = 0; i < _Col.size(); i++)
-	//	{
-	//		GameEngineCollision* Collison = _Col[i];
+	if (true == Collsion_FenceDown->Collision(CollisionOrder::PlayerBody, _Col
+		, CollisionType::Rect
+		, CollisionType::CirCle
+	))
+	{
+		// 플레이어를 밀어낸다.
+		for (size_t i = 0; i < _Col.size(); i++)
+		{
+			GameEngineCollision* Collison = _Col[i];
 
-	//		GameEngineActor* Actor = Collison->GetActor();
+			GameEngineActor* Actor = Collison->GetActor();
 
-	//		Actor->AddPos(float4::UP);
-	//	}
-	//}
+			Actor->AddPos(float4::UP);
+		}
+	}
 
-	//if (true == Collsion_FenceRight->Collision(CollisionOrder::PlayerBody, _Col
-	//	, CollisionType::Rect
-	//	, CollisionType::CirCle
-	//))
-	//{
-	//	// 플레이어를 밀어낸다.
-	//	for (size_t i = 0; i < _Col.size(); i++)
-	//	{
-	//		GameEngineCollision* Collison = _Col[i];
+	if (true == Collsion_FenceRight->Collision(CollisionOrder::PlayerBody, _Col
+		, CollisionType::Rect
+		, CollisionType::CirCle
+	))
+	{
+		// 플레이어를 밀어낸다.
+		for (size_t i = 0; i < _Col.size(); i++)
+		{
+			GameEngineCollision* Collison = _Col[i];
 
-	//		GameEngineActor* Actor = Collison->GetActor();
+			GameEngineActor* Actor = Collison->GetActor();
 
-	//		Actor->AddPos(float4::LEFT);
-	//	}
-	//}
+			Actor->AddPos(float4::LEFT);
+		}
+	}
 
-	//if (true == Collsion_FenceLeft->Collision(CollisionOrder::PlayerBody, _Col
-	//	, CollisionType::Rect
-	//	, CollisionType::CirCle
-	//))
-	//{
-	//	// 플레이어를 밀어낸다.
-	//	for (size_t i = 0; i < _Col.size(); i++)
-	//	{
-	//		GameEngineCollision* Collison = _Col[i];
+	if (true == Collsion_FenceLeft->Collision(CollisionOrder::PlayerBody, _Col
+		, CollisionType::Rect
+		, CollisionType::CirCle
+	))
+	{
+		// 플레이어를 밀어낸다.
+		for (size_t i = 0; i < _Col.size(); i++)
+		{
+			GameEngineCollision* Collison = _Col[i];
 
-	//		GameEngineActor* Actor = Collison->GetActor();
+			GameEngineActor* Actor = Collison->GetActor();
 
-	//		Actor->AddPos(float4::RIGHT);
-	//	}
-	//}
+			Actor->AddPos(float4::RIGHT);
+		}
+	}
 
-	//if (true == Collsion_Altar->Collision(CollisionOrder::PlayerBody, _Col
-	//	, CollisionType::Rect
-	//	, CollisionType::CirCle
-	//))
-	//{
+	if (true == Collsion_Altar->Collision(CollisionOrder::PlayerBody, _Col
+		, CollisionType::Rect
+		, CollisionType::CirCle
+	))
+	{
 
-	//	// 플레이어를 밀어낸다.
-	//	for (size_t i = 0; i < _Col.size(); i++)
-	//	{
-	//		GameEngineCollision* Collison = _Col[i];
+		// 플레이어를 밀어낸다.
+		for (size_t i = 0; i < _Col.size(); i++)
+		{
+			GameEngineCollision* Collison = _Col[i];
 
-	//		GameEngineActor* Actor = Collison->GetActor();
+			GameEngineActor* Actor = Collison->GetActor();
 
-	//		Actor->AddPos(float4::DOWN);
+			Actor->AddPos(float4::DOWN);
 
-	//	}
-	//}
+		}
+	}
 
 	if (true == GameEngineInput::IsDown('P'))
 	{

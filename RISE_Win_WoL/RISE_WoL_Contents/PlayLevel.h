@@ -1,6 +1,10 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEnginePlatform/GameEngineSound.h>
+#include "BossSpawner.h"
+#include "Effect_CastingCircle.h"
+#include "PROP_TreasureChestMiniBoss.h"
+#include "PROP_Teleport.h"
 
 class PlayLevel : public GameEngineLevel
 {
@@ -25,6 +29,16 @@ private:
 
 	class BackGround* BackGroundPtr;
 	class Player* LevelPlayer = nullptr;
+
 	GameEngineSoundPlayer BGMPlayer;
+
+	BossSpawner* Spawner;
+
+	Effect_CastingCircle* NewEffect;
+	PROP_TreasureChestMiniBoss* NewChest;
+	PROP_Teleport* NewTeleport;
+
+
+	int LevelState = -1;
 
 };
