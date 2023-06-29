@@ -116,20 +116,19 @@ void PlayLevel::Start()
 
 
 	// 임시 테스트
-	Effect_CastingCircle* NewEffect = CreateActor<Effect_CastingCircle>();
-	NewEffect->SetPos({ 1850, 1700 });
+	//Effect_CastingCircle* NewEffect = CreateActor<Effect_CastingCircle>();
+	//NewEffect->SetPos({ 1850, 1700 });
 
-	PROP_TreasureChestMiniBoss* NewChest = CreateActor<PROP_TreasureChestMiniBoss>();
-	NewChest->SetPos({ 1870, 1650 });
+	//PROP_TreasureChestMiniBoss* NewChest = CreateActor<PROP_TreasureChestMiniBoss>();
+	//NewChest->SetPos({ 1870, 1650 });
 
 	// 다시 포탈 생성 이펙트가 나오고, 포탈이 사용가능해진다.
 
-	PROP_Teleport* NewTeleport = CreateActor<PROP_Teleport>();
-	NewTeleport->SetPos({ 1850, 2000 });
+	//PROP_Teleport* NewTeleport = CreateActor<PROP_Teleport>();
+	//NewTeleport->SetPos({ 1850, 2000 });
 
-
-	MiniBoss_GrandSummoner* NewMonster = CreateActor<MiniBoss_GrandSummoner>();
-	NewMonster->SetPos({ 1850, 2000 });
+	//MiniBoss_GrandSummoner* NewMonster = CreateActor<MiniBoss_GrandSummoner>();
+	//NewMonster->SetPos({ 1850, 2000 });
 
 	//Monster_Archer* NewMonster = CreateActor<Monster_Archer>();
 	//NewMonster->SetPos({ 1850, 2000 });

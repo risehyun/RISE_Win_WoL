@@ -161,9 +161,6 @@ void BossSpawner::Update(float _Delta)
 			Collsion_FenceRight->On();
 			Collsion_FenceLeft->On();
 
-
-
-			
 			Effect_Spawn* Spawn = GetLevel()->CreateActor<Effect_Spawn>();
 			Spawn->SpawnObject(SpawnType::Swordman, { 100, 200 });
 			Spawn->SetPos({ 1850, 1634 });
@@ -175,10 +172,6 @@ void BossSpawner::Update(float _Delta)
 			Effect_Spawn* Spawn3 = GetLevel()->CreateActor<Effect_Spawn>();
 			Spawn3->SpawnObject(SpawnType::Swordman, { 100, 200 });
 			Spawn3->SetPos({ 1750, 1634 });
-
-
-			
-			
 		}
 	}
 

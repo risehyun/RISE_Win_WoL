@@ -251,6 +251,7 @@
     <ClCompile Include="SKILL_ArcherBow.cpp">
       <Filter>02.Skills\Monster\Archer</Filter>
     </ClCompile>
+    <ClCompile Include="MonsterSpawner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -428,5 +429,6 @@
     <ClInclude Include="SKILL_ArcherBow.h">
       <Filter>02.Skills\Monster\Archer</Filter>
     </ClInclude>
+    <ClInclude Include="MonsterSpawner.h" />
   </ItemGroup>
 </Project>
