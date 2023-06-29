@@ -767,60 +767,67 @@ void MiniBoss_GrandSummoner::Skill_MagicOrbAssault_Update(float _Delta)
 	{
 		// 0
 		{
-			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicball = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
-			NewMagicball->SetPos(float4{ GetPos().X, GetPos().Y - 300.0f });
-			NewMagicball->SetDir(float4::DOWN);
-			AllMagicorb.push_back(NewMagicball);
+			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicOrb = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
+			NewMagicOrb->SetPos(float4{ GetPos().X, GetPos().Y - 300.0f });
+			NewMagicOrb->SetDir(float4::DOWN);
+			NewMagicOrb->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index4");
+			AllMagicorb.push_back(NewMagicOrb);
 		}
 
 		// 1
 		{
-			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicball = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
-			NewMagicball->SetPos(float4{ GetPos().X + 200.0f, GetPos().Y - 200.0f });
-			NewMagicball->SetDir(float4::DOWN);
-			AllMagicorb.push_back(NewMagicball);
+			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicOrb = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
+			NewMagicOrb->SetPos(float4{ GetPos().X + 200.0f, GetPos().Y - 200.0f });
+			NewMagicOrb->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index6");
+			NewMagicOrb->SetDir(float4::DOWN);
+			AllMagicorb.push_back(NewMagicOrb);
 		}
 
 		// 2
 		{
-			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicball = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
-			NewMagicball->SetPos(float4{ GetPos().X + 300, GetPos().Y });
-			NewMagicball->SetDir(float4::LEFT);
-			AllMagicorb.push_back(NewMagicball);
+			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicOrb = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
+			NewMagicOrb->SetPos(float4{ GetPos().X + 300, GetPos().Y });
+			NewMagicOrb->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index8");
+			NewMagicOrb->SetDir(float4::LEFT);
+			AllMagicorb.push_back(NewMagicOrb);
 		}
 
 
 		// 3
 		{
-			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicball = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
-			NewMagicball->SetPos(float4{ GetPos().X + 100.0f, GetPos().Y + 200.0f });
-			NewMagicball->SetDir(float4::UP);
-			AllMagicorb.push_back(NewMagicball);
+			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicOrb = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
+			NewMagicOrb->SetPos(float4{ GetPos().X + 100.0f, GetPos().Y + 200.0f });
+			NewMagicOrb->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index10");
+			NewMagicOrb->SetDir(float4::UP);
+			AllMagicorb.push_back(NewMagicOrb);
 		}
 
 		// 4
 		{
-			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicball = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
-			NewMagicball->SetPos(float4{ GetPos().X - 100.0f, GetPos().Y + 200.0f });
-			NewMagicball->SetDir(float4::UP);
-			AllMagicorb.push_back(NewMagicball);
+			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicOrb = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
+			NewMagicOrb->SetPos(float4{ GetPos().X - 100.0f, GetPos().Y + 200.0f });
+			NewMagicOrb->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index14");
+			NewMagicOrb->SetDir(float4::UP);
+			AllMagicorb.push_back(NewMagicOrb);
 		}
 
 		// 5
 		{
-			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicball = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
-			NewMagicball->SetPos(float4{ GetPos().X - 300, GetPos().Y });
-			NewMagicball->SetDir(float4::RIGHT);
-			AllMagicorb.push_back(NewMagicball);
+			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicOrb = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
+			NewMagicOrb->SetPos(float4{ GetPos().X - 300, GetPos().Y });
+			NewMagicOrb->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index0");
+			NewMagicOrb->SetDir(float4::RIGHT);
+			AllMagicorb.push_back(NewMagicOrb);
 		}
 
 
 		// 6
 		{
-			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicball = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
-			NewMagicball->SetPos(float4{ GetPos().X - 200, GetPos().Y - 200.0f });
-			NewMagicball->SetDir(float4::DOWN);
-			AllMagicorb.push_back(NewMagicball);
+			SKILL_MiniBoss_GrandSummoner_Magicball* NewMagicOrb = GetLevel()->CreateActor<SKILL_MiniBoss_GrandSummoner_Magicball>();
+			NewMagicOrb->SetPos(float4{ GetPos().X - 200, GetPos().Y - 200.0f });
+			NewMagicOrb->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index2");
+			NewMagicOrb->SetDir(float4::DOWN);
+			AllMagicorb.push_back(NewMagicOrb);
 		}
 
 	}
@@ -829,57 +836,60 @@ void MiniBoss_GrandSummoner::Skill_MagicOrbAssault_Update(float _Delta)
 	{
 		for (size_t i = 0; i < AllMagicorb.size(); i++)
 		{
+			if (AllMagicorb[i] == nullptr)
+			{
+				continue;
+			}
+
 			Speed = 200.0f;
 
 			NextPos = AllMagicorb[i]->GetDir() * _Delta * Speed;
 
 			if (i == 0)
 			{
-				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index4");
+				
 				NextPos.Y += 0.5f;
 			}
 
 			else if (i == 1)
 			{
-				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index6");
+				
 				NextPos.X -= 0.7f;
 				NextPos.Y += 0.1f;
 			}
 
 			else if (i == 2)
 			{
-				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index8");
+			
 				NextPos.X -= 0.5f;
 			}
 
 			else if (i == 3)
 			{
-				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index10");
+				
 				NextPos.X -= 0.4f;
 				NextPos.Y -= 0.1f;
 			}
 
 			else if (i == 4)
 			{
-				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index14");
+				
 				NextPos.X += 0.4f;
 				NextPos.Y -= 0.1f;
 			}
 
 			else if (i == 5)
 			{
-				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index0");
 				NextPos.X += 0.5f;
 			}
 
 			else if (i == 6)
 			{
-				AllMagicorb[i]->GetMainRenderer()->ChangeAnimation("MagicBall_ATTACK_Index2");
 				NextPos.X += 0.7f;
 				NextPos.Y += 0.1f;
 			}
 
-			AllMagicorb[i]->AddPos(NextPos);
+			AllMagicorb[i]->AddPos(NextPos * 2.0f);
 
 		}
 	}

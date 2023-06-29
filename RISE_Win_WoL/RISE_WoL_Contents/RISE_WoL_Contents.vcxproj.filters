@@ -17,9 +17,6 @@
     <Filter Include="01.Level\OBJ">
       <UniqueIdentifier>{541d89d3-238a-462e-8217-5f270854e5d8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Level\OBJ\NPC">
-      <UniqueIdentifier>{a9e6ef07-803d-4393-b8bc-4bf83df6d05f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.Skills">
       <UniqueIdentifier>{cb0447b0-6bcf-4994-8e68-97a7894c3193}</UniqueIdentifier>
     </Filter>
@@ -28,9 +25,6 @@
     </Filter>
     <Filter Include="03.UI">
       <UniqueIdentifier>{c962f389-77ab-43c6-bc6a-a2718a04e66b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01.Level\OBJ\Spawner">
-      <UniqueIdentifier>{f75e8860-02c2-4e60-b6cc-2f4da925b6e6}</UniqueIdentifier>
     </Filter>
     <Filter Include="01.Level\OBJ\01.Player">
       <UniqueIdentifier>{a722b784-6212-4e24-a3e0-2ce321dd1fc8}</UniqueIdentifier>
@@ -74,6 +68,12 @@
     <Filter Include="02.Skills\MiniBoss">
       <UniqueIdentifier>{a20f4e95-b8f5-4e2d-be8b-4a5f43f74caa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Level\OBJ\06.NPC">
+      <UniqueIdentifier>{a9e6ef07-803d-4393-b8bc-4bf83df6d05f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Level\OBJ\07.Spawner">
+      <UniqueIdentifier>{f75e8860-02c2-4e60-b6cc-2f4da925b6e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingLevel.cpp">
@@ -96,7 +96,7 @@
       <Filter>02.Skills</Filter>
     </ClCompile>
     <ClCompile Include="NPC_ITEMSHOP.cpp">
-      <Filter>01.Level\OBJ\NPC</Filter>
+      <Filter>01.Level\OBJ\06.NPC</Filter>
     </ClCompile>
     <ClCompile Include="PlayUIManager.cpp">
       <Filter>03.UI</Filter>
@@ -111,10 +111,10 @@
       <Filter>03.UI</Filter>
     </ClCompile>
     <ClCompile Include="Effect_Spawn.cpp">
-      <Filter>01.Level\OBJ\Spawner</Filter>
+      <Filter>01.Level\OBJ\07.Spawner</Filter>
     </ClCompile>
     <ClCompile Include="BossSpawner.cpp">
-      <Filter>01.Level\OBJ\Spawner</Filter>
+      <Filter>01.Level\OBJ\07.Spawner</Filter>
     </ClCompile>
     <ClCompile Include="GlobalValue.cpp">
       <Filter>00.Global</Filter>
@@ -147,7 +147,7 @@
       <Filter>03.UI</Filter>
     </ClCompile>
     <ClCompile Include="NPC_ArcanaShop.cpp">
-      <Filter>01.Level\OBJ\NPC</Filter>
+      <Filter>01.Level\OBJ\06.NPC</Filter>
     </ClCompile>
     <ClCompile Include="ITEM_AmuletofSundering.cpp">
       <Filter>01.Level\OBJ\03.Item\Relics</Filter>
@@ -177,10 +177,10 @@
       <Filter>01.Level\OBJ\04.Arcana</Filter>
     </ClCompile>
     <ClCompile Include="NPC_Collector.cpp">
-      <Filter>01.Level\OBJ\NPC</Filter>
+      <Filter>01.Level\OBJ\06.NPC</Filter>
     </ClCompile>
     <ClCompile Include="NPC_Outfit.cpp">
-      <Filter>01.Level\OBJ\NPC</Filter>
+      <Filter>01.Level\OBJ\06.NPC</Filter>
     </ClCompile>
     <ClCompile Include="UI_Inventory.cpp">
       <Filter>03.UI</Filter>
@@ -189,7 +189,7 @@
       <Filter>01.Level\OBJ\03.Item</Filter>
     </ClCompile>
     <ClCompile Include="Effect_CastingCircle.cpp">
-      <Filter>01.Level\OBJ\Spawner</Filter>
+      <Filter>01.Level\OBJ\07.Spawner</Filter>
     </ClCompile>
     <ClCompile Include="PROP_TreasureChestMiniBoss.cpp">
       <Filter>01.Level\OBJ\05.Props</Filter>
@@ -276,7 +276,7 @@
       <Filter>02.Skills</Filter>
     </ClInclude>
     <ClInclude Include="NPC_ITEMSHOP.h">
-      <Filter>01.Level\OBJ\NPC</Filter>
+      <Filter>01.Level\OBJ\06.NPC</Filter>
     </ClInclude>
     <ClInclude Include="PlayUIManager.h">
       <Filter>03.UI</Filter>
@@ -291,10 +291,10 @@
       <Filter>03.UI</Filter>
     </ClInclude>
     <ClInclude Include="Effect_Spawn.h">
-      <Filter>01.Level\OBJ\Spawner</Filter>
+      <Filter>01.Level\OBJ\07.Spawner</Filter>
     </ClInclude>
     <ClInclude Include="BossSpawner.h">
-      <Filter>01.Level\OBJ\Spawner</Filter>
+      <Filter>01.Level\OBJ\07.Spawner</Filter>
     </ClInclude>
     <ClInclude Include="GlobalValue.h">
       <Filter>00.Global</Filter>
@@ -324,7 +324,7 @@
       <Filter>03.UI</Filter>
     </ClInclude>
     <ClInclude Include="NPC_ArcanaShop.h">
-      <Filter>01.Level\OBJ\NPC</Filter>
+      <Filter>01.Level\OBJ\06.NPC</Filter>
     </ClInclude>
     <ClInclude Include="ITEM_AmuletofSundering.h">
       <Filter>01.Level\OBJ\03.Item\Relics</Filter>
@@ -354,10 +354,10 @@
       <Filter>01.Level\OBJ\04.Arcana</Filter>
     </ClInclude>
     <ClInclude Include="NPC_Collector.h">
-      <Filter>01.Level\OBJ\NPC</Filter>
+      <Filter>01.Level\OBJ\06.NPC</Filter>
     </ClInclude>
     <ClInclude Include="NPC_Outfit.h">
-      <Filter>01.Level\OBJ\NPC</Filter>
+      <Filter>01.Level\OBJ\06.NPC</Filter>
     </ClInclude>
     <ClInclude Include="UI_Inventory.h">
       <Filter>03.UI</Filter>
@@ -366,7 +366,7 @@
       <Filter>01.Level\OBJ\03.Item</Filter>
     </ClInclude>
     <ClInclude Include="Effect_CastingCircle.h">
-      <Filter>01.Level\OBJ\Spawner</Filter>
+      <Filter>01.Level\OBJ\07.Spawner</Filter>
     </ClInclude>
     <ClInclude Include="PROP_TreasureChestMiniBoss.h">
       <Filter>01.Level\OBJ\05.Props</Filter>
