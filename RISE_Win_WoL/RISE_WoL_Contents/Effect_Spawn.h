@@ -6,6 +6,7 @@ enum class SpawnType
 	Player,
 	Swordman,
 	Archer,
+	GrandSummoner,
 };
 
 class Effect_Spawn : public GameEngineActor
@@ -20,8 +21,12 @@ public:
 	Effect_Spawn& operator=(Effect_Spawn&& _Other) noexcept = delete;
 
 	SpawnType spawnType;
+
+	int index = -1;
+
 	float effectLiveTime = 0.0f;
 
+	void SpawnMonster(SpawnType spawnType);
 
 	void SpawnObject(SpawnType spawnType, float4 _Scale);
 

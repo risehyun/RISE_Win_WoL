@@ -12,6 +12,7 @@
 #include "SKILL_MiniBoss_GrandSummoner_Magicball.h"
 
 #include "ContentsEnum.h"
+#include "BossSpawner.h"
 
 MiniBoss_GrandSummoner::MiniBoss_GrandSummoner()
 {
@@ -921,6 +922,7 @@ void MiniBoss_GrandSummoner::DeathUpdate(float _Delta)
 {
 	if (true == MainRenderer->IsAnimationEnd())
 	{
+		--BossSpawner::MonsterCount;
 		Death();
 	}
 }

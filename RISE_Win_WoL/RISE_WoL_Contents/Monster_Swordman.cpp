@@ -14,6 +14,7 @@
 
 // 아이템 드롭 테스트용
 #include "ITEM_Gold.h"
+#include "BossSpawner.h"
 
 Monster_Swordman::Monster_Swordman()
 {
@@ -359,6 +360,7 @@ void Monster_Swordman::DeathUpdate(float _Delta)
 
 	if (true == MainRenderer->IsAnimationEnd())
 	{
+		--BossSpawner::MonsterCount;
 		Death();
 	}
 
