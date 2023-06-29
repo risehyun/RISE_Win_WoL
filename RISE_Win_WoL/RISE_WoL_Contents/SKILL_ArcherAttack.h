@@ -19,6 +19,11 @@ public:
 		return SkillRenderer;
 	}
 
+	float4 GetDir()
+	{
+		return Dir;
+	}
+
 	GameEngineRenderer* SkillRenderer = nullptr;
 	GameEngineCollision* SkillCollsion = nullptr;
 	float4 Dir;

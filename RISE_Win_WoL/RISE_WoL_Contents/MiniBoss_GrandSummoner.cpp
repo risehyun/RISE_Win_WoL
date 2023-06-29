@@ -879,9 +879,7 @@ void MiniBoss_GrandSummoner::Skill_MagicOrbAssault_Update(float _Delta)
 				NextPos.Y += 0.1f;
 			}
 
-
 			AllMagicorb[i]->AddPos(NextPos);
-
 
 		}
 	}

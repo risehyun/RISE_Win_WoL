@@ -57,8 +57,8 @@ private:
 	void SetInitStat() override;
 	void OnDamaged(int _iAttackPower) override;
 
+	float4 DirDeg;
 
-	/// 아이템 드롭 테스트용
 	void DropItem(float4 _DropPos);
 
 	float Speed = 500.0f;

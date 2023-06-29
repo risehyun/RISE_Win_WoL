@@ -71,6 +71,7 @@ void Monster_Archer::Start()
 
 void Monster_Archer::Update(float _Delta)
 {
+	DirCheck();
 
 	//if (true == IsAttackable())
 	//{
@@ -203,8 +204,6 @@ void Monster_Archer::RunStart()
 
 void Monster_Archer::AttackStart()
 {
-	Arrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
-
 	ChangeAnimationState("Attack");
 }
 
@@ -246,10 +245,6 @@ void Monster_Archer::RunUpdate(float _Delta)
 
 void Monster_Archer::AttackUpdate(float _Delta)
 {
-
-	DirCheck();
-
-
 	if (1.0f < GetLiveTime())
 	{
 		float4 DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
@@ -257,136 +252,156 @@ void Monster_Archer::AttackUpdate(float _Delta)
 		// À§
 		if (DirDeg.AngleDeg() >= 258.75f && DirDeg.AngleDeg() < 281.25f)
 		{
-			Arrow->SetPos(GetPos() + float4{ 0.0f, -20.0f, 0.0f, 0.0f });
+			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
+			NewArrow->SetPos(GetPos() + float4{ 0.0f, -20.0f, 0.0f, 0.0f });
 
+			NewArrow->SetDir(DirDeg);
+			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX0");
+	
 		}
 
 		else if (DirDeg.AngleDeg() >= 281.25f && DirDeg.AngleDeg() < 303.75f)
 		{
+			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
+			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
-			Arrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
+			NewArrow->SetDir(DirDeg);
+			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX1");
 		}
 
 		else if (DirDeg.AngleDeg() >= 303.75f && DirDeg.AngleDeg() < 326.25f)
 		{
+			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
+			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
-			Arrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
-
-
+			NewArrow->SetDir(DirDeg);
+			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX2");
 		}
 
 		else if (DirDeg.AngleDeg() >= 326.25f && DirDeg.AngleDeg() < 348.75f)
 		{
+			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
+			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
-			Arrow->SetPos(GetPos() + float4{ 20.0f, 20.0f, 0.0f, 0.0f });
-
-
-
+			NewArrow->SetDir(DirDeg);
+			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX3");
 		}
+
+
 
 		else if (DirDeg.AngleDeg() >= 11.25f && DirDeg.AngleDeg() < 33.75f)
 		{
+			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
+			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
-			Arrow->SetPos(GetPos() + float4{ 20.0f, 20.0f, 0.0f, 0.0f });
-
-
-
+			NewArrow->SetDir(DirDeg);
+			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX4");
 		}
 
 		else if (DirDeg.AngleDeg() >= 33.75f && DirDeg.AngleDeg() < 56.25f)
 		{
+			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
+			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
-			Arrow->SetPos(GetPos() + float4{ 20.0f, 20.0f, 0.0f, 0.0f });
-
-
-
+			NewArrow->SetDir(DirDeg);
+			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX5");
 		}
 
 		else if (DirDeg.AngleDeg() >= 56.25f && DirDeg.AngleDeg() < 78.75f)
 		{
+			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
+			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
-			Arrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
-
-
+			NewArrow->SetDir(DirDeg);
+			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX6");
 		}
 
 		else if (DirDeg.AngleDeg() >= 78.75f && DirDeg.AngleDeg() < 101.25f)
 		{
+			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
+			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
-			Arrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
-
-
-
+			NewArrow->SetDir(DirDeg);
+			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX7");
 		}
 
 		else if (DirDeg.AngleDeg() >= 101.25f && DirDeg.AngleDeg() < 123.75f)
 		{
+			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
+			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
-			Arrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
-
-
+			NewArrow->SetDir(DirDeg);
+			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX8");
 		}
 
 		else if (DirDeg.AngleDeg() >= 123.75f && DirDeg.AngleDeg() < 146.25f)
 		{
+			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
+			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
-			Arrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
-
-
+			NewArrow->SetDir(DirDeg);
+			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX9");
 		}
 
 		else if (DirDeg.AngleDeg() >= 146.25f && DirDeg.AngleDeg() < 168.75f)
 		{
+			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
+			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
-			Arrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
-
-
-
+			NewArrow->SetDir(DirDeg);
+			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX10");
 		}
 
 		else if (DirDeg.AngleDeg() >= 168.75f && DirDeg.AngleDeg() < 191.25f)
 		{
+			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
+			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
-			Arrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
-
+			NewArrow->SetDir(DirDeg);
+			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX11");
 		}
 
 		else if (DirDeg.AngleDeg() >= 191.25f && DirDeg.AngleDeg() < 213.75f)
 		{
-			Arrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
+			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
+			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
-
+			NewArrow->SetDir(DirDeg);
+			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX12");
 		}
 
 
 		else if (DirDeg.AngleDeg() >= 213.75f && DirDeg.AngleDeg() < 236.25f)
 		{
-			Arrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
+			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
+			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
-
+			NewArrow->SetDir(DirDeg);
+			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX13");
 		}
 
 		else if (DirDeg.AngleDeg() >= 236.25f && DirDeg.AngleDeg() < 258.75f)
 		{
-			Arrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
+			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
+			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
+			NewArrow->SetDir(DirDeg);
+			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX14");
 		}
 
 		else
 		{
-			Arrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
+			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
+			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
+			NewArrow->SetDir(DirDeg);
+			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX15");
 		}
 
+
+		ChangeState(MonsterState::Idle);
 		ResetLiveTime();
-
-
-		if (true == MainRenderer->IsAnimationEnd())
-		{
-			ChangeState(MonsterState::Idle);
-		}
-
 
 	}
 
