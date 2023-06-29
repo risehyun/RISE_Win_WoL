@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <set>
 
 enum class CollisionType
 {
@@ -103,6 +104,30 @@ public:
 	// CollisionType _OtherType 상대는 원으로 봐죠 사각형으로 봐줘
 	// std::vector<GameEngineCollision*>& _Result 충돌한 애들 여기에 담아줘.
 
+
+		template<typename EnumType>
+	bool CollisionCallBack(
+		EnumType _Order, 
+		CollisionType _ThisType = CollisionType::CirCle, 
+		CollisionType _OtherType = CollisionType::CirCle, 
+		void(*Enter)(GameEngineCollision* _this, GameEngineCollision* _Other) = nullptr,
+		void(*Stay)(GameEngineCollision* _this, GameEngineCollision* _Other) = nullptr,
+		void(*Exit)(GameEngineCollision* _this, GameEngineCollision* _Other) = nullptr
+		)
+	{
+		return CollisionCallBack(static_cast<int>(_Order), _ThisType, _OtherType, Enter, Stay, Exit);
+	}
+
+	bool CollisionCallBack(
+		int _Order,
+		CollisionType _ThisType = CollisionType::CirCle,
+		CollisionType _OtherType = CollisionType::CirCle,
+		void(*Enter)(GameEngineCollision* _this, GameEngineCollision* _Other) = nullptr,
+		void(*Stay)(GameEngineCollision* _this, GameEngineCollision* _Other) = nullptr,
+		void(*Exit)(GameEngineCollision* _this, GameEngineCollision* _Other) = nullptr
+	);
+
+
 	template<typename EnumType>
 	bool Collision(EnumType _Order, std::vector<GameEngineCollision*>& _Result
 		, CollisionType _ThisType = CollisionType::CirCle
@@ -145,6 +170,8 @@ public:
 protected:
 
 private:
+	std::set<GameEngineCollision*> ColSet;
+
 	CollisionType ColType = CollisionType::Rect;
 
 	float4 CollisionPos;

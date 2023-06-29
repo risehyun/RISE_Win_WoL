@@ -168,11 +168,6 @@ void PlayLevel::Release()
 
 void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	//if (nullptr == LevelPlayer)
-	//{
-	//	MsgBoxAssert("플레이어를 세팅해주지 않았습니다");
-	//}
-
 	Player::MainPlayer->SetGroundTexture("stage1_Col.bmp");
 
 
