@@ -11,6 +11,7 @@
 
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineLevel.h>
+#include "BossSpawner.h"
 
 Monster_Archer::Monster_Archer()
 {
@@ -496,6 +497,7 @@ void Monster_Archer::DeathUpdate(float _Delta)
 {
 	if (true == MainRenderer->IsAnimationEnd())
 	{
+		--BossSpawner::MonsterCount;
 		Death();
 	}
 }

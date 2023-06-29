@@ -21,8 +21,51 @@
 
 #include <GameEnginePlatform/GameEngineWindow.h>
 
+int BossSpawner::MonsterCount = 0;
+
 BossSpawner::BossSpawner()
 {
+
+	{
+		std::map<float, std::vector<MonsterSpawnData>> Wave;
+		{
+			std::vector<MonsterSpawnData> Data;
+			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 1850, 1634 } });
+			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 1800, 1634 } });
+			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 1750, 1634 } });
+
+			Wave.insert(std::make_pair(0.0f, Data));
+		}
+
+		{
+			std::vector<MonsterSpawnData> Data;
+			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 1850, 1434 } });
+			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 1800, 1434 } });
+			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 1750, 1434 }, true });
+
+			Wave.insert(std::make_pair(1.0f, Data));
+		}
+
+		AllSpawnDatas.push_back(Wave);
+	}
+
+	// 2번째 웨이브
+	{
+		std::map<float, std::vector<MonsterSpawnData>> Wave;
+
+		{
+			std::vector<MonsterSpawnData> Data;
+			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 1850, 1634 } });
+			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 1800, 1634 } });
+			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 1750, 1634 }, true });
+
+			Wave.insert(std::make_pair(5.0f, Data));
+		}
+
+		AllSpawnDatas.push_back(Wave);
+	}
+
+
 }
 
 BossSpawner::~BossSpawner()
@@ -128,8 +171,74 @@ void BossSpawner::Start()
 	Collsion_FenceLeft->Off();
 }
 
+void BossSpawner::MonsterSpawnCheck()
+{
+	if (false == IsSpawnStart)
+	{
+		return;
+	}
+
+	if (true == IsAllDeathWait)
+	{
+		if (0 < MonsterCount)
+		{
+			return;
+		}
+		else 
+		{
+			IsAllDeathWait = false;
+			ResetLiveTime();
+		}
+	}
+
+	if (CurWave == AllSpawnDatas.end())
+	{
+		// 모든 웨이브가 끝났다.
+		return;
+	}
+
+	std::map<float, std::vector<MonsterSpawnData>>& CurWaveMap = *CurWave;
+
+	std::map<float, std::vector<MonsterSpawnData>>::iterator StartIter = CurWaveMap.begin();
+	std::map<float, std::vector<MonsterSpawnData>>::iterator EndIter = CurWaveMap.end();
+
+	for (; StartIter != EndIter; )
+	{
+		if (StartIter->first > GetLiveTime())
+		{
+			++StartIter;
+			continue;
+		}
+
+		std::vector<MonsterSpawnData>& Datas = StartIter->second;
+
+		for (const MonsterSpawnData& Data : Datas)
+		{
+			Effect_Spawn* Spawn = GetLevel()->CreateActor<Effect_Spawn>();
+			Spawn->SpawnObject(Data.Type, { 100, 200 });
+			Spawn->SetPos(Data.Pos);
+			++MonsterCount;
+
+			if (true == Data.IsEnd)
+			{
+				IsAllDeathWait = true;
+				++CurWave;
+			}
+		}
+
+		// 1.0f > 1.1f GetLiveTime()
+		StartIter = CurWaveMap.erase(StartIter);
+	}
+
+
+}
+
 void BossSpawner::Update(float _Delta)
 {
+	MonsterSpawnCheck();
+
+
+
 	std::vector<GameEngineCollision*> _Col;
 	if (true == Collsion_ActivationCircle->Collision(CollisionOrder::PlayerBody, _Col
 		, CollisionType::CirCle
@@ -161,17 +270,23 @@ void BossSpawner::Update(float _Delta)
 			Collsion_FenceRight->On();
 			Collsion_FenceLeft->On();
 
-			Effect_Spawn* Spawn = GetLevel()->CreateActor<Effect_Spawn>();
-			Spawn->SpawnObject(SpawnType::Swordman, { 100, 200 });
-			Spawn->SetPos({ 1850, 1634 });
+			IsSpawnStart = true;
 
-			Effect_Spawn* Spawn2 = GetLevel()->CreateActor<Effect_Spawn>();
-			Spawn2->SpawnObject(SpawnType::Swordman, { 100, 200 });
-			Spawn2->SetPos({ 1800, 1634 });
+			//Effect_Spawn* Spawn = GetLevel()->CreateActor<Effect_Spawn>();
+			//Spawn->SpawnObject(SpawnType::Swordman, { 100, 200 });
+			//Spawn->SetPos({ 1850, 1634 });
 
-			Effect_Spawn* Spawn3 = GetLevel()->CreateActor<Effect_Spawn>();
-			Spawn3->SpawnObject(SpawnType::Swordman, { 100, 200 });
-			Spawn3->SetPos({ 1750, 1634 });
+			//Effect_Spawn* Spawn2 = GetLevel()->CreateActor<Effect_Spawn>();
+			//Spawn2->SpawnObject(SpawnType::Swordman, { 100, 200 });
+			//Spawn2->SetPos({ 1800, 1634 });
+
+			//Effect_Spawn* Spawn3 = GetLevel()->CreateActor<Effect_Spawn>();
+			//Spawn3->SpawnObject(SpawnType::Swordman, { 100, 200 });
+			//Spawn3->SetPos({ 1750, 1634 });
+
+			CurWave = AllSpawnDatas.begin();
+
+			ResetLiveTime();
 		}
 	}
 

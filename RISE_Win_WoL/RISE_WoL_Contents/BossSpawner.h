@@ -1,12 +1,25 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 #include "UI_KeyboardF.h"
+#include <map>
+#include <vector>
+#include "Effect_Spawn.h"
+
+class MonsterSpawnData
+{
+public:
+	SpawnType Type = SpawnType::Swordman;
+	float4 Pos;
+	bool IsEnd = false;
+};
 
 class BossSpawner : public GameEngineActor
 {
 	friend GameEngineActor;
 
 public:
+	static int MonsterCount;
+
 	BossSpawner();
 	~BossSpawner();
 
@@ -33,9 +46,21 @@ public:
 	GameEngineCollision* Collsion_FenceRight;
 	GameEngineCollision* Collsion_FenceLeft;
 
+	
+
 private:
 	void Start() override;
 	void Update(float _Delta) override;
+
+	void MonsterSpawnCheck();
+
+	std::list<std::map<float, std::vector<MonsterSpawnData>>> AllSpawnDatas;
+
+	std::list<std::map<float, std::vector<MonsterSpawnData>>>::iterator CurWave;
+
+
+	bool IsSpawnStart = false;
+	bool IsAllDeathWait = false;
 
 
 };
