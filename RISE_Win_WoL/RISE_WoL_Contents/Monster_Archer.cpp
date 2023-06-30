@@ -45,8 +45,8 @@ void Monster_Archer::Start()
 
 	// 애니메이션 설정
 	// IDLE
-	MainRenderer->CreateAnimation("Left_Idle", "ARCHER_LEFT.bmp", 0, 0, 0.1f, true);
-	MainRenderer->CreateAnimation("Right_Idle", "ARCHER_RIGHT.bmp", 0, 0, 0.1f, true);
+	MainRenderer->CreateAnimation("Left_Idle", "ARCHER_LEFT.bmp", 0, 0, 1.0f, true);
+	MainRenderer->CreateAnimation("Right_Idle", "ARCHER_RIGHT.bmp", 0, 0, 1.0f, true);
 
 	// MOVE
 	MainRenderer->CreateAnimation("Left_Move", "ARCHER_LEFT.bmp", 6, 10, 0.1f, true);
@@ -57,8 +57,8 @@ void Monster_Archer::Start()
 	MainRenderer->CreateAnimation("Right_ATTACK", "ARCHER_RIGHT.bmp", 12, 15, 0.4f, false);
 
 	// DAMAGE
-	MainRenderer->CreateAnimation("Left_Damage", "ARCHER_LEFT.bmp", 18, 19, 0.1f, false);
-	MainRenderer->CreateAnimation("Right_Damage", "ARCHER_RIGHT.bmp", 18, 19, 0.1f, false);
+	MainRenderer->CreateAnimation("Left_Damage", "ARCHER_LEFT.bmp", 18, 19, 0.5f, false);
+	MainRenderer->CreateAnimation("Right_Damage", "ARCHER_RIGHT.bmp", 18, 19, 0.5f, false);
 
 	// DEATH
 	MainRenderer->CreateAnimation("Left_Death", "ARCHER_LEFT.bmp", 24, 29, 0.1f, false);
@@ -66,9 +66,12 @@ void Monster_Archer::Start()
 
 	// 충돌체 설정
 	BodyCollsion = CreateCollision(CollisionOrder::MonsterBody);
-//	BodyCollsion->SetCollisionScale({ 600, 600 });
 	BodyCollsion->SetCollisionScale({ 150, 150 });
 	BodyCollsion->SetCollisionType(CollisionType::CirCle);
+
+	AttackRangeCollision = CreateCollision(CollisionOrder::MonsterAttackRange);
+	AttackRangeCollision->SetCollisionScale({ 600, 600 });
+	AttackRangeCollision->SetCollisionType(CollisionType::CirCle);
 
 	ChangeState(MonsterState::Idle);
 }
@@ -85,9 +88,9 @@ void Monster_Archer::Update(float _Delta)
 	if (!(m_iCurHp <= 0))
 	{
 
-		// 플레이어와 자신의 몸이 충돌하면 공격 상태로 전환
+		// 플레이어와 자신의 공격 범위가 충돌하면 공격 상태로 전환
 		std::vector<GameEngineCollision*> _ColTest;
-		if (true == BodyCollsion->Collision(CollisionOrder::PlayerBody, _ColTest
+		if (true == AttackRangeCollision->Collision(CollisionOrder::PlayerBody, _ColTest
 			, CollisionType::CirCle
 			, CollisionType::CirCle
 		))
@@ -122,38 +125,28 @@ void Monster_Archer::Update(float _Delta)
 				}
 
 			}
+			, [](GameEngineCollision* _this, GameEngineCollision* _Other)
+			{
+			
+			}
+			, [](GameEngineCollision* _this, GameEngineCollision* _Other)
+			{
+				GameEngineActor* thisActor = _this->GetActor();
+				Monster_Archer* MonsterPtr = dynamic_cast<Monster_Archer*>(thisActor);
+
+				if (MonsterPtr->m_iCurHp > 0)
+				{
+					MonsterPtr->ChangeState(MonsterState::Idle);
+				}
+
+				else
+				{
+					MonsterPtr->ChangeState(MonsterState::Death);
+				}
+			}
+
+
 		);
-
-		//// 플레이어의 스킬과 자신의 몸이 충돌하면 데미지 상태로 전환
-		//std::vector<GameEngineCollision*> _Col;
-		//if (true == BodyCollsion->Collision(CollisionOrder::PlayerSkill, _Col
-		//	, CollisionType::CirCle
-		//	, CollisionType::CirCle
-		//))
-		//{
-		//	for (size_t i = 0; i < _Col.size(); i++)
-		//	{
-		//		GameEngineCollision* Collison = _Col[i];
-
-		//		GameEngineActor* Actor = Collison->GetActor();
-
-		//		OnDamaged(Actor->GetAttackPower());
-
-		//		if (m_iCurHp <= 0)
-		//		{
-		//			DirCheck();
-		//			ChangeState(MonsterState::Death);
-		//		}
-
-		//		else
-		//		{
-		//			DirCheck();
-		//			ChangeState(MonsterState::Damage);
-		//		}
-
-		//	}
-		//}
-
 
 	}
 
@@ -514,7 +507,7 @@ void Monster_Archer::DamageUpdate(float _Delta)
 	{
 		//		DamageRenderer->Off();
 		DirCheck();
-		ChangeState(MonsterState::Run);
+		ChangeState(MonsterState::Idle);
 	}
 }
 

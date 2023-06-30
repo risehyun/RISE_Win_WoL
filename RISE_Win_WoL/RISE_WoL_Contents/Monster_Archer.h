@@ -17,6 +17,8 @@ public:
 	GameEngineRenderer* MainRenderer = nullptr;
 	GameEngineRenderer* DamageRenderer = nullptr;
 
+
+
 	void ChangeState(MonsterState _State);
 
 protected:
@@ -42,6 +44,8 @@ protected:
 	std::string CurState = "";
 
 	GameEngineCollision* BodyCollsion = nullptr;
+	GameEngineCollision* AttackRangeCollision = nullptr;
+
 	SKILL_ArcherBow* NewBow = nullptr;
 
 	void DirCheck();

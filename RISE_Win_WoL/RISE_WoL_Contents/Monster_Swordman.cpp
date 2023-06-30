@@ -205,7 +205,15 @@ void Monster_Swordman::Update(float _Delta)
 				GameEngineActor* thisActor = _this->GetActor();
 				Monster_Swordman* MonsterPtr = dynamic_cast<Monster_Swordman*>(thisActor);
 
-				MonsterPtr->ChangeState(MonsterState::Damage);
+				if (MonsterPtr->m_iCurHp >= 0)
+				{
+
+				}
+
+				else
+				{
+					MonsterPtr->ChangeState(MonsterState::Death);
+				}
 			}
 		);
 	}
