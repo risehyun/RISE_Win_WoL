@@ -189,16 +189,10 @@ void Monster_Swordman::Update(float _Delta)
 				{
 					DirCheck();
 					ChangeState(MonsterState::Damage);
-
-					// 수정필요
-				//	Actor->Death();
 				}
 
 			}
 		}
-
-
-
 	}
 
 	StateUpdate(_Delta);

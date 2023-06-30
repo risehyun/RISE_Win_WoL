@@ -228,37 +228,64 @@ void Player::Update(float _Delta)
 		GameEngineLevel::CollisionDebugRenderSwitch();
 	}
 
-	std::vector<GameEngineCollision*> _Col;
-	if (true == BodyCollsion->Collision(CollisionOrder::MonsterSkill, _Col
-		, CollisionType::CirCle
-		, CollisionType::CirCle
-	))
-	{
+	//std::vector<GameEngineCollision*> _Col;
+	//if (true == BodyCollsion->Collision(CollisionOrder::MonsterSkill, _Col
+	//	, CollisionType::CirCle
+	//	, CollisionType::CirCle
+	//))
+	//{
 
 
-		for (size_t i = 0; i < _Col.size(); i++)
+	//	for (size_t i = 0; i < _Col.size(); i++)
+	//	{
+	//		GameEngineCollision* Collison = _Col[i];
+
+	//		GameEngineActor* Actor = Collison->GetActor();
+
+	//		OnDamaged(Actor->GetAttackPower());
+
+	//		if (m_iCurHp <= 0)
+	//		{
+	//			ChanageState(PlayerState::Death);
+	//		}
+
+	//		else
+	//		{
+	//			ChanageState(PlayerState::Damage);
+
+	//			Actor->Death();
+	//		}
+
+	//	}
+
+	//}
+
+	BodyCollsion->CollisionCallBack(
+		CollisionOrder::MonsterSkill
+		, CollisionType::CirCle // ³ª¸¦ »ç°¢ÇüÀ¸·Î ºÁÁà
+			, CollisionType::CirCle
+			, [](GameEngineCollision* _this, GameEngineCollision* _Other)
 		{
-			GameEngineCollision* Collison = _Col[i];
 
-			GameEngineActor* Actor = Collison->GetActor();
+			GameEngineActor* thisActor = _this->GetActor();
+			Player* PlayerPtr = dynamic_cast<Player*>(thisActor);
 
-			OnDamaged(Actor->GetAttackPower());
+			GameEngineActor* Actor = _Other->GetActor();
 
-			if (m_iCurHp <= 0)
+			PlayerPtr->OnDamaged(Actor->GetAttackPower());
+
+			if (PlayerPtr->m_iCurHp <= 0)
 			{
-				ChanageState(PlayerState::Death);
+				PlayerPtr->ChanageState(PlayerState::Death);
 			}
 
 			else
 			{
-				ChanageState(PlayerState::Damage);
-
-				Actor->Death();
+				PlayerPtr->ChanageState(PlayerState::Damage);
 			}
-
 		}
+	);
 
-	}
 
 	StateUpdate(_Delta);
 
