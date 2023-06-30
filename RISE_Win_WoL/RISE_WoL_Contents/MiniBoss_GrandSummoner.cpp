@@ -124,7 +124,7 @@ void MiniBoss_GrandSummoner::Update(float _Delta)
 					ChangeState(MiniBossState::Damage);
 
 					// 수정필요
-					Actor->Death();
+				//	Actor->Death();
 				}
 
 			}

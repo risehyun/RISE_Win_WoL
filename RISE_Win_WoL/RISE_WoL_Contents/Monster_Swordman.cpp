@@ -191,11 +191,13 @@ void Monster_Swordman::Update(float _Delta)
 					ChangeState(MonsterState::Damage);
 
 					// 수정필요
-					Actor->Death();
+				//	Actor->Death();
 				}
 
 			}
 		}
+
+
 
 	}
 

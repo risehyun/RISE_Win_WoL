@@ -182,8 +182,6 @@ void Boss::Update(float _Delta)
 				if (m_iCurHp > 0)
 				{
 					ChangeState(BossState::Damage);
-					// 수정필요
-					Actor->Death();
 				}
 
 				else

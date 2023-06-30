@@ -66,7 +66,8 @@ void Monster_Archer::Start()
 
 	// 충돌체 설정
 	BodyCollsion = CreateCollision(CollisionOrder::MonsterBody);
-	BodyCollsion->SetCollisionScale({ 600, 600 });
+//	BodyCollsion->SetCollisionScale({ 600, 600 });
+	BodyCollsion->SetCollisionScale({ 150, 150 });
 	BodyCollsion->SetCollisionType(CollisionType::CirCle);
 
 	ChangeState(MonsterState::Idle);
@@ -123,7 +124,7 @@ void Monster_Archer::Update(float _Delta)
 					ChangeState(MonsterState::Damage);
 
 					// 수정필요
-					Actor->Death();
+				//	Actor->Death();
 				}
 
 			}
