@@ -91,7 +91,7 @@ protected:
 	void Skill_Tornado_Update(float _Delta);
 	void Skill_Fireball_Update(float _Delta);
 
-	void ChanageState(PlayerState State);
+	void ChangeState(PlayerState State);
 
 	PlayerState State = PlayerState::Max;
 

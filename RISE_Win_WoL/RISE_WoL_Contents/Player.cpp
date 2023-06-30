@@ -182,7 +182,7 @@ void Player::Start()
 	// playLevel의 경우 { 1850, 1700 }
 	// bossLevel의 경우 { 1710, 2610 }
 	SetPos({ 1850, 1900 });
-	ChanageState(PlayerState::Idle);
+	ChangeState(PlayerState::Idle);
 
 	{
 		BodyCollsion = CreateCollision(CollisionOrder::PlayerBody);
@@ -245,12 +245,12 @@ void Player::Update(float _Delta)
 
 			if (PlayerPtr->m_iCurHp <= 0)
 			{
-				PlayerPtr->ChanageState(PlayerState::Death);
+				PlayerPtr->ChangeState(PlayerState::Death);
 			}
 
 			else
 			{
-				PlayerPtr->ChanageState(PlayerState::Damage);
+				PlayerPtr->ChangeState(PlayerState::Damage);
 			}
 
 		}
@@ -299,7 +299,7 @@ void Player::StateUpdate(float _Delta)
 	}
 }
 
-void Player::ChanageState(PlayerState _State)
+void Player::ChangeState(PlayerState _State)
 {
 	if (_State != State)
 	{
