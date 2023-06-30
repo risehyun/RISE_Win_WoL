@@ -119,14 +119,14 @@ void Player::IdleUpdate(float _Delta)
 		|| true == GameEngineInput::IsDown('D'))
 	{
 		DirCheck();
-		ChanageState(PlayerState::Run);
+		ChangeState(PlayerState::Run);
 		return;
 	}
 
 	// 일반 공격
 	if (true == GameEngineInput::IsDown(VK_LBUTTON))
 	{
-		ChanageState(PlayerState::Attack);
+		ChangeState(PlayerState::Attack);
 
 		SKILL_PlayerNormalAttack* NewAttack = GetLevel()->CreateActor<SKILL_PlayerNormalAttack>();
 
@@ -171,7 +171,7 @@ void Player::IdleUpdate(float _Delta)
 
 		DirCheck();
 
-		ChanageState(PlayerState::Attack);
+		ChangeState(PlayerState::Attack);
 
 		SKILL_Tornado* NewAttack = GetLevel()->CreateActor<SKILL_Tornado>();
 		NewAttack->SetPos({ GetPos() });
@@ -181,7 +181,7 @@ void Player::IdleUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsDown('Q'))
 	{
-		ChanageState(PlayerState::Skill_EarthenAegis);
+		ChangeState(PlayerState::Skill_EarthenAegis);
 		SKILL_EarthenAegis* NewAttack = GetLevel()->CreateActor<SKILL_EarthenAegis>();
 		NewAttack->SetPos(GetPos() + float4{ 0.0f, 0.0f, 0.0f, 0.0f });
 		return;
@@ -189,7 +189,7 @@ void Player::IdleUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsDown('E'))
 	{
-		ChanageState(PlayerState::Skill_SnowflakeChakrams);
+		ChangeState(PlayerState::Skill_SnowflakeChakrams);
 		SKILL_SnowflakeChakrams* NewAttack = GetLevel()->CreateActor<SKILL_SnowflakeChakrams>();
 		NewAttack->SetPos(GetPos() + float4{ 0.0f, 0.0f, 0.0f, 0.0f });
 		return;
@@ -197,7 +197,7 @@ void Player::IdleUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsDown('Z'))
 	{
-		ChanageState(PlayerState::Skill_ExplodingFireball);
+		ChangeState(PlayerState::Skill_ExplodingFireball);
 		SKILL_Fireball* NewAttack = GetLevel()->CreateActor<SKILL_Fireball>();
 		DirCheck();
 
@@ -237,7 +237,7 @@ void Player::IdleUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsUp(VK_SPACE))
 	{
-		ChanageState(PlayerState::Dash);
+		ChangeState(PlayerState::Dash);
 		return;
 	}
 
@@ -304,7 +304,7 @@ void Player::RunUpdate(float _Delta)
 	if (MovePos == float4::ZERO)
 	{
 		DirCheck();
-		ChanageState(PlayerState::Idle);
+		ChangeState(PlayerState::Idle);
 	}
 
 	{
@@ -318,7 +318,7 @@ void Player::RunUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsDown(VK_LBUTTON))
 	{
-		ChanageState(PlayerState::Attack);
+		ChangeState(PlayerState::Attack);
 
 		SKILL_PlayerNormalAttack* NewAttack = GetLevel()->CreateActor<SKILL_PlayerNormalAttack>();
 
@@ -358,7 +358,7 @@ void Player::RunUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsUp(VK_SPACE))
 	{
-		ChanageState(PlayerState::Dash);
+		ChangeState(PlayerState::Dash);
 		return;
 	}
 
@@ -438,12 +438,12 @@ void Player::DashUpdate(float _Delta)
 		if (true == GameEngineInput::IsPress('A') || true == GameEngineInput::IsPress('W') ||
 			true == GameEngineInput::IsPress('S') || true == GameEngineInput::IsPress('D'))
 		{
-			ChanageState(PlayerState::Run);
+			ChangeState(PlayerState::Run);
 		}
 
 		else
 		{
-			ChanageState(PlayerState::Idle);
+			ChangeState(PlayerState::Idle);
 		}
 
 		ResetLiveTime();
@@ -458,7 +458,7 @@ void Player::AttackUpdate(float _Delta)
 	if (MainRenderer->IsAnimationEnd())
 	{
 		DirCheck();
-		ChanageState(PlayerState::Idle);
+		ChangeState(PlayerState::Idle);
 
 	}
 
@@ -470,7 +470,7 @@ void Player::OnDamagedUpdate(float _Delta)
 //	DirCheck();
 
 	if (true == IsDeath()) {
-		ChanageState(PlayerState::Death);
+		ChangeState(PlayerState::Death);
 	}
 
 	else if (true == GameEngineInput::IsDown('A')
@@ -478,13 +478,13 @@ void Player::OnDamagedUpdate(float _Delta)
 		|| true == GameEngineInput::IsDown('S')
 		|| true == GameEngineInput::IsDown('D'))
 	{
-		ChanageState(PlayerState::Run);
+		ChangeState(PlayerState::Run);
 		return;
 	}
 
 	if (true == MainRenderer->IsAnimationEnd())
 	{
-		ChanageState(PlayerState::Idle);
+		ChangeState(PlayerState::Idle);
 	}
 }
 
@@ -502,7 +502,7 @@ void Player::Skill_EarthenAgis_Update(float _Delta)
 {
 	if (true == MainRenderer->IsAnimationEnd())
 	{
-		ChanageState(PlayerState::Idle);
+		ChangeState(PlayerState::Idle);
 	}
 
 }
@@ -511,7 +511,7 @@ void Player::Skill_SnowflakeChakrams_Update(float _Delta)
 {
 	if (true == MainRenderer->IsAnimationEnd())
 	{
-		ChanageState(PlayerState::Idle);
+		ChangeState(PlayerState::Idle);
 	}
 }
 
@@ -519,7 +519,7 @@ void Player::Skill_Tornado_Update(float _Delta)
 {
 	if (true == MainRenderer->IsAnimationEnd())
 	{
-		ChanageState(PlayerState::Idle);
+		ChangeState(PlayerState::Idle);
 	}
 }
 
@@ -527,6 +527,6 @@ void Player::Skill_Fireball_Update(float _Delta)
 {
 	if (true == MainRenderer->IsAnimationEnd())
 	{
-		ChanageState(PlayerState::Idle);
+		ChangeState(PlayerState::Idle);
 	}
 }

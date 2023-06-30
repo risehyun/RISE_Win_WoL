@@ -39,7 +39,8 @@ protected:
 	MonsterDir Dir = MonsterDir::Right;
 	std::string CurState = "";
 
-	GameEngineCollision* BodyCollsion = nullptr;
+	GameEngineCollision* BodyCollision = nullptr;
+	GameEngineCollision* AttackRangeCollision = nullptr;
 
 	void DirCheck();
 	void ChangeAnimationState(const std::string& _StateName);

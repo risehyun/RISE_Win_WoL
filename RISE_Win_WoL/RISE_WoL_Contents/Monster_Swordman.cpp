@@ -96,12 +96,10 @@ void Monster_Swordman::Start()
 		MainRenderer->SetRenderScale({ 150, 150 });
 		MainRenderer->SetTexture("SWORDMAN_TEST.bmp");
 
-
-
 		// 애니메이션 설정
 		// IDLE
-		MainRenderer->CreateAnimation("Left_Idle", "SWORDMAN_LEFT.bmp", 0, 0, 0.1f, true);
-		MainRenderer->CreateAnimation("Right_Idle", "SWORDMAN_RIGHT.bmp", 0, 0, 0.1f, true);
+		MainRenderer->CreateAnimation("Left_Idle", "SWORDMAN_LEFT.bmp", 0, 0, 1.0f, true);
+		MainRenderer->CreateAnimation("Right_Idle", "SWORDMAN_RIGHT.bmp", 0, 0, 1.0f, true);
 
 		// MOVE
 		MainRenderer->CreateAnimation("Left_Move", "SWORDMAN_LEFT.bmp", 6, 11, 0.1f, true);
@@ -112,8 +110,8 @@ void Monster_Swordman::Start()
 		MainRenderer->CreateAnimation("Right_ATTACK", "SWORDMAN_RIGHT.bmp", 12, 14, 0.1f, false);
 
 		// DAMAGE
-		MainRenderer->CreateAnimation("Left_Damage", "SWORDMAN_LEFT.bmp", 18, 19, 0.1f, true);
-		MainRenderer->CreateAnimation("Right_Damage", "SWORDMAN_RIGHT.bmp", 18, 19, 0.1f, true);
+		MainRenderer->CreateAnimation("Left_Damage", "SWORDMAN_LEFT.bmp", 18, 19, 0.5f, true);
+		MainRenderer->CreateAnimation("Right_Damage", "SWORDMAN_RIGHT.bmp", 18, 19, 0.5f, true);
 
 		// DEATH
 		MainRenderer->CreateAnimation("Left_Death", "SWORDMAN_LEFT.bmp", 24, 28, 0.1f, true);
@@ -142,9 +140,15 @@ void Monster_Swordman::Start()
 	}
 
 	// 충돌체 설정
-	BodyCollsion = CreateCollision(CollisionOrder::MonsterBody);
-	BodyCollsion->SetCollisionScale({ 100, 100 });
-	BodyCollsion->SetCollisionType(CollisionType::CirCle);
+	BodyCollision = CreateCollision(CollisionOrder::MonsterBody);
+	BodyCollision->SetCollisionScale({ 100, 100 });
+	BodyCollision->SetCollisionType(CollisionType::CirCle);
+
+	AttackRangeCollision = CreateCollision(CollisionOrder::MonsterAttackRange);
+	AttackRangeCollision->SetCollisionScale({ 200, 200 });
+	AttackRangeCollision->SetCollisionType(CollisionType::CirCle);
+
+	ChangeState(MonsterState::Idle);
 }
 
 void Monster_Swordman::Update(float _Delta)
@@ -153,9 +157,9 @@ void Monster_Swordman::Update(float _Delta)
 	if (!(m_iCurHp <= 0))
 	{
 
-		// 플레이어와 자신의 몸이 충돌하면 공격 상태로 전환
+		// 플레이어와 자신의 공격 범위가 충돌하면 공격 상태로 전환
 		std::vector<GameEngineCollision*> _ColTest;
-		if (true == BodyCollsion->Collision(CollisionOrder::PlayerBody, _ColTest
+		if (true == AttackRangeCollision->Collision(CollisionOrder::PlayerBody, _ColTest
 			, CollisionType::CirCle
 			, CollisionType::CirCle
 		))
@@ -164,7 +168,7 @@ void Monster_Swordman::Update(float _Delta)
 			ChangeState(MonsterState::Attack);
 		}
 
-		BodyCollsion->CollisionCallBack
+		BodyCollision->CollisionCallBack
 		(
 			CollisionOrder::PlayerSkill
 			, CollisionType::CirCle // _this의 충돌체 타입
@@ -189,6 +193,19 @@ void Monster_Swordman::Update(float _Delta)
 					MonsterPtr->ChangeState(MonsterState::Damage);
 				}
 
+			},
+
+			[](GameEngineCollision* _this, GameEngineCollision* _Other)
+			{
+
+			},
+
+			[](GameEngineCollision* _this, GameEngineCollision* _Other)
+			{
+				GameEngineActor* thisActor = _this->GetActor();
+				Monster_Swordman* MonsterPtr = dynamic_cast<Monster_Swordman*>(thisActor);
+
+				MonsterPtr->ChangeState(MonsterState::Damage);
 			}
 		);
 	}
@@ -243,7 +260,7 @@ void Monster_Swordman::IdleStart()
 
 void Monster_Swordman::RunStart()
 {
-//	DirCheck();
+	//	DirCheck();
 	ChangeAnimationState("Move");
 }
 
@@ -254,7 +271,7 @@ void Monster_Swordman::AttackStart()
 
 void Monster_Swordman::DamageStart()
 {
-//	DirCheck();
+	//	DirCheck();
 	EffectPlayer = GameEngineSound::SoundPlay("ENEMY_HITTED.mp3");
 	ChangeAnimationState("Damage");
 }
@@ -268,7 +285,10 @@ void Monster_Swordman::DeathStart()
 
 void Monster_Swordman::IdleUpdate(float _Delta)
 {
-
+	if (MainRenderer->IsAnimationEnd())
+	{
+		ChangeState(MonsterState::Run);
+	}
 }
 
 void Monster_Swordman::RunUpdate(float _Delta)
@@ -343,7 +363,7 @@ void Monster_Swordman::DamageUpdate(float _Delta)
 	{
 		DamageRenderer->Off();
 		DirCheck();
-		ChangeState(MonsterState::Run);
+		ChangeState(MonsterState::Idle);
 	}
 
 }
