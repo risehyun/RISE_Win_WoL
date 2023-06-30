@@ -162,36 +162,35 @@ void Boss::Update(float _Delta)
 
 	if (!(m_iCurHp <= 0))
 	{
-
-		// 플레이어의 스킬과 자신의 몸이 충돌하면 데미지 상태로 전환
-		std::vector<GameEngineCollision*> _Col;
-		if (true == BodyCollsion->Collision(CollisionOrder::PlayerSkill, _Col
-			, CollisionType::CirCle
-			, CollisionType::CirCle
-		))
-		{
-			for (size_t i = 0; i < _Col.size(); i++)
+		BodyCollsion->CollisionCallBack
+		(
+			CollisionOrder::PlayerSkill
+			, CollisionType::CirCle // _this의 충돌체 타입
+			, CollisionType::CirCle // _Other의 충돌체 타입
+			, [](GameEngineCollision* _this, GameEngineCollision* _Other)
 			{
-				GameEngineCollision* Collison = _Col[i];
 
-				GameEngineActor* Actor = Collison->GetActor();
+				GameEngineActor* thisActor = _this->GetActor();
+				Boss* MonsterPtr = dynamic_cast<Boss*>(thisActor);
 
-				OnDamaged(Actor->GetAttackPower());
+				GameEngineActor* Actor = _Other->GetActor();
 
+				MonsterPtr->OnDamaged(Actor->GetAttackPower());
 
-				if (m_iCurHp > 0)
+				if (MonsterPtr->m_iCurHp <= 0)
 				{
-					ChangeState(BossState::Damage);
+					MonsterPtr->ChangeState(BossState::Death);
 				}
 
 				else
 				{
-					DirCheck();
-					ChangeState(BossState::Death);
+					MonsterPtr->ChangeState(BossState::Damage);
 				}
 
 			}
-		}
+		);
+
+
 	}
 
 	StateUpdate(_Delta);

@@ -164,35 +164,33 @@ void Monster_Swordman::Update(float _Delta)
 			ChangeState(MonsterState::Attack);
 		}
 
-		// 플레이어의 스킬과 자신의 몸이 충돌하면 데미지 상태로 전환
-		std::vector<GameEngineCollision*> _Col;
-		if (true == BodyCollsion->Collision(CollisionOrder::PlayerSkill, _Col
-			, CollisionType::CirCle
-			, CollisionType::CirCle
-		))
-		{
-			for (size_t i = 0; i < _Col.size(); i++)
+		BodyCollsion->CollisionCallBack
+		(
+			CollisionOrder::PlayerSkill
+			, CollisionType::CirCle // _this의 충돌체 타입
+			, CollisionType::CirCle // _Other의 충돌체 타입
+			, [](GameEngineCollision* _this, GameEngineCollision* _Other)
 			{
-				GameEngineCollision* Collison = _Col[i];
 
-				GameEngineActor* Actor = Collison->GetActor();
+				GameEngineActor* thisActor = _this->GetActor();
+				Monster_Swordman* MonsterPtr = dynamic_cast<Monster_Swordman*>(thisActor);
 
-				OnDamaged(Actor->GetAttackPower());
+				GameEngineActor* Actor = _Other->GetActor();
 
-				if (m_iCurHp <= 0)
+				MonsterPtr->OnDamaged(Actor->GetAttackPower());
+
+				if (MonsterPtr->m_iCurHp <= 0)
 				{
-					DirCheck();
-					ChangeState(MonsterState::Death);
+					MonsterPtr->ChangeState(MonsterState::Death);
 				}
 
 				else
 				{
-					DirCheck();
-					ChangeState(MonsterState::Damage);
+					MonsterPtr->ChangeState(MonsterState::Damage);
 				}
 
 			}
-		}
+		);
 	}
 
 	StateUpdate(_Delta);

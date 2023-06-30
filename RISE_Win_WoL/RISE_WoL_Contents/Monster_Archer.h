@@ -17,6 +17,7 @@ public:
 	GameEngineRenderer* MainRenderer = nullptr;
 	GameEngineRenderer* DamageRenderer = nullptr;
 
+	void ChangeState(MonsterState _State);
 
 protected:
 	void StateUpdate(float _Delta);
@@ -34,7 +35,6 @@ protected:
 	void DeathUpdate(float _Delta);
 
 
-	void ChangeState(MonsterState _State);
 
 	MonsterState State = MonsterState::Max;
 

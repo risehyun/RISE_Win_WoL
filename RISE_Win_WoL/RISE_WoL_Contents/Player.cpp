@@ -59,7 +59,7 @@ void Player::OnDamaged(int _iAttackPower)
 {
 	// 수정필요
 	m_iCurHp -= _iAttackPower;
-	
+
 	int a = m_iCurHp;
 }
 
@@ -108,7 +108,7 @@ void Player::Start()
 
 			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_MONEY.bmp"));
 
-//			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_SKILLBAR.bmp"));
+			//			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_SKILLBAR.bmp"));
 
 			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_MANABAR.bmp"));
 
@@ -136,7 +136,7 @@ void Player::Start()
 			MainRenderer->CreateAnimation("Left_Run", "LEFT_COMPLETE.bmp", 12, 16, 0.1f, true);
 			MainRenderer->CreateAnimation("Right_Run", "RIGHT_COMPLETE.bmp", 12, 16, 0.1f, true);
 
-			
+
 			// DASH
 			MainRenderer->CreateAnimation("Down_Dash", "FRONT_COMPLETE.bmp", 23, 25, 0.1f, false);
 			MainRenderer->CreateAnimation("Up_Dash", "BACK_COMPLETE.bmp", 23, 25, 0.1f, false);
@@ -224,47 +224,16 @@ void Player::Update(float _Delta)
 	// 충돌 디버그
 	if (true == GameEngineInput::IsDown('J'))
 	{
-	//	MainRenderer->SetOrder(-200);
+		//	MainRenderer->SetOrder(-200);
 		GameEngineLevel::CollisionDebugRenderSwitch();
 	}
 
-	//std::vector<GameEngineCollision*> _Col;
-	//if (true == BodyCollsion->Collision(CollisionOrder::MonsterSkill, _Col
-	//	, CollisionType::CirCle
-	//	, CollisionType::CirCle
-	//))
-	//{
-
-
-	//	for (size_t i = 0; i < _Col.size(); i++)
-	//	{
-	//		GameEngineCollision* Collison = _Col[i];
-
-	//		GameEngineActor* Actor = Collison->GetActor();
-
-	//		OnDamaged(Actor->GetAttackPower());
-
-	//		if (m_iCurHp <= 0)
-	//		{
-	//			ChanageState(PlayerState::Death);
-	//		}
-
-	//		else
-	//		{
-	//			ChanageState(PlayerState::Damage);
-
-	//			Actor->Death();
-	//		}
-
-	//	}
-
-	//}
-
-	BodyCollsion->CollisionCallBack(
+	BodyCollsion->CollisionCallBack
+	(
 		CollisionOrder::MonsterSkill
-		, CollisionType::CirCle // 나를 사각형으로 봐줘
-			, CollisionType::CirCle
-			, [](GameEngineCollision* _this, GameEngineCollision* _Other)
+		, CollisionType::CirCle // _this의 충돌체 타입
+		, CollisionType::CirCle // _Other의 충돌체 타입
+		, [](GameEngineCollision* _this, GameEngineCollision* _Other)
 		{
 
 			GameEngineActor* thisActor = _this->GetActor();
@@ -283,9 +252,9 @@ void Player::Update(float _Delta)
 			{
 				PlayerPtr->ChanageState(PlayerState::Damage);
 			}
+
 		}
 	);
-
 
 	StateUpdate(_Delta);
 
@@ -306,7 +275,7 @@ void Player::StateUpdate(float _Delta)
 
 	case PlayerState::Dash:
 		return DashUpdate(_Delta);
-	
+
 	case PlayerState::Attack:
 		return AttackUpdate(_Delta);
 
@@ -371,7 +340,7 @@ void Player::ChanageState(PlayerState _State)
 		case PlayerState::Skill_ExplodingFireball:
 			Skill_Fireball_Start();
 			break;
-	
+
 		default:
 			break;
 		}
@@ -464,7 +433,7 @@ void Player::Render(float _Delta)
 		Text += std::to_string(m_iCurHp);
 	}
 
-	Text += "/"+std::to_string(m_iMaxHp);
+	Text += "/" + std::to_string(m_iMaxHp);
 
 	HDC dc = GameEngineWindow::MainWindow.GetBackBuffer()->GetImageDC();
 
@@ -488,7 +457,7 @@ void Player::Render(float _Delta)
 	SelectObject(dc, hOldFont);
 	DeleteObject(hFont);
 
-	
+
 
 
 
@@ -503,7 +472,7 @@ void Player::Render(float _Delta)
 
 	if (RunningTimeMin < 10 && RunningTimeSec < 10)
 	{
-		RunningTimeText += "0"+std::to_string(RunningTimeMin);
+		RunningTimeText += "0" + std::to_string(RunningTimeMin);
 		RunningTimeText += " : 0" + std::to_string(RunningTimeSec);
 	}
 
