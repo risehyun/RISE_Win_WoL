@@ -26,6 +26,7 @@ enum class BossState
 enum class MiniBossState
 {
 	Idle,
+	Run,
 	Skill_Fireball,
 	Skill_MagicOrbWallRush,
 	Skill_MagicOrbAssault,

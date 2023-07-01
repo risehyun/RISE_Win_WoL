@@ -19,10 +19,17 @@ public:
 	GameEngineRenderer* MainRenderer = nullptr;
 	GameEngineRenderer* DamageRenderer = nullptr;
 
+	GameEngineRenderer* GetMainRenderer()
+	{
+		return MainRenderer;
+	}
+
+
 	std::vector<SKILL_MiniBoss_GrandSummoner_Fireball*> AllFireball;
 	std::vector<SKILL_MiniBoss_GrandSummoner_Magicball*> AllMagicball;
 	std::vector<SKILL_MiniBoss_GrandSummoner_Magicball*> AllMagicorb;
 
+	GameEngineCollision* AttackRangeCollision = nullptr;
 
 	int AttackIndex = -1;
 

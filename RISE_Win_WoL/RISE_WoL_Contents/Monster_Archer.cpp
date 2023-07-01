@@ -69,6 +69,7 @@ void Monster_Archer::Start()
 	BodyCollsion->SetCollisionScale({ 150, 150 });
 	BodyCollsion->SetCollisionType(CollisionType::CirCle);
 
+	// 공격 범위 충돌체 설정
 	AttackRangeCollision = CreateCollision(CollisionOrder::MonsterAttackRange);
 	AttackRangeCollision->SetCollisionScale({ 600, 600 });
 	AttackRangeCollision->SetCollisionType(CollisionType::CirCle);

@@ -11,6 +11,8 @@
 #include "SKILL_MiniBoss_GrandSummoner_Fireball.h"
 #include "SKILL_MiniBoss_GrandSummoner_Magicball.h"
 
+#include <GameEngineBase/GameEngineRandom.h>
+
 #include "ContentsEnum.h"
 #include "BossSpawner.h"
 
@@ -73,6 +75,11 @@ void MiniBoss_GrandSummoner::Start()
 	BodyCollsion->SetCollisionScale({ 100, 100 });
 	BodyCollsion->SetCollisionType(CollisionType::CirCle);
 
+	// 공격 범위 충돌체 설정
+	AttackRangeCollision = CreateCollision(CollisionOrder::MonsterAttackRange);
+	AttackRangeCollision->SetCollisionScale({ 600, 600 });
+	AttackRangeCollision->SetCollisionType(CollisionType::CirCle);
+
 	MainRenderer->ChangeAnimation("Left_Idle");
 
 	ChangeState(MiniBossState::Idle);
@@ -80,6 +87,7 @@ void MiniBoss_GrandSummoner::Start()
 
 void MiniBoss_GrandSummoner::Update(float _Delta)
 {
+
 	if (true == GameEngineInput::IsDown('T'))
 	{
 		ChangeState(MiniBossState::Skill_Fireball);
@@ -97,6 +105,66 @@ void MiniBoss_GrandSummoner::Update(float _Delta)
 
 	if (!(m_iCurHp <= 0))
 	{
+
+		static float fT = 0;
+
+		fT += _Delta;
+
+		AttackRangeCollision->CollisionCallBack
+		(
+			CollisionOrder::PlayerBody
+			, CollisionType::CirCle // _this의 충돌체 타입
+			, CollisionType::CirCle // _Other의 충돌체 타입
+			, [](GameEngineCollision* _this, GameEngineCollision* _Other)
+			{
+
+			}
+
+			, [](GameEngineCollision* _this, GameEngineCollision* _Other)
+			{
+
+				GameEngineActor* thisActor = _this->GetActor();
+				MiniBoss_GrandSummoner* MonsterPtr = dynamic_cast<MiniBoss_GrandSummoner*>(thisActor);
+
+				if (MonsterPtr->GetMainRenderer()->IsAnimationEnd())
+				{
+					int SkillSelect = GameEngineRandom::MainRandom.RandomInt(0, 2);
+
+					if (SkillSelect == 0)
+					{
+						MonsterPtr->ChangeState(MiniBossState::Skill_Fireball);
+						SkillSelect = -1;
+					}
+
+					else if (SkillSelect == 1)
+					{
+						MonsterPtr->ChangeState(MiniBossState::Skill_MagicOrbAssault);
+						SkillSelect = -1;
+					}
+
+					else if (SkillSelect == 2)
+					{
+
+						MonsterPtr->ChangeState(MiniBossState::Skill_MagicOrbWallRush);
+						SkillSelect = -1;
+					}
+				}
+
+				MonsterPtr->ResetLiveTime();
+			}
+
+			, [](GameEngineCollision* _this, GameEngineCollision* _Other)
+			{
+				GameEngineActor* thisActor = _this->GetActor();
+				MiniBoss_GrandSummoner* MonsterPtr = dynamic_cast<MiniBoss_GrandSummoner*>(thisActor);
+
+				MonsterPtr->ChangeState(MiniBossState::Run);
+			}
+
+
+		);
+
+
 		BodyCollsion->CollisionCallBack
 		(
 			CollisionOrder::PlayerSkill
@@ -112,20 +180,14 @@ void MiniBoss_GrandSummoner::Update(float _Delta)
 
 				MonsterPtr->OnDamaged(Actor->GetAttackPower());
 
-				if (MonsterPtr->m_iCurHp <= 0)
-				{
-					MonsterPtr->ChangeState(MiniBossState::Death);
-				}
-
-				else
-				{
-					MonsterPtr->ChangeState(MiniBossState::Damage);
-				}
-
+				MonsterPtr->ChangeState(MiniBossState::Damage);
 			}
 		);
+	}
 
-
+	else
+	{
+		ChangeState(MiniBossState::Death);
 	}
 
 	DirCheck();
@@ -141,6 +203,10 @@ void MiniBoss_GrandSummoner::ChangeState(MiniBossState _State)
 		{
 		case MiniBossState::Idle:
 			IdleStart();
+			break;
+
+		case MiniBossState::Run:
+			RunStart();
 			break;
 
 		case MiniBossState::Skill_Fireball:
@@ -178,6 +244,10 @@ void MiniBoss_GrandSummoner::StateUpdate(float _Delta)
 	{
 	case MiniBossState::Idle:
 		IdleUpdate(_Delta);
+		break;
+
+	case MiniBossState::Run:
+		RunUpdate(_Delta);
 		break;
 
 	case MiniBossState::Skill_Fireball:
@@ -259,10 +329,21 @@ void MiniBoss_GrandSummoner::DeathStart()
 
 void MiniBoss_GrandSummoner::IdleUpdate(float _Delta)
 {
+	if (true == MainRenderer->IsAnimationEnd())
+	{
+		ChangeState(MiniBossState::Run);
+	}
 }
 
 void MiniBoss_GrandSummoner::RunUpdate(float _Delta)
 {
+	DirCheck();
+
+	float4 Dir = Player::GetMainPlayer()->GetPos() - GetPos();
+
+	Dir.Normalize();
+
+	AddPos(Dir * _Delta * 100.0f);
 }
 
 void MiniBoss_GrandSummoner::Skill_Fireball_Update(float _Delta)
@@ -843,33 +924,33 @@ void MiniBoss_GrandSummoner::Skill_MagicOrbAssault_Update(float _Delta)
 
 			if (i == 0)
 			{
-				
+
 				NextPos.Y += 0.5f;
 			}
 
 			else if (i == 1)
 			{
-				
+
 				NextPos.X -= 0.7f;
 				NextPos.Y += 0.1f;
 			}
 
 			else if (i == 2)
 			{
-			
+
 				NextPos.X -= 0.5f;
 			}
 
 			else if (i == 3)
 			{
-				
+
 				NextPos.X -= 0.4f;
 				NextPos.Y -= 0.1f;
 			}
 
 			else if (i == 4)
 			{
-				
+
 				NextPos.X += 0.4f;
 				NextPos.Y -= 0.1f;
 			}
