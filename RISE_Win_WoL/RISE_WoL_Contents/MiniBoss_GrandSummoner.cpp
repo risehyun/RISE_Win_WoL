@@ -105,11 +105,6 @@ void MiniBoss_GrandSummoner::Update(float _Delta)
 
 	if (!(m_iCurHp <= 0))
 	{
-
-		static float fT = 0;
-
-		fT += _Delta;
-
 		AttackRangeCollision->CollisionCallBack
 		(
 			CollisionOrder::PlayerBody
@@ -150,7 +145,6 @@ void MiniBoss_GrandSummoner::Update(float _Delta)
 					}
 				}
 
-				MonsterPtr->ResetLiveTime();
 			}
 
 			, [](GameEngineCollision* _this, GameEngineCollision* _Other)
@@ -987,7 +981,7 @@ void MiniBoss_GrandSummoner::DamageUpdate(float _Delta)
 
 	if (true == MainRenderer->IsAnimationEnd())
 	{
-		//		DamageRenderer->Off();
+		DamageRenderer->Off();
 		DirCheck();
 		ChangeState(MiniBossState::Idle);
 	}
@@ -1044,4 +1038,14 @@ void MiniBoss_GrandSummoner::SetInitStat()
 void MiniBoss_GrandSummoner::OnDamaged(int _iAttackPower)
 {
 	m_iCurHp -= _iAttackPower;
+
+	if (DamageRenderer == nullptr)
+	{
+		DamageRenderer = CreateRenderer(RenderOrder::Play);
+		DamageRenderer->SetRenderPos({ 0, -100 });
+		DamageRenderer->SetRenderScale({ 200, 40 });
+	}
+
+	DamageRenderer->SetText(std::to_string(_iAttackPower), 20);
+	DamageRenderer->On();
 }

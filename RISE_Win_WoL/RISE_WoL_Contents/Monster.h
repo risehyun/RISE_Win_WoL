@@ -18,6 +18,7 @@ enum class BossState
 	Skill_SeismicSlam,
 	Skill_AncientEarthDrill,
 	Skill_TowersofTerra,
+	Run,
 	Damage,
 	Death,
 	Max,

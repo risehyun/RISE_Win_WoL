@@ -20,6 +20,7 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 
 #include <vector>
+#include <GameEngineBase/GameEngineRandom.h>
 
 Boss::Boss()
 {
@@ -134,6 +135,11 @@ void Boss::Start()
 	BodyCollsion->SetCollisionScale({ 100, 100 });
 	BodyCollsion->SetCollisionType(CollisionType::CirCle);
 
+	// 공격 범위 충돌체 설정
+	AttackRangeCollision = CreateCollision(CollisionOrder::MonsterAttackRange);
+	AttackRangeCollision->SetCollisionScale({ 600, 600 });
+	AttackRangeCollision->SetCollisionType(CollisionType::CirCle);
+
 	MainRenderer->ChangeAnimation("Left_Idle");
 	MainRenderer->SetOrder(1);
 
@@ -141,7 +147,6 @@ void Boss::Start()
 
 void Boss::Update(float _Delta)
 {
-	float TickTime = 0.0f;
 
 	if (GameEngineInput::IsDown('Y'))
 	{
@@ -162,6 +167,59 @@ void Boss::Update(float _Delta)
 
 	if (!(m_iCurHp <= 0))
 	{
+		AttackRangeCollision->CollisionCallBack
+		(
+			CollisionOrder::PlayerBody
+			, CollisionType::CirCle // _this의 충돌체 타입
+			, CollisionType::CirCle // _Other의 충돌체 타입
+			, [](GameEngineCollision* _this, GameEngineCollision* _Other)
+			{
+
+			}
+
+			, [](GameEngineCollision* _this, GameEngineCollision* _Other)
+			{
+
+				GameEngineActor* thisActor = _this->GetActor();
+				Boss* MonsterPtr = dynamic_cast<Boss*>(thisActor);
+
+				if (MonsterPtr->GetMainRenderer()->IsAnimationEnd())
+				{
+					int SkillSelect = GameEngineRandom::MainRandom.RandomInt(0, 2);
+
+					if (SkillSelect == 0)
+					{
+						MonsterPtr->ChangeState(BossState::Skill_AncientEarthDrill);
+						SkillSelect = -1;
+					}
+
+					else if (SkillSelect == 1)
+					{
+						MonsterPtr->ChangeState(BossState::Skill_SeismicSlam);
+						SkillSelect = -1;
+					}
+
+					else if (SkillSelect == 2)
+					{
+
+						MonsterPtr->ChangeState(BossState::Skill_TowersofTerra);
+						SkillSelect = -1;
+					}
+				}
+			}
+
+				, [](GameEngineCollision* _this, GameEngineCollision* _Other)
+			{
+				GameEngineActor* thisActor = _this->GetActor();
+				Boss* MonsterPtr = dynamic_cast<Boss*>(thisActor);
+
+				MonsterPtr->ChangeState(BossState::Idle);
+			}
+
+
+			);
+
+
 		BodyCollsion->CollisionCallBack
 		(
 			CollisionOrder::PlayerSkill
@@ -177,21 +235,17 @@ void Boss::Update(float _Delta)
 
 				MonsterPtr->OnDamaged(Actor->GetAttackPower());
 
-				if (MonsterPtr->m_iCurHp <= 0)
-				{
-					MonsterPtr->ChangeState(BossState::Death);
-				}
-
-				else
-				{
-					MonsterPtr->ChangeState(BossState::Damage);
-				}
-
+				MonsterPtr->ChangeState(BossState::Damage);
 			}
 		);
-
-
 	}
+
+	else
+	{
+		ChangeState(BossState::Death);
+	}
+
+	//	DirCheck();
 
 	StateUpdate(_Delta);
 }
@@ -226,18 +280,40 @@ void Boss::IdleStart()
 
 void Boss::Skill_SeismicSlam_Start()
 {
+	if (NewAttack != nullptr)
+	{
+		NewAttack->Death();
+		NewAttack = nullptr;
+	}
+
 	ChangeAnimationState("Jump");
 }
 
 void Boss::Skill_AncientEarthDrill_Start()
 {
 	DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
-	NewAttack = GetLevel()->CreateActor<SKILL_Boss_AncientEarthDrill>();
+
+	if (NewAttack != nullptr)
+	{
+		NewAttack->Death();
+		NewAttack = nullptr;
+	}
+	else
+	{
+		NewAttack = GetLevel()->CreateActor<SKILL_Boss_AncientEarthDrill>();
+	}
+
 	ChangeAnimationState("Attack");
 }
 
 void Boss::Skill_TowersofTerra_Start()
 {
+	if (NewAttack != nullptr)
+	{
+		NewAttack->Death();
+		NewAttack = nullptr;
+	}
+
 	ChangeAnimationState("Attack");
 }
 
@@ -268,14 +344,12 @@ void Boss::DamageUpdate(float _Delta)
 {
 
 	if (true == IsDeath()) {
-		//	DirCheck();
 		ChangeState(BossState::Death);
 	}
 
 	if (true == MainRenderer->IsAnimationEnd())
 	{
 		DamageRenderer->Off();
-		//	DirCheck();
 		ChangeState(BossState::Idle);
 	}
 
@@ -346,80 +420,72 @@ void Boss::Skill_AncientEarthDrill_Update(float _Delta)
 
 	float4 MovePos = float4::ZERO;
 
-
-
 	if ((DirDeg.AngleDeg() > 0 && DirDeg.AngleDeg() < 45)
 		|| (DirDeg.AngleDeg() > 315 && DirDeg.AngleDeg() < 360))
 	{
 
+		if(NewAttack != nullptr)
+		{ 
 		NewAttack->SetDir(float4::RIGHT);
 		NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
 		NewAttack->SkillRenderer->ChangeAnimation("AncientEarthDrill_RIGHT");
 		MainRenderer->ChangeAnimation("Up_Attack");
 		MovePos = { Speed * _Delta, 0.0f };
-
-		AddPos(MovePos);
-
-		if (true == MainRenderer->IsAnimationEnd())
-		{
-			NewAttack->Death();
-			ChangeState(BossState::Idle);
 		}
+
 	}
 
 	if (DirDeg.AngleDeg() > 225 && DirDeg.AngleDeg() < 316)
 	{
-
-		NewAttack->SetDir(float4::RIGHT);
-		NewAttack->SetPos(GetPos() + float4{ 0.0f, -100.0f, 0.0f, 0.0f });
-		NewAttack->SkillRenderer->ChangeAnimation("AncientEarthDrill_UP");
-		MainRenderer->ChangeAnimation("Right_Attack");
-		MovePos = { 0.0f, -Speed * _Delta };
-
-		AddPos(MovePos);
-
-		if (true == MainRenderer->IsAnimationEnd())
+		if (NewAttack != nullptr)
 		{
-			NewAttack->Death();
-			ChangeState(BossState::Idle);
+			NewAttack->SetDir(float4::RIGHT);
+			NewAttack->SetPos(GetPos() + float4{ 0.0f, -100.0f, 0.0f, 0.0f });
+			NewAttack->SkillRenderer->ChangeAnimation("AncientEarthDrill_UP");
+			MainRenderer->ChangeAnimation("Right_Attack");
+			MovePos = { 0.0f, -Speed * _Delta };
 		}
+		//		AddPos(MovePos);
+
 	}
 
 	if (DirDeg.AngleDeg() > 135 && DirDeg.AngleDeg() < 225)
 	{
-
-		NewAttack->SetDir(float4::LEFT);
-		NewAttack->SetPos(GetPos() + float4{ -100.0f, 0.0f, 0.0f, 0.0f });
-		NewAttack->SkillRenderer->ChangeAnimation("AncientEarthDrill_LEFT");
-		MainRenderer->ChangeAnimation("Left_Attack");
-		MovePos = { -Speed * _Delta, 0.0f };
-
-		AddPos(MovePos);
-
-		if (true == MainRenderer->IsAnimationEnd())
+		if (NewAttack != nullptr)
 		{
-			NewAttack->Death();
-			ChangeState(BossState::Idle);
+			NewAttack->SetDir(float4::LEFT);
+			NewAttack->SetPos(GetPos() + float4{ -100.0f, 0.0f, 0.0f, 0.0f });
+			NewAttack->SkillRenderer->ChangeAnimation("AncientEarthDrill_LEFT");
+			MainRenderer->ChangeAnimation("Left_Attack");
+			MovePos = { -Speed * _Delta, 0.0f };
 		}
+		//		AddPos(MovePos);
+
 	}
 
 	if (DirDeg.AngleDeg() > 44 && DirDeg.AngleDeg() < 135)
 	{
-
-		NewAttack->SetDir(float4::LEFT);
-		NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
-		NewAttack->SkillRenderer->ChangeAnimation("AncientEarthDrill_DOWN");
-		MainRenderer->ChangeAnimation("Down_Attack");
-		MovePos = { 0.0f, Speed * _Delta };
-
-		AddPos(MovePos);
-
-		if (true == MainRenderer->IsAnimationEnd())
+		if (NewAttack != nullptr)
 		{
-			NewAttack->Death();
-			ChangeState(BossState::Idle);
+			NewAttack->SetDir(float4::LEFT);
+			NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
+			NewAttack->SkillRenderer->ChangeAnimation("AncientEarthDrill_DOWN");
+			MainRenderer->ChangeAnimation("Down_Attack");
+			MovePos = { 0.0f, Speed * _Delta };
 		}
+
 	}
+
+	if (NewAttack != nullptr)
+	{
+		AddPos(MovePos);
+	}
+
+	else
+	{
+		ChangeState(BossState::Idle);
+	}
+
 }
 
 void Boss::Skill_TowersofTerra_Update(float _Delta)
@@ -456,7 +522,7 @@ void Boss::Skill_TowersofTerra_Update(float _Delta)
 		{
 			NewTower->SetPos({ GetPos().X + 100.0f, GetPos().Y - 100.0f });
 		}
-		 
+
 		else
 		{
 			NewTower->SetPos({ GetPos().X + 100.0f * i + 1, GetPos().Y - 100.0f * i + 1 });
@@ -468,13 +534,13 @@ void Boss::Skill_TowersofTerra_Update(float _Delta)
 	// 오른쪽 아래
 	for (size_t i = 0; i < 3; i++)
 	{
-		
+
 		SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
 		NewTower->SetOrder(-1000);
 
 		if (i == 0)
 		{
-			NewTower->SetPos({ GetPos().X + 100.0f, GetPos().Y + 100.0f});
+			NewTower->SetPos({ GetPos().X + 100.0f, GetPos().Y + 100.0f });
 		}
 
 		else
