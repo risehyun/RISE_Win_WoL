@@ -80,24 +80,42 @@ void Monster_Archer::Update(float _Delta)
 {
 	DirCheck();
 
-	//if (true == IsAttackable())
-	//{
-	//	ChangeState(MonsterState::Attack);
-	//}
-
 	if (!(m_iCurHp <= 0))
 	{
 
-		// 플레이어와 자신의 공격 범위가 충돌하면 공격 상태로 전환
-		std::vector<GameEngineCollision*> _ColTest;
-		if (true == AttackRangeCollision->Collision(CollisionOrder::PlayerBody, _ColTest
-			, CollisionType::CirCle
-			, CollisionType::CirCle
-		))
-		{
-			DirCheck();
-			ChangeState(MonsterState::Attack);
-		}
+		AttackRangeCollision->CollisionCallBack
+		(
+			CollisionOrder::PlayerBody
+			, CollisionType::CirCle // _this의 충돌체 타입
+			, CollisionType::CirCle // _Other의 충돌체 타입
+			, [](GameEngineCollision* _this, GameEngineCollision* _Other)
+			{
+
+				GameEngineActor* thisActor = _this->GetActor();
+				Monster_Archer* MonsterPtr = dynamic_cast<Monster_Archer*>(thisActor);
+
+				MonsterPtr->ChangeState(MonsterState::Attack);
+
+
+
+			}
+			, [](GameEngineCollision* _this, GameEngineCollision* _Other)
+			{
+
+				GameEngineActor* thisActor = _this->GetActor();
+				Monster_Archer* MonsterPtr = dynamic_cast<Monster_Archer*>(thisActor);
+
+			}
+				, [](GameEngineCollision* _this, GameEngineCollision* _Other)
+			{
+				GameEngineActor* thisActor = _this->GetActor();
+				Monster_Archer* MonsterPtr = dynamic_cast<Monster_Archer*>(thisActor);
+
+				MonsterPtr->ChangeState(MonsterState::Idle);
+			}
+
+
+			);
 
 		BodyCollsion->CollisionCallBack
 		(
@@ -114,7 +132,7 @@ void Monster_Archer::Update(float _Delta)
 
 				MonsterPtr->OnDamaged(Actor->GetAttackPower());
 
-				if (MonsterPtr->m_iCurHp <= 0)
+				if (MonsterPtr->m_iCurHp < 0)
 				{
 					MonsterPtr->ChangeState(MonsterState::Death);
 				}
@@ -127,9 +145,9 @@ void Monster_Archer::Update(float _Delta)
 			}
 			, [](GameEngineCollision* _this, GameEngineCollision* _Other)
 			{
-			
+
 			}
-			, [](GameEngineCollision* _this, GameEngineCollision* _Other)
+				, [](GameEngineCollision* _this, GameEngineCollision* _Other)
 			{
 				GameEngineActor* thisActor = _this->GetActor();
 				Monster_Archer* MonsterPtr = dynamic_cast<Monster_Archer*>(thisActor);
@@ -146,7 +164,13 @@ void Monster_Archer::Update(float _Delta)
 			}
 
 
-		);
+			);
+
+	}
+
+	else
+	{
+		ChangeState(MonsterState::Death);
 
 	}
 
@@ -216,11 +240,23 @@ void Monster_Archer::StateUpdate(float _Delta)
 
 void Monster_Archer::IdleStart()
 {
+	if (NewBow != nullptr)
+	{
+		NewBow->Death();
+		NewBow = nullptr;
+	}
+
 	ChangeAnimationState("Idle");
 }
 
 void Monster_Archer::RunStart()
 {
+	if (NewBow != nullptr)
+	{
+		NewBow->Death();
+		NewBow = nullptr;
+	}
+
 	ChangeAnimationState("Move");
 }
 
@@ -505,9 +541,9 @@ void Monster_Archer::DamageUpdate(float _Delta)
 
 	if (true == MainRenderer->IsAnimationEnd())
 	{
-		//		DamageRenderer->Off();
+		DamageRenderer->Off();
 		DirCheck();
-		ChangeState(MonsterState::Idle);
+		ChangeState(MonsterState::Run);
 	}
 }
 
@@ -581,13 +617,13 @@ void Monster_Archer::OnDamaged(int _iAttackPower)
 {
 	m_iCurHp -= _iAttackPower;
 
-	//if (DamageRenderer == nullptr)
-	//{
-	//	DamageRenderer = CreateRenderer(RenderOrder::Play);
-	//	DamageRenderer->SetRenderPos({ 0, -100 });
-	//	DamageRenderer->SetRenderScale({ 200, 40 });
-	//}
+	if (DamageRenderer == nullptr)
+	{
+		DamageRenderer = CreateRenderer(RenderOrder::Play);
+		DamageRenderer->SetRenderPos({ 0, -100 });
+		DamageRenderer->SetRenderScale({ 200, 40 });
+	}
 
-	//DamageRenderer->SetText(std::to_string(_iAttackPower), 20);
-	//DamageRenderer->On();
+	DamageRenderer->SetText(std::to_string(_iAttackPower), 20);
+	DamageRenderer->On();
 }
