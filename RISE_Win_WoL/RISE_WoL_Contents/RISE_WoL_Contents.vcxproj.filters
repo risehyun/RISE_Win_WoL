@@ -252,6 +252,9 @@
       <Filter>02.Skills\Monster\Archer</Filter>
     </ClCompile>
     <ClCompile Include="MonsterSpawner.cpp" />
+    <ClCompile Include="UI_DamageText.cpp">
+      <Filter>03.UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -430,5 +433,8 @@
       <Filter>02.Skills\Monster\Archer</Filter>
     </ClInclude>
     <ClInclude Include="MonsterSpawner.h" />
+    <ClInclude Include="UI_DamageText.h">
+      <Filter>03.UI</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
