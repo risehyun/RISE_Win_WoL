@@ -16,6 +16,8 @@
 #include "ContentsEnum.h"
 #include "BossSpawner.h"
 
+#include "UI_DamageText.h"
+
 MiniBoss_GrandSummoner::MiniBoss_GrandSummoner()
 {
 
@@ -981,7 +983,6 @@ void MiniBoss_GrandSummoner::DamageUpdate(float _Delta)
 
 	if (true == MainRenderer->IsAnimationEnd())
 	{
-		DamageRenderer->Off();
 		DirCheck();
 		ChangeState(MiniBossState::Idle);
 	}
@@ -1039,13 +1040,31 @@ void MiniBoss_GrandSummoner::OnDamaged(int _iAttackPower)
 {
 	m_iCurHp -= _iAttackPower;
 
-	if (DamageRenderer == nullptr)
+	UI_DamageText* NewText = GetLevel()->CreateActor<UI_DamageText>();
+
+	float4 DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
+
+	if ((DirDeg.AngleDeg() > 0 && DirDeg.AngleDeg() < 45)
+		|| (DirDeg.AngleDeg() > 315 && DirDeg.AngleDeg() < 360))
 	{
-		DamageRenderer = CreateRenderer(RenderOrder::Play);
-		DamageRenderer->SetRenderPos({ 0, -100 });
-		DamageRenderer->SetRenderScale({ 200, 40 });
+		NewText->SetDir(float4::LEFT);
 	}
 
-	DamageRenderer->SetText(std::to_string(_iAttackPower), 20);
-	DamageRenderer->On();
+	else if (DirDeg.AngleDeg() > 225 && DirDeg.AngleDeg() < 316)
+	{
+		NewText->SetDir(float4::LEFT);
+	}
+
+	else if (DirDeg.AngleDeg() > 135 && DirDeg.AngleDeg() < 225)
+	{
+		NewText->SetDir(float4::RIGHT);
+	}
+
+	else if (DirDeg.AngleDeg() > 44 && DirDeg.AngleDeg() < 135)
+	{
+		NewText->SetDir(float4::RIGHT);
+	}
+
+	NewText->GetMainRenderer()->SetText(std::to_string(_iAttackPower), 20, "Noto Sans Med");
+	NewText->SetPos({ GetPos().X, GetPos().Y - 100.0f });
 }

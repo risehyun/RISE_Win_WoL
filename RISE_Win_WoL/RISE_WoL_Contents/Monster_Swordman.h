@@ -13,7 +13,6 @@ public:
 	Monster_Swordman& operator=(Monster_Swordman&& _Other) noexcept = delete;
 
 	GameEngineRenderer* MainRenderer = nullptr;
-	GameEngineRenderer* DamageRenderer = nullptr;
 
 protected:
 	void StateUpdate(float _Delta);

@@ -96,8 +96,6 @@ void GameEngineRenderer::TextRender(float _DeltaTime)
 	Rect.right = TextPos.iX() + TextScale * static_cast<int>(Text.size());
 	Rect.bottom = TextPos.iY() + TextScale;
 
-
-
 	DrawTextA(hdc, Text.c_str(), static_cast<int>(Text.size()), &Rect, static_cast<UINT>(DT_BOTTOM));
 
 	SelectObject(hdc, OldFont);
@@ -120,8 +118,6 @@ void GameEngineRenderer::Render(float _DeltaTime)
 		{
 			CurAnimation->IsEnd = false;
 		}
-
-
 
 		CurAnimation->CurInter -= _DeltaTime;
 		if (0.0f >= CurAnimation->CurInter)

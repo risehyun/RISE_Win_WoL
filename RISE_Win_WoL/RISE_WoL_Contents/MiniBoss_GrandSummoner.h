@@ -17,7 +17,6 @@ public:
 	MiniBoss_GrandSummoner& operator=(MiniBoss_GrandSummoner&& _Other) noexcept = delete;
 
 	GameEngineRenderer* MainRenderer = nullptr;
-	GameEngineRenderer* DamageRenderer = nullptr;
 
 	GameEngineRenderer* GetMainRenderer()
 	{

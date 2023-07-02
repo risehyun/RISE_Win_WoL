@@ -15,7 +15,6 @@ public:
 	Monster_Archer& operator=(Monster_Archer&& _Other) noexcept = delete;
 
 	GameEngineRenderer* MainRenderer = nullptr;
-	GameEngineRenderer* DamageRenderer = nullptr;
 
 
 

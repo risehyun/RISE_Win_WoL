@@ -17,15 +17,11 @@ public:
 	Boss& operator=(Boss&& _Other) noexcept = delete;
 
 
-
 	GameEngineCollision* BodyCollision = nullptr;
 	GameEngineCollision* AttackRangeCollision = nullptr;
 
-
 	GameEngineRenderer* TestRenderer = nullptr;
 	GameEngineRenderer* MainRenderer = nullptr;
-	GameEngineRenderer* DamageRenderer = nullptr;
-
 
 	std::vector<SKILL_Boss_TowersofTerra*> Towers;
 
