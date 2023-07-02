@@ -43,7 +43,7 @@ protected:
 	MonsterDir Dir = MonsterDir::Right;
 	std::string CurState = "";
 
-	GameEngineCollision* BodyCollsion = nullptr;
+	GameEngineCollision* BodyCollision = nullptr;
 	GameEngineCollision* AttackRangeCollision = nullptr;
 
 	SKILL_ArcherBow* NewBow = nullptr;

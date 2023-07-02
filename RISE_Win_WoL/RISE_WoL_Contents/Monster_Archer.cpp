@@ -65,9 +65,9 @@ void Monster_Archer::Start()
 	MainRenderer->CreateAnimation("Right_Death", "ARCHER_RIGHT.bmp", 24, 29, 0.1f, false);
 
 	// 충돌체 설정
-	BodyCollsion = CreateCollision(CollisionOrder::MonsterBody);
-	BodyCollsion->SetCollisionScale({ 150, 150 });
-	BodyCollsion->SetCollisionType(CollisionType::CirCle);
+	BodyCollision = CreateCollision(CollisionOrder::MonsterBody);
+	BodyCollision->SetCollisionScale({ 150, 150 });
+	BodyCollision->SetCollisionType(CollisionType::CirCle);
 
 	// 공격 범위 충돌체 설정
 	AttackRangeCollision = CreateCollision(CollisionOrder::MonsterAttackRange);
@@ -118,7 +118,7 @@ void Monster_Archer::Update(float _Delta)
 
 			);
 
-		BodyCollsion->CollisionCallBack
+		BodyCollision->CollisionCallBack
 		(
 			CollisionOrder::PlayerSkill
 			, CollisionType::CirCle // _this의 충돌체 타입

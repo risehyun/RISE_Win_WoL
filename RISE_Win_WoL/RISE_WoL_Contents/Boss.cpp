@@ -131,9 +131,9 @@ void Boss::Start()
 	MainRenderer->CreateAnimation("Down_Attack", "BOSS_ATTACK.bmp", 18, 23, 0.2f, false);
 
 
-	BodyCollsion = CreateCollision(CollisionOrder::MonsterBody);
-	BodyCollsion->SetCollisionScale({ 100, 100 });
-	BodyCollsion->SetCollisionType(CollisionType::CirCle);
+	BodyCollision = CreateCollision(CollisionOrder::MonsterBody);
+	BodyCollision->SetCollisionScale({ 100, 100 });
+	BodyCollision->SetCollisionType(CollisionType::CirCle);
 
 	// 공격 범위 충돌체 설정
 	AttackRangeCollision = CreateCollision(CollisionOrder::MonsterAttackRange);
@@ -220,7 +220,7 @@ void Boss::Update(float _Delta)
 			);
 
 
-		BodyCollsion->CollisionCallBack
+		BodyCollision->CollisionCallBack
 		(
 			CollisionOrder::PlayerSkill
 			, CollisionType::CirCle // _this의 충돌체 타입

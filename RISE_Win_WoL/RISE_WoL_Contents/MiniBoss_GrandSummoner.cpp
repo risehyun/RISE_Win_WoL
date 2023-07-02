@@ -71,9 +71,9 @@ void MiniBoss_GrandSummoner::Start()
 	MainRenderer->CreateAnimation("Right_Death", "MiniBoss_GrandSummoner_Right.bmp", 20, 23, 0.1f, true);
 
 	// 충돌체 설정
-	BodyCollsion = CreateCollision(CollisionOrder::MonsterBody);
-	BodyCollsion->SetCollisionScale({ 100, 100 });
-	BodyCollsion->SetCollisionType(CollisionType::CirCle);
+	BodyCollision = CreateCollision(CollisionOrder::MonsterBody);
+	BodyCollision->SetCollisionScale({ 100, 100 });
+	BodyCollision->SetCollisionType(CollisionType::CirCle);
 
 	// 공격 범위 충돌체 설정
 	AttackRangeCollision = CreateCollision(CollisionOrder::MonsterAttackRange);
@@ -159,7 +159,7 @@ void MiniBoss_GrandSummoner::Update(float _Delta)
 		);
 
 
-		BodyCollsion->CollisionCallBack
+		BodyCollision->CollisionCallBack
 		(
 			CollisionOrder::PlayerSkill
 			, CollisionType::CirCle // _this의 충돌체 타입
