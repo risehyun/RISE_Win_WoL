@@ -79,7 +79,7 @@ void MiniBoss_GrandSummoner::Start()
 
 	// 공격 범위 충돌체 설정
 	AttackRangeCollision = CreateCollision(CollisionOrder::MonsterAttackRange);
-	AttackRangeCollision->SetCollisionScale({ 600, 600 });
+	AttackRangeCollision->SetCollisionScale({ 1200, 1200 });
 	AttackRangeCollision->SetCollisionType(CollisionType::CirCle);
 
 	MainRenderer->ChangeAnimation("Left_Idle");
@@ -89,6 +89,8 @@ void MiniBoss_GrandSummoner::Start()
 
 void MiniBoss_GrandSummoner::Update(float _Delta)
 {
+
+	UpdateCooldown(_Delta);
 
 	if (true == GameEngineInput::IsDown('T'))
 	{
@@ -119,12 +121,12 @@ void MiniBoss_GrandSummoner::Update(float _Delta)
 
 			, [](GameEngineCollision* _this, GameEngineCollision* _Other)
 			{
-
 				GameEngineActor* thisActor = _this->GetActor();
 				MiniBoss_GrandSummoner* MonsterPtr = dynamic_cast<MiniBoss_GrandSummoner*>(thisActor);
 
-				if (MonsterPtr->GetMainRenderer()->IsAnimationEnd())
+				if(true == MonsterPtr->IsReady())
 				{
+
 					int SkillSelect = GameEngineRandom::MainRandom.RandomInt(0, 2);
 
 					if (SkillSelect == 0)
@@ -145,6 +147,8 @@ void MiniBoss_GrandSummoner::Update(float _Delta)
 						MonsterPtr->ChangeState(MiniBossState::Skill_MagicOrbWallRush);
 						SkillSelect = -1;
 					}
+
+					MonsterPtr->currentCooldown = MonsterPtr->cooldown;
 				}
 
 			}
@@ -565,8 +569,8 @@ void MiniBoss_GrandSummoner::Skill_Fireball_Update(float _Delta)
 
 	if (true == MainRenderer->IsAnimationEnd())
 	{
-		ChangeState(MiniBossState::Idle);
 		AllFireball.clear();
+		ChangeState(MiniBossState::Idle);
 	}
 
 }
@@ -829,6 +833,7 @@ void MiniBoss_GrandSummoner::Skill_MagicOrbWallRush_Update(float _Delta)
 	{
 		AllMagicball.clear();
 		ChangeState(MiniBossState::Idle);
+
 	}
 
 }

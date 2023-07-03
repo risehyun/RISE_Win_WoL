@@ -30,6 +30,21 @@ public:
 		return MainRenderer;
 	}
 
+	float cooldown = 2.0f;
+	float currentCooldown = 0.0f;
+
+	void UpdateCooldown(float deltaTime)
+	{
+		if (currentCooldown > 0)
+		{
+			currentCooldown -= deltaTime;
+		}
+	}
+
+	bool IsReady()
+	{
+		return currentCooldown <= 0;
+	}
 
 protected:
 	void StateUpdate(float _Delta);
@@ -78,6 +93,7 @@ private:
 
 	float4 DirDeg;
 	SKILL_Boss_AncientEarthDrill* NewAttack;
+
 
 
 	///// 아이템 드롭 테스트용

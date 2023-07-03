@@ -86,7 +86,7 @@ void SKILL_ArcherAttack::Update(float _Delta)
 
 	AddPos(NextPos);
 
-	if (GetLiveTime() > 1.0f)
+	if (GetLiveTime() > 0.3f)
 	{
 		Death();
 	}

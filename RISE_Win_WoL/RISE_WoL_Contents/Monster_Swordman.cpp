@@ -19,6 +19,8 @@
 #include "ITEM_Gold.h"
 #include "BossSpawner.h"
 
+#include <list>
+
 
 Monster_Swordman::Monster_Swordman()
 {
@@ -80,6 +82,7 @@ void Monster_Swordman::LevelStart()
 
 void Monster_Swordman::Start()
 {
+
 	SetInitStat();
 
 	if (false == ResourcesManager::GetInst().IsLoadTexture("SWORDMAN_TEST.Bmp"))
@@ -158,6 +161,9 @@ void Monster_Swordman::Start()
 void Monster_Swordman::Update(float _Delta)
 {
 
+	UpdateCooldown(_Delta);
+
+
 	if (!(m_iCurHp <= 0))
 	{
 
@@ -219,7 +225,7 @@ void Monster_Swordman::Update(float _Delta)
 					MonsterPtr->ChangeState(MonsterState::Death);
 				}
 			}
-		);
+			);
 	}
 
 	StateUpdate(_Delta);
@@ -332,12 +338,13 @@ void Monster_Swordman::RunUpdate(float _Delta)
 
 void Monster_Swordman::AttackUpdate(float _Delta)
 {
-	if (1.0f < GetLiveTime())
+
+	if (true == IsReady())
 	{
 		float4 DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
 
-		if ((DirDeg.AngleDeg() > 0 && DirDeg.AngleDeg() < 45)
-			|| (DirDeg.AngleDeg() > 315 && DirDeg.AngleDeg() < 360))
+		if ((DirDeg.AngleDeg() > 0.0f && DirDeg.AngleDeg() < 45.0f)
+			|| (DirDeg.AngleDeg() > 315.0f && DirDeg.AngleDeg() < 360.0f))
 		{
 			SKILL_KnightAttack* NewAttack = GetLevel()->CreateActor<SKILL_KnightAttack>();
 
@@ -347,7 +354,7 @@ void Monster_Swordman::AttackUpdate(float _Delta)
 
 		}
 
-		if (DirDeg.AngleDeg() > 225 && DirDeg.AngleDeg() < 316)
+		if (DirDeg.AngleDeg() > 225.0f && DirDeg.AngleDeg() < 316.0f)
 		{
 			SKILL_KnightAttack* NewAttack = GetLevel()->CreateActor<SKILL_KnightAttack>();
 
@@ -356,7 +363,7 @@ void Monster_Swordman::AttackUpdate(float _Delta)
 			NewAttack->SkillRenderer->ChangeAnimation("ATTACK_UP");
 		}
 
-		if (DirDeg.AngleDeg() > 135 && DirDeg.AngleDeg() < 225)
+		if (DirDeg.AngleDeg() > 135.0f && DirDeg.AngleDeg() < 225.0f)
 		{
 			SKILL_KnightAttack* NewAttack = GetLevel()->CreateActor<SKILL_KnightAttack>();
 
@@ -365,7 +372,7 @@ void Monster_Swordman::AttackUpdate(float _Delta)
 			NewAttack->SkillRenderer->ChangeAnimation("ATTACK_LEFT");
 		}
 
-		if (DirDeg.AngleDeg() > 44 && DirDeg.AngleDeg() < 135)
+		if (DirDeg.AngleDeg() > 44.0f && DirDeg.AngleDeg() < 135.0f)
 		{
 			SKILL_KnightAttack* NewAttack = GetLevel()->CreateActor<SKILL_KnightAttack>();
 
@@ -375,7 +382,8 @@ void Monster_Swordman::AttackUpdate(float _Delta)
 		}
 
 		ChangeState(MonsterState::Run);
-		ResetLiveTime();
+		currentCooldown = cooldown;
+
 	}
 }
 

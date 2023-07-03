@@ -87,6 +87,8 @@ void Player::SetTotalGold(int _GoldCount)
 
 void Player::IdleUpdate(float _Delta)
 {
+
+
 	// 자신의 위치에 해당하는 픽셀의 색상을 체크하기 위해 가져온다.
 	unsigned int Color = GetGroundColor(RGB(255, 255, 255));
 	if (RGB(255, 255, 255) == Color)
@@ -120,124 +122,6 @@ void Player::IdleUpdate(float _Delta)
 	{
 		DirCheck();
 		ChangeState(PlayerState::Run);
-		return;
-	}
-
-	// 일반 공격
-	if (true == GameEngineInput::IsDown(VK_LBUTTON))
-	{
-		ChangeState(PlayerState::Attack);
-
-		SKILL_PlayerNormalAttack* NewAttack = GetLevel()->CreateActor<SKILL_PlayerNormalAttack>();
-
-		DirCheck();
-
-		if (Dir == PlayerDir::Left)
-		{
-			NewAttack->SetDir(float4::LEFT);
-			NewAttack->SetPos(GetPos() + float4{ -100.0f, 0.0f, 0.0f, 0.0f });
-			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_LEFT");
-		}
-
-		if (Dir == PlayerDir::Right)
-		{
-			NewAttack->SetDir(float4::RIGHT);
-			NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
-			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_RIGHT");
-		}
-
-		if (Dir == PlayerDir::Up)
-		{
-			NewAttack->SetDir(float4::UP);
-			NewAttack->SetPos(GetPos() + float4{ 0.0f, -100.0f, 0.0f, 0.0f });
-			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_UP");
-		}
-
-
-		if (Dir == PlayerDir::Down)
-		{
-			NewAttack->SetDir(float4::DOWN);
-			NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
-			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_DOWN");
-		}
-
-		return;
-	}
-
-	if (true == GameEngineInput::IsDown(VK_RBUTTON))
-	{
-
-		float4 MovePos = float4::ZERO;
-
-		DirCheck();
-
-		ChangeState(PlayerState::Attack);
-
-		SKILL_Tornado* NewAttack = GetLevel()->CreateActor<SKILL_Tornado>();
-		NewAttack->SetPos({ GetPos() });
-
-		return;
-	}
-
-	if (true == GameEngineInput::IsDown('Q'))
-	{
-		ChangeState(PlayerState::Skill_EarthenAegis);
-		SKILL_EarthenAegis* NewAttack = GetLevel()->CreateActor<SKILL_EarthenAegis>();
-		NewAttack->SetPos(GetPos() + float4{ 0.0f, 0.0f, 0.0f, 0.0f });
-		return;
-	}
-
-	if (true == GameEngineInput::IsDown('E'))
-	{
-		ChangeState(PlayerState::Skill_SnowflakeChakrams);
-		SKILL_SnowflakeChakrams* NewAttack = GetLevel()->CreateActor<SKILL_SnowflakeChakrams>();
-		NewAttack->SetPos(GetPos() + float4{ 0.0f, 0.0f, 0.0f, 0.0f });
-		return;
-	}
-
-	if (true == GameEngineInput::IsDown('Z'))
-	{
-		ChangeState(PlayerState::Skill_ExplodingFireball);
-		SKILL_Fireball* NewAttack = GetLevel()->CreateActor<SKILL_Fireball>();
-		DirCheck();
-
-		if (Dir == PlayerDir::Left)
-		{
-			NewAttack->SetDir(float4::LEFT);
-			NewAttack->SetPos(GetPos() + float4{ -100.0f, 0.0f, 0.0f, 0.0f });
-			NewAttack->Renderer->ChangeAnimation("ARCANA_Fireball_Left");
-		}
-
-		if (Dir == PlayerDir::Right)
-		{
-			NewAttack->SetDir(float4::RIGHT);
-			NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
-			NewAttack->Renderer->ChangeAnimation("ARCANA_Fireball_Right");
-			NewAttack->Renderer->SetRenderScale({ 120, 80 });
-		}
-
-		if (Dir == PlayerDir::Up)
-		{
-			NewAttack->SetDir(float4::UP);
-			NewAttack->SetPos(GetPos() + float4{ 0.0f, -100.0f, 0.0f, 0.0f });
-			NewAttack->Renderer->ChangeAnimation("ARCANA_Fireball_Up");
-			NewAttack->Renderer->SetRenderScale({ 160, 120 });
-		}
-
-		if (Dir == PlayerDir::Down)
-		{
-			NewAttack->SetDir(float4::DOWN);
-			NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
-			NewAttack->Renderer->ChangeAnimation("ARCANA_Fireball_Down");
-			NewAttack->Renderer->SetRenderScale({ 160, 120 });
-		}
-
-		return;
-	}
-
-	if (true == GameEngineInput::IsUp(VK_SPACE))
-	{
-		ChangeState(PlayerState::Dash);
 		return;
 	}
 
@@ -392,7 +276,7 @@ void Player::DashUpdate(float _Delta)
 
 	}
 
-//	DirCheck();
+	//	DirCheck();
 
 	float Speed = 500.0f;
 
@@ -467,7 +351,7 @@ void Player::AttackUpdate(float _Delta)
 
 void Player::OnDamagedUpdate(float _Delta)
 {
-//	DirCheck();
+	//	DirCheck();
 
 	if (true == IsDeath()) {
 		ChangeState(PlayerState::Death);
@@ -491,9 +375,13 @@ void Player::OnDamagedUpdate(float _Delta)
 void Player::DeathUpdate(float _Delta)
 {
 	// 추후 페이드아웃 추가
+
+	EffectPlayer.Stop();
+
+	Player::MainPlayer->OverOff();
+
 	if (true == MainRenderer->IsAnimationEnd())
 	{
-		EffectPlayer.Stop();
 		GameEngineCore::ChangeLevel("EndingLevel");
 	}
 }

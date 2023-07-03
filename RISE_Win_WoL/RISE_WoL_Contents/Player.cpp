@@ -18,7 +18,14 @@
 
 #include "Bullet.h"
 #include "Monster.h"
+
 #include "SKILL_PlayerNormalAttack.h"
+#include "SKILL_PlayerWindBoomerang.h"
+#include "SKILL_EarthenAegis.h"
+#include "SKILL_SnowflakeChakrams.h"
+#include "SKILL_Tornado.h"
+#include "SKILL_Fireball.h"
+
 
 #include "UI_Inventory.h"
 
@@ -215,6 +222,147 @@ void Player::Start()
 
 void Player::Update(float _Delta)
 {
+	UpdateCooldown(_Delta);
+
+	Update_ExplodingFireball_Cooldown(_Delta);
+
+	Update_EarthenAegis_Cooldown(_Delta);
+
+	Update_WhirlingTornado_Cooldown(_Delta);
+
+	Update_SnowflakeChakrams_Cooldown(_Delta);
+
+	// 일반 공격
+	if (true == GameEngineInput::IsDown(VK_LBUTTON))
+	{
+		ChangeState(PlayerState::Attack);
+
+		SKILL_PlayerNormalAttack* NewAttack = GetLevel()->CreateActor<SKILL_PlayerNormalAttack>();
+
+		DirCheck();
+
+		if (Dir == PlayerDir::Left)
+		{
+			NewAttack->SetDir(float4::LEFT);
+			NewAttack->SetPos(GetPos() + float4{ -100.0f, 0.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_LEFT");
+		}
+
+		if (Dir == PlayerDir::Right)
+		{
+			NewAttack->SetDir(float4::RIGHT);
+			NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_RIGHT");
+		}
+
+		if (Dir == PlayerDir::Up)
+		{
+			NewAttack->SetDir(float4::UP);
+			NewAttack->SetPos(GetPos() + float4{ 0.0f, -100.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_UP");
+		}
+
+
+		if (Dir == PlayerDir::Down)
+		{
+			NewAttack->SetDir(float4::DOWN);
+			NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_DOWN");
+		}
+
+		return;
+	}
+
+	if (true == GameEngineInput::IsDown(VK_RBUTTON) && true == IsSkill_WhirlingTornado_Ready())
+	{
+
+		float4 MovePos = float4::ZERO;
+
+		DirCheck();
+
+		ChangeState(PlayerState::Attack);
+
+		SKILL_Tornado* NewAttack = GetLevel()->CreateActor<SKILL_Tornado>();
+		NewAttack->SetPos({ GetPos() });
+		fWhirlingTornado_CurrentCooldown = fSkill_WhirlingTornado_Cooldown;
+		return;
+
+	}
+
+	if (true == GameEngineInput::IsDown('Q'))
+	{
+
+		if (true == IsSkill_EarthenAegis_Ready())
+		{
+			ChangeState(PlayerState::Skill_EarthenAegis);
+			SKILL_EarthenAegis* NewAttack = GetLevel()->CreateActor<SKILL_EarthenAegis>();
+			NewAttack->SetPos(GetPos() + float4{ 0.0f, 0.0f, 0.0f, 0.0f });
+			fEarthenAegis_CurrentCooldown = fSkill_EarthenAegis_Cooldown;
+			return;
+		}
+	}
+
+	if (true == GameEngineInput::IsDown('E') && true == IsSkill_SnowflakeChakrams_Ready())
+	{
+
+		ChangeState(PlayerState::Skill_SnowflakeChakrams);
+		SKILL_SnowflakeChakrams* NewAttack = GetLevel()->CreateActor<SKILL_SnowflakeChakrams>();
+		NewAttack->SetPos(GetPos() + float4{ 0.0f, 0.0f, 0.0f, 0.0f });
+		fSnowflakeChakrams_CurrentCooldown = fSkill_SnowflakeChakrams_Cooldown;
+		return;
+
+	}
+
+	if (true == GameEngineInput::IsDown('Z') && true == IsSkill_ExplodingFireball_Ready())
+	{
+
+		ChangeState(PlayerState::Skill_ExplodingFireball);
+		SKILL_Fireball* NewAttack = GetLevel()->CreateActor<SKILL_Fireball>();
+		DirCheck();
+
+		if (Dir == PlayerDir::Left)
+		{
+			NewAttack->SetDir(float4::LEFT);
+			NewAttack->SetPos(GetPos() + float4{ -100.0f, 0.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ARCANA_Fireball_Left");
+		}
+
+		if (Dir == PlayerDir::Right)
+		{
+			NewAttack->SetDir(float4::RIGHT);
+			NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ARCANA_Fireball_Right");
+			NewAttack->Renderer->SetRenderScale({ 120, 80 });
+		}
+
+		if (Dir == PlayerDir::Up)
+		{
+			NewAttack->SetDir(float4::UP);
+			NewAttack->SetPos(GetPos() + float4{ 0.0f, -100.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ARCANA_Fireball_Up");
+			NewAttack->Renderer->SetRenderScale({ 160, 120 });
+		}
+
+		if (Dir == PlayerDir::Down)
+		{
+			NewAttack->SetDir(float4::DOWN);
+			NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
+			NewAttack->Renderer->ChangeAnimation("ARCANA_Fireball_Down");
+			NewAttack->Renderer->SetRenderScale({ 160, 120 });
+		}
+
+		fExplodingFireball_CurrentCooldown = fSkill_ExplodingFireball_Cooldown;
+
+	}
+
+	if (true == GameEngineInput::IsUp(VK_SPACE))
+	{
+		ChangeState(PlayerState::Dash);
+		return;
+	}
+
+
+
 	// 디버깅용 모든 몬스터를 없애는 함수 발동
 	if (true == GameEngineInput::IsDown('L'))
 	{

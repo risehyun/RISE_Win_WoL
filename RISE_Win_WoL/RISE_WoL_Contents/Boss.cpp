@@ -139,7 +139,7 @@ void Boss::Start()
 
 	// 공격 범위 충돌체 설정
 	AttackRangeCollision = CreateCollision(CollisionOrder::MonsterAttackRange);
-	AttackRangeCollision->SetCollisionScale({ 600, 600 });
+	AttackRangeCollision->SetCollisionScale({ 1200, 1200 });
 	AttackRangeCollision->SetCollisionType(CollisionType::CirCle);
 
 	MainRenderer->ChangeAnimation("Left_Idle");
@@ -149,6 +149,7 @@ void Boss::Start()
 
 void Boss::Update(float _Delta)
 {
+	UpdateCooldown(_Delta);
 
 	if (GameEngineInput::IsDown('Y'))
 	{
@@ -181,12 +182,12 @@ void Boss::Update(float _Delta)
 
 			, [](GameEngineCollision* _this, GameEngineCollision* _Other)
 			{
-
 				GameEngineActor* thisActor = _this->GetActor();
 				Boss* MonsterPtr = dynamic_cast<Boss*>(thisActor);
 
-				if (MonsterPtr->GetMainRenderer()->IsAnimationEnd())
+				if (true == MonsterPtr->IsReady())
 				{
+
 					int SkillSelect = GameEngineRandom::MainRandom.RandomInt(0, 2);
 
 					if (SkillSelect == 0)
@@ -207,7 +208,10 @@ void Boss::Update(float _Delta)
 						MonsterPtr->ChangeState(BossState::Skill_TowersofTerra);
 						SkillSelect = -1;
 					}
+
+					MonsterPtr->currentCooldown = MonsterPtr->cooldown;
 				}
+
 			}
 
 				, [](GameEngineCollision* _this, GameEngineCollision* _Other)
@@ -443,13 +447,13 @@ void Boss::Skill_AncientEarthDrill_Update(float _Delta)
 		|| (DirDeg.AngleDeg() > 315 && DirDeg.AngleDeg() < 360))
 	{
 
-		if(NewAttack != nullptr)
-		{ 
-		NewAttack->SetDir(float4::RIGHT);
-		NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
-		NewAttack->SkillRenderer->ChangeAnimation("AncientEarthDrill_RIGHT");
-		MainRenderer->ChangeAnimation("Up_Attack");
-		MovePos = { Speed * _Delta, 0.0f };
+		if (NewAttack != nullptr)
+		{
+			NewAttack->SetDir(float4::RIGHT);
+			NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
+			NewAttack->SkillRenderer->ChangeAnimation("AncientEarthDrill_RIGHT");
+			MainRenderer->ChangeAnimation("Up_Attack");
+			MovePos = { Speed * _Delta, 0.0f };
 		}
 
 	}

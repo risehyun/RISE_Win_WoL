@@ -83,6 +83,8 @@ void Monster_Archer::Update(float _Delta)
 {
 	DirCheck();
 
+	UpdateCooldown(_Delta);
+
 	if (!(m_iCurHp <= 0))
 	{
 
@@ -307,7 +309,8 @@ void Monster_Archer::RunUpdate(float _Delta)
 void Monster_Archer::AttackUpdate(float _Delta)
 {
 
-	if (1.0f < GetLiveTime())
+
+	if (true == IsReady())
 	{
 		float4 DirDeg = Player::GetMainPlayer()->GetPos() - GetPos();
 
@@ -527,8 +530,7 @@ void Monster_Archer::AttackUpdate(float _Delta)
 			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX15");
 		}
 
-
-		ResetLiveTime();
+		currentCooldown = cooldown;
 
 	}
 

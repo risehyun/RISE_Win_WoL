@@ -52,6 +52,25 @@ protected:
 
 
 private:
+
+	float cooldown = 2.0f;
+	float currentCooldown = 0.0f;
+
+	void UpdateCooldown(float deltaTime)
+	{
+		if (currentCooldown > 0)
+		{
+			currentCooldown -= deltaTime;
+		}
+	}
+
+	bool IsReady()
+	{
+		return currentCooldown <= 0;
+	}
+
+
+
 	GameEngineSoundPlayer EffectPlayer;
 
 	void Start() override;

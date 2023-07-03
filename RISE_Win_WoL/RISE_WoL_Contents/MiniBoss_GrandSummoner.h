@@ -23,6 +23,10 @@ public:
 		return MainRenderer;
 	}
 
+	bool IsReady()
+	{
+		return currentCooldown <= 0;
+	}
 
 	std::vector<SKILL_MiniBoss_GrandSummoner_Fireball*> AllFireball;
 	std::vector<SKILL_MiniBoss_GrandSummoner_Magicball*> AllMagicball;
@@ -90,6 +94,20 @@ private:
 	void DropItem(float4 _DropPos);
 
 	float Speed = 500.0f;
+
+
+	float cooldown = 2.0f;
+	float currentCooldown = 0.0f;
+
+	void UpdateCooldown(float deltaTime)
+	{
+		if (currentCooldown > 0)
+		{
+			currentCooldown -= deltaTime;
+		}
+	}
+
+
 
 
 };

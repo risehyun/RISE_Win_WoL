@@ -33,6 +33,8 @@ protected:
 	void ChangeState(MonsterState _State);
 
 
+
+
 	MonsterState State = MonsterState::Max;
 
 	MonsterDir Dir = MonsterDir::Right;
@@ -44,9 +46,28 @@ protected:
 	void DirCheck();
 	void ChangeAnimationState(const std::string& _StateName);
 
-
 private:
 	GameEngineSoundPlayer EffectPlayer;
+
+	float cooldown = 2.0f;
+	float currentCooldown = 0.0f;
+
+	void UpdateCooldown(float deltaTime)
+	{
+		if (currentCooldown > 0)
+		{
+			currentCooldown -= deltaTime;
+		}
+	}
+
+	bool IsReady()
+	{
+		return currentCooldown <= 0;
+	}
+
+
+
+
 
 	void LevelStart() override;
 
@@ -70,6 +91,9 @@ private:
 	float4 RightCheck = { 50.0f, 0.0f };
 	float4 UpCheck = { 0.0f, -50.0f };
 	float4 DownCheck = { 0.0f, 50.0f };
+
+
+	
 
 
 };

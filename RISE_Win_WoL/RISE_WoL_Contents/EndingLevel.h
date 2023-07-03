@@ -13,6 +13,8 @@ public:
 	EndingLevel& operator=(EndingLevel&& _Other) noexcept = delete;
 
 protected:
+	void LevelStart(GameEngineLevel* _PrevLevel) override;
+	void LevelEnd(GameEngineLevel* _NextLevel) override;
 
 private:
 	void Start() override;
