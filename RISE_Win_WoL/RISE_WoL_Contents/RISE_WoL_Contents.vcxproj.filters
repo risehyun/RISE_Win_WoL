@@ -255,6 +255,9 @@
     <ClCompile Include="UI_DamageText.cpp">
       <Filter>03.UI</Filter>
     </ClCompile>
+    <ClCompile Include="UI_HPBar.cpp">
+      <Filter>03.UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -434,6 +437,9 @@
     </ClInclude>
     <ClInclude Include="MonsterSpawner.h" />
     <ClInclude Include="UI_DamageText.h">
+      <Filter>03.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_HPBar.h">
       <Filter>03.UI</Filter>
     </ClInclude>
   </ItemGroup>

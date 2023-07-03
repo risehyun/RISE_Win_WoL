@@ -27,6 +27,8 @@
 #include "SKILL_Fireball.h"
 
 
+#include "PlayUIManager.h"
+
 #include "UI_Inventory.h"
 
 #include <GameEngineCore/GameEngineCollision.h>
@@ -422,6 +424,8 @@ void Player::Update(float _Delta)
 			GameEngineActor* Actor = _Other->GetActor();
 
 			PlayerPtr->OnDamaged(Actor->GetAttackPower(), Actor->GetPos());
+
+//			PlayUIManager::UI->NewHpBar->GetMainRenderer()->AddRenderPos({ 0.1, 0 });
 
 			if (PlayerPtr->m_iCurHp <= 0)
 			{

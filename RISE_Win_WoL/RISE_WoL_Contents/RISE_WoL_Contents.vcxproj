@@ -227,6 +227,7 @@
     <ClInclude Include="TitleLevel.h" />
     <ClInclude Include="UI_Button.h" />
     <ClInclude Include="UI_DamageText.h" />
+    <ClInclude Include="UI_HPBar.h" />
     <ClInclude Include="UI_Inventory.h" />
     <ClInclude Include="UI_KeyboardF.h" />
     <ClInclude Include="UI_SkillBar.h" />
@@ -293,6 +294,7 @@
     <ClCompile Include="TitleLevel.cpp" />
     <ClCompile Include="UI_Button.cpp" />
     <ClCompile Include="UI_DamageText.cpp" />
+    <ClCompile Include="UI_HPBar.cpp" />
     <ClCompile Include="UI_Inventory.cpp" />
     <ClCompile Include="UI_KeyboardF.cpp" />
     <ClCompile Include="UI_SkillBar.cpp" />

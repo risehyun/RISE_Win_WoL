@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include "UI_HPBar.h"
 
 class PlayUIManager : public GameEngineActor
 {
@@ -17,10 +18,13 @@ public:
 
 	GameEngineCollision* ButtonCollsion = nullptr;
 
+	UI_HPBar* NewHpBar = nullptr;
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
 
 private:
 	GameEngineRenderer* MousePtr = nullptr;
+
 };

@@ -11,7 +11,10 @@
 #include "UI_Inventory.h"
 #include "UI_SkillBar.h"
 
+#include "UI_HPBar.h"
+
 #include <GameEngineCore/ResourcesManager.h>
+#include "Player.h"
 
 PlayUIManager* PlayUIManager::UI = nullptr;
 
@@ -35,12 +38,9 @@ void PlayUIManager::Start()
 		Ptr->SetTexture("UI_PLAYERBAR.bmp");
 	}
 
-	{
-		GameEngineRenderer* Ptr = CreateUIRenderer("UI_HPBAR.bmp", RenderOrder::PlayUI);
-		Ptr->SetRenderPos({ 170, 52 });
-		Ptr->SetRenderScale({ 150, 20 });
-		Ptr->SetTexture("UI_HPBAR.bmp");
-	}
+	NewHpBar = GetLevel()->CreateActor<UI_HPBar>();
+	NewHpBar->GetMainRenderer()->SetRenderPos({ 170, 52 });
+
 
 	{
 		GameEngineRenderer* Ptr = CreateUIRenderer("UI_MANABAR.bmp", RenderOrder::PlayUI);
@@ -87,4 +87,7 @@ void PlayUIManager::Update(float _Delta)
 		NewInven->SetRenderPos({ 300, 400 });
 		NewInven->SetRenderScale({ 400, 700 });
 	}
+
+
 }
+

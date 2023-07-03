@@ -59,6 +59,16 @@ public:
 	}
 
 
+	float4 GetRenderPos() const
+	{
+		return RenderPos;
+	}
+
+	void AddRenderPos(const float4& _Value)
+	{
+		RenderPos += _Value;
+	}
+
 
 	CameraType GetCameraType()
 	{

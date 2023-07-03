@@ -63,6 +63,16 @@ public:
 		return true;
 	}
 
+	int GetCurHp() const
+	{
+		return m_iCurHp;
+	}
+
+	int GetMaxHp() const
+	{
+		return m_iMaxHp;
+	}
+
 	bool IsReady()
 	{
 		return currentCooldown <= 0;
