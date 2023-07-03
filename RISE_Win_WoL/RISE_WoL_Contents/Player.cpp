@@ -259,6 +259,13 @@ void Player::Update(float _Delta)
 
 	Update_SnowflakeChakrams_Cooldown(_Delta);
 
+
+	if (true == GameEngineInput::IsDown(VK_F1))
+	{
+		IsInvincible = true;
+	}
+
+
 	// 일반 공격
 	if (true == GameEngineInput::IsDown(VK_LBUTTON))
 	{
@@ -418,7 +425,15 @@ void Player::Update(float _Delta)
 
 			if (PlayerPtr->m_iCurHp <= 0)
 			{
-				PlayerPtr->ChangeState(PlayerState::Death);
+				if (true == PlayerPtr->IsInvincible)
+				{
+					return;
+				}
+
+				else
+				{
+					PlayerPtr->ChangeState(PlayerState::Death);
+				}
 			}
 
 			else

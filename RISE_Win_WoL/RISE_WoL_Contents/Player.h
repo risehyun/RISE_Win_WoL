@@ -191,7 +191,7 @@ protected:
 
 private:
 
-
+	bool IsInvincible = false;
 
 
 	GameEngineSoundPlayer EffectPlayer;
