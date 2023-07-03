@@ -16,6 +16,20 @@ public:
 	MiniBoss_GrandSummoner& operator=(const MiniBoss_GrandSummoner& _Other) = delete;
 	MiniBoss_GrandSummoner& operator=(MiniBoss_GrandSummoner&& _Other) noexcept = delete;
 
+
+	/*static MiniBoss_GrandSummoner* MiniBoss;
+
+	static MiniBoss_GrandSummoner* GetMiniBoss()
+	{
+		return MiniBoss;
+	}*/
+
+	int GetCurHp() const
+	{
+		return m_iCurHp;
+	}
+
+
 	GameEngineRenderer* MainRenderer = nullptr;
 
 	GameEngineRenderer* GetMainRenderer()

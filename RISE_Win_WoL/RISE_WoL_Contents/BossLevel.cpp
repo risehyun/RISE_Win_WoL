@@ -10,6 +10,10 @@
 #include "ITEM_HealthCrystal.h"
 #include "EFFECT_GoldCastingCircle.h"
 
+#include "PlayUIManager.h"
+
+
+
 #include "Player.h"
 #include "BackGround.h"
 
@@ -79,6 +83,14 @@ void BossLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	EFFECT_GoldCastingCircle* GoldCastingCircle = CreateActor<EFFECT_GoldCastingCircle>();
 	GoldCastingCircle->SetPos({ 1720, 1650 });
+
+
+	CreateActor<PlayUIManager>();
+
+
+
+
+
 
 
 

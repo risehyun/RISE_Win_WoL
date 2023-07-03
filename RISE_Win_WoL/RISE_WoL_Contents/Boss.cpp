@@ -23,6 +23,7 @@
 #include <GameEngineBase/GameEngineRandom.h>
 
 #include "UI_DamageText.h"
+#include "PlayUIManager.h"
 
 Boss::Boss()
 {
@@ -37,7 +38,7 @@ void Boss::SetInitStat()
 	// 이후 Define으로 변경
 	m_fMoveSpeed = 100.0f;
 	m_fAttackSpeed = 100.0f;
-	m_iMaxHp = 100;
+	m_iMaxHp = 500;
 	m_iCurHp = m_iMaxHp;
 	m_fAttackRange = 100.0f;
 }
@@ -87,6 +88,9 @@ void Boss::ChangeAnimationState(const std::string& _StateName)
 void Boss::Start()
 {
 	SetInitStat();
+
+	PlayUIManager::UI->BossNameBar->GetMainRenderer()->On();
+	PlayUIManager::UI->BossNameBar->NewHpBar->GetMainRenderer()->On();
 
 	GameEnginePath FilePath;
 	FilePath.SetCurrentPath();
@@ -258,7 +262,57 @@ void Boss::Update(float _Delta)
 
 void Boss::Render(float _Delta)
 {
+	float fCurHpFillAmount = static_cast<float>(GetCurHp());
 
+	if (fCurHpFillAmount < 500 && fCurHpFillAmount > 450)
+	{
+		PlayUIManager::UI->BossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX1.bmp");
+	}
+
+	else if (fCurHpFillAmount < 450 && fCurHpFillAmount > 400)
+	{
+		PlayUIManager::UI->BossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX4.bmp");
+	}
+
+	else if (fCurHpFillAmount < 400 && fCurHpFillAmount > 350)
+	{
+		PlayUIManager::UI->BossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX8.bmp");
+	}
+
+	else if (fCurHpFillAmount < 350 && fCurHpFillAmount > 300)
+	{
+		PlayUIManager::UI->BossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX12.bmp");
+	}
+
+	else if (fCurHpFillAmount < 300 && fCurHpFillAmount > 250)
+	{
+		PlayUIManager::UI->BossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX16.bmp");
+	}
+
+	else if (fCurHpFillAmount < 250 && fCurHpFillAmount > 200)
+	{
+		PlayUIManager::UI->BossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX20.bmp");
+	}
+
+	else if (fCurHpFillAmount < 200 && fCurHpFillAmount > 150)
+	{
+		PlayUIManager::UI->BossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX24.bmp");
+	}
+
+	else if (fCurHpFillAmount < 150 && fCurHpFillAmount > 100)
+	{
+		PlayUIManager::UI->BossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX28.bmp");
+	}
+
+	else if (fCurHpFillAmount < 100 && fCurHpFillAmount > 50)
+	{
+		PlayUIManager::UI->BossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX32.bmp");
+	}
+
+	else if (fCurHpFillAmount < 50 && fCurHpFillAmount >= 0)
+	{
+		PlayUIManager::UI->BossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX36.bmp");
+	}
 }
 
 void Boss::OnDamaged(int _iAttackPower)
@@ -348,6 +402,10 @@ void Boss::DamageStart()
 
 void Boss::DeathStart()
 {
+
+	PlayUIManager::UI->BossNameBar->GetMainRenderer()->Off();
+	PlayUIManager::UI->BossNameBar->NewHpBar->GetMainRenderer()->Off();
+
 	ChangeAnimationState("Death");
 }
 

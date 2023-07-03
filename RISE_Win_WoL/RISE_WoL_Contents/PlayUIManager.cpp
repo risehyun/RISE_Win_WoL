@@ -15,6 +15,7 @@
 
 #include <GameEngineCore/ResourcesManager.h>
 #include "Player.h"
+#include "UI_MiniBossNameBar.h"
 
 PlayUIManager* PlayUIManager::UI = nullptr;
 
@@ -38,7 +39,7 @@ void PlayUIManager::Start()
 		Ptr->SetTexture("UI_PLAYERBAR.bmp");
 	}
 
-	NewHpBar = GetLevel()->CreateActor<UI_HPBar>();
+	NewHpBar = GetLevel()->CreateActor<UI_PlayerHpBar>();
 	NewHpBar->GetMainRenderer()->SetRenderPos({ 170, 52 });
 
 
@@ -72,6 +73,18 @@ void PlayUIManager::Start()
 	NewSkillBar->GetMainRenderer()->SetRenderPos({ 225, 740 });
 
 
+	MiniBossNameBar = GetLevel()->CreateActor<UI_MiniBossNameBar>();
+	MiniBossNameBar->SetPos({ 650, 60 });
+	MiniBossNameBar->GetMainRenderer()->Off();
+	MiniBossNameBar->NewHpBar->GetMainRenderer()->Off();
+
+
+
+	BossNameBar = GetLevel()->CreateActor<UI_BossNameBar>();
+	BossNameBar->SetPos({ 650, 60 });
+	BossNameBar->GetMainRenderer()->Off();
+	BossNameBar->NewHpBar->GetMainRenderer()->Off();
+
 }
 
 void PlayUIManager::Update(float _Delta)
@@ -87,7 +100,6 @@ void PlayUIManager::Update(float _Delta)
 		NewInven->SetRenderPos({ 300, 400 });
 		NewInven->SetRenderScale({ 400, 700 });
 	}
-
 
 }
 

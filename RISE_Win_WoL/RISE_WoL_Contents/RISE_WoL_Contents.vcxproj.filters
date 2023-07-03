@@ -258,6 +258,12 @@
     <ClCompile Include="UI_HPBar.cpp">
       <Filter>03.UI</Filter>
     </ClCompile>
+    <ClCompile Include="UI_BossNameBar.cpp" />
+    <ClCompile Include="UI_PlayerBar.cpp" />
+    <ClCompile Include="UI_MiniBossNameBar.cpp">
+      <Filter>03.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_PlayerHpBar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -442,5 +448,11 @@
     <ClInclude Include="UI_HPBar.h">
       <Filter>03.UI</Filter>
     </ClInclude>
+    <ClInclude Include="UI_BossNameBar.h" />
+    <ClInclude Include="UI_PlayerBar.h" />
+    <ClInclude Include="UI_MiniBossNameBar.h">
+      <Filter>03.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_PlayerHpBar.h" />
   </ItemGroup>
 </Project>

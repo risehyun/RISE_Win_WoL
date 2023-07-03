@@ -40,7 +40,6 @@
 #include "PROP_TreasureChestMiniBoss.h"
 #include "PROP_Teleport.h"
 
-
 PlayLevel::PlayLevel()
 {
 }
@@ -112,6 +111,8 @@ void PlayLevel::Start()
 
 	NPC_Outfit* NewOutfit = CreateActor<NPC_Outfit>();
 	NewOutfit->SetPos({ 1850, 700 });
+
+
 
 
 }

@@ -1,4 +1,4 @@
-#include "UI_HPBar.h"
+#include "UI_PlayerHpBar.h"
 #include "ContentsEnum.h"
 #include "Player.h"
 #include "PlayUIManager.h"
@@ -6,15 +6,15 @@
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEngineCore/ResourcesManager.h>
 
-UI_HPBar::UI_HPBar()
+UI_PlayerHpBar::UI_PlayerHpBar()
 {
 }
 
-UI_HPBar::~UI_HPBar()
+UI_PlayerHpBar::~UI_PlayerHpBar()
 {
 }
 
-void UI_HPBar::Start()
+void UI_PlayerHpBar::Start()
 {
 
 	GameEnginePath FilePath;
@@ -47,10 +47,10 @@ void UI_HPBar::Start()
 	MainRenderer->SetRenderScale({ 150, 20 });
 }
 
-void UI_HPBar::Update(float _Delta)
+void UI_PlayerHpBar::Update(float _Delta)
 {
 
-	/*float fCurHpFillAmount = static_cast<float>(Player::MainPlayer->GetCurHp());
+	float fCurHpFillAmount = static_cast<float>(Player::MainPlayer->GetCurHp());
 
 	if (fCurHpFillAmount < 500 && fCurHpFillAmount > 450)
 	{
@@ -100,6 +100,6 @@ void UI_HPBar::Update(float _Delta)
 	else if (fCurHpFillAmount < 50 && fCurHpFillAmount >= 0)
 	{
 		MainRenderer->SetTexture("UI_HPBAR_INDEX36.bmp");
-	}*/
+	}
 
 }

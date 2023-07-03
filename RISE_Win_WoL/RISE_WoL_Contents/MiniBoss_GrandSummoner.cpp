@@ -16,6 +16,8 @@
 #include "ContentsEnum.h"
 #include "BossSpawner.h"
 
+#include "PlayUIManager.h"
+
 #include "UI_DamageText.h"
 
 MiniBoss_GrandSummoner::MiniBoss_GrandSummoner()
@@ -32,6 +34,10 @@ MiniBoss_GrandSummoner::~MiniBoss_GrandSummoner()
 void MiniBoss_GrandSummoner::Start()
 {
 	SetInitStat();
+
+	PlayUIManager::UI->MiniBossNameBar->GetMainRenderer()->On();
+	PlayUIManager::UI->MiniBossNameBar->NewHpBar->GetMainRenderer()->On();
+
 
 	GameEnginePath FilePath;
 	FilePath.SetCurrentPath();
@@ -324,6 +330,8 @@ void MiniBoss_GrandSummoner::DamageStart()
 
 void MiniBoss_GrandSummoner::DeathStart()
 {
+	PlayUIManager::UI->MiniBossNameBar->GetMainRenderer()->Off();
+	PlayUIManager::UI->MiniBossNameBar->NewHpBar->GetMainRenderer()->Off();
 	ChangeAnimationState("Death");
 }
 
@@ -1028,7 +1036,57 @@ void MiniBoss_GrandSummoner::ChangeAnimationState(const std::string& _StateName)
 
 void MiniBoss_GrandSummoner::Render(float _Delta)
 {
+	float fCurHpFillAmount = static_cast<float>(GetCurHp());
 
+	if (fCurHpFillAmount < 500 && fCurHpFillAmount > 450)
+	{
+		PlayUIManager::UI->MiniBossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX1.bmp");
+	}
+
+	else if (fCurHpFillAmount < 450 && fCurHpFillAmount > 400)
+	{
+		PlayUIManager::UI->MiniBossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX4.bmp");
+	}
+
+	else if (fCurHpFillAmount < 400 && fCurHpFillAmount > 350)
+	{
+		PlayUIManager::UI->MiniBossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX8.bmp");
+	}
+
+	else if (fCurHpFillAmount < 350 && fCurHpFillAmount > 300)
+	{
+		PlayUIManager::UI->MiniBossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX12.bmp");
+	}
+
+	else if (fCurHpFillAmount < 300 && fCurHpFillAmount > 250)
+	{
+		PlayUIManager::UI->MiniBossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX16.bmp");
+	}
+
+	else if (fCurHpFillAmount < 250 && fCurHpFillAmount > 200)
+	{
+		PlayUIManager::UI->MiniBossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX20.bmp");
+	}
+
+	else if (fCurHpFillAmount < 200 && fCurHpFillAmount > 150)
+	{
+		PlayUIManager::UI->MiniBossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX24.bmp");
+	}
+
+	else if (fCurHpFillAmount < 150 && fCurHpFillAmount > 100)
+	{
+		PlayUIManager::UI->MiniBossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX28.bmp");
+	}
+
+	else if (fCurHpFillAmount < 100 && fCurHpFillAmount > 50)
+	{
+		PlayUIManager::UI->MiniBossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX32.bmp");
+	}
+
+	else if (fCurHpFillAmount < 50 && fCurHpFillAmount >= 0)
+	{
+		PlayUIManager::UI->MiniBossNameBar->NewHpBar->GetMainRenderer()->SetTexture("UI_HPBAR_INDEX36.bmp");
+	}
 }
 
 void MiniBoss_GrandSummoner::SetInitStat()
@@ -1036,7 +1094,7 @@ void MiniBoss_GrandSummoner::SetInitStat()
 	// 이후 Define으로 변경
 	m_fMoveSpeed = 100.0f;
 	m_fAttackSpeed = 100.0f;
-	m_iMaxHp = 100;
+	m_iMaxHp = 500;
 	m_iCurHp = m_iMaxHp;
 	m_fAttackRange = 100.0f;
 }

@@ -30,6 +30,12 @@ public:
 		return MainRenderer;
 	}
 
+	int GetCurHp() const
+	{
+		return m_iCurHp;
+	}
+
+
 	float cooldown = 2.0f;
 	float currentCooldown = 0.0f;
 

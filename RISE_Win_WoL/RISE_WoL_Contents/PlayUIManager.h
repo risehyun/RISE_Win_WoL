@@ -1,6 +1,10 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
-#include "UI_HPBar.h"
+
+#include "UI_PlayerHpBar.h"
+
+#include "UI_MiniBossNameBar.h"
+#include "UI_BossNameBar.h"
 
 class PlayUIManager : public GameEngineActor
 {
@@ -18,7 +22,10 @@ public:
 
 	GameEngineCollision* ButtonCollsion = nullptr;
 
-	UI_HPBar* NewHpBar = nullptr;
+	UI_PlayerHpBar* NewHpBar = nullptr;
+
+	UI_MiniBossNameBar* MiniBossNameBar = nullptr;
+	UI_BossNameBar* BossNameBar = nullptr;
 
 protected:
 	void Start() override;

@@ -225,11 +225,15 @@
     <ClInclude Include="SKILL_SnowflakeChakrams.h" />
     <ClInclude Include="SKILL_Tornado.h" />
     <ClInclude Include="TitleLevel.h" />
+    <ClInclude Include="UI_BossNameBar.h" />
     <ClInclude Include="UI_Button.h" />
     <ClInclude Include="UI_DamageText.h" />
     <ClInclude Include="UI_HPBar.h" />
     <ClInclude Include="UI_Inventory.h" />
     <ClInclude Include="UI_KeyboardF.h" />
+    <ClInclude Include="UI_MiniBossNameBar.h" />
+    <ClInclude Include="UI_PlayerBar.h" />
+    <ClInclude Include="UI_PlayerHpBar.h" />
     <ClInclude Include="UI_SkillBar.h" />
   </ItemGroup>
   <ItemGroup>
@@ -292,11 +296,15 @@
     <ClCompile Include="SKILL_SnowflakeChakrams.cpp" />
     <ClCompile Include="SKILL_Tornado.cpp" />
     <ClCompile Include="TitleLevel.cpp" />
+    <ClCompile Include="UI_BossNameBar.cpp" />
     <ClCompile Include="UI_Button.cpp" />
     <ClCompile Include="UI_DamageText.cpp" />
     <ClCompile Include="UI_HPBar.cpp" />
     <ClCompile Include="UI_Inventory.cpp" />
     <ClCompile Include="UI_KeyboardF.cpp" />
+    <ClCompile Include="UI_MiniBossNameBar.cpp" />
+    <ClCompile Include="UI_PlayerBar.cpp" />
+    <ClCompile Include="UI_PlayerHpBar.cpp" />
     <ClCompile Include="UI_SkillBar.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
