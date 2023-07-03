@@ -65,10 +65,6 @@ private:
 		return currentCooldown <= 0;
 	}
 
-
-
-
-
 	void LevelStart() override;
 
 	void Start() override;

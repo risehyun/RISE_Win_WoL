@@ -32,6 +32,7 @@
 #include <GameEngineCore/GameEngineCollision.h>
 
 #include <GameEnginePlatform/GameEngineSound.h>
+#include "UI_DamageText.h"
 
 #pragma endregion
 
@@ -62,12 +63,38 @@ void Player::SetInitStat()
 	m_iTotalCrystal = 0;
 }
 
-void Player::OnDamaged(int _iAttackPower)
+void Player::OnDamaged(int _iAttackPower, float4 _AttackPos)
 {
-	// 수정필요
 	m_iCurHp -= _iAttackPower;
 
-	int a = m_iCurHp;
+	UI_DamageText* NewText = GetLevel()->CreateActor<UI_DamageText>();
+
+	float4 DirDeg = _AttackPos - GetPos();
+
+	if ((DirDeg.AngleDeg() > 0 && DirDeg.AngleDeg() < 45)
+		|| (DirDeg.AngleDeg() > 315 && DirDeg.AngleDeg() < 360))
+	{
+		NewText->SetDir(float4::LEFT);
+	}
+
+	else if (DirDeg.AngleDeg() > 225 && DirDeg.AngleDeg() < 316)
+	{
+		NewText->SetDir(float4::LEFT);
+	}
+
+	else if (DirDeg.AngleDeg() > 135 && DirDeg.AngleDeg() < 225)
+	{
+		NewText->SetDir(float4::RIGHT);
+	}
+
+	else if (DirDeg.AngleDeg() > 44 && DirDeg.AngleDeg() < 135)
+	{
+		NewText->SetDir(float4::RIGHT);
+	}
+
+	NewText->GetMainRenderer()->SetText(std::to_string(_iAttackPower), 20, "Noto Sans Med");
+	NewText->SetPos({ GetPos().X, GetPos().Y - 100.0f });
+
 }
 
 void Player::Start()
@@ -389,7 +416,7 @@ void Player::Update(float _Delta)
 
 			GameEngineActor* Actor = _Other->GetActor();
 
-			PlayerPtr->OnDamaged(Actor->GetAttackPower());
+			PlayerPtr->OnDamaged(Actor->GetAttackPower(), Actor->GetPos());
 
 			if (PlayerPtr->m_iCurHp <= 0)
 			{
