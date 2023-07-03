@@ -71,13 +71,13 @@ void PROP_TreasureChestMiniBoss::Update(float _Delta)
 		// 드롭 위치의 경우 상자를 기준으로 랜덤 값만큼 offset을 줘서 처리한다. 
 		// 골드의 Order 값은 기존의 상자보다 높아야 가리지 않는다.
 
-		int Test = GameEngineRandom::MainRandom.RandomInt(1, 10);
+		int GoldCount = GameEngineRandom::MainRandom.RandomInt(1, 10);
 
-		for (size_t i = 0; i < Test; i++)
+		for (size_t i = 0; i < GoldCount; i++)
 		{
-			int Test2 = GameEngineRandom::MainRandom.RandomInt(0, 500);
+			int RandomPos = GameEngineRandom::MainRandom.RandomInt(-500, 500);
 			ITEM_Gold* NewGold = GetLevel()->CreateActor<ITEM_Gold>();
-			NewGold->SetPos({ 1850 + static_cast<float>(Test2), 1700 });
+			NewGold->SetPos({ 1850 + static_cast<float>(RandomPos), 1700 });
 			NewGold->SetOrder(1);
 			BodyCollision->Off();
 		}

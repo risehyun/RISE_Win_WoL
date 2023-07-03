@@ -388,8 +388,6 @@ void Player::Update(float _Delta)
 		return;
 	}
 
-
-
 	// 디버깅용 모든 몬스터를 없애는 함수 발동
 	if (true == GameEngineInput::IsDown('L'))
 	{
