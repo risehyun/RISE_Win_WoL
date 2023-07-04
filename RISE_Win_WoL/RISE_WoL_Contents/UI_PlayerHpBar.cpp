@@ -52,7 +52,7 @@ void UI_PlayerHpBar::Update(float _Delta)
 
 	float fCurHpFillAmount = static_cast<float>(Player::MainPlayer->GetCurHp());
 
-	if (fCurHpFillAmount < 500 && fCurHpFillAmount > 450)
+	if (fCurHpFillAmount <= 500 && fCurHpFillAmount > 450)
 	{
 		MainRenderer->SetTexture("UI_HPBAR_INDEX1.bmp");
 	}

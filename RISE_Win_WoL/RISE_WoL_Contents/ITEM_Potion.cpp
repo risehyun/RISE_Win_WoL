@@ -6,6 +6,8 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 
+#include "Player.h"
+
 void ITEM_Potion::Start()
 {
 	// 아이템 텍스처 로딩
@@ -67,6 +69,24 @@ void ITEM_Potion::Update(float _Delta)
 		{
 			m_InteractUI->GetMainRenderer()->Off();
 			DescriptRenerer->Off();
+
+			if (Player::MainPlayer->GetTotalGold() < 100)
+			{
+				return;
+			}
+
+			if ((Player::MainPlayer->GetCurHp() + 100) > 500)
+			{
+				Player::MainPlayer->SetCurHp(500);
+			}
+
+			else
+			{
+				Player::MainPlayer->AddCurHp(100);
+			}
+
+
+			Player::MainPlayer->SetTotalGold(Player::MainPlayer->GetTotalGold() - 100);
 
 			Death();
 		}

@@ -52,6 +52,17 @@ public:
 
 	void SetTotalGold(int _GoldCount);
 
+
+	void SetCurHp(int _Hp)
+	{
+		m_iCurHp = _Hp;
+	}
+
+	int GetTotalGold() const
+	{
+		return m_iTotalGold;
+	}
+
 	bool AddCurHp(int _Hp)
 	{
 		if (m_iCurHp >= m_iMaxHp)
