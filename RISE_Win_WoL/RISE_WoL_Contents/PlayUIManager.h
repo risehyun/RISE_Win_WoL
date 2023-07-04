@@ -6,6 +6,8 @@
 #include "UI_MiniBossNameBar.h"
 #include "UI_BossNameBar.h"
 
+#include "UI_Inventory.h"
+
 class PlayUIManager : public GameEngineActor
 {
 public:
@@ -26,6 +28,9 @@ public:
 
 	UI_MiniBossNameBar* MiniBossNameBar = nullptr;
 	UI_BossNameBar* BossNameBar = nullptr;
+
+
+	UI_Inventory* NewInven = nullptr;
 
 protected:
 	void Start() override;

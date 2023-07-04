@@ -14,8 +14,18 @@ public:
 
 
 	GameEngineRenderer* MainRenderer = nullptr;
-
 	GameEngineRenderer* GetMainRenderer() const;
+
+
+	GameEngineRenderer* OutFitRenderer = nullptr;
+
+	GameEngineRenderer* DescriptRenderer = nullptr;
+
+	GameEngineRenderer* Index1 = nullptr;
+
+	
+
+
 
 
 protected:

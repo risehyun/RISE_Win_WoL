@@ -43,6 +43,11 @@ public:
 		return true == IsUpdateValue && false == IsDeathValue;
 	}
 
+	bool GetUpdateValue()
+	{
+		return IsUpdateValue;
+	}
+
 	virtual bool IsDeath()
 	{
 		return IsDeathValue;

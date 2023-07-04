@@ -80,12 +80,6 @@ void UI_SkillBar::Start()
 
 
 
-
-
-
-
-
-
 	Cooldown_Text = CreateUIRenderer();
 	Cooldown_Text->SetRenderScale({ 30, 30 });
 	Cooldown_Text->SetRenderPos({ 170, 736 });
