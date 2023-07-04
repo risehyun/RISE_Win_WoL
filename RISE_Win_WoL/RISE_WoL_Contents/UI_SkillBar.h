@@ -13,8 +13,22 @@ public:
 	UI_SkillBar& operator=(UI_SkillBar&& _Other) noexcept = delete;
 
 	GameEngineRenderer* MainRenderer = nullptr;
-
 	GameEngineRenderer* GetMainRenderer() const;
+
+
+	GameEngineRenderer* Cooldown_Panel = nullptr;
+
+	GameEngineRenderer* Cooldown_Panel_WhirlingTornado = nullptr;
+
+
+
+	GameEngineRenderer* Cooldown_Text = nullptr;
+
+	GameEngineRenderer* Cooldown_Text_WhirlingTornado = nullptr;
+
+	int CoolTime_ExplodingFireball = 0;
+
+	int CoolTime_WhirlingTornado = 0;
 
 
 protected:

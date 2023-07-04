@@ -79,6 +79,18 @@ public:
 	}
 
 
+
+	float GetCoolTime_ExplodingFireball()
+	{
+		return fExplodingFireball_CurrentCooldown;
+	}
+
+	float GetCoolTime_WhirlingTornado()
+	{
+		return fWhirlingTornado_CurrentCooldown;
+	}
+
+
 	bool IsSkill_EarthenAegis_Ready()
 	{
 		return fEarthenAegis_CurrentCooldown <= 0;

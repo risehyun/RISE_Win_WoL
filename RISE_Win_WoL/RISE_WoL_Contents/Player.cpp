@@ -325,7 +325,7 @@ void Player::Update(float _Delta)
 
 	}
 
-	if (true == GameEngineInput::IsDown('Q'))
+	if (true == GameEngineInput::IsDown('Z'))
 	{
 
 		if (true == IsSkill_EarthenAegis_Ready())
@@ -349,7 +349,7 @@ void Player::Update(float _Delta)
 
 	}
 
-	if (true == GameEngineInput::IsDown('Z') && true == IsSkill_ExplodingFireball_Ready())
+	if (true == GameEngineInput::IsDown('Q') && true == IsSkill_ExplodingFireball_Ready())
 	{
 
 		ChangeState(PlayerState::Skill_ExplodingFireball);
