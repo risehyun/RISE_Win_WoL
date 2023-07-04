@@ -75,18 +75,20 @@ void ITEM_Potion::Update(float _Delta)
 				return;
 			}
 
-			if ((Player::MainPlayer->GetCurHp() + 100) > 500)
-			{
-				Player::MainPlayer->SetCurHp(500);
-			}
-
 			else
 			{
-				Player::MainPlayer->AddCurHp(100);
+				if ((Player::MainPlayer->GetCurHp() + 100) > 500)
+				{
+					Player::MainPlayer->SetCurHp(Player::MainPlayer->GetMaxHp());
+				}
+
+				else
+				{
+					Player::MainPlayer->AddCurHp(100);
+				}
+
+				Player::MainPlayer->SetTotalGold(-100);
 			}
-
-
-			Player::MainPlayer->SetTotalGold(Player::MainPlayer->GetTotalGold() - 100);
 
 			Death();
 		}

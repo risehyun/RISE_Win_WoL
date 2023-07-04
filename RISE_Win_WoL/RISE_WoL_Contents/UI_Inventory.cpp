@@ -2,6 +2,7 @@
 #include <GameEngineCore/ResourcesManager.h>
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEnginePlatform/GameEngineInput.h>
+#include "Player.h"
 
 UI_Inventory::UI_Inventory()
 {
@@ -45,6 +46,7 @@ void UI_Inventory::Start()
 	{
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_OUTFIT_REINFORCED.bmp"));
 	}
+
 
 
 	
@@ -104,7 +106,17 @@ void UI_Inventory::Update(float _Delta)
 			OutFitRenderer->On();
 			DescriptRenderer->On();
 
-			DescriptRenderer->SetTexture("UI_OUTFIT_BASIC.bmp");
+
+			if (true == Player::MainPlayer->IsOutfitReinforced())
+			{
+				DescriptRenderer->SetTexture("UI_OUTFIT_REINFORCED.bmp");
+			}
+			
+			else
+			{
+				DescriptRenderer->SetTexture("UI_OUTFIT_BASIC.bmp");
+			}
+
 		}
 
 	}

@@ -16,7 +16,9 @@ public:
 private:
 	GameEngineRenderer* MainRenderer = nullptr;
 	GameEngineCollision* BodyCollision = nullptr;
+
 	UI_KeyboardF* m_InteractUI = nullptr;
+
 
 	void Start() override;
 	void Update(float _Delta) override;

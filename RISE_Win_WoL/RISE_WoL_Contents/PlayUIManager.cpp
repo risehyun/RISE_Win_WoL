@@ -15,7 +15,9 @@
 
 #include <GameEngineCore/ResourcesManager.h>
 #include "Player.h"
+
 #include "UI_MiniBossNameBar.h"
+#include "UI_Dialog.h"
 
 PlayUIManager* PlayUIManager::UI = nullptr;
 
@@ -99,6 +101,15 @@ void PlayUIManager::Start()
 
 	NewInven->OutFitRenderer->SetOrder(11);
 	NewInven->DescriptRenderer->SetOrder(11);
+
+
+	// 대화상자
+	NewDialog = GetLevel()->CreateActor<UI_Dialog>();
+	NewDialog->GetMainRenderer()->SetRenderPos({ 620, 660 });
+	NewDialog->GetMainRenderer()->SetOrder(10);
+//	NewDialog->GetMainRenderer()->Off();
+
+
 
 }
 

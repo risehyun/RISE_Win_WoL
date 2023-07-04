@@ -53,6 +53,12 @@ public:
 	void SetTotalGold(int _GoldCount);
 
 
+	void SetMaxHp(int _Hp)
+	{
+		m_iMaxHp = _Hp;
+	}
+
+
 	void SetCurHp(int _Hp)
 	{
 		m_iCurHp = _Hp;
@@ -180,6 +186,19 @@ public:
 	float fWhirlingTornado_CurrentCooldown = 0.0f;
 	float fSnowflakeChakrams_CurrentCooldown = 0.0f;
 
+
+
+
+	void SetOutfitReinforced()
+	{
+		OutfitReinforced = true;
+	}
+
+	bool IsOutfitReinforced()
+	{
+		return OutfitReinforced;
+	}
+
 protected:
 	void StateUpdate(float _Delta);
 
@@ -222,6 +241,8 @@ protected:
 	void DirCheck();
 	void ChangeAnimationState(const std::string& _StateName);
 
+
+
 private:
 
 	bool IsInvincible = false;
@@ -237,6 +258,8 @@ private:
 
 	void SetInitStat() override;
 	void OnDamaged(int _iAttackPower, float4 _AttackPos);
+
+	bool OutfitReinforced = false;
 
 	// Stat
 	float	m_fDashSpeed = 0.0f;

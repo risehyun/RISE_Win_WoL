@@ -7,6 +7,7 @@
 #include "UI_BossNameBar.h"
 
 #include "UI_Inventory.h"
+#include "UI_Dialog.h"
 
 class PlayUIManager : public GameEngineActor
 {
@@ -31,6 +32,8 @@ public:
 
 
 	UI_Inventory* NewInven = nullptr;
+
+	UI_Dialog* NewDialog = nullptr;
 
 protected:
 	void Start() override;
