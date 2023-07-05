@@ -19,6 +19,8 @@
 
 #include "PlayUIManager.h"
 
+#include "ITEM_Gold.h"
+
 #include "Player.h"
 
 NPC_Collector::NPC_Collector()
@@ -47,7 +49,7 @@ void NPC_Collector::Start()
 	MainRenderer->SetRenderScale({ 150, 150 });
 
 	BodyCollision = CreateCollision(CollisionOrder::Map);
-	BodyCollision->SetCollisionScale({ 100, 100 });
+	BodyCollision->SetCollisionScale({ 200, 200 });
 	BodyCollision->SetCollisionType(CollisionType::CirCle);
 
 	// 상호작용 UI 설정
@@ -80,13 +82,13 @@ void NPC_Collector::Update(float _Delta)
 		, [](GameEngineCollision* _this, GameEngineCollision* _Other)
 		{
 
+			GameEngineActor* thisActor = _this->GetActor();
+			NPC_Collector* ActorPtr = dynamic_cast<NPC_Collector*>(thisActor);
+
 			if (true == GameEngineInput::IsDown('F'))
 			{
 				PlayUIManager::UI->NewDialog->GetMainRenderer()->On();
 				PlayUIManager::UI->NewDialog->GetMainRenderer()->SetTexture("NPC_COLLECTOR_INDEX.bmp");
-
-
-
 			}
 
 			if (true == GameEngineInput::IsDown(VK_RETURN))
@@ -94,6 +96,18 @@ void NPC_Collector::Update(float _Delta)
 				PlayUIManager::UI->NewDialog->GetMainRenderer()->Off();
 			}
 
+			if (true == GameEngineInput::IsDown(VK_SHIFT) && true == Player::MainPlayer->HasAnalyticalMonocle())
+			{
+				// 아이템 생성 + 돈 생성
+
+				for (size_t i = 0; i < 5; i++)
+				{
+					ITEM_Gold* NewGold = ActorPtr->GetLevel()->CreateActor<ITEM_Gold>();
+					NewGold->SetPos({ ActorPtr->GetPos().X, ActorPtr->GetPos().Y - 100 });
+				}
+
+				Player::MainPlayer->UnSetAnalyticalMonocle();
+			}
 
 		}
 

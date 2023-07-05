@@ -5,6 +5,7 @@
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEnginePlatform/GameEngineInput.h>
+#include "Player.h"
 
 void ITEM_AnalyticalMonocle::Start()
 {
@@ -74,6 +75,8 @@ void ITEM_AnalyticalMonocle::Update(float _Delta)
 		{
 			m_InteractUI->GetMainRenderer()->Off();
 			DescriptRenerer->Off();
+
+			Player::MainPlayer->SetHasAnalyticalMonocle();
 
 			Death();
 		}

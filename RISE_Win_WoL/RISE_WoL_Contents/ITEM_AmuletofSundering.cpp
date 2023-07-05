@@ -6,6 +6,9 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 
+#include "Player.h"
+
+
 void ITEM_AmuletofSundering::Start()
 {
 	// 아이템 텍스처 로딩
@@ -84,6 +87,8 @@ void ITEM_AmuletofSundering::Update(float _Delta)
 		{
 			m_InteractUI->GetMainRenderer()->Off();
 			DescriptRenerer->Off();
+
+			Player::MainPlayer->SetHasAmuletofSundering();
 
 			Death();
 		}

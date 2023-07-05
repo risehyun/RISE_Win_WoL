@@ -216,6 +216,21 @@ public:
 		OutfitReinforced = true;
 	}
 
+	void SetHasAmuletofSundering()
+	{
+		IsHasAmuletofSundering = true;
+	}
+
+	void SetHasAnalyticalMonocle()
+	{
+		IsHasAnalyticalMonocle = true;
+	}
+
+	void UnSetAnalyticalMonocle()
+	{
+		IsHasAnalyticalMonocle = false;
+	}
+
 	bool IsOutfitReinforced()
 	{
 		return OutfitReinforced;
@@ -231,6 +246,18 @@ public:
 	{
 		return IsHasSnowflakeChakrams;
 	}
+
+	bool HasAmuletofSundering() const
+	{
+		return IsHasAmuletofSundering;
+	}
+
+	bool HasAnalyticalMonocle() const
+	{
+		return IsHasAnalyticalMonocle;
+	}
+
+
 
 protected:
 	void StateUpdate(float _Delta);
@@ -279,10 +306,12 @@ protected:
 
 
 private:
-
 	bool IsInvincible = false;
 	bool IsHasEarthenAegis = false;
 	bool IsHasSnowflakeChakrams = false;
+
+	bool IsHasAmuletofSundering = false;
+	bool IsHasAnalyticalMonocle = false;
 
 	GameEngineSoundPlayer EffectPlayer;
 

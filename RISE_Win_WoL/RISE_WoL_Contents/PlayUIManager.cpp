@@ -114,8 +114,15 @@ void PlayUIManager::Start()
 	NewInven->Relic_Index0->SetOrder(11);
 	NewInven->Relic_Index1->SetOrder(11);
 
+	NewInven->Relic_Index0->Off();
+	NewInven->Relic_Index1->Off();
+
+
 	NewInven->Relic_Frame0->SetOrder(12);
 	NewInven->Relic_Frame1->SetOrder(12);
+
+	NewInven->Relic_Frame0->Off();
+	NewInven->Relic_Frame1->Off();
 
 
 	NewInven->OutFitRenderer->SetOrder(11);
@@ -149,6 +156,14 @@ void PlayUIManager::Update(float _Delta)
 			NewInven->Index2->Off();
 			NewInven->Index3->Off();
 
+			NewInven->Relic_Frame0->Off();
+			NewInven->Relic_Index0->Off();
+
+			NewInven->Relic_Frame1->Off();
+			NewInven->Relic_Index1->Off();
+
+			NewInven->Relic_Frame0->SetTexture("UI_Unselect.bmp");
+			NewInven->Relic_Frame1->SetTexture("UI_Unselect.bmp");
 		}
 
 		else

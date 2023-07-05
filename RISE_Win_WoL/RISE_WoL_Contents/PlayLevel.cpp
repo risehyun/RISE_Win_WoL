@@ -112,9 +112,6 @@ void PlayLevel::Start()
 	NPC_Outfit* NewOutfit = CreateActor<NPC_Outfit>();
 	NewOutfit->SetPos({ 1850, 700 });
 
-
-
-
 }
 
 void PlayLevel::Update(float _Delta)

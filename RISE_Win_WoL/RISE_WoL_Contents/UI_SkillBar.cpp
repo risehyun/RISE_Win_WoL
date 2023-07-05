@@ -111,9 +111,6 @@ void UI_SkillBar::Start()
 
 
 
-
-
-
 	Cooldown_Text = CreateUIRenderer();
 	Cooldown_Text->SetRenderScale({ 30, 30 });
 	Cooldown_Text->SetRenderPos({ 170, 736 });
@@ -140,7 +137,6 @@ void UI_SkillBar::Start()
 	Cooldown_Text_SnowflakeChakrams->SetRenderPos({ 256, 736 });
 	Cooldown_Text_SnowflakeChakrams->SetOrder(4);
 	Cooldown_Text_SnowflakeChakrams->SetText("0", 16, "¿¹½ºÃ¼");
-
 
 }
 
