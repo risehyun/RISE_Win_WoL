@@ -169,6 +169,7 @@
     <ClInclude Include="ARCANA_EarthenAegis.h" />
     <ClInclude Include="ARCANA_SnowflakeChakrams.h" />
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="Background_Stage1.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="BossLevel.h" />
     <ClInclude Include="BossSpawner.h" />
@@ -241,6 +242,7 @@
     <ClCompile Include="ARCANA_EarthenAegis.cpp" />
     <ClCompile Include="ARCANA_SnowflakeChakrams.cpp" />
     <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="Background_Stage1.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossLevel.cpp" />
     <ClCompile Include="BossSpawner.cpp" />

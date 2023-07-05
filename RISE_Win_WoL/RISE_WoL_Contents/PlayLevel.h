@@ -5,6 +5,7 @@
 #include "Effect_CastingCircle.h"
 #include "PROP_TreasureChestMiniBoss.h"
 #include "PROP_Teleport.h"
+#include <GameEngineCore/GameEngineRenderer.h>
 
 
 class Player;
@@ -30,7 +31,9 @@ private:
 	void Release() override;
 
 	class BackGround* BackGroundPtr;
-//	class Player* LevelPlayer = nullptr;
+
+	class Player* LevelPlayer = nullptr;
+
 
 	GameEngineSoundPlayer BGMPlayer;
 

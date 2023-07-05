@@ -40,6 +40,8 @@
 #include "PROP_TreasureChestMiniBoss.h"
 #include "PROP_Teleport.h"
 
+#include "Background_Stage1.h"
+
 PlayLevel::PlayLevel()
 {
 }
@@ -79,8 +81,11 @@ void PlayLevel::Start()
 
 	BackGroundPtr->Init("stage1.bmp", "stage1_Col.bmp");
 
-	Player::MainPlayer = CreateActor<Player>();
+	Background_Stage1* NewBack = CreateActor<Background_Stage1>();
+	NewBack->SetOrder(10);
 
+	Player::MainPlayer = CreateActor<Player>();
+	Player::MainPlayer->MainRenderer->SetOrder(5);
 
 
 

@@ -271,6 +271,7 @@
     <ClCompile Include="UI_Dialog.cpp">
       <Filter>03.UI</Filter>
     </ClCompile>
+    <ClCompile Include="Background_Stage1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -468,5 +469,6 @@
     <ClInclude Include="UI_Dialog.h">
       <Filter>03.UI</Filter>
     </ClInclude>
+    <ClInclude Include="Background_Stage1.h" />
   </ItemGroup>
 </Project>
