@@ -107,11 +107,21 @@ public:
 		return fWhirlingTornado_CurrentCooldown;
 	}
 
-
-	bool IsSkill_EarthenAegis_Ready()
+	float GetCoolTime_EarthenAegis()
 	{
-		return fEarthenAegis_CurrentCooldown <= 0;
+		return fEarthenAegis_CurrentCooldown;
 	}
+
+	float GetCoolTime_SnowflakeChakrams()
+	{
+		return fSnowflakeChakrams_CurrentCooldown;
+	}
+
+
+
+
+
+
 
 	bool IsSkill_ExplodingFireball_Ready()
 	{
@@ -121,6 +131,11 @@ public:
 	bool IsSkill_WhirlingTornado_Ready()
 	{
 		return fWhirlingTornado_CurrentCooldown <= 0;
+	}
+
+	bool IsSkill_EarthenAegis_Ready()
+	{
+		return fEarthenAegis_CurrentCooldown <= 0;
 	}
 
 	bool IsSkill_SnowflakeChakrams_Ready()

@@ -15,10 +15,20 @@ public:
 	GameEngineRenderer* MainRenderer = nullptr;
 	GameEngineRenderer* GetMainRenderer() const;
 
+	GameEngineRenderer* ICON3 = nullptr;
+	GameEngineRenderer* ICON4 = nullptr;
+
+
+
+
 
 	GameEngineRenderer* Cooldown_Panel = nullptr;
 
 	GameEngineRenderer* Cooldown_Panel_WhirlingTornado = nullptr;
+
+	GameEngineRenderer* Cooldown_Panel_EarthenAegis = nullptr;
+
+	GameEngineRenderer* Cooldown_Panel_SnowflakeChakrams = nullptr;
 
 
 
@@ -26,9 +36,15 @@ public:
 
 	GameEngineRenderer* Cooldown_Text_WhirlingTornado = nullptr;
 
-	int CoolTime_ExplodingFireball = 0;
+	GameEngineRenderer* Cooldown_Text_EarthenAegis = nullptr;
 
+	GameEngineRenderer* Cooldown_Text_SnowflakeChakrams = nullptr;
+
+
+	int CoolTime_ExplodingFireball = 0;
 	int CoolTime_WhirlingTornado = 0;
+	int CoolTime_EarthenAegis = 0;
+	int CoolTime_SnowflakeChakrams = 0;
 
 
 protected:
