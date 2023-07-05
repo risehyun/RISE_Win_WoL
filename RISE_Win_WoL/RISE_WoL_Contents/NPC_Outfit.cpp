@@ -54,92 +54,106 @@ void NPC_Outfit::Start()
 
 void NPC_Outfit::Update(float _Delta)
 {
-	static int DialogIndex = 0;
 
 
-	// 캐릭터와 충돌 상태인 경우 F 키를 눌러서 대화 가능
-	std::vector<GameEngineCollision*> _Col;
-	if (true == BodyCollision->Collision(CollisionOrder::PlayerBody, _Col
-		, CollisionType::CirCle
-		, CollisionType::CirCle
-	))
-	{
-		m_InteractUI->GetMainRenderer()->On();
-
-		if (true == GameEngineInput::IsDown('F') && true == isAvailable)
+	BodyCollision->CollisionCallBack
+	(
+		CollisionOrder::PlayerBody
+		, CollisionType::CirCle // _this의 충돌체 타입
+		, CollisionType::CirCle // _Other의 충돌체 타입
+		, [](GameEngineCollision* _this, GameEngineCollision* _Other)
 		{
-			PlayUIManager::UI->NewDialog->GetMainRenderer()->SetTexture("NPC_OUTFIT_INDEX0.bmp");
-			PlayUIManager::UI->NewDialog->GetMainRenderer()->On();
+			GameEngineActor* thisActor = _this->GetActor();
+			NPC_Outfit* ActorPtr = dynamic_cast<NPC_Outfit*>(thisActor);
+
+			ActorPtr->m_InteractUI->GetMainRenderer()->On();
+
+
+
+
 		}
 
-
-		if (true == GameEngineInput::IsDown(VK_RETURN) && DialogIndex != -2)
+		, [](GameEngineCollision* _this, GameEngineCollision* _Other)
 		{
-			DialogIndex++;
-		}
+			GameEngineActor* thisActor = _this->GetActor();
+			NPC_Outfit* ActorPtr = dynamic_cast<NPC_Outfit*>(thisActor);
 
-		if (DialogIndex == -2)
-		{
-			PlayUIManager::UI->NewDialog->GetMainRenderer()->Off();
-		}
 
-		if (DialogIndex == 1)
-		{
-			PlayUIManager::UI->NewDialog->GetMainRenderer()->SetTexture("NPC_OUTFIT_INDEX1.bmp");
-		}
+			if (true == GameEngineInput::IsDown('F') && true == ActorPtr->isAvailable)
+			{
+				PlayUIManager::UI->NewDialog->GetMainRenderer()->SetTexture("NPC_OUTFIT_INDEX0.bmp");
+				PlayUIManager::UI->NewDialog->GetMainRenderer()->On();
+			}
 
-		if (DialogIndex == 2)
-		{
-			PlayUIManager::UI->NewDialog->GetMainRenderer()->SetTexture("NPC_OUTFIT_INDEX2.bmp");
-		}
+			if (true == GameEngineInput::IsDown(VK_RETURN) && ActorPtr->DialogIndex != -2)
+			{
+				ActorPtr->DialogIndex++;
+			}
 
-		if (DialogIndex == 3)
-		{
-
-			if (Player::MainPlayer->GetTotalGold() < 500)
+			if (ActorPtr->DialogIndex == -2)
 			{
 				PlayUIManager::UI->NewDialog->GetMainRenderer()->Off();
-				return;
 			}
 
-			else
+			if (ActorPtr->DialogIndex == 1)
 			{
-				Player::MainPlayer->SetTotalGold(-500);
+				PlayUIManager::UI->NewDialog->GetMainRenderer()->SetTexture("NPC_OUTFIT_INDEX1.bmp");
+			}
 
-				if (Player::MainPlayer->GetCurHp() == Player::MainPlayer->GetMaxHp())
+			if (ActorPtr->DialogIndex == 2)
+			{
+				PlayUIManager::UI->NewDialog->GetMainRenderer()->SetTexture("NPC_OUTFIT_INDEX2.bmp");
+
+				if (true == GameEngineInput::IsDown(VK_ESCAPE))
 				{
-					Player::MainPlayer->SetCurHp(Player::MainPlayer->GetMaxHp() + (Player::MainPlayer->GetMaxHp() * 5 / 100));
+					PlayUIManager::UI->NewDialog->GetMainRenderer()->Off();
+					ActorPtr->DialogIndex = 0;
+
+				}
+			}
+
+			if (ActorPtr->DialogIndex == 3)
+			{
+
+
+				if (Player::MainPlayer->GetTotalGold() < 500)
+				{
+					PlayUIManager::UI->NewDialog->GetMainRenderer()->Off();
+					return;
 				}
 
-				Player::MainPlayer->SetMaxHp(Player::MainPlayer->GetMaxHp() + (Player::MainPlayer->GetMaxHp() * 5 / 100));
+				else
+				{
+					Player::MainPlayer->SetTotalGold(-500);
 
-				PlayUIManager::UI->NewDialog->GetMainRenderer()->SetTexture("NPC_OUTFIT_INDEX3.bmp");
+					if (Player::MainPlayer->GetCurHp() == Player::MainPlayer->GetMaxHp())
+					{
+						Player::MainPlayer->SetCurHp(Player::MainPlayer->GetMaxHp() + (Player::MainPlayer->GetMaxHp() * 5 / 100));
+					}
+
+					Player::MainPlayer->SetMaxHp(Player::MainPlayer->GetMaxHp() + (Player::MainPlayer->GetMaxHp() * 5 / 100));
+
+					PlayUIManager::UI->NewDialog->GetMainRenderer()->SetTexture("NPC_OUTFIT_INDEX3.bmp");
 
 
-				DialogIndex = -3;
-				isAvailable = false;
-				Player::MainPlayer->SetOutfitReinforced();
+					ActorPtr->DialogIndex = -3;
+					ActorPtr->isAvailable = false;
+					Player::MainPlayer->SetOutfitReinforced();
 
+				}
 			}
+
 		}
 
-		if (true == GameEngineInput::IsDown(VK_ESCAPE))
+		, [](GameEngineCollision* _this, GameEngineCollision* _Other)
 		{
-			DialogIndex = 0;
+			GameEngineActor* thisActor = _this->GetActor();
+			NPC_Outfit* ActorPtr = dynamic_cast<NPC_Outfit*>(thisActor);
+
+			ActorPtr->m_InteractUI->GetMainRenderer()->Off();
+			PlayUIManager::UI->NewDialog->GetMainRenderer()->Off();
+
+			ActorPtr->DialogIndex = 0;
 		}
-
-		
-
-	}
-
-	else
-	{
-		m_InteractUI->GetMainRenderer()->Off();
-		PlayUIManager::UI->NewDialog->GetMainRenderer()->Off();
-		PlayUIManager::UI->NewDialog->GetMainRenderer()->SetTexture("NPC_OUTFIT_INDEX0.bmp");
-
-		DialogIndex = 0;
-	}
-
-
+		);
 }

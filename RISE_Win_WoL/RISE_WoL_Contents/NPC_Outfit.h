@@ -22,6 +22,7 @@ public:
 		return isAvailable;
 	}
 
+	int DialogIndex = 0;
 
 
 protected:
