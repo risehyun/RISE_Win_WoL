@@ -77,7 +77,7 @@ void PlayLevel::Start()
 
 	BackGroundPtr = CreateActor<BackGround>();
 
-	BackGroundPtr->Init("stage1.Bmp", "stage1_Col.bmp");
+	BackGroundPtr->Init("stage1.bmp", "stage1_Col.bmp");
 
 	Player::MainPlayer = CreateActor<Player>();
 
