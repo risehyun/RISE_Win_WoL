@@ -6,6 +6,8 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 
+#include "Player.h"
+
 void ARCANA_SnowflakeChakrams::Start()
 {
 	// 아이템 텍스처 로딩
@@ -79,10 +81,17 @@ void ARCANA_SnowflakeChakrams::Update(float _Delta)
 
 		if (true == GameEngineInput::IsDown('F'))
 		{
-			m_InteractUI->GetMainRenderer()->Off();
-			DescriptRenerer->Off();
+			if (Player::MainPlayer->GetTotalGold() >= 150)
+			{
+				Player::MainPlayer->SetTotalGold(-150);
 
-			Death();
+				Player::MainPlayer->SetHasSnowflakeChakrams();
+
+				m_InteractUI->GetMainRenderer()->Off();
+				DescriptRenerer->Off();
+
+				Death();
+			}
 		}
 	}
 

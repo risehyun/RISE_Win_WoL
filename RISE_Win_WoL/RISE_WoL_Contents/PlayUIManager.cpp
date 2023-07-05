@@ -94,10 +94,20 @@ void PlayUIManager::Start()
 	NewInven->GetMainRenderer()->SetRenderPos({ 300, 400 });
 	NewInven->GetMainRenderer()->SetRenderScale({ 400, 700 });
 	NewInven->GetMainRenderer()->SetOrder(10);
+
 	NewInven->GetMainRenderer()->Off();
+
+	NewInven->Index0->SetOrder(11);
+	NewInven->Index0->Off();
 
 	NewInven->Index1->SetOrder(11);
 	NewInven->Index1->Off();
+
+	NewInven->Index2->SetOrder(11);
+	NewInven->Index2->Off();
+
+	NewInven->Index3->SetOrder(11);
+	NewInven->Index3->Off();
 
 	NewInven->OutFitRenderer->SetOrder(11);
 	NewInven->DescriptRenderer->SetOrder(11);
@@ -107,7 +117,6 @@ void PlayUIManager::Start()
 	NewDialog = GetLevel()->CreateActor<UI_Dialog>();
 	NewDialog->GetMainRenderer()->SetRenderPos({ 620, 660 });
 	NewDialog->GetMainRenderer()->SetOrder(10);
-//	NewDialog->GetMainRenderer()->Off();
 
 
 
@@ -122,16 +131,21 @@ void PlayUIManager::Update(float _Delta)
 	if (true == GameEngineInput::IsDown(VK_TAB))
 	{
 
-		// 1. 인벤토리 UI On
+		// 1. 인벤토리 UI On/Off
 		if (true == NewInven->GetMainRenderer()->GetUpdateValue())
 		{
 			NewInven->GetMainRenderer()->Off();
+			NewInven->Index0->Off();
 			NewInven->Index1->Off();
+			NewInven->Index2->Off();
+			NewInven->Index3->Off();
+
 		}
 
 		else
 		{
 			NewInven->GetMainRenderer()->On();
+			NewInven->Index0->On();
 			NewInven->Index1->On();
 		}
 	}

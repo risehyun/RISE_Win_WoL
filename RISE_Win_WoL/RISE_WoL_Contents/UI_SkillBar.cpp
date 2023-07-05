@@ -39,6 +39,10 @@ void UI_SkillBar::Start()
 
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("ICON_WhirlingTornado.bmp"));
 
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("ICON_EarthenAegis.bmp"));
+
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("ICON_SnowflakeChakrams.bmp"));
+
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_CooldownPanel.bmp"));
 
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_CooldownPanel_Index1.bmp"));
@@ -116,7 +120,9 @@ void UI_SkillBar::Update(float _Delta)
 
 
 
-	// ExplodingFireball
+
+#pragma region ExplodingFireball
+
 	if (CoolTime_ExplodingFireball == 0)
 	{
 		Cooldown_Text->Off();
@@ -153,10 +159,10 @@ void UI_SkillBar::Update(float _Delta)
 
 	Cooldown_Text->SetText(std::to_string(CoolTime_ExplodingFireball), 16, "예스체");
 
+#pragma endregion
 
+#pragma region WhirlingTornado
 
-
-	// WhirlingTornado
 	if (CoolTime_WhirlingTornado == 0)
 	{
 		Cooldown_Text_WhirlingTornado->Off();
@@ -207,4 +213,18 @@ void UI_SkillBar::Update(float _Delta)
 	}
 
 	Cooldown_Text_WhirlingTornado->SetText(std::to_string(CoolTime_WhirlingTornado), 16, "예스체");
+
+#pragma endregion
+	
+#pragma region EarthenAegis
+
+//if (true == Player::MainPlayer->HasEarthenAegis())
+//{
+//	NewInven->Index2->On();
+//}
+
+
+#pragma endregion
+
+
 }

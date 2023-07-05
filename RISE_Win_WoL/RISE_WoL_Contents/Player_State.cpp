@@ -200,46 +200,6 @@ void Player::RunUpdate(float _Delta)
 		}
 	}
 
-	if (true == GameEngineInput::IsDown(VK_LBUTTON))
-	{
-		ChangeState(PlayerState::Attack);
-
-		SKILL_PlayerNormalAttack* NewAttack = GetLevel()->CreateActor<SKILL_PlayerNormalAttack>();
-
-		DirCheck();
-
-		if (Dir == PlayerDir::Left)
-		{
-			NewAttack->SetDir(float4::LEFT);
-			NewAttack->SetPos(GetPos() + float4{ -100.0f, 0.0f, 0.0f, 0.0f });
-			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_LEFT");
-		}
-
-		if (Dir == PlayerDir::Right)
-		{
-			NewAttack->SetDir(float4::RIGHT);
-			NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
-			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_RIGHT");
-		}
-
-		if (Dir == PlayerDir::Up)
-		{
-			NewAttack->SetDir(float4::UP);
-			NewAttack->SetPos(GetPos() + float4{ 0.0f, -100.0f, 0.0f, 0.0f });
-			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_UP");
-		}
-
-
-		if (Dir == PlayerDir::Down)
-		{
-			NewAttack->SetDir(float4::DOWN);
-			NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
-			NewAttack->Renderer->ChangeAnimation("ATTACK_NORMAL_DOWN");
-		}
-
-		return;
-	}
-
 	if (true == GameEngineInput::IsUp(VK_SPACE))
 	{
 		ChangeState(PlayerState::Dash);

@@ -186,8 +186,15 @@ public:
 	float fWhirlingTornado_CurrentCooldown = 0.0f;
 	float fSnowflakeChakrams_CurrentCooldown = 0.0f;
 
+	void SetHasEarthenAegis()
+	{
+		IsHasEarthenAegis = true;
+	}
 
-
+	void SetHasSnowflakeChakrams()
+	{
+		IsHasSnowflakeChakrams = true;
+	}
 
 	void SetOutfitReinforced()
 	{
@@ -197,6 +204,17 @@ public:
 	bool IsOutfitReinforced()
 	{
 		return OutfitReinforced;
+	}
+
+
+	bool HasEarthenAegis() const
+	{
+		return IsHasEarthenAegis;
+	}
+
+	bool HasSnowflakeChakrams() const
+	{
+		return IsHasSnowflakeChakrams;
 	}
 
 protected:
@@ -243,10 +261,13 @@ protected:
 
 
 
+
+
 private:
 
 	bool IsInvincible = false;
-
+	bool IsHasEarthenAegis = false;
+	bool IsHasSnowflakeChakrams = false;
 
 	GameEngineSoundPlayer EffectPlayer;
 

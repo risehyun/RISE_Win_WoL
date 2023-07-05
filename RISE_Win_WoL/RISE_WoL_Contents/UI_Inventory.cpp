@@ -47,9 +47,6 @@ void UI_Inventory::Start()
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_OUTFIT_REINFORCED.bmp"));
 	}
 
-
-
-	
 	MainRenderer = CreateUIRenderer();
 	MainRenderer->SetRenderScale({ 576, 865 });
 	MainRenderer->SetTexture("UI_INVEN_BASE.bmp");
@@ -63,22 +60,32 @@ void UI_Inventory::Start()
 	OutFitRenderer->SetOrder(2);
 	OutFitRenderer->Off();
 
+	Index0 = CreateUIRenderer();
+	Index0->SetRenderScale({ 30, 30 });
+	Index0->SetRenderPos({ 272, 224 });
+	Index0->SetTexture("ICON_WhirlingTornado.bmp");
+	Index0->SetOrder(2);
 
-	// E 磊府 KEEP
-	// Index1->SetRenderPos({ 380, 224 });
-
-
-	// Q磊府
+	// Q 磊府
 	Index1 = CreateUIRenderer();
 	Index1->SetRenderScale({ 30, 30 });
 	Index1->SetRenderPos({ 325, 224 });
 	Index1->SetTexture("ICON_ExplodingFireball.bmp");
 	Index1->SetOrder(2);
 
+	// E 磊府 
+	Index2 = CreateUIRenderer();
+	Index2->SetRenderScale({ 30, 30 });
+	Index2->SetRenderPos({ 380, 224 });
+	Index2->SetTexture("ICON_EarthenAegis.bmp");
+	Index2->SetOrder(2);
 
-
-
-
+	// R 磊府
+	Index3 = CreateUIRenderer();
+	Index3->SetRenderScale({ 30, 30 });
+	Index3->SetRenderPos({ 435, 224 });
+	Index3->SetTexture("ICON_SnowflakeChakrams.bmp");
+	Index3->SetOrder(2);
 
 
 	DescriptRenderer = CreateUIRenderer();
@@ -94,10 +101,15 @@ void UI_Inventory::Update(float _Delta)
 
 	if (false == MainRenderer->GetUpdateValue())
 	{
+		IsOpened = false;
 		OutFitRenderer->Off();
 		DescriptRenderer->Off();
 	}
 
+	else
+	{
+		IsOpened = true;
+	}
 
 	if (true == GameEngineInput::IsDown(VK_UP))
 	{
@@ -106,20 +118,28 @@ void UI_Inventory::Update(float _Delta)
 			OutFitRenderer->On();
 			DescriptRenderer->On();
 
-
 			if (true == Player::MainPlayer->IsOutfitReinforced())
 			{
 				DescriptRenderer->SetTexture("UI_OUTFIT_REINFORCED.bmp");
 			}
-			
+
 			else
 			{
 				DescriptRenderer->SetTexture("UI_OUTFIT_BASIC.bmp");
 			}
 
 		}
-
 	}
 
+
+	if (true == Player::MainPlayer->HasEarthenAegis() && true == IsOpened )
+	{
+		Index2->On();
+	}
+
+	if (true == Player::MainPlayer->HasSnowflakeChakrams() && true == IsOpened)
+	{
+		Index3->On();
+	}
 
 }

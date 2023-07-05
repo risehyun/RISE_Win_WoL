@@ -35,6 +35,8 @@ public:
 
 	UI_Dialog* NewDialog = nullptr;
 
+
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;

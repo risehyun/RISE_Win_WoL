@@ -325,20 +325,22 @@ void Player::Update(float _Delta)
 
 	}
 
-	if (true == GameEngineInput::IsDown('Z'))
+	if (true == GameEngineInput::IsDown('E')
+		&& true == IsSkill_EarthenAegis_Ready()
+		&& true == IsHasEarthenAegis)
 	{
 
-		if (true == IsSkill_EarthenAegis_Ready())
-		{
-			ChangeState(PlayerState::Skill_EarthenAegis);
-			SKILL_EarthenAegis* NewAttack = GetLevel()->CreateActor<SKILL_EarthenAegis>();
-			NewAttack->SetPos(GetPos() + float4{ 0.0f, 0.0f, 0.0f, 0.0f });
-			fEarthenAegis_CurrentCooldown = fSkill_EarthenAegis_Cooldown;
-			return;
-		}
+		ChangeState(PlayerState::Skill_EarthenAegis);
+		SKILL_EarthenAegis* NewAttack = GetLevel()->CreateActor<SKILL_EarthenAegis>();
+		NewAttack->SetPos(GetPos() + float4{ 0.0f, 0.0f, 0.0f, 0.0f });
+		fEarthenAegis_CurrentCooldown = fSkill_EarthenAegis_Cooldown;
+		return;
+
 	}
 
-	if (true == GameEngineInput::IsDown('E') && true == IsSkill_SnowflakeChakrams_Ready())
+	if (true == GameEngineInput::IsDown('R') 
+		&& true == IsSkill_SnowflakeChakrams_Ready()
+		&& true == IsHasSnowflakeChakrams)
 	{
 
 		ChangeState(PlayerState::Skill_SnowflakeChakrams);
@@ -425,7 +427,7 @@ void Player::Update(float _Delta)
 
 			PlayerPtr->OnDamaged(Actor->GetAttackPower(), Actor->GetPos());
 
-//			PlayUIManager::UI->NewHpBar->GetMainRenderer()->AddRenderPos({ 0.1, 0 });
+			//			PlayUIManager::UI->NewHpBar->GetMainRenderer()->AddRenderPos({ 0.1, 0 });
 
 			if (PlayerPtr->m_iCurHp <= 0)
 			{

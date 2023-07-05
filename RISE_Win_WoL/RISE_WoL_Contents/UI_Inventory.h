@@ -21,12 +21,16 @@ public:
 
 	GameEngineRenderer* DescriptRenderer = nullptr;
 
+
+	GameEngineRenderer* Index0 = nullptr;
+
 	GameEngineRenderer* Index1 = nullptr;
 
-	
+	GameEngineRenderer* Index2 = nullptr;
 
+	GameEngineRenderer* Index3 = nullptr;
 
-
+	bool IsOpened = false;
 
 protected:
 

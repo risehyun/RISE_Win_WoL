@@ -6,6 +6,8 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 
+#include "Player.h"
+
 void ARCANA_EarthenAegis::Start()
 {
 	// 아이템 텍스처 로딩
@@ -22,7 +24,7 @@ void ARCANA_EarthenAegis::Start()
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("ARCANA_EarthenAegis.bmp"));
 	}
 
-	if (false == ResourcesManager::GetInst().IsLoadTexture("ITEM_Descript_VampiresEyeglasses.bmp"))
+	if (false == ResourcesManager::GetInst().IsLoadTexture("ARCANA_Descript_EarthenAegis.bmp"))
 	{
 
 		GameEnginePath FilePath;
@@ -79,10 +81,17 @@ void ARCANA_EarthenAegis::Update(float _Delta)
 
 		if (true == GameEngineInput::IsDown('F'))
 		{
-			m_InteractUI->GetMainRenderer()->Off();
-			DescriptRenerer->Off();
+			if (Player::MainPlayer->GetTotalGold() >= 150)
+			{
+				m_InteractUI->GetMainRenderer()->Off();
+				DescriptRenerer->Off();
 
-			Death();
+				Player::MainPlayer->SetHasEarthenAegis();
+				Player::MainPlayer->SetTotalGold(-150);
+
+				Death();
+			}
+
 		}
 	}
 
