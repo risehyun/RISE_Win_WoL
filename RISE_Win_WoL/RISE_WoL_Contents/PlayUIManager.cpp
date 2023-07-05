@@ -109,6 +109,15 @@ void PlayUIManager::Start()
 	NewInven->Index3->SetOrder(11);
 	NewInven->Index3->Off();
 
+
+
+	NewInven->Relic_Index0->SetOrder(11);
+	NewInven->Relic_Index1->SetOrder(11);
+
+	NewInven->Relic_Frame0->SetOrder(12);
+	NewInven->Relic_Frame1->SetOrder(12);
+
+
 	NewInven->OutFitRenderer->SetOrder(11);
 	NewInven->DescriptRenderer->SetOrder(11);
 

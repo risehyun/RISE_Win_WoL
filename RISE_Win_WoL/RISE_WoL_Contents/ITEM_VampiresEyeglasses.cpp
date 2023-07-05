@@ -81,10 +81,10 @@ void ITEM_VampiresEyeglasses::Update(float _Delta)
 
 		if (true == GameEngineInput::IsDown('F'))
 		{
-			m_InteractUI->GetMainRenderer()->Off();
-			DescriptRenerer->Off();
+			//m_InteractUI->GetMainRenderer()->Off();
+			//DescriptRenerer->Off();
 
-			Death();
+			//Death();
 		}
 	}
 

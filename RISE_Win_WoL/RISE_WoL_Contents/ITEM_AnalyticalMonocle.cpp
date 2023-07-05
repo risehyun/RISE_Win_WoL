@@ -8,36 +8,27 @@
 
 void ITEM_AnalyticalMonocle::Start()
 {
+
+	GameEnginePath FilePath;
+	FilePath.SetCurrentPath();
+	FilePath.MoveParentToExistsChild("ContentsResources");
+
+	GameEnginePath FolderPath = FilePath;
+
+	FilePath.MoveChild("ContentsResources\\Texture\\NPC\\ITEMSHOP");
+
 	// 아이템 텍스처 로딩
 	if (false == ResourcesManager::GetInst().IsLoadTexture("ITEM_AnalyticalMonocle.bmp"))
 	{
-
-		GameEnginePath FilePath;
-		FilePath.SetCurrentPath();
-		FilePath.MoveParentToExistsChild("ContentsResources");
-
-		GameEnginePath FolderPath = FilePath;
-
-		FilePath.MoveChild("ContentsResources\\Texture\\NPC\\ITEMSHOP");
-
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("ITEM_AnalyticalMonocle.bmp"));
-
 	}
 
 	if (false == ResourcesManager::GetInst().IsLoadTexture("ITEM_Descript_AnalyticalMonocle.bmp"))
 	{
-
-		GameEnginePath FilePath;
-		FilePath.SetCurrentPath();
-		FilePath.MoveParentToExistsChild("ContentsResources");
-
-		GameEnginePath FolderPath = FilePath;
-
-		FilePath.MoveChild("ContentsResources\\Texture\\NPC\\ITEMSHOP");
-
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("ITEM_Descript_AnalyticalMonocle.bmp"));
-
 	}
+
+
 
 	// 렌더러 생성과 로딩된 텍스처 지정
 	MainRenderer = CreateRenderer();

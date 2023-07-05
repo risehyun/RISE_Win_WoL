@@ -19,33 +19,79 @@ GameEngineRenderer* UI_Inventory::GetMainRenderer() const
 
 void UI_Inventory::Start()
 {
-	GameEnginePath FilePath;
-	FilePath.SetCurrentPath();
-	FilePath.MoveParentToExistsChild("ContentsResources");
-
-	GameEnginePath FolderPath = FilePath;
-
-	FilePath.MoveChild("ContentsResources\\Texture\\UI");
-
-	if (false == ResourcesManager::GetInst().IsLoadTexture("UI_INVEN_BASE.bmp"))
 	{
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_INVEN_BASE.bmp"));	
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+
+		GameEnginePath FolderPath = FilePath;
+
+		FilePath.MoveChild("ContentsResources\\Texture\\UI");
+
+		if (false == ResourcesManager::GetInst().IsLoadTexture("UI_INVEN_BASE.bmp"))
+		{
+			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_INVEN_BASE.bmp"));
+		}
+
+		if (false == ResourcesManager::GetInst().IsLoadTexture("UI_OUTFIT_SELECTED.bmp"))
+		{
+			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_OUTFIT_SELECTED.bmp"));
+		}
+
+		if (false == ResourcesManager::GetInst().IsLoadTexture("UI_OUTFIT_BASIC.bmp"))
+		{
+			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_OUTFIT_BASIC.bmp"));
+		}
+
+		if (false == ResourcesManager::GetInst().IsLoadTexture("UI_OUTFIT_REINFORCED.bmp"))
+		{
+			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_OUTFIT_REINFORCED.bmp"));
+		}
+
+		if (false == ResourcesManager::GetInst().IsLoadTexture("UI_Unselect.bmp"))
+		{
+			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_Unselect.bmp"));
+		}
+
+		if (false == ResourcesManager::GetInst().IsLoadTexture("UI_Select.bmp"))
+		{
+			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_Select.bmp"));
+		}
+
+		if (false == ResourcesManager::GetInst().IsLoadTexture("UI_Descript_AmuletofSundering.bmp"))
+		{
+			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_Descript_AmuletofSundering.bmp"));
+		}
+
+		
+			
 	}
 
-	if (false == ResourcesManager::GetInst().IsLoadTexture("UI_OUTFIT_SELECTED.bmp"))
 	{
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_OUTFIT_SELECTED.bmp"));
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+
+		GameEnginePath FolderPath = FilePath;
+
+		FilePath.MoveChild("ContentsResources\\Texture\\NPC\\ITEMSHOP");
+
+
+		if (false == ResourcesManager::GetInst().IsLoadTexture("ICON_AnalyticalMonocle.bmp"))
+		{
+			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("ICON_AnalyticalMonocle.bmp"));
+		}
+
+		if (false == ResourcesManager::GetInst().IsLoadTexture("ICON_AmuletofSundering.bmp"))
+		{
+			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("ICON_AmuletofSundering.bmp"));
+		}
+
+
+
 	}
 
-	if (false == ResourcesManager::GetInst().IsLoadTexture("UI_OUTFIT_BASIC.bmp"))
-	{
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_OUTFIT_BASIC.bmp"));
-	}
 
-	if (false == ResourcesManager::GetInst().IsLoadTexture("UI_OUTFIT_REINFORCED.bmp"))
-	{
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_OUTFIT_REINFORCED.bmp"));
-	}
 
 	MainRenderer = CreateUIRenderer();
 	MainRenderer->SetRenderScale({ 576, 865 });
@@ -88,6 +134,35 @@ void UI_Inventory::Start()
 	Index3->SetOrder(2);
 
 
+	Relic_Index0 = CreateUIRenderer();
+	Relic_Index0->SetRenderScale({ 30, 30 });
+	Relic_Index0->SetRenderPos({ 200, 375 });
+	Relic_Index0->SetTexture("ICON_AnalyticalMonocle.bmp");
+	Relic_Index0->SetOrder(2);
+
+
+	Relic_Index1 = CreateUIRenderer();
+	Relic_Index1->SetRenderScale({ 30, 30 });
+	Relic_Index1->SetRenderPos({ 160, 375 });
+	Relic_Index1->SetTexture("ICON_AmuletofSundering.bmp");
+	Relic_Index1->SetOrder(2);
+
+
+	Relic_Frame0 = CreateUIRenderer();
+	Relic_Frame0->SetRenderScale({ 30, 30 });
+	Relic_Frame0->SetRenderPos({ 160, 375 });
+	Relic_Frame0->SetTexture("UI_Unselect.bmp");
+	Relic_Frame0->SetOrder(2);
+
+	Relic_Frame1 = CreateUIRenderer();
+	Relic_Frame1->SetRenderScale({ 30, 30 });
+	Relic_Frame1->SetRenderPos({ 200, 375 });
+	Relic_Frame1->SetTexture("UI_Unselect.bmp");
+	Relic_Frame1->SetOrder(2);
+
+
+
+
 	DescriptRenderer = CreateUIRenderer();
 	DescriptRenderer->SetRenderScale({ 360, 220 });
 	DescriptRenderer->SetRenderPos({ 300, 624 });
@@ -111,10 +186,16 @@ void UI_Inventory::Update(float _Delta)
 		IsOpened = true;
 	}
 
+
+
+
+
+
 	if (true == GameEngineInput::IsDown(VK_UP))
 	{
 		if (false == OutFitRenderer->GetUpdateValue())
 		{
+			Relic_Frame0->SetTexture("UI_Unselect.bmp");
 			OutFitRenderer->On();
 			DescriptRenderer->On();
 
@@ -130,6 +211,17 @@ void UI_Inventory::Update(float _Delta)
 
 		}
 	}
+
+
+	if (true == GameEngineInput::IsDown(VK_DOWN))
+	{
+		OutFitRenderer->Off();
+		Relic_Frame0->SetTexture("UI_Select.bmp");
+
+		DescriptRenderer->On();
+		DescriptRenderer->SetTexture("UI_Descript_AmuletofSundering.bmp");
+	}
+
 
 
 	if (true == Player::MainPlayer->HasEarthenAegis() && true == IsOpened )

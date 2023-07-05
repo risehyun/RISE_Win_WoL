@@ -9,35 +9,25 @@
 void ITEM_GiantsHeart::Start()
 {
 	// 아이템 텍스처 로딩
+	GameEnginePath FilePath;
+	FilePath.SetCurrentPath();
+	FilePath.MoveParentToExistsChild("ContentsResources");
+
+	GameEnginePath FolderPath = FilePath;
+
+	FilePath.MoveChild("ContentsResources\\Texture\\NPC\\ITEMSHOP");
+
 	if (false == ResourcesManager::GetInst().IsLoadTexture("ITEM_GiantsHeart.bmp"))
 	{
-
-		GameEnginePath FilePath;
-		FilePath.SetCurrentPath();
-		FilePath.MoveParentToExistsChild("ContentsResources");
-
-		GameEnginePath FolderPath = FilePath;
-
-		FilePath.MoveChild("ContentsResources\\Texture\\NPC\\ITEMSHOP");
-
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("ITEM_GiantsHeart.bmp"));
-
 	}
 
 	if (false == ResourcesManager::GetInst().IsLoadTexture("ITEM_Descript_GiantsHeart.bmp"))
 	{
-
-		GameEnginePath FilePath;
-		FilePath.SetCurrentPath();
-		FilePath.MoveParentToExistsChild("ContentsResources");
-
-		GameEnginePath FolderPath = FilePath;
-
-		FilePath.MoveChild("ContentsResources\\Texture\\NPC\\ITEMSHOP");
-
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("ITEM_Descript_GiantsHeart.bmp"));
-
 	}
+
+	
 
 	// 렌더러 생성과 로딩된 텍스처 지정
 	MainRenderer = CreateRenderer();
@@ -81,10 +71,10 @@ void ITEM_GiantsHeart::Update(float _Delta)
 
 		if (true == GameEngineInput::IsDown('F'))
 		{
-			m_InteractUI->GetMainRenderer()->Off();
-			DescriptRenerer->Off();
+			//m_InteractUI->GetMainRenderer()->Off();
+			//DescriptRenerer->Off();
 
-			Death();
+			//Death();
 		}
 	}
 

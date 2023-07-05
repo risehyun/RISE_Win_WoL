@@ -30,6 +30,15 @@ public:
 
 	GameEngineRenderer* Index3 = nullptr;
 
+
+	GameEngineRenderer* Relic_Index0 = nullptr;
+
+	GameEngineRenderer* Relic_Index1 = nullptr;
+
+	GameEngineRenderer* Relic_Frame0 = nullptr;
+
+	GameEngineRenderer* Relic_Frame1 = nullptr;
+
 	bool IsOpened = false;
 
 protected:
