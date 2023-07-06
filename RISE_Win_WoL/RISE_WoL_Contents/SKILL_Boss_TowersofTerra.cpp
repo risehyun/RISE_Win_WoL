@@ -39,7 +39,7 @@ void SKILL_Boss_TowersofTerra::Start()
 
 	SkillRenderer->SetOrder(0);
 
-	m_iAttackPower = 10;
+	m_iAttackPower = 50;
 
 	SkillRenderer->ChangeAnimation("BOSS_TowersofTerra_INDEX_ALL");
 }

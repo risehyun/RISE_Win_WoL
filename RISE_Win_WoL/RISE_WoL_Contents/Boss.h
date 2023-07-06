@@ -5,6 +5,8 @@
 #include "SKILL_Boss_AncientEarthDrill.h"
 #include "SKILL_Boss_TowersofTerra.h"
 
+#include "EFFECT_RedCastingCircle.h"
+
 class Boss : public Monster
 {
 public:
@@ -20,7 +22,15 @@ public:
 	GameEngineCollision* BodyCollision = nullptr;
 	GameEngineCollision* AttackRangeCollision = nullptr;
 
-	GameEngineRenderer* TestRenderer = nullptr;
+
+
+	EFFECT_RedCastingCircle* CircleEffect = nullptr;
+
+
+	GameEngineCollision* HitGroundCollision = nullptr;
+
+
+
 	GameEngineRenderer* MainRenderer = nullptr;
 
 	std::vector<SKILL_Boss_TowersofTerra*> Towers;
@@ -36,7 +46,7 @@ public:
 	}
 
 
-	float cooldown = 2.0f;
+	float cooldown = 4.0f;
 	float currentCooldown = 0.0f;
 
 	void UpdateCooldown(float deltaTime)

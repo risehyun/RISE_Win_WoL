@@ -162,6 +162,12 @@ void Boss::Start()
 	BodyCollision->SetCollisionScale({ 100, 100 });
 	BodyCollision->SetCollisionType(CollisionType::CirCle);
 
+	HitGroundCollision = CreateCollision(CollisionOrder::MonsterBody);
+	HitGroundCollision->SetCollisionScale({ 100, 100 });
+	HitGroundCollision->SetCollisionType(CollisionType::CirCle);
+
+	HitGroundCollision->Off();
+
 	// 공격 범위 충돌체 설정
 	AttackRangeCollision = CreateCollision(CollisionOrder::MonsterAttackRange);
 	AttackRangeCollision->SetCollisionScale({ 1200, 1200 });
@@ -434,7 +440,11 @@ void Boss::DeathStart()
 #pragma region Start Update
 void Boss::IdleUpdate(float _Delta)
 {
-
+	if (CircleEffect != nullptr)
+	{
+		CircleEffect->Death();
+		CircleEffect = nullptr;
+	}
 }
 
 void Boss::AttackUpdate(float _Delta)
@@ -471,9 +481,18 @@ void Boss::Skill_SeismicSlam_Update(float _Delta)
 	static float FallY = 0.0f;
 	static float StartY = 0.0f;
 
-	//// **TODO : 처음에 시작 위치를 기억해서 스폰한 뒤, 다음 스테이트로 넘어가게 만들도록 수정
-	////float4 CirclePos = TargetPos - GetPos();
-	////TestRenderer->SetRenderPos({ CirclePos });
+	float4 CirclePos = TargetPos - GetPos();
+
+	if (CircleEffect == nullptr)
+	{
+		CircleEffect = GetLevel()->CreateActor<EFFECT_RedCastingCircle>();
+		CircleEffect->GetMainRenderer()->SetTexture("RedCastingCircle.bmp");
+		CircleEffect->SetPos(TargetPos);
+
+	}
+
+
+
 	TickTime += _Delta;
 
 
@@ -508,6 +527,12 @@ void Boss::Skill_SeismicSlam_Update(float _Delta)
 
 		if (true == MainRenderer->IsAnimationEnd())
 		{
+
+			if (CircleEffect != nullptr)
+			{
+				CircleEffect->Death();
+				CircleEffect = nullptr;
+			}
 			ChangeState(BossState::Idle);
 			TickTime = 0.0f;
 		}
@@ -734,6 +759,7 @@ void Boss::Skill_TowersofTerra_Update(float _Delta)
 			}
 			Towers.push_back(NewTower);
 		}
+
 		ChangeState(BossState::Idle);
 
 	}

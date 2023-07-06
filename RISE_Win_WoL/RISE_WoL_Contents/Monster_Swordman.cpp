@@ -283,8 +283,7 @@ void Monster_Swordman::OnDamaged(int _AttackPower)
 
 void Monster_Swordman::DropItem(float4 _DropPos)
 {
-	//ITEM_Gold* NewGold = GetLevel()->CreateActor<ITEM_Gold>();
-	//NewGold->SetPos({ _DropPos });
+
 }
 
 void Monster_Swordman::IdleStart()

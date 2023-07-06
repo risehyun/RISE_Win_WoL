@@ -419,8 +419,6 @@ void Player::Update(float _Delta)
 
 			PlayerPtr->OnDamaged(Actor->GetAttackPower(), Actor->GetPos());
 
-			//			PlayUIManager::UI->NewHpBar->GetMainRenderer()->AddRenderPos({ 0.1, 0 });
-
 			if (PlayerPtr->m_iCurHp <= 0)
 			{
 				if (true == PlayerPtr->IsInvincible)

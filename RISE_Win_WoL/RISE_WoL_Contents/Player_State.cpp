@@ -236,8 +236,6 @@ void Player::DashUpdate(float _Delta)
 
 	}
 
-	//	DirCheck();
-
 	float Speed = 500.0f;
 
 	float4 MovePos = float4::ZERO;

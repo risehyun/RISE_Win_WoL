@@ -45,7 +45,7 @@ void SKILL_Boss_AncientEarthDrill::Start()
 
 	SkillRenderer->SetOrder(2);
 
-	m_iAttackPower = 10;
+	m_iAttackPower = 30;
 
 }
 

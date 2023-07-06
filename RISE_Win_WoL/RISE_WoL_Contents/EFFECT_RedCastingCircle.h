@@ -17,9 +17,14 @@ public:
 		return MainRenderer;
 	}
 
+	GameEngineCollision* HitCollision = nullptr;
+
 private:
 	GameEngineRenderer* MainRenderer = nullptr;
 	GameEngineRenderer* HitRenderer = nullptr;
+
+
+
 
 	void Start() override;
 	void Update(float _Delta) override;
