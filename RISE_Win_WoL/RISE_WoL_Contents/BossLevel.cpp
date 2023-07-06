@@ -79,6 +79,8 @@ void BossLevel::Release()
 void BossLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 
+	PlayUIManager::UI->NewHpBar->OverOff();
+
 	Player::MainPlayer->SetGroundTexture("BossStage_Col_resize.bmp");
 	Player::MainPlayer->SetPos({ 1720, 2630 });
 

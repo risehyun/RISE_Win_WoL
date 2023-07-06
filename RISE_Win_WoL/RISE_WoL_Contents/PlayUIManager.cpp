@@ -65,7 +65,7 @@ void PlayUIManager::Start()
 
 	NewHpBar = GetLevel()->CreateActor<UI_PlayerHpBar>();
 	NewHpBar->GetMainRenderer()->SetRenderPos({ 170, 52 });
-	NewHpBar->OverOn();
+//	NewHpBar->OverOn();
 
 
 	{

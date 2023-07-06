@@ -471,6 +471,7 @@ void Boss::DeathUpdate(float _Delta)
 	if (true == MainRenderer->IsAnimationEnd())
 	{
 		Player::MainPlayer->OverOff();
+		PlayUIManager::UI->NewHpBar->OverOff();
 		GameEngineCore::ChangeLevel("EndingLevel");
 		Death();
 	}
