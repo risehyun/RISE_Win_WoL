@@ -80,7 +80,7 @@ void SKILL_SnowflakeChakrams::Start()
 
 
 	// 추후 define으로 이동
-	m_iAttackPower = 50;
+	m_iAttackPower = 50 + Player::MainPlayer->ItemBuff;
 }
 
 void SKILL_SnowflakeChakrams::Update(float _Delta)

@@ -52,6 +52,8 @@ public:
 
 	void SetTotalGold(int _GoldCount);
 
+	int ItemBuff = 0;
+
 
 	void SetMaxHp(int _Hp)
 	{
@@ -219,6 +221,7 @@ public:
 	void SetHasAmuletofSundering()
 	{
 		IsHasAmuletofSundering = true;
+		ItemBuff = 10;
 	}
 
 	void SetHasAnalyticalMonocle()
@@ -306,6 +309,7 @@ protected:
 
 
 private:
+
 	bool IsInvincible = false;
 	bool IsHasEarthenAegis = false;
 	bool IsHasSnowflakeChakrams = false;

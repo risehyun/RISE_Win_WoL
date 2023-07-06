@@ -4,6 +4,7 @@
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include "ContentsEnum.h"
+#include "Player.h"
 
 void SKILL_Fireball::Start()
 {
@@ -46,7 +47,7 @@ void SKILL_Fireball::Start()
 	}
 
 	// 추후 define으로 이동
-	m_iAttackPower = 25;
+	m_iAttackPower = 25 + Player::MainPlayer->ItemBuff;
 }
 
 void SKILL_Fireball::Update(float _Delta)

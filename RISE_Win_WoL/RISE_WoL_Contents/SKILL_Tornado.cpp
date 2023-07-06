@@ -4,6 +4,7 @@
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include "ContentsEnum.h"
+#include "Player.h"
 
 void SKILL_Tornado::Start()
 {
@@ -35,7 +36,7 @@ void SKILL_Tornado::Start()
 
 
 	// 일반 5 HIT, 강화시 7 HIT(범위도 증가)
-	m_iAttackPower = 50;
+	m_iAttackPower = 50 + Player::MainPlayer->ItemBuff;
 
 }
 

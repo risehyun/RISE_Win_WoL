@@ -642,6 +642,11 @@ void Player::Render(float _Delta)
 
 
 
+
+
+
+
+
 	// 골드 보유량 표시
 	std::string GoldText = std::to_string(m_iTotalGold);
 
