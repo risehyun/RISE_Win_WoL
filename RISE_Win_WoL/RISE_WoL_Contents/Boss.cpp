@@ -608,164 +608,135 @@ void Boss::Skill_AncientEarthDrill_Update(float _Delta)
 
 void Boss::Skill_TowersofTerra_Update(float _Delta)
 {
-	// 오른쪽
-	for (size_t i = 0; i < 6; i++)
+
+	MainRenderer->ChangeAnimation("Left_JumpGround");
+
+	SetPos({ 1750, 700 });
+
+
+	if (MainRenderer->IsAnimationEnd())
 	{
 
-		SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
-
-		NewTower->SetOrder(-5500);
-
-		if (i == 0)
+		// 오른쪽
+		for (size_t i = 0; i < 6; i++)
 		{
-			NewTower->SetPos({ GetPos().X + 200.0f, GetPos().Y });
+			SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
+			NewTower->SetOrder(-5500);
+			if (i == 0)
+			{
+				NewTower->SetPos({ GetPos().X + 200.0f, GetPos().Y });
+			}
+			else
+			{
+				NewTower->SetPos({ GetPos().X + 200.0f + 100.0f * i + 1, GetPos().Y });
+			}
+			Towers.push_back(NewTower);
 		}
-
-		else
+		// 오른쪽 위
+		for (size_t i = 0; i < 3; i++)
 		{
-			NewTower->SetPos({ GetPos().X + 200.0f + 100.0f * i + 1, GetPos().Y });
+			SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
+			NewTower->SetOrder(-1000);
+			if (i == 0)
+			{
+				NewTower->SetPos({ GetPos().X + 100.0f, GetPos().Y - 100.0f });
+			}
+			else
+			{
+				NewTower->SetPos({ GetPos().X + 100.0f * i + 1, GetPos().Y - 100.0f * i + 1 });
+			}
+			Towers.push_back(NewTower);
 		}
+		// 오른쪽 아래
+		for (size_t i = 0; i < 3; i++)
+		{
+			SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
+			NewTower->SetOrder(-1000);
+			if (i == 0)
+			{
+				NewTower->SetPos({ GetPos().X + 100.0f, GetPos().Y + 100.0f });
+			}
+			else
+			{
+				NewTower->SetPos({ GetPos().X + 100.0f * i + 1, GetPos().Y + 100.0f * i + 1 });
+			}
+			Towers.push_back(NewTower);
+		}
+		// 아래
+		for (size_t i = 0; i < 1; i++)
+		{
+			SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
+			if (i == 0)
+			{
+				NewTower->SetPos({ GetPos().X, GetPos().Y + 200.0f });
+			}
+			else
+			{
+				NewTower->SetPos({ GetPos().X, GetPos().Y + 200.0f * i + 1 });
+			}
+			Towers.push_back(NewTower);
+		}
+		// 위
+		for (size_t i = 0; i < 1; i++)
+		{
+			SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
+			if (i == 0)
+			{
+				NewTower->SetPos({ GetPos().X, GetPos().Y - 200.0f });
+			}
+			else
+			{
+				NewTower->SetPos({ GetPos().X, GetPos().Y - 200.0f * i + 1 });
+			}
+			Towers.push_back(NewTower);
+		}
+		// 왼쪽
+		for (size_t i = 0; i < 6; i++)
+		{
+			SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
+			if (i == 0)
+			{
+				NewTower->SetPos({ GetPos().X - 200.0f, GetPos().Y });
+			}
+			else
+			{
+				NewTower->SetPos({ GetPos().X - 200.0f - 100.0f * i + 1, GetPos().Y });
+			}
+			Towers.push_back(NewTower);
+		}
+		// 왼쪽 아래
+		for (size_t i = 0; i < 3; i++)
+		{
+			SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
+			NewTower->SetOrder(-5500);
+			if (i == 0)
+			{
+				NewTower->SetPos({ GetPos().X - 100.0f, GetPos().Y + 100.0f });
+			}
+			else
+			{
+				NewTower->SetPos({ GetPos().X - 100.0f * i + 1, GetPos().Y + 100.0f * i + 1 });
+			}
+			Towers.push_back(NewTower);
+		}
+		// 왼쪽 위
+		for (size_t i = 0; i < 3; i++)
+		{
+			SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
+			NewTower->SetOrder(-5500);
+			if (i == 0)
+			{
+				NewTower->SetPos({ GetPos().X - 100.0f, GetPos().Y - 100.0f });
+			}
+			else
+			{
+				NewTower->SetPos({ GetPos().X - 100.0f * i + 1, GetPos().Y - 100.0f * i + 1 });
+			}
+			Towers.push_back(NewTower);
+		}
+		ChangeState(BossState::Idle);
 
-		Towers.push_back(NewTower);
 	}
-
-	// 오른쪽 위
-	for (size_t i = 0; i < 3; i++)
-	{
-
-		SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
-		NewTower->SetOrder(-1000);
-
-		if (i == 0)
-		{
-			NewTower->SetPos({ GetPos().X + 100.0f, GetPos().Y - 100.0f });
-		}
-
-		else
-		{
-			NewTower->SetPos({ GetPos().X + 100.0f * i + 1, GetPos().Y - 100.0f * i + 1 });
-		}
-
-		Towers.push_back(NewTower);
-	}
-
-	// 오른쪽 아래
-	for (size_t i = 0; i < 3; i++)
-	{
-
-		SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
-		NewTower->SetOrder(-1000);
-
-		if (i == 0)
-		{
-			NewTower->SetPos({ GetPos().X + 100.0f, GetPos().Y + 100.0f });
-		}
-
-		else
-		{
-			NewTower->SetPos({ GetPos().X + 100.0f * i + 1, GetPos().Y + 100.0f * i + 1 });
-		}
-
-		Towers.push_back(NewTower);
-	}
-
-	// 아래
-	for (size_t i = 0; i < 1; i++)
-	{
-
-		SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
-
-		if (i == 0)
-		{
-			NewTower->SetPos({ GetPos().X, GetPos().Y + 200.0f });
-		}
-
-		else
-		{
-			NewTower->SetPos({ GetPos().X, GetPos().Y + 200.0f * i + 1 });
-		}
-
-		Towers.push_back(NewTower);
-	}
-
-	// 위
-	for (size_t i = 0; i < 1; i++)
-	{
-
-		SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
-
-		if (i == 0)
-		{
-			NewTower->SetPos({ GetPos().X, GetPos().Y - 200.0f });
-		}
-
-		else
-		{
-			NewTower->SetPos({ GetPos().X, GetPos().Y - 200.0f * i + 1 });
-		}
-
-		Towers.push_back(NewTower);
-	}
-
-	// 왼쪽
-	for (size_t i = 0; i < 6; i++)
-	{
-
-		SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
-
-		if (i == 0)
-		{
-			NewTower->SetPos({ GetPos().X - 200.0f, GetPos().Y });
-		}
-
-		else
-		{
-			NewTower->SetPos({ GetPos().X - 200.0f - 100.0f * i + 1, GetPos().Y });
-		}
-
-		Towers.push_back(NewTower);
-	}
-
-	// 왼쪽 아래
-	for (size_t i = 0; i < 3; i++)
-	{
-
-		SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
-		NewTower->SetOrder(-5500);
-		if (i == 0)
-		{
-			NewTower->SetPos({ GetPos().X - 100.0f, GetPos().Y + 100.0f });
-		}
-
-		else
-		{
-			NewTower->SetPos({ GetPos().X - 100.0f * i + 1, GetPos().Y + 100.0f * i + 1 });
-		}
-
-		Towers.push_back(NewTower);
-	}
-
-	// 왼쪽 위
-	for (size_t i = 0; i < 3; i++)
-	{
-
-		SKILL_Boss_TowersofTerra* NewTower = GetLevel()->CreateActor<SKILL_Boss_TowersofTerra>();
-		NewTower->SetOrder(-5500);
-		if (i == 0)
-		{
-			NewTower->SetPos({ GetPos().X - 100.0f, GetPos().Y - 100.0f });
-		}
-
-		else
-		{
-			NewTower->SetPos({ GetPos().X - 100.0f * i + 1, GetPos().Y - 100.0f * i + 1 });
-		}
-
-		Towers.push_back(NewTower);
-	}
-
-
-	ChangeState(BossState::Idle);
 
 }
 
