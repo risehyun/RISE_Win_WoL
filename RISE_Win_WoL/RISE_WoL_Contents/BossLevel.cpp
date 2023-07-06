@@ -7,11 +7,15 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 
+#include <GameEngineCore/GameEngineRenderer.h>
+#include <GameEngineCore/GameEngineCollision.h>
+
 #include "ITEM_HealthCrystal.h"
 #include "EFFECT_GoldCastingCircle.h"
 
 #include "PlayUIManager.h"
 
+#include "Spawner_BossTrigger.h"
 
 
 #include "Player.h"
@@ -40,8 +44,9 @@ void BossLevel::Start()
 	}
 
 	BackGroundPtr = CreateActor<BackGround>();
-
 	BackGroundPtr->Init("BossStage_resize.Bmp", "BossStage_Col_resize.Bmp");
+
+
 
 }
 
@@ -92,13 +97,8 @@ void BossLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 
 
-
-
-
-
-
-	Boss* NewBoss = CreateActor<Boss>();
-	NewBoss->SetPos({ 1750, 700 });
+	Spawner_BossTrigger* NewTigger = CreateActor<Spawner_BossTrigger>();
+	NewTigger->SetPos({ 1700, 900 });
 
 }
 

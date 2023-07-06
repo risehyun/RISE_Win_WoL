@@ -225,6 +225,7 @@
     <ClInclude Include="SKILL_PlayerWindBoomerang.h" />
     <ClInclude Include="SKILL_SnowflakeChakrams.h" />
     <ClInclude Include="SKILL_Tornado.h" />
+    <ClInclude Include="Spawner_BossTrigger.h" />
     <ClInclude Include="TitleLevel.h" />
     <ClInclude Include="UI_BossNameBar.h" />
     <ClInclude Include="UI_Button.h" />
@@ -298,6 +299,7 @@
     <ClCompile Include="SKILL_PlayerWindBoomerang.cpp" />
     <ClCompile Include="SKILL_SnowflakeChakrams.cpp" />
     <ClCompile Include="SKILL_Tornado.cpp" />
+    <ClCompile Include="Spawner_BossTrigger.cpp" />
     <ClCompile Include="TitleLevel.cpp" />
     <ClCompile Include="UI_BossNameBar.cpp" />
     <ClCompile Include="UI_Button.cpp" />

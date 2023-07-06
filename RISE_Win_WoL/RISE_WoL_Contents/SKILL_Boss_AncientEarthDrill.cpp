@@ -51,9 +51,5 @@ void SKILL_Boss_AncientEarthDrill::Start()
 
 void SKILL_Boss_AncientEarthDrill::Update(float _Delta)
 {
-	//if (SkillRenderer->IsAnimationEnd())
-	//{
-	//	Death();
-	//}
 
 }

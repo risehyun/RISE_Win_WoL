@@ -18,7 +18,6 @@ void SKILL_EarthenAegis::Start()
 	// 스킬 텍스처 로딩
 	if (false == ResourcesManager::GetInst().IsLoadTexture("ARCANA_EarthenAegis_ALL.bmp"))
 	{
-
 		GameEnginePath FilePath;
 		FilePath.SetCurrentPath();
 		FilePath.MoveParentToExistsChild("ContentsResources");

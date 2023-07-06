@@ -54,9 +54,9 @@ BossSpawner::BossSpawner()
 
 		{
 			std::vector<MonsterSpawnData> Data;
-		//	Data.push_back(MonsterSpawnData{ SpawnType::Archer, { 2270, 1334 } });
-		//	Data.push_back(MonsterSpawnData{ SpawnType::Archer, { 2070, 1634 } });
-		//	Data.push_back(MonsterSpawnData{ SpawnType::Archer, { 2470, 1634 } });
+			Data.push_back(MonsterSpawnData{ SpawnType::Archer, { 2270, 1334 } });
+			Data.push_back(MonsterSpawnData{ SpawnType::Archer, { 2070, 1634 } });
+			Data.push_back(MonsterSpawnData{ SpawnType::Archer, { 2470, 1634 } });
 			Data.push_back(MonsterSpawnData{ SpawnType::Archer, { 2270, 1934 }, true });
 
 			Wave.insert(std::make_pair(5.0f, Data));

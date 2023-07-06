@@ -24,6 +24,7 @@
 
 #include "UI_DamageText.h"
 #include "PlayUIManager.h"
+#include <GameEngineCore/GameEngineCore.h>
 
 Boss::Boss()
 {
@@ -142,7 +143,7 @@ void Boss::Start()
 	MainRenderer->CreateAnimation("Left_JumpFall", "BOSS_LEFT.bmp", 31, 32, 0.5f, false);
 	MainRenderer->CreateAnimation("Left_JumpGround", "BOSS_LEFT.bmp", 33, 34, 0.5f, false);
 	MainRenderer->CreateAnimation("Left_Damage", "BOSS_LEFT.bmp", 36, 37, 0.5f, false);
-	MainRenderer->CreateAnimation("Left_Death", "BOSS_LEFT.bmp", 45, 46, 0.5f, false);
+	MainRenderer->CreateAnimation("Left_Death", "BOSS_LEFT.bmp", 45, 46, 1.0f, false);
 
 	MainRenderer->CreateAnimation("Right_Idle", "BOSS_RIGHT.bmp", 0, 0, 0.1f, true);
 	MainRenderer->CreateAnimation("Right_Jump", "BOSS_RIGHT.bmp", 27, 28, 0.2f, false);
@@ -150,7 +151,7 @@ void Boss::Start()
 	MainRenderer->CreateAnimation("Right_JumpFall", "BOSS_RIGHT.bmp", 31, 32, 0.5f, false);
 	MainRenderer->CreateAnimation("Right_JumpGround", "BOSS_RIGHT.bmp", 33, 34, 0.5f, false);
 	MainRenderer->CreateAnimation("Right_Damage", "BOSS_RIGHT.bmp", 36, 37, 0.5f, false);
-	MainRenderer->CreateAnimation("Right_Death", "BOSS_RIGHT.bmp", 45, 46, 0.5f, false);
+	MainRenderer->CreateAnimation("Right_Death", "BOSS_RIGHT.bmp", 45, 46, 1.0f, false);
 
 	MainRenderer->CreateAnimation("Left_Attack", "BOSS_ATTACK.bmp", 0, 5, 0.2f, false);
 	MainRenderer->CreateAnimation("Right_Attack", "BOSS_ATTACK.bmp", 6, 11, 0.2f, false);
@@ -469,6 +470,8 @@ void Boss::DeathUpdate(float _Delta)
 {
 	if (true == MainRenderer->IsAnimationEnd())
 	{
+		Player::MainPlayer->OverOff();
+		GameEngineCore::ChangeLevel("EndingLevel");
 		Death();
 	}
 }

@@ -258,7 +258,6 @@
     <ClCompile Include="UI_HPBar.cpp">
       <Filter>03.UI</Filter>
     </ClCompile>
-    <ClCompile Include="UI_BossNameBar.cpp" />
     <ClCompile Include="UI_MiniBossNameBar.cpp">
       <Filter>03.UI</Filter>
     </ClCompile>
@@ -272,6 +271,12 @@
       <Filter>03.UI</Filter>
     </ClCompile>
     <ClCompile Include="Background_Stage1.cpp" />
+    <ClCompile Include="Spawner_BossTrigger.cpp">
+      <Filter>01.Level\OBJ\07.Spawner</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_BossNameBar.cpp">
+      <Filter>03.UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingLevel.h">
@@ -456,7 +461,6 @@
     <ClInclude Include="UI_HPBar.h">
       <Filter>03.UI</Filter>
     </ClInclude>
-    <ClInclude Include="UI_BossNameBar.h" />
     <ClInclude Include="UI_MiniBossNameBar.h">
       <Filter>03.UI</Filter>
     </ClInclude>
@@ -470,5 +474,11 @@
       <Filter>03.UI</Filter>
     </ClInclude>
     <ClInclude Include="Background_Stage1.h" />
+    <ClInclude Include="Spawner_BossTrigger.h">
+      <Filter>01.Level\OBJ\07.Spawner</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_BossNameBar.h">
+      <Filter>03.UI</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
