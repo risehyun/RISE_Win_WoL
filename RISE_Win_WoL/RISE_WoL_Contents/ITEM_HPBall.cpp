@@ -38,9 +38,16 @@ void ITEM_HPBall::Update(float _Delta)
 		, CollisionType::CirCle
 	))
 	{
-		if (true == Player::GetMainPlayer()->AddCurHp(100))
+		if ((Player::MainPlayer->GetCurHp() + 100) > Player::MainPlayer->GetMaxHp())
 		{
-			Death();
+			Player::MainPlayer->SetCurHp(Player::MainPlayer->GetMaxHp());
 		}
+
+		else
+		{
+			Player::MainPlayer->AddCurHp(100);
+		}
+
+		Death();
 	}
 }

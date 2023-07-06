@@ -71,14 +71,24 @@ void ITEM_AnalyticalMonocle::Update(float _Delta)
 		m_InteractUI->GetMainRenderer()->On();
 		DescriptRenerer->On();
 
-		if (true == GameEngineInput::IsDown('F'))
+		if (Player::MainPlayer->GetTotalGold() < 100)
 		{
-			m_InteractUI->GetMainRenderer()->Off();
-			DescriptRenerer->Off();
+			return;
+		}
+		else
+		{
 
-			Player::MainPlayer->SetHasAnalyticalMonocle();
 
-			Death();
+			if (true == GameEngineInput::IsDown('F'))
+			{
+				m_InteractUI->GetMainRenderer()->Off();
+				DescriptRenerer->Off();
+
+				Player::MainPlayer->SetHasAnalyticalMonocle();
+				Player::MainPlayer->SetTotalGold(-150);
+
+				Death();
+			}
 		}
 	}
 

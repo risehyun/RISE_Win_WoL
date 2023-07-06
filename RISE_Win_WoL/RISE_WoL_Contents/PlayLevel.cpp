@@ -122,10 +122,10 @@ void PlayLevel::Start()
 
 void PlayLevel::Update(float _Delta)
 {
-	//if (true == GameEngineInput::IsDown(VK_RIGHT))
-	//{
-	//	GameEngineCore::ChangeLevel("BossLevel");
-	//}
+	if (true == GameEngineInput::IsDown(VK_F12))
+	{
+		GameEngineCore::ChangeLevel("BossLevel");
+	}
 
 	if (true == GameEngineInput::IsDown('J'))
 	{

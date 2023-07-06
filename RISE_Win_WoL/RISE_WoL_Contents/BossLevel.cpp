@@ -41,7 +41,6 @@ void BossLevel::Start()
 
 	BackGroundPtr = CreateActor<BackGround>();
 
-	//	BackGroundPtr->Init("stage1.Bmp", "stage1_Col.bmp", 3.0f, { 640, 400 });
 	BackGroundPtr->Init("BossStage_resize.Bmp", "BossStage_Col_resize.Bmp");
 
 }

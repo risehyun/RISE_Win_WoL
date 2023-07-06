@@ -83,15 +83,27 @@ void ITEM_AmuletofSundering::Update(float _Delta)
 		m_InteractUI->GetMainRenderer()->On();
 		DescriptRenerer->On();
 
-		if (true == GameEngineInput::IsDown('F'))
+		if (Player::MainPlayer->GetTotalGold() < 100)
 		{
-			m_InteractUI->GetMainRenderer()->Off();
-			DescriptRenerer->Off();
-
-			Player::MainPlayer->SetHasAmuletofSundering();
-
-			Death();
+			return;
 		}
+
+		else 
+		{
+			if (true == GameEngineInput::IsDown('F'))
+			{
+				m_InteractUI->GetMainRenderer()->Off();
+				DescriptRenerer->Off();
+
+				Player::MainPlayer->SetHasAmuletofSundering();
+				Player::MainPlayer->SetTotalGold(-150);
+
+				Death();
+			}
+		}
+
+
+		
 	}
 
 	else

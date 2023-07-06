@@ -64,7 +64,8 @@ void ITEM_HealthCrystal::Update(float _Delta)
 
 		}
 
-		BodyCollsion->Off();
+//		BodyCollsion->Off();
+		Death();
 
 	}
 

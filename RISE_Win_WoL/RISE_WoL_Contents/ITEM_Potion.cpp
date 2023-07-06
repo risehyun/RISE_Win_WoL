@@ -77,7 +77,7 @@ void ITEM_Potion::Update(float _Delta)
 
 			else
 			{
-				if ((Player::MainPlayer->GetCurHp() + 100) > 500)
+				if ((Player::MainPlayer->GetCurHp() + 100) > Player::MainPlayer->GetMaxHp())
 				{
 					Player::MainPlayer->SetCurHp(Player::MainPlayer->GetMaxHp());
 				}
