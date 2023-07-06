@@ -176,12 +176,13 @@ void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 
 
-//	BGMPlayer = GameEngineSound::SoundPlay("Earth.wav");
+	BGMPlayer = GameEngineSound::SoundPlay("Earth.wav");
 
 }
 
 void PlayLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
+	BGMPlayer.Stop();
 	Player::MainPlayer->OverOn();
 	PlayUIManager::UI->NewHpBar->OverOn();
 }

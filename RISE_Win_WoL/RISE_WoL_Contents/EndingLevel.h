@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
+#include <GameEnginePlatform/GameEngineSound.h>
 
 class EndingLevel : public GameEngineLevel
 {
@@ -18,4 +19,5 @@ protected:
 
 private:
 	void Start() override;
+	GameEngineSoundPlayer BGMPlayer;
 };

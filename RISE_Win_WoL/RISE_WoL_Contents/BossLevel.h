@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
+#include <GameEnginePlatform/GameEngineSound.h>
 
 class Player;
 class BossLevel : public GameEngineLevel
@@ -24,5 +25,7 @@ private:
 	void Release() override;
 
 	class BackGround* BackGroundPtr;
+
+	GameEngineSoundPlayer BGMPlayer;
 
 };

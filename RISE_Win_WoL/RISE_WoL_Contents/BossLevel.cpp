@@ -43,6 +43,16 @@ void BossLevel::Start()
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("BossStage_Col_resize.bmp"));
 	}
 
+	if (nullptr == GameEngineSound::FindSound("Boss.wav"))
+	{
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+		FilePath.MoveChild("ContentsResources\\Sound\\");
+
+		GameEngineSound::SoundLoad(FilePath.PlusFilePath("Boss.wav"));
+	}
+
 	BackGroundPtr = CreateActor<BackGround>();
 	BackGroundPtr->Init("BossStage_resize.Bmp", "BossStage_Col_resize.Bmp");
 
@@ -79,6 +89,8 @@ void BossLevel::Release()
 void BossLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 
+	BGMPlayer = GameEngineSound::SoundPlay("Boss.wav");
+
 	PlayUIManager::UI->NewHpBar->OverOff();
 
 	Player::MainPlayer->SetGroundTexture("BossStage_Col_resize.bmp");
@@ -106,5 +118,5 @@ void BossLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 void BossLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
-
+	BGMPlayer.Stop();
 }
