@@ -87,7 +87,6 @@ void Boss::ChangeAnimationState(const std::string& _StateName)
 
 void Boss::Start()
 {
-	SetGroundTexture("BossStage_Col_resize.bmp");
 
 
 	SetInitStat();
@@ -95,25 +94,44 @@ void Boss::Start()
 	PlayUIManager::UI->BossNameBar->GetMainRenderer()->On();
 	PlayUIManager::UI->BossNameBar->NewHpBar->GetMainRenderer()->On();
 
-	GameEnginePath FilePath;
-	FilePath.SetCurrentPath();
-	FilePath.MoveParentToExistsChild("ContentsResources");
-	FilePath.MoveChild("ContentsResources\\Texture\\Monster\\Boss");
-
-	if (false == ResourcesManager::GetInst().IsLoadTexture("BOSS_LEFT.Bmp"))
 	{
-		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("BOSS_LEFT.bmp"), 9, 6);
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+		FilePath.MoveChild("ContentsResources\\Texture\\");
+
+		if (false == ResourcesManager::GetInst().IsLoadTexture("BossStage_Col_forBoss.Bmp"))
+		{
+			ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("BossStage_Col_forBoss.bmp"), 9, 6);
+		}
 	}
 
-	if (false == ResourcesManager::GetInst().IsLoadTexture("BOSS_RIGHT.Bmp"))
+
 	{
-		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("BOSS_RIGHT.bmp"), 9, 6);
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+		FilePath.MoveChild("ContentsResources\\Texture\\Monster\\Boss");
+
+		if (false == ResourcesManager::GetInst().IsLoadTexture("BOSS_LEFT.Bmp"))
+		{
+			ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("BOSS_LEFT.bmp"), 9, 6);
+		}
+
+		if (false == ResourcesManager::GetInst().IsLoadTexture("BOSS_RIGHT.Bmp"))
+		{
+			ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("BOSS_RIGHT.bmp"), 9, 6);
+		}
+
+		if (false == ResourcesManager::GetInst().IsLoadTexture("BOSS_ATTACK.Bmp"))
+		{
+			ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("BOSS_ATTACK.bmp"), 6, 4);
+		}
+
 	}
 
-	if (false == ResourcesManager::GetInst().IsLoadTexture("BOSS_ATTACK.Bmp"))
-	{
-		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("BOSS_ATTACK.bmp"), 6, 4);
-	}
+	SetGroundTexture("BossStage_Col_forBoss.bmp");
+
 
 	MainRenderer = CreateRenderer(RenderOrder::Play);
 	MainRenderer->SetRenderScale({ 150, 200 });
