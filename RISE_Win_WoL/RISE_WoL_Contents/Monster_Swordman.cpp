@@ -201,6 +201,7 @@ void Monster_Swordman::Update(float _Delta)
 				Monster_Swordman* MonsterPtr = dynamic_cast<Monster_Swordman*>(thisActor);
 
 				GameEngineActor* Actor = _Other->GetActor();
+				Player* PlayerPtr = dynamic_cast<Player*>(Actor);
 
 				MonsterPtr->OnDamaged(Actor->GetAttackPower());
 

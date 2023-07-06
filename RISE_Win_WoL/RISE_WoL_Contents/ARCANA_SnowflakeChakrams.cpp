@@ -53,7 +53,7 @@ void ARCANA_SnowflakeChakrams::Start()
 
 	m_InteractUI = GetLevel()->CreateActor<UI_KeyboardF>();
 	m_InteractUI->SetPos({ 3550, 1710 });
-	m_InteractUI->GetMainRenderer()->SetOrder(2);
+	m_InteractUI->GetMainRenderer()->SetOrder(21);
 	m_InteractUI->GetMainRenderer()->Off();
 
 
@@ -61,7 +61,7 @@ void ARCANA_SnowflakeChakrams::Start()
 	DescriptRenerer->SetTexture("ARCANA_Descript_SnowflakeChakrams.bmp");
 	DescriptRenerer->SetRenderScale({ 220, 115 });
 	DescriptRenerer->SetRenderPos({ 3550, 1650 });
-	DescriptRenerer->SetOrder(1);
+	DescriptRenerer->SetOrder(20);
 	DescriptRenerer->Off();
 
 }

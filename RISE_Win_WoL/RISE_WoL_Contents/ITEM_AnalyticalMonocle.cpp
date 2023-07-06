@@ -45,7 +45,7 @@ void ITEM_AnalyticalMonocle::Start()
 
 	m_InteractUI = GetLevel()->CreateActor<UI_KeyboardF>();
 	m_InteractUI->SetPos({ 1000, 1710 });
-	m_InteractUI->GetMainRenderer()->SetOrder(2);
+	m_InteractUI->GetMainRenderer()->SetOrder(21);
 	m_InteractUI->GetMainRenderer()->Off();
 
 
@@ -53,7 +53,7 @@ void ITEM_AnalyticalMonocle::Start()
 	DescriptRenerer->SetTexture("ITEM_Descript_AnalyticalMonocle.bmp");
 	DescriptRenerer->SetRenderScale({ 220, 115 });
 	DescriptRenerer->SetRenderPos({ 1000, 1650 });
-	DescriptRenerer->SetOrder(1);
+	DescriptRenerer->SetOrder(20);
 	DescriptRenerer->Off();
 
 }

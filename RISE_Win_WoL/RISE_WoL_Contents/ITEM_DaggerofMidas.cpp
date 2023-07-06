@@ -52,7 +52,7 @@ void ITEM_DaggerofMidas::Start()
 
 	m_InteractUI = GetLevel()->CreateActor<UI_KeyboardF>();
 	m_InteractUI->SetPos({ 1200, 1710 });
-	m_InteractUI->GetMainRenderer()->SetOrder(2);
+	m_InteractUI->GetMainRenderer()->SetOrder(21);
 	m_InteractUI->GetMainRenderer()->Off();
 
 
@@ -61,7 +61,7 @@ void ITEM_DaggerofMidas::Start()
 
 	DescriptRenerer->SetRenderScale({ 220, 115 });
 	DescriptRenerer->SetRenderPos({ 1200, 1650 });
-	DescriptRenerer->SetOrder(1);
+	DescriptRenerer->SetOrder(20);
 	DescriptRenerer->Off();
 
 }

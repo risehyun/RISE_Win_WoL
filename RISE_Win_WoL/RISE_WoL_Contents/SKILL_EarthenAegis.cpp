@@ -208,7 +208,7 @@ void SKILL_EarthenAegis::Start()
 #pragma endregion
 
 	// 추후 define으로 이동
-	m_iAttackPower = 10 + Player::MainPlayer->ItemBuff;
+	m_iAttackPower = 5 + Player::MainPlayer->ItemBuff;
 }
 
 void SKILL_EarthenAegis::Update(float _Delta)
