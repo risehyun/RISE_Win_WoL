@@ -47,6 +47,13 @@ void NPC_Collector::Start()
 	MainRenderer = CreateRenderer("NPC_Collector.bmp", RenderOrder::BackGround);
 
 	MainRenderer->SetRenderScale({ 150, 150 });
+	MainRenderer->SetOrder(2);
+
+	ShadowRenderer = CreateRenderer();
+	ShadowRenderer->SetRenderPos({ GetPos().X, GetPos().Y + 60.0f });
+	ShadowRenderer->SetRenderScale({ 70, 35 });
+	ShadowRenderer->SetTexture("PLAYER_SHADOW.bmp");
+	ShadowRenderer->SetOrder(1);
 
 	BodyCollision = CreateCollision(CollisionOrder::Map);
 	BodyCollision->SetCollisionScale({ 200, 200 });

@@ -12,6 +12,8 @@ public:
 	NPC_ITEMSHOP& operator=(const NPC_ITEMSHOP& _Other) = delete;
 	NPC_ITEMSHOP& operator=(NPC_ITEMSHOP&& _Other) noexcept = delete;
 
+	GameEngineRenderer* ShadowRenderer = nullptr;
+
 protected:
 
 private:

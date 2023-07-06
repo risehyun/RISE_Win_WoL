@@ -16,6 +16,8 @@ public:
 
 	static NPC_Outfit* Outfit_Npc;
 
+	GameEngineRenderer* ShadowRenderer = nullptr;
+
 
 	bool GetIsAvailable()
 	{

@@ -47,6 +47,9 @@ public:
 
 	GameEngineRenderer* MainRenderer = nullptr;
 
+	GameEngineRenderer* ShadowRenderer = nullptr;
+
+
 	// 임시로 옮겨둠
 	void OnDamagedStart();
 

@@ -15,6 +15,7 @@ public:
 	NPC_Collector& operator=(const NPC_Collector& _Other) = delete;
 	NPC_Collector& operator=(NPC_Collector&& _Other) noexcept = delete;
 
+	GameEngineRenderer* ShadowRenderer = nullptr;
 
 	static NPC_Collector* Collector_Npc;
 	UI_Dialog* m_DialogUI = PlayUIManager::UI->NewDialog;

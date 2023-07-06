@@ -42,7 +42,13 @@ void NPC_ITEMSHOP::Start()
 	MainRenderer = CreateRenderer("NPC_ITEMSHOP.bmp", RenderOrder::BackGround);
 		
 	MainRenderer->SetRenderScale({ 100, 150 });
+	MainRenderer->SetOrder(2);
 
+	ShadowRenderer = CreateRenderer();
+	ShadowRenderer->SetRenderPos({ GetPos().X + 5.0f, GetPos().Y + 70.0f });
+	ShadowRenderer->SetRenderScale({ 70, 35 });
+	ShadowRenderer->SetTexture("PLAYER_SHADOW.bmp");
+	ShadowRenderer->SetOrder(1);
 	{
 		GameEngineRenderer* Ptr = CreateRenderer("GROUND_ITEMSHOP.bmp", RenderOrder::BackGround);
 

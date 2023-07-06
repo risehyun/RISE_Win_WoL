@@ -135,6 +135,13 @@ void Player::Start()
 			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("DashAirBurst.bmp"));
 		}
 
+		if (false == ResourcesManager::GetInst().IsLoadTexture("PLAYER_SHADOW.Bmp"))
+		{
+			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("PLAYER_SHADOW.bmp"));
+		}
+
+		
+
 		// UI 임시
 		if (false == ResourcesManager::GetInst().IsLoadTexture("UI_HPBAR.Bmp"))
 		{
@@ -204,7 +211,13 @@ void Player::Start()
 
 	}
 
-	float4 WinScale = GameEngineWindow::MainWindow.GetScale();
+
+
+	ShadowRenderer = CreateRenderer();
+	ShadowRenderer->SetRenderPos({ GetPos().X + 2.0f, GetPos().Y + 40.0f });
+	ShadowRenderer->SetRenderScale({70, 35});
+	ShadowRenderer->SetTexture("PLAYER_SHADOW.bmp");
+
 
 	// 레벨별로 캐릭터 시작 위치가 다름
 	// playLevel의 경우 { 1850, 1700 }

@@ -36,7 +36,13 @@ void NPC_Outfit::Start()
 	MainRenderer = CreateRenderer("NPC_Outfit.bmp", RenderOrder::BackGround);
 
 	MainRenderer->SetRenderScale({ 150, 150 });
+	MainRenderer->SetOrder(2);
 
+	ShadowRenderer = CreateRenderer();
+	ShadowRenderer->SetRenderPos({ GetPos().X + 5.0f, GetPos().Y + 70.0f });
+	ShadowRenderer->SetRenderScale({ 70, 35 });
+	ShadowRenderer->SetTexture("PLAYER_SHADOW.bmp");
+	ShadowRenderer->SetOrder(1);
 
 	BodyCollision = CreateCollision(CollisionOrder::Map);
 	BodyCollision->SetCollisionScale({ 100, 100 });

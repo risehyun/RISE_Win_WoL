@@ -12,6 +12,8 @@ public:
 	NPC_ArcanaShop& operator=(const NPC_ArcanaShop& _Other) = delete;
 	NPC_ArcanaShop& operator=(NPC_ArcanaShop&& _Other) noexcept = delete;
 
+	GameEngineRenderer* ShadowRenderer = nullptr;
+
 protected:
 
 private:
