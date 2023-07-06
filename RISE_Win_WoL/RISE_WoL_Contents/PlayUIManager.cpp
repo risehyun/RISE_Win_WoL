@@ -39,7 +39,29 @@ void PlayUIManager::Start()
 
 		Ptr->SetRenderScale({ 200, 50 });
 		Ptr->SetTexture("UI_PLAYERBAR.bmp");
+		Ptr->SetOrder(0);
 	}
+
+	{
+		GameEngineRenderer* Ptr = CreateUIRenderer();
+		Ptr->SetRenderPos({ 640, 740 });
+		Ptr->SetRenderScale({ 16, 16 });
+		Ptr->SetTexture("UI_MONEY.bmp");
+		Ptr->SetOrder(5);
+	}
+
+	PlayerBarText = CreateUIRenderer();
+	PlayerBarText->SetRenderPos({ 150, 28 });
+	PlayerBarText->SetRenderScale({ 200, 50 });
+	PlayerBarText->SetText("0", 28, "³ª´®½ºÄù¾î");
+	PlayerBarText->SetOrder(5);
+
+	PlayerMoneyText = CreateUIRenderer();
+	PlayerMoneyText->SetRenderPos({ 660, 730 });
+	PlayerMoneyText->SetRenderScale({ 200, 50 });
+	PlayerMoneyText->SetText("0", 20, "³ª´®½ºÄù¾î");
+	PlayerMoneyText->SetOrder(5);
+
 
 	NewHpBar = GetLevel()->CreateActor<UI_PlayerHpBar>();
 	NewHpBar->GetMainRenderer()->SetRenderPos({ 170, 52 });
@@ -173,6 +195,36 @@ void PlayUIManager::Update(float _Delta)
 			NewInven->Index1->On();
 		}
 	}
+
+
+
+
+
+
+
+
+	std::string PlayerHpText = "";
+
+	if (Player::MainPlayer->GetCurHp() < 0)
+	{
+		PlayerHpText += "0";
+	}
+
+	else
+	{
+		PlayerHpText += std::to_string(Player::MainPlayer->GetCurHp());
+	}
+
+	PlayerHpText += "/" + std::to_string(Player::MainPlayer->GetMaxHp());
+
+	PlayerBarText->SetText(PlayerHpText, 20, "³ª´®½ºÄù¾î");
+
+
+	PlayerMoneyText->SetText(std::to_string(Player::MainPlayer->GetTotalGold()), 20, "³ª´®½ºÄù¾î");
+
+	
+
+
 
 }
 

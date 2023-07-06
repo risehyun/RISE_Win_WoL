@@ -94,7 +94,7 @@ void Player::OnDamaged(int _iAttackPower, float4 _AttackPos)
 		NewText->SetDir(float4::RIGHT);
 	}
 
-	NewText->GetMainRenderer()->SetText(std::to_string(_iAttackPower), 20, "Noto Sans Med");
+	NewText->GetMainRenderer()->SetText(std::to_string(_iAttackPower), 20, "나눔스퀘어");
 	NewText->SetPos({ GetPos().X, GetPos().Y - 100.0f });
 
 }
@@ -143,8 +143,6 @@ void Player::Start()
 			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_PLAYERBAR.bmp"));
 
 			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_MONEY.bmp"));
-
-			//			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_SKILLBAR.bmp"));
 
 			ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("UI_MANABAR.bmp"));
 
@@ -204,12 +202,6 @@ void Player::Start()
 
 #pragma endregion
 
-		{
-			GameEngineRenderer* Ptr = CreateRenderer("UI_MONEY.bmp", RenderOrder::Play);
-			Ptr->SetRenderPos({ 0, 340 });
-			Ptr->SetRenderScale({ 16, 16 });
-			Ptr->SetTexture("UI_MONEY.bmp");
-		}
 	}
 
 	float4 WinScale = GameEngineWindow::MainWindow.GetScale();
@@ -615,51 +607,7 @@ void Player::LevelStart()
 
 void Player::Render(float _Delta)
 {
-	std::string Text = "";
-
-	if (m_iCurHp < 0)
-	{
-		Text += "0";
-	}
-
-	else
-	{
-		Text += std::to_string(m_iCurHp);
-	}
-
-	Text += "/" + std::to_string(m_iMaxHp);
-
 	HDC dc = GameEngineWindow::MainWindow.GetBackBuffer()->GetImageDC();
-
-
-
-	HFONT hFont = CreateFont(28, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("Silkscreen"));
-	HFONT hOldFont = (HFONT)SelectObject(dc, hFont);		// 폰트 설정
-	SetTextColor(dc, RGB(255, 255, 255));					// 텍스트 색상 설정
-	SetBkMode(dc, TRANSPARENT);
-
-	TextOutA(dc, 150, 20, Text.c_str(), static_cast<int>(Text.size()));
-
-
-
-
-
-
-
-
-	// 골드 보유량 표시
-	std::string GoldText = std::to_string(m_iTotalGold);
-
-	TextOutA(dc, 654, 724, GoldText.c_str(), static_cast<int>(GoldText.size()));
-
-	//// 텍스트 출력
-	SelectObject(dc, hOldFont);
-	DeleteObject(hFont);
-
-
-
-
-
 
 	// 게임 러닝 타임 표시 => 추후 따로 함수로 빼도 됨
 	RunningTime += _Delta;
@@ -694,12 +642,12 @@ void Player::Render(float _Delta)
 	}
 
 
-	HFONT hFont2 = CreateFont(30, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("Lato"));
+	HFONT hFont2 = CreateFont(30, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("나눔스퀘어"));
 	HFONT hOldFont2 = (HFONT)SelectObject(dc, hFont2);		// 폰트 설정
 	SetTextColor(dc, RGB(255, 255, 255));					// 텍스트 색상 설정
 	SetBkMode(dc, TRANSPARENT);
 
-	TextOutA(dc, 612, 80, RunningTimeText.c_str(), static_cast<int>(Text.size()));
+	TextOutA(dc, 612, 80, RunningTimeText.c_str(), static_cast<int>(RunningTimeText.size()));
 
 	SelectObject(dc, hOldFont2);
 	DeleteObject(hFont2);

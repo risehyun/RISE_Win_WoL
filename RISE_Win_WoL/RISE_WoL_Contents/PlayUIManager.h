@@ -37,6 +37,9 @@ public:
 
 	GameEngineRenderer* MousePtr = nullptr;
 
+	GameEngineRenderer* PlayerBarText = nullptr;
+
+	GameEngineRenderer* PlayerMoneyText = nullptr;
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
