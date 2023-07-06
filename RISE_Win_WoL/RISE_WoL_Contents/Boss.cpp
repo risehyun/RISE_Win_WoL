@@ -87,6 +87,9 @@ void Boss::ChangeAnimationState(const std::string& _StateName)
 
 void Boss::Start()
 {
+	SetGroundTexture("BossStage_Col_resize.bmp");
+
+
 	SetInitStat();
 
 	PlayUIManager::UI->BossNameBar->GetMainRenderer()->On();
@@ -254,8 +257,6 @@ void Boss::Update(float _Delta)
 	{
 		ChangeState(BossState::Death);
 	}
-
-	//	DirCheck();
 
 	StateUpdate(_Delta);
 }
@@ -497,6 +498,7 @@ void Boss::Skill_SeismicSlam_Update(float _Delta)
 
 void Boss::Skill_AncientEarthDrill_Update(float _Delta)
 {
+	float4 CheckPos = float4::ZERO;
 	float Speed = 500.0f;
 
 	float4 MovePos = float4::ZERO;
@@ -507,6 +509,7 @@ void Boss::Skill_AncientEarthDrill_Update(float _Delta)
 
 		if (NewAttack != nullptr)
 		{
+			CheckPos = { 15.0f, -30.0f };
 			NewAttack->SetDir(float4::RIGHT);
 			NewAttack->SetPos(GetPos() + float4{ 100.0f, 0.0f, 0.0f, 0.0f });
 			NewAttack->SkillRenderer->ChangeAnimation("AncientEarthDrill_RIGHT");
@@ -520,13 +523,14 @@ void Boss::Skill_AncientEarthDrill_Update(float _Delta)
 	{
 		if (NewAttack != nullptr)
 		{
+			CheckPos = { -15.0f, 30.0f };
 			NewAttack->SetDir(float4::RIGHT);
 			NewAttack->SetPos(GetPos() + float4{ 0.0f, -100.0f, 0.0f, 0.0f });
 			NewAttack->SkillRenderer->ChangeAnimation("AncientEarthDrill_UP");
 			MainRenderer->ChangeAnimation("Right_Attack");
 			MovePos = { 0.0f, -Speed * _Delta };
 		}
-		//		AddPos(MovePos);
+
 
 	}
 
@@ -534,13 +538,14 @@ void Boss::Skill_AncientEarthDrill_Update(float _Delta)
 	{
 		if (NewAttack != nullptr)
 		{
+			CheckPos = { -15.0f, -30.0f };
 			NewAttack->SetDir(float4::LEFT);
 			NewAttack->SetPos(GetPos() + float4{ -100.0f, 0.0f, 0.0f, 0.0f });
 			NewAttack->SkillRenderer->ChangeAnimation("AncientEarthDrill_LEFT");
 			MainRenderer->ChangeAnimation("Left_Attack");
 			MovePos = { -Speed * _Delta, 0.0f };
 		}
-		//		AddPos(MovePos);
+
 
 	}
 
@@ -548,6 +553,7 @@ void Boss::Skill_AncientEarthDrill_Update(float _Delta)
 	{
 		if (NewAttack != nullptr)
 		{
+			CheckPos = { 15.0f, 30.0f };
 			NewAttack->SetDir(float4::LEFT);
 			NewAttack->SetPos(GetPos() + float4{ 0.0f, 100.0f, 0.0f, 0.0f });
 			NewAttack->SkillRenderer->ChangeAnimation("AncientEarthDrill_DOWN");
@@ -559,7 +565,20 @@ void Boss::Skill_AncientEarthDrill_Update(float _Delta)
 
 	if (NewAttack != nullptr)
 	{
-		AddPos(MovePos);
+		{
+			unsigned int Color = GetGroundColor(RGB(255, 255, 255), CheckPos);
+			if (Color == RGB(255, 255, 255))
+			{
+				AddPos(MovePos);
+			}
+
+			else
+			{
+
+				ChangeState(BossState::Idle);
+				NewAttack->Death();
+			}
+		}
 	}
 
 	else

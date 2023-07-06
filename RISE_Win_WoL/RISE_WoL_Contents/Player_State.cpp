@@ -311,7 +311,6 @@ void Player::AttackUpdate(float _Delta)
 
 void Player::OnDamagedUpdate(float _Delta)
 {
-	//	DirCheck();
 
 	if (true == IsDeath()) {
 		ChangeState(PlayerState::Death);
