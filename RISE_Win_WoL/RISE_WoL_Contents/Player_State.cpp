@@ -55,21 +55,33 @@ void Player::DeathStart()
 
 void Player::Skill_EarthenAegis_Start()
 {
+	EffectPlayer = GameEngineSound::SoundPlay("stoneShot.mp3");
+	EffectPlayer.SetVolume(3.0f);
+
+
 	ChangeAnimationState("Attack");
 }
 
 void Player::Skill_SnowflakeChakrams_Start()
 {
+	EffectPlayer = GameEngineSound::SoundPlay("IceSwordSwing.wav");
+	EffectPlayer.SetVolume(3.0f);
+	
 	ChangeAnimationState("Attack");
 }
 
 void Player::Skill_Tornado_Start()
 {
+	EffectPlayer = GameEngineSound::SoundPlay("WindBlastDeep.wav");
+	EffectPlayer.SetVolume(3.0f);
 	ChangeAnimationState("Attack");
 }
 
 void Player::Skill_Fireball_Start()
 {
+
+	EffectPlayer = GameEngineSound::SoundPlay("FireBlast.wav");
+	EffectPlayer.SetVolume(0.5f);
 	ChangeAnimationState("Attack");
 }
 

@@ -42,6 +42,27 @@ void Monster_Archer::Start()
 		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("ARCHER_RIGHT.bmp"), 6, 5);
 	}
 
+	if (nullptr == GameEngineSound::FindSound("ENEMY_DIED.mp3"))
+	{
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+		FilePath.MoveChild("ContentsResources\\Sound\\");
+
+		GameEngineSound::SoundLoad(FilePath.PlusFilePath("ENEMY_DIED.mp3"));
+	}
+
+	if (nullptr == GameEngineSound::FindSound("ENEMY_HITTED.mp3"))
+	{
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+		FilePath.MoveChild("ContentsResources\\Sound\\");
+
+		GameEngineSound::SoundLoad(FilePath.PlusFilePath("ENEMY_HITTED.mp3"));
+	}
+
+
 	MainRenderer = CreateRenderer(RenderOrder::Play);
 	MainRenderer->SetRenderScale({ 150, 150 });
 
@@ -266,17 +287,19 @@ void Monster_Archer::RunStart()
 }
 
 void Monster_Archer::AttackStart()
-{
+{	
 	ChangeAnimationState("Attack");
 }
 
 void Monster_Archer::DamageStart()
 {
+	EffectPlayer = GameEngineSound::SoundPlay("ENEMY_HITTED.mp3");
 	ChangeAnimationState("Damage");
 }
 
 void Monster_Archer::DeathStart()
 {
+	EffectPlayer = GameEngineSound::SoundPlay("ENEMY_DIED.mp3");
 	ChangeAnimationState("Death");
 }
 

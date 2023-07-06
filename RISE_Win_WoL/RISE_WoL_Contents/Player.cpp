@@ -252,6 +252,59 @@ void Player::Start()
 		GameEngineSound::SoundLoad(FilePath.PlusFilePath("PLAYER_HITED.mp3"));
 	}
 
+	if (nullptr == GameEngineSound::FindSound("WindBlastDeep.wav"))
+	{
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+		FilePath.MoveChild("ContentsResources\\Sound\\");
+
+		GameEngineSound::SoundLoad(FilePath.PlusFilePath("WindBlastDeep.wav"));
+	}
+
+	if (nullptr == GameEngineSound::FindSound("FireBlast.wav"))
+	{
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+		FilePath.MoveChild("ContentsResources\\Sound\\");
+
+		GameEngineSound::SoundLoad(FilePath.PlusFilePath("FireBlast.wav"));
+	}
+
+	if (nullptr == GameEngineSound::FindSound("swingWound.wav"))
+	{
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+		FilePath.MoveChild("ContentsResources\\Sound\\");
+
+		GameEngineSound::SoundLoad(FilePath.PlusFilePath("swingWound.wav"));
+	}
+
+	if (nullptr == GameEngineSound::FindSound("stoneShot.mp3"))
+	{
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+		FilePath.MoveChild("ContentsResources\\Sound\\");
+
+		GameEngineSound::SoundLoad(FilePath.PlusFilePath("stoneShot.mp3"));
+	}
+
+	if (nullptr == GameEngineSound::FindSound("IceSwordSwing.wav"))
+	{
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+		FilePath.MoveChild("ContentsResources\\Sound\\");
+
+		GameEngineSound::SoundLoad(FilePath.PlusFilePath("IceSwordSwing.wav"));
+	}
+
+
+
+	
 }
 
 void Player::Update(float _Delta)
@@ -277,6 +330,10 @@ void Player::Update(float _Delta)
 	if (true == GameEngineInput::IsDown(VK_LBUTTON))
 	{
 		ChangeState(PlayerState::Attack);
+
+		EffectPlayer = GameEngineSound::SoundPlay("swingWound.wav");
+		EffectPlayer.SetVolume(2.0f);
+
 
 		SKILL_PlayerNormalAttack* NewAttack = GetLevel()->CreateActor<SKILL_PlayerNormalAttack>();
 

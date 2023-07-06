@@ -2,7 +2,6 @@
 #include "BackGround.h"
 #include <GameEngineCore/ResourcesManager.h>
 #include "Player.h"
-//#include "PlayUIManager.h"
 
 EndingLevel::EndingLevel()
 {

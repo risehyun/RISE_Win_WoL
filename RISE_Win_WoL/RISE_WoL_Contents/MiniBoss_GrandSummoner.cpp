@@ -54,6 +54,26 @@ void MiniBoss_GrandSummoner::Start()
 		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("MiniBoss_GrandSummoner_Right.bmp"), 4, 6);
 	}
 
+	if (nullptr == GameEngineSound::FindSound("ENEMY_DIED.mp3"))
+	{
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+		FilePath.MoveChild("ContentsResources\\Sound\\");
+
+		GameEngineSound::SoundLoad(FilePath.PlusFilePath("ENEMY_DIED.mp3"));
+	}
+
+	if (nullptr == GameEngineSound::FindSound("ENEMY_HITTED.mp3"))
+	{
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("ContentsResources");
+		FilePath.MoveChild("ContentsResources\\Sound\\");
+
+		GameEngineSound::SoundLoad(FilePath.PlusFilePath("ENEMY_HITTED.mp3"));
+	}
+
 	MainRenderer = CreateRenderer(RenderOrder::Play);
 	MainRenderer->SetRenderScale({ 140, 200 });
 
@@ -325,11 +345,13 @@ void MiniBoss_GrandSummoner::Skill_MagicOrbAssault_Start()
 
 void MiniBoss_GrandSummoner::DamageStart()
 {
+	EffectPlayer = GameEngineSound::SoundPlay("ENEMY_HITTED.mp3");
 	ChangeAnimationState("Damage");
 }
 
 void MiniBoss_GrandSummoner::DeathStart()
 {
+	EffectPlayer = GameEngineSound::SoundPlay("ENEMY_DIED.mp3");
 	PlayUIManager::UI->MiniBossNameBar->GetMainRenderer()->Off();
 	PlayUIManager::UI->MiniBossNameBar->NewHpBar->GetMainRenderer()->Off();
 	ChangeAnimationState("Death");

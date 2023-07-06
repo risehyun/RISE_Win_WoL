@@ -144,6 +144,17 @@ void Monster_Swordman::Start()
 			GameEngineSound::SoundLoad(FilePath.PlusFilePath("ENEMY_HITTED.mp3"));
 		}
 
+		if (nullptr == GameEngineSound::FindSound("KnightAttack.mp3"))
+		{
+			GameEnginePath FilePath;
+			FilePath.SetCurrentPath();
+			FilePath.MoveParentToExistsChild("ContentsResources");
+			FilePath.MoveChild("ContentsResources\\Sound\\");
+
+			GameEngineSound::SoundLoad(FilePath.PlusFilePath("KnightAttack.mp3"));
+		}
+
+
 	}
 
 	// 충돌체 설정
@@ -299,12 +310,12 @@ void Monster_Swordman::RunStart()
 
 void Monster_Swordman::AttackStart()
 {
+	EffectPlayer = GameEngineSound::SoundPlay("KnightAttack.mp3");
 	ChangeAnimationState("Attack");
 }
 
 void Monster_Swordman::DamageStart()
 {
-	//	DirCheck();
 	EffectPlayer = GameEngineSound::SoundPlay("ENEMY_HITTED.mp3");
 	ChangeAnimationState("Damage");
 }

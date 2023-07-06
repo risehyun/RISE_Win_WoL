@@ -71,7 +71,7 @@ private:
 
 
 
-//	GameEngineSoundPlayer EffectPlayer;
+	GameEngineSoundPlayer EffectPlayer;
 
 	void Start() override;
 	void Update(float _Delta) override;

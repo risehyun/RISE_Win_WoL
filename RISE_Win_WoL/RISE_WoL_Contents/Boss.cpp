@@ -129,7 +129,30 @@ void Boss::Start()
 			ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("BOSS_ATTACK.bmp"), 6, 4);
 		}
 
+		if (nullptr == GameEngineSound::FindSound("ENEMY_DIED.mp3"))
+		{
+			GameEnginePath FilePath;
+			FilePath.SetCurrentPath();
+			FilePath.MoveParentToExistsChild("ContentsResources");
+			FilePath.MoveChild("ContentsResources\\Sound\\");
+
+			GameEngineSound::SoundLoad(FilePath.PlusFilePath("ENEMY_DIED.mp3"));
+		}
+
+		if (nullptr == GameEngineSound::FindSound("ENEMY_HITTED.mp3"))
+		{
+			GameEnginePath FilePath;
+			FilePath.SetCurrentPath();
+			FilePath.MoveParentToExistsChild("ContentsResources");
+			FilePath.MoveChild("ContentsResources\\Sound\\");
+
+			GameEngineSound::SoundLoad(FilePath.PlusFilePath("ENEMY_HITTED.mp3"));
+		}
+
 	}
+
+
+
 
 	SetGroundTexture("BossStage_Col_forBoss.bmp");
 
@@ -423,12 +446,13 @@ void Boss::Skill_TowersofTerra_Start()
 
 void Boss::DamageStart()
 {
+	EffectPlayer = GameEngineSound::SoundPlay("ENEMY_HITTED.mp3");
 	ChangeAnimationState("Damage");
 }
 
 void Boss::DeathStart()
 {
-
+	EffectPlayer = GameEngineSound::SoundPlay("ENEMY_DIED.mp3");
 	PlayUIManager::UI->BossNameBar->GetMainRenderer()->Off();
 	PlayUIManager::UI->BossNameBar->NewHpBar->GetMainRenderer()->Off();
 

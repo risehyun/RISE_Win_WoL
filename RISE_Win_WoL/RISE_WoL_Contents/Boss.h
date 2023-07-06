@@ -112,16 +112,11 @@ private:
 
 
 
-	///// 아이템 드롭 테스트용
-	//void DropItem(float4 _DropPos);
-
-
 	//////////////////////// DebugValue
 	float4 LeftCheck = { -50.0f, 0.0f };
 	float4 RightCheck = { 50.0f, 0.0f };
 	float4 UpCheck = { 0.0f, -50.0f };
 	float4 DownCheck = { 0.0f, 50.0f };
 
-	//float fDamageRendererDuration = 0;
 
 };
