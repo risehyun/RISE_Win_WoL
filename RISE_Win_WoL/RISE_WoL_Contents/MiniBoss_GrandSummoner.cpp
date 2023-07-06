@@ -203,7 +203,6 @@ void MiniBoss_GrandSummoner::Update(float _Delta)
 				MiniBoss_GrandSummoner* MonsterPtr = dynamic_cast<MiniBoss_GrandSummoner*>(thisActor);
 
 				GameEngineActor* Actor = _Other->GetActor();
-				Player* PlayerPtr = dynamic_cast<Player*>(Actor);
 
 				MonsterPtr->OnDamaged(Actor->GetAttackPower());
 

@@ -155,7 +155,6 @@ void Monster_Archer::Update(float _Delta)
 				Monster_Archer* MonsterPtr = dynamic_cast<Monster_Archer*>(thisActor);
 
 				GameEngineActor* Actor = _Other->GetActor();
-				Player* PlayerPtr = dynamic_cast<Player*>(Actor);
 
 				MonsterPtr->OnDamaged(Actor->GetAttackPower());
 
