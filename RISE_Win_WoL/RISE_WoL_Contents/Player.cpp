@@ -217,7 +217,7 @@ void Player::Start()
 	// 레벨별로 캐릭터 시작 위치가 다름
 	// playLevel의 경우 { 1850, 1700 }
 	// bossLevel의 경우 { 1710, 2610 }
-	SetPos({ 1850, 1900 });
+	SetPos({ 2270, 1900 });
 	ChangeState(PlayerState::Idle);
 
 	{
@@ -727,16 +727,4 @@ void Player::Render(float _Delta)
 	//Data.Pos = ActorCameraPos() + DownCheck;
 	//Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
-
-
-	//{
-	//	float4 PlayerPos = GameEngineWindow::MainWindow.GetScale().Half();
-	//	float4 MousePos = GameEngineWindow::MainWindow.GetMousePos();
-	//	float4 Dir = PlayerPos - MousePos;
-
-	//	std::string Text = "";
-	//	Text += "마우스 앵글 값 : ";
-	//	Text += std::to_string(Dir.AngleDeg());
-	//	TextOutA(dc, 2, 20, Text.c_str(), static_cast<int>(Text.size()));
-	//}
 }

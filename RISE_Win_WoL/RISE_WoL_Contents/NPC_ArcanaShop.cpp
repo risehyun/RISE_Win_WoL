@@ -47,12 +47,12 @@ void NPC_ArcanaShop::Start()
 	}
 
 	ARCANA_EarthenAegis* NewEarthenAegis = GetLevel()->CreateActor<ARCANA_EarthenAegis>();
-	NewEarthenAegis->GetMainRenderer()->SetRenderPos({ 2900, 1800 });
-	NewEarthenAegis->GetBodyCollsion()->SetCollisionPos({ 2900, 1800 });
+	NewEarthenAegis->GetMainRenderer()->SetRenderPos({ 3350, 1800 });
+	NewEarthenAegis->GetBodyCollsion()->SetCollisionPos({ 3350, 1800 });
 
 	ARCANA_SnowflakeChakrams* NewSnowflakeChakrams = GetLevel()->CreateActor<ARCANA_SnowflakeChakrams>();
-	NewSnowflakeChakrams->GetMainRenderer()->SetRenderPos({ 3100, 1800 });
-	NewSnowflakeChakrams->GetBodyCollsion()->SetCollisionPos({ 3100, 1800 });
+	NewSnowflakeChakrams->GetMainRenderer()->SetRenderPos({ 3550, 1800 });
+	NewSnowflakeChakrams->GetBodyCollsion()->SetCollisionPos({ 3550, 1800 });
 
 }
 

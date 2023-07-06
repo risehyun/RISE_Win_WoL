@@ -35,13 +35,13 @@ public:
 
 	UI_Dialog* NewDialog = nullptr;
 
-
+	GameEngineRenderer* MousePtr = nullptr;
 
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
 
 private:
-	GameEngineRenderer* MousePtr = nullptr;
+
 
 };

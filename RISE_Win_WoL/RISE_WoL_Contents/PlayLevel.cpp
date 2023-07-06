@@ -99,23 +99,24 @@ void PlayLevel::Start()
 
 	// 플레이어 스폰 효과
 	Effect_Spawn* NewSpawn = CreateActor<Effect_Spawn>();
-	NewSpawn->SetPos({ 1850, 1800 });
-	NewSpawn->SpawnObject(SpawnType::Player, { 100, 365 });
+	NewSpawn->SetPos({ 2270, 1800 });
+	NewSpawn->SpawnObject(SpawnType::Player, { 200, 365 });
 
 
 
-
+	// + 450
 	NPC_ArcanaShop* NewArcanaShop = CreateActor<NPC_ArcanaShop>();
-	NewArcanaShop->SetPos({ 3000, 1600 });
+	NewArcanaShop->SetPos({ 3450, 1600 });
 
+	// + 400
 	NPC_ITEMSHOP* NewShop = CreateActor<NPC_ITEMSHOP>();
-	NewShop->SetPos({ 700, 1600 });
+	NewShop->SetPos({ 1100, 1600 });
 
 	NPC_Collector* NewCollector = CreateActor<NPC_Collector>();
-	NewCollector->SetPos({ 1850, 2800 });
+	NewCollector->SetPos({ 2270, 2800 });
 
 	NPC_Outfit* NewOutfit = CreateActor<NPC_Outfit>();
-	NewOutfit->SetPos({ 1850, 700 });
+	NewOutfit->SetPos({ 2270, 700 });
 
 }
 
@@ -136,23 +137,23 @@ void PlayLevel::Update(float _Delta)
 		if (NewEffect == nullptr)
 		{
 			NewEffect = CreateActor<Effect_CastingCircle>();
-			NewEffect->SetPos({ 1850, 1700 });
+			NewEffect->SetPos({ 2280, 1700 });
 
 		}
 
 		if (NewChest == nullptr)
 		{
 			NewChest = CreateActor<PROP_TreasureChestMiniBoss>();
-			NewChest->SetPos({ 1870, 1650 });
+			NewChest->SetPos({ 2290, 1650 });
 		}
 
 		if (NewTeleport == nullptr)
 		{
 			NewTeleport = CreateActor<PROP_Teleport>();
-			NewTeleport->SetPos({ 1850, 2000 });
+			NewTeleport->SetPos({ 2280, 2000 });
 
 			Effect_Spawn* NewSpawn = CreateActor<Effect_Spawn>();
-			NewSpawn->SetPos({ 1850, 2000 });
+			NewSpawn->SetPos({ 2280, 2000 });
 			NewSpawn->SpawnObject(SpawnType::Player, { 300, 365 });
 
 		}

@@ -52,7 +52,7 @@ void ITEM_VampiresEyeglasses::Start()
 	}
 
 	m_InteractUI = GetLevel()->CreateActor<UI_KeyboardF>();
-	m_InteractUI->SetPos({ 900, 1710 });
+	m_InteractUI->SetPos({ 1300, 1710 });
 	m_InteractUI->GetMainRenderer()->SetOrder(2);
 	m_InteractUI->GetMainRenderer()->Off();
 
@@ -60,7 +60,7 @@ void ITEM_VampiresEyeglasses::Start()
 	DescriptRenerer = CreateRenderer();
 	DescriptRenerer->SetTexture("ITEM_Descript_VampiresEyeglasses.bmp");
 	DescriptRenerer->SetRenderScale({ 220, 115 });
-	DescriptRenerer->SetRenderPos({ 900, 1650 });
+	DescriptRenerer->SetRenderPos({ 1300, 1650 });
 	DescriptRenerer->SetOrder(1);
 	DescriptRenerer->Off();
 

@@ -47,7 +47,7 @@ void PROP_Teleport::Start()
 
 	// 상호작용 UI 설정
 	m_InteractUI = GetLevel()->CreateActor<UI_KeyboardF>();
-	m_InteractUI->SetPos({ 1850, 1850 });
+	m_InteractUI->SetPos({ 2280, 1850 });
 	m_InteractUI->GetMainRenderer()->SetOrder(2);
 	m_InteractUI->GetMainRenderer()->Off();
 }

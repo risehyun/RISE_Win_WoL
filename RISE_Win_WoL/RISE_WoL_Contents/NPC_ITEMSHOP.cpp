@@ -60,22 +60,22 @@ void NPC_ITEMSHOP::Start()
 	ITEM_Potion* NewPotion = GetLevel()->CreateActor<ITEM_Potion>();
 
 
-	NewHeart->GetMainRenderer()->SetRenderPos({ 500, 1800 });
-	NewHeart->GetBodyCollsion()->SetCollisionPos({ 500, 1800 });
+	NewHeart->GetMainRenderer()->SetRenderPos({ 900, 1800 });
+	NewHeart->GetBodyCollsion()->SetCollisionPos({ 900, 1800 });
 
-	NewMonocle->GetMainRenderer()->SetRenderPos({ 600, 1800 });
-	NewMonocle->GetBodyCollsion()->SetCollisionPos({ 600, 1800 });
+	NewMonocle->GetMainRenderer()->SetRenderPos({ 1000, 1800 });
+	NewMonocle->GetBodyCollsion()->SetCollisionPos({ 1000, 1800 });
 
-	NewAmulet->GetMainRenderer()->SetRenderPos({ 700, 1800 });
-	NewAmulet->GetBodyCollsion()->SetCollisionPos({ 700, 1800 });
+	NewAmulet->GetMainRenderer()->SetRenderPos({ 1100, 1800 });
+	NewAmulet->GetBodyCollsion()->SetCollisionPos({ 1100, 1800 });
 
-	NewDagger->GetMainRenderer()->SetRenderPos({ 800, 1800 });
-	NewDagger->GetBodyCollsion()->SetCollisionPos({ 800, 1800 });
+	NewDagger->GetMainRenderer()->SetRenderPos({ 1200, 1800 });
+	NewDagger->GetBodyCollsion()->SetCollisionPos({ 1200, 1800 });
 
-	NewEyeglasses->GetMainRenderer()->SetRenderPos({ 900, 1800 });
-	NewEyeglasses->GetBodyCollsion()->SetCollisionPos({ 900, 1800 });
+	NewEyeglasses->GetMainRenderer()->SetRenderPos({ 1300, 1800 });
+	NewEyeglasses->GetBodyCollsion()->SetCollisionPos({ 1300, 1800 });
 
-	NewPotion->GetMainRenderer()->SetRenderPos({ 450, 1600 });
-	NewPotion->GetBodyCollsion()->SetCollisionPos({ 450, 1600 });
+	NewPotion->GetMainRenderer()->SetRenderPos({ 870, 1600 });
+	NewPotion->GetBodyCollsion()->SetCollisionPos({ 870, 1600 });
 
 }

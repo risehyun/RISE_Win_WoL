@@ -8,7 +8,6 @@
 
 #include "Effect_Spawn.h"
 
-// CreateActor()
 #include <GameEngineCore/GameEngineLevel.h>
 
 #include "ContentsEnum.h"
@@ -30,18 +29,18 @@ BossSpawner::BossSpawner()
 		std::map<float, std::vector<MonsterSpawnData>> Wave;
 		{
 			std::vector<MonsterSpawnData> Data;
-			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 1850, 1634 } });
-			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 1800, 1634 } });
-			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 1750, 1634 } });
+			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 2270, 1534 } });
+			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 2070, 1534 } });
+			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 2470, 1534 } });
 
 			Wave.insert(std::make_pair(0.0f, Data));
 		}
 
 		{
 			std::vector<MonsterSpawnData> Data;
-			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 1850, 1434 } });
-			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 1800, 1434 } });
-			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 1750, 1434 }, true });
+			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 2270, 1934 } });
+			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 2070, 1934 } });
+			Data.push_back(MonsterSpawnData{ SpawnType::Swordman, { 2470, 1934 }, true });
 
 			Wave.insert(std::make_pair(1.0f, Data));
 		}
@@ -55,9 +54,10 @@ BossSpawner::BossSpawner()
 
 		{
 			std::vector<MonsterSpawnData> Data;
-			Data.push_back(MonsterSpawnData{ SpawnType::Archer, { 1850, 1634 } });
-			Data.push_back(MonsterSpawnData{ SpawnType::Archer, { 1800, 1634 } });
-			Data.push_back(MonsterSpawnData{ SpawnType::Archer, { 1750, 1634 }, true });
+			Data.push_back(MonsterSpawnData{ SpawnType::Archer, { 2270, 1334 } });
+			Data.push_back(MonsterSpawnData{ SpawnType::Archer, { 2070, 1634 } });
+			Data.push_back(MonsterSpawnData{ SpawnType::Archer, { 2470, 1634 } });
+			Data.push_back(MonsterSpawnData{ SpawnType::Archer, { 2270, 1934 }, true });
 
 			Wave.insert(std::make_pair(5.0f, Data));
 		}
@@ -71,7 +71,7 @@ BossSpawner::BossSpawner()
 
 		{
 			std::vector<MonsterSpawnData> Data;
-			Data.push_back(MonsterSpawnData{ SpawnType::GrandSummoner, { 1750, 1634 }, true });
+			Data.push_back(MonsterSpawnData{ SpawnType::GrandSummoner, { 2280, 1634 }, true });
 
 			Wave.insert(std::make_pair(5.0f, Data));
 		}
@@ -110,27 +110,27 @@ void BossSpawner::Start()
 	Renderer_ActivationCircle = CreateRenderer();
 	Renderer_ActivationCircle->SetRenderScale({ 200, 200 });
 	Renderer_ActivationCircle->SetTexture("MiniBossActivationCircle.bmp");
-	Renderer_ActivationCircle->SetRenderPos({ 1850, 1800 });
+	Renderer_ActivationCircle->SetRenderPos({ 2270, 1800 });
 
 	Collsion_ActivationCircle = CreateCollision(CollisionOrder::Map);
 	Collsion_ActivationCircle->SetCollisionScale({ 200, 200 });
 	Collsion_ActivationCircle->SetCollisionType(CollisionType::CirCle);
-	Collsion_ActivationCircle->SetCollisionPos({ 1850, 1800 });
+	Collsion_ActivationCircle->SetCollisionPos({ 2270, 1800 });
 
 	Renderer_Altar = CreateRenderer();
 	Renderer_Altar->SetRenderScale({ 120, 160 });
 	Renderer_Altar->SetTexture("MiniBossAltar.bmp");
-	Renderer_Altar->SetRenderPos({ 1850, 1550 });
+	Renderer_Altar->SetRenderPos({ 2270, 1550 });
 
 	Collsion_Altar = CreateCollision(CollisionOrder::Map);
 	Collsion_Altar->SetCollisionScale({ 120, 160 });
 	Collsion_Altar->SetCollisionType(CollisionType::Rect);
-	Collsion_Altar->SetCollisionPos({ 1850, 1550 });
+	Collsion_Altar->SetCollisionPos({ 2270, 1550 });
 
 
 	// 스포너가 아예 멤버로 가지고 있도록 한다
 	m_InteractUI = GetLevel()->CreateActor<UI_KeyboardF>();
-	m_InteractUI->SetPos({ 1850, 1660 });
+	m_InteractUI->SetPos({ 2270, 1660 });
 	m_InteractUI->GetMainRenderer()->Off();
 
 
@@ -138,22 +138,24 @@ void BossSpawner::Start()
 	Renderer_FenceUp = CreateRenderer();
 	Renderer_FenceUp->SetRenderScale({ 200, 165 });
 	Renderer_FenceUp->SetTexture("PRISON_HOR.bmp");
-	Renderer_FenceUp->SetRenderPos({ 1850, 1320 });
+	Renderer_FenceUp->SetRenderPos({ 2276, 1320 });
+	Renderer_FenceUp->SetOrder(1);
 
 	Renderer_FenceDown = CreateRenderer();
 	Renderer_FenceDown->SetRenderScale({ 200, 165 });
 	Renderer_FenceDown->SetTexture("PRISON_HOR.bmp");
-	Renderer_FenceDown->SetRenderPos({ 1850, 2224 });
+	Renderer_FenceDown->SetRenderPos({ 2276, 2224 });
 
 	Renderer_FenceRight = CreateRenderer();
 	Renderer_FenceRight->SetRenderScale({ 48, 298 });
 	Renderer_FenceRight->SetTexture("PRISON_VER.bmp");
-	Renderer_FenceRight->SetRenderPos({ 2360, 1710 });
+	Renderer_FenceRight->SetRenderPos({ 2785, 1710 });
 
 	Renderer_FenceLeft = CreateRenderer();
 	Renderer_FenceLeft->SetRenderScale({ 48, 298 });
 	Renderer_FenceLeft->SetTexture("PRISON_VER.bmp");
-	Renderer_FenceLeft->SetRenderPos({ 1380, 1710 });
+	Renderer_FenceLeft->SetRenderPos({ 1805, 1710 });
+	Renderer_FenceLeft->SetOrder(15);
 
 	Renderer_FenceUp->Off();
 	Renderer_FenceDown->Off();
@@ -163,25 +165,25 @@ void BossSpawner::Start()
 	Collsion_FenceUp = CreateCollision(CollisionOrder::Map);
 	Collsion_FenceUp->SetCollisionScale({ 200, 83 });
 	Collsion_FenceUp->SetCollisionType(CollisionType::Rect);
-	Collsion_FenceUp->SetCollisionPos({ 1850, 1320 });
+	Collsion_FenceUp->SetCollisionPos({ 2276, 1320 });
 	Collsion_FenceUp->Off();
 
 	Collsion_FenceDown = CreateCollision(CollisionOrder::Map);
 	Collsion_FenceDown->SetCollisionScale({ 200, 165 });
 	Collsion_FenceDown->SetCollisionType(CollisionType::Rect);
-	Collsion_FenceDown->SetCollisionPos({ 1850, 2224 });
+	Collsion_FenceDown->SetCollisionPos({ 2276, 2224 });
 	Collsion_FenceDown->Off();
 
 	Collsion_FenceRight = CreateCollision(CollisionOrder::Map);
 	Collsion_FenceRight->SetCollisionScale({ 24, 298 });
 	Collsion_FenceRight->SetCollisionType(CollisionType::Rect);
-	Collsion_FenceRight->SetCollisionPos({ 2360, 1710 });
+	Collsion_FenceRight->SetCollisionPos({ 2785, 1710 });
 	Collsion_FenceRight->Off();
 
 	Collsion_FenceLeft = CreateCollision(CollisionOrder::Map);
 	Collsion_FenceLeft->SetCollisionScale({ 24, 298 });
 	Collsion_FenceLeft->SetCollisionType(CollisionType::Rect);
-	Collsion_FenceLeft->SetCollisionPos({ 1360, 1710 });
+	Collsion_FenceLeft->SetCollisionPos({ 1805, 1710 });
 	Collsion_FenceLeft->Off();
 }
 

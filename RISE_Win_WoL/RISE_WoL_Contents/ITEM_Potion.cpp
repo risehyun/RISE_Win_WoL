@@ -39,13 +39,13 @@ void ITEM_Potion::Start()
 	}
 
 	m_InteractUI = GetLevel()->CreateActor<UI_KeyboardF>();
-	m_InteractUI->SetPos({ 445, 1470 });
+	m_InteractUI->SetPos({ 865, 1470 });
 	m_InteractUI->GetMainRenderer()->SetOrder(2);
 	m_InteractUI->GetMainRenderer()->Off();
 
 	DescriptRenerer = CreateRenderer();
-	DescriptRenerer->SetText("치료 물약", 20);
-	DescriptRenerer->SetRenderPos({ 400, 1500 });
+	DescriptRenerer->SetText("치료 물약", 20, "나눔스퀘어");
+	DescriptRenerer->SetRenderPos({ 830, 1500 });
 	DescriptRenerer->SetOrder(1);
 	DescriptRenerer->Off();
 

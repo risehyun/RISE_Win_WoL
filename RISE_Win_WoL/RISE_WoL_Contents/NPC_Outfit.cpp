@@ -46,7 +46,7 @@ void NPC_Outfit::Start()
 	// 상호작용 UI 설정
 	m_InteractUI = GetLevel()->CreateActor<UI_KeyboardF>();
 
-	m_InteractUI->SetPos({ 1860, 600 });
+	m_InteractUI->SetPos({ 2270, 600 });
 	m_InteractUI->GetMainRenderer()->SetOrder(2);
 	m_InteractUI->GetMainRenderer()->Off();
 

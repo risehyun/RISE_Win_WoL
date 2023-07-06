@@ -48,6 +48,10 @@ void BossLevel::Start()
 
 void BossLevel::Update(float _Delta)
 {
+
+	float4 t = GameEngineWindow::MainWindow.GetMousePos();
+	PlayUIManager::UI->MousePtr->SetRenderPos(t);
+
 	if (true == GameEngineInput::IsDown(VK_RIGHT))
 	{
 		Player::MainPlayer->OverOff();

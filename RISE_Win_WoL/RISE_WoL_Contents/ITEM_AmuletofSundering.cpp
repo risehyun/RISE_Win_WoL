@@ -55,7 +55,7 @@ void ITEM_AmuletofSundering::Start()
 	}
 
 	m_InteractUI = GetLevel()->CreateActor<UI_KeyboardF>();
-	m_InteractUI->SetPos({ 700, 1710 });
+	m_InteractUI->SetPos({ 1100, 1710 });
 	m_InteractUI->GetMainRenderer()->SetOrder(2);
 	m_InteractUI->GetMainRenderer()->Off();
 
@@ -63,7 +63,7 @@ void ITEM_AmuletofSundering::Start()
 	DescriptRenerer = CreateRenderer();
 	DescriptRenerer->SetTexture("ITEM_Descript_AmuletofSundering.bmp");
 	DescriptRenerer->SetRenderScale({ 220, 115 });
-	DescriptRenerer->SetRenderPos({ 700, 1650 });
+	DescriptRenerer->SetRenderPos({ 1100, 1650 });
 	DescriptRenerer->SetOrder(1);
 	DescriptRenerer->Off();
 

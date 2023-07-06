@@ -521,13 +521,13 @@ void Monster_Archer::AttackUpdate(float _Delta)
 		{
 			NewBow = GetLevel()->CreateActor<SKILL_ArcherBow>();
 			NewBow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
-			NewBow->SkillRenderer->ChangeAnimation("Arrow_INDEX15");
+			NewBow->SkillRenderer->ChangeAnimation("Arrow_INDEX4");
 
 			SKILL_ArcherAttack* NewArrow = GetLevel()->CreateActor<SKILL_ArcherAttack>();
 			NewArrow->SetPos(GetPos() + float4{ 0.0f, 20.0f, 0.0f, 0.0f });
 
 			NewArrow->SetDir(DirDeg);
-			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX15");
+			NewArrow->SkillRenderer->ChangeAnimation("ArrowShot_INDEX4");
 		}
 
 		currentCooldown = cooldown;

@@ -55,7 +55,7 @@ void NPC_Collector::Start()
 	// 상호작용 UI 설정
 	m_InteractUI = GetLevel()->CreateActor<UI_KeyboardF>();
 
-	m_InteractUI->SetPos({ 1850, 2700 });
+	m_InteractUI->SetPos({ 2270, 2700 });
 	m_InteractUI->GetMainRenderer()->SetOrder(2);
 	m_InteractUI->GetMainRenderer()->Off();
 
@@ -123,19 +123,4 @@ void NPC_Collector::Update(float _Delta)
 
 
 		);
-
-	//// 캐릭터와 충돌 상태인 경우 F 키를 눌러서 대화 가능
-	//std::vector<GameEngineCollision*> _Col;
-	//if (true == BodyCollision->Collision(CollisionOrder::PlayerBody, _Col
-	//	, CollisionType::CirCle
-	//	, CollisionType::CirCle
-	//))
-	//{
-
-	//}
-
-	//else
-	//{
-
-	//}
 }
