@@ -669,6 +669,6 @@ void Monster_Archer::OnDamaged(int _iAttackPower)
 		NewText->SetDir(float4::RIGHT);
 	}
 
-	NewText->GetMainRenderer()->SetText(std::to_string(_iAttackPower), 20, "Noto Sans Med");
+	NewText->GetMainRenderer()->SetText(std::to_string(_iAttackPower), 20, "³ª´®½ºÄù¾î");
 	NewText->SetPos({ GetPos().X, GetPos().Y - 100.0f });
 }

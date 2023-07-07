@@ -115,28 +115,28 @@ void UI_SkillBar::Start()
 	Cooldown_Text->SetRenderScale({ 30, 30 });
 	Cooldown_Text->SetRenderPos({ 170, 736 });
 	Cooldown_Text->SetOrder(4);
-	Cooldown_Text->SetText("0", 16, "¿¹½ºÃ¼");
+	Cooldown_Text->SetText("0", 16, "³ª´®½ºÄù¾î");
 
 
 	Cooldown_Text_WhirlingTornado = CreateUIRenderer();
 	Cooldown_Text_WhirlingTornado->SetRenderScale({ 30, 30 });
 	Cooldown_Text_WhirlingTornado->SetRenderPos({ 128, 736 });
 	Cooldown_Text_WhirlingTornado->SetOrder(4);
-	Cooldown_Text_WhirlingTornado->SetText("0", 16, "¿¹½ºÃ¼");
+	Cooldown_Text_WhirlingTornado->SetText("0", 16, "³ª´®½ºÄù¾î");
 
 
 	Cooldown_Text_EarthenAegis = CreateUIRenderer();
 	Cooldown_Text_EarthenAegis->SetRenderScale({ 30, 30 });
 	Cooldown_Text_EarthenAegis->SetRenderPos({ 214, 736 });
 	Cooldown_Text_EarthenAegis->SetOrder(4);
-	Cooldown_Text_EarthenAegis->SetText("0", 16, "¿¹½ºÃ¼");
+	Cooldown_Text_EarthenAegis->SetText("0", 16, "³ª´®½ºÄù¾î");
 
 
 	Cooldown_Text_SnowflakeChakrams = CreateUIRenderer();
 	Cooldown_Text_SnowflakeChakrams->SetRenderScale({ 30, 30 });
 	Cooldown_Text_SnowflakeChakrams->SetRenderPos({ 256, 736 });
 	Cooldown_Text_SnowflakeChakrams->SetOrder(4);
-	Cooldown_Text_SnowflakeChakrams->SetText("0", 16, "¿¹½ºÃ¼");
+	Cooldown_Text_SnowflakeChakrams->SetText("0", 16, "³ª´®½ºÄù¾î");
 
 }
 
@@ -209,7 +209,7 @@ void UI_SkillBar::Update(float _Delta)
 
 	}
 
-	Cooldown_Text->SetText(std::to_string(CoolTime_ExplodingFireball), 16, "¿¹½ºÃ¼");
+	Cooldown_Text->SetText(std::to_string(CoolTime_ExplodingFireball), 16, "³ª´®½ºÄù¾î");
 
 #pragma endregion
 
@@ -264,7 +264,7 @@ void UI_SkillBar::Update(float _Delta)
 
 	}
 
-	Cooldown_Text_WhirlingTornado->SetText(std::to_string(CoolTime_WhirlingTornado), 16, "¿¹½ºÃ¼");
+	Cooldown_Text_WhirlingTornado->SetText(std::to_string(CoolTime_WhirlingTornado), 16, "³ª´®½ºÄù¾î");
 
 #pragma endregion
 
@@ -324,7 +324,7 @@ void UI_SkillBar::Update(float _Delta)
 
 	}
 
-	 Cooldown_Text_EarthenAegis->SetText(std::to_string(CoolTime_EarthenAegis), 16, "¿¹½ºÃ¼");
+	 Cooldown_Text_EarthenAegis->SetText(std::to_string(CoolTime_EarthenAegis), 16, "³ª´®½ºÄù¾î");
 
 #pragma endregion
 
@@ -384,7 +384,7 @@ void UI_SkillBar::Update(float _Delta)
 
 	}
 
-	Cooldown_Text_SnowflakeChakrams->SetText(std::to_string(CoolTime_SnowflakeChakrams), 16, "¿¹½ºÃ¼");
+	Cooldown_Text_SnowflakeChakrams->SetText(std::to_string(CoolTime_SnowflakeChakrams), 16, "³ª´®½ºÄù¾î");
 
 
 

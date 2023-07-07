@@ -287,7 +287,7 @@ void Monster_Swordman::OnDamaged(int _AttackPower)
 		NewText->SetDir(float4::RIGHT);
 	}
 
-	NewText->GetMainRenderer()->SetText(std::to_string(_AttackPower), 20, "Noto Sans Med");
+	NewText->GetMainRenderer()->SetText(std::to_string(_AttackPower), 20, "³ª´®½ºÄù¾î");
 	NewText->SetPos({ GetPos().X, GetPos().Y - 100.0f });
 
 }
