@@ -110,6 +110,11 @@ void MiniBoss_GrandSummoner::Start()
 
 	MainRenderer->ChangeAnimation("Left_Idle");
 
+	ShadowRenderer = CreateRenderer();
+	ShadowRenderer->SetRenderPos({ GetPos().X + 2.0f, GetPos().Y + 100.0f });
+	ShadowRenderer->SetRenderScale({ 70, 35 });
+	ShadowRenderer->SetTexture("PLAYER_SHADOW.bmp");
+
 	ChangeState(MiniBossState::Idle);
 }
 

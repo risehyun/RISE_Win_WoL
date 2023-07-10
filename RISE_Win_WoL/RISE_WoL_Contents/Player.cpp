@@ -19,6 +19,7 @@
 #include "Bullet.h"
 #include "Monster.h"
 
+
 #include "SKILL_PlayerNormalAttack.h"
 #include "SKILL_PlayerWindBoomerang.h"
 #include "SKILL_EarthenAegis.h"
@@ -215,7 +216,7 @@ void Player::Start()
 
 	ShadowRenderer = CreateRenderer();
 	ShadowRenderer->SetRenderPos({ GetPos().X + 2.0f, GetPos().Y + 40.0f });
-	ShadowRenderer->SetRenderScale({70, 35});
+	ShadowRenderer->SetRenderScale( {70, 35} );
 	ShadowRenderer->SetTexture("PLAYER_SHADOW.bmp");
 
 

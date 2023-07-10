@@ -87,6 +87,11 @@ void Monster_Archer::Start()
 	MainRenderer->CreateAnimation("Left_Death", "ARCHER_LEFT.bmp", 24, 29, 0.1f, false);
 	MainRenderer->CreateAnimation("Right_Death", "ARCHER_RIGHT.bmp", 24, 29, 0.1f, false);
 
+	ShadowRenderer = CreateRenderer();
+	ShadowRenderer->SetRenderPos({ GetPos().X + 2.0f, GetPos().Y + 60.0f });
+	ShadowRenderer->SetRenderScale({ 90, 35 });
+	ShadowRenderer->SetTexture("PLAYER_SHADOW.bmp");
+
 	// 충돌체 설정
 	BodyCollision = CreateCollision(CollisionOrder::MonsterBody);
 	BodyCollision->SetCollisionScale({ 150, 150 });

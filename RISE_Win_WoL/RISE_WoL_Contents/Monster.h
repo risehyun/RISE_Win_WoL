@@ -72,7 +72,7 @@ public:
 	Monster& operator=(Monster&& _Other) noexcept = delete;
 
 protected:
-
+	GameEngineRenderer* ShadowRenderer = nullptr;
 
 private:
 	void Start() override;

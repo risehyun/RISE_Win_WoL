@@ -124,6 +124,13 @@ void Monster_Swordman::Start()
 		MainRenderer->CreateAnimation("Left_Death", "SWORDMAN_LEFT.bmp", 24, 28, 0.1f, true);
 		MainRenderer->CreateAnimation("Right_Death", "SWORDMAN_RIGHT.bmp", 24, 28, 0.1f, true);
 
+
+		// ±×¸²ÀÚ 
+		ShadowRenderer = CreateRenderer();
+		ShadowRenderer->SetRenderPos({ GetPos().X + 2.0f, GetPos().Y + 40.0f });
+		ShadowRenderer->SetRenderScale({ 70, 35 });
+		ShadowRenderer->SetTexture("PLAYER_SHADOW.bmp");
+
 		if (nullptr == GameEngineSound::FindSound("ENEMY_DIED.mp3"))
 		{
 			GameEnginePath FilePath;

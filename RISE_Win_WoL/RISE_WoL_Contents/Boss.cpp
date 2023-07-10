@@ -156,6 +156,10 @@ void Boss::Start()
 
 	SetGroundTexture("BossStage_Col_forBoss.bmp");
 
+	ShadowRenderer = CreateRenderer();
+	ShadowRenderer->SetRenderPos({ GetPos().X + 2.0f, GetPos().Y + 80.0f });
+	ShadowRenderer->SetRenderScale({ 70, 35 });
+	ShadowRenderer->SetTexture("PLAYER_SHADOW.bmp");
 
 	MainRenderer = CreateRenderer(RenderOrder::Play);
 	MainRenderer->SetRenderScale({ 150, 200 });
